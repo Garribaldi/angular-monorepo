@@ -1,13 +1,13 @@
-<shared-table [data]="employees"></shared-table>
+<shared-table [data]="employees$ | async"></shared-table>
 
-<shared-table [data]="employees">
+<shared-table [data]="employees$ | async">
   <ng-template #headers>
     <th>Given name</th>
     <th>Last name</th>
   </ng-template>
 </shared-table>
 
-<shared-table [data]="inventory">
+<shared-table [data]="inventory$ | async">
   <ng-template #headers>
     <th>Item</th>
     <th>Price</th>
@@ -21,5 +21,3 @@
     </td>
   </ng-template>
 </shared-table>
-
-

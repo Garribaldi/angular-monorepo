@@ -15,13 +15,18 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@local/generic-table/data-access": [
+        "libs/generic-table/data-access/src/index.ts"
+      ],
       "@local/generic-table/feature/shell": [
         "libs/generic-table/feature/shell/src/index.ts"
       ],
       "@local/shared/feature/generic-table": [
         "libs/shared/feature/generic-table/src/index.ts"
       ],
-      "@local/shared/feature/table": ["libs/shared/feature/table/src/index.ts"]
+      "@local/shared/feature/table": ["libs/shared/feature/table/src/index.ts"],
+      "@local/shared/ui": ["libs/shared/ui/src/index.ts"],
+      "@local/shared/ui/ui": ["libs/shared/ui/ui/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

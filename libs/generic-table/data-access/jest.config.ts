@@ -1,9 +1,9 @@
 /* eslint-disable */
 export default {
-  displayName: 'shared-feature-table',
-  preset: '../../../../jest.preset.js',
+  displayName: 'generic-table-data-access',
+  preset: '../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
-  coverageDirectory: '../../../../coverage/libs/shared/feature/table',
+  coverageDirectory: '../../../coverage/libs/generic-table/data-access',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': [
       'jest-preset-angular',
