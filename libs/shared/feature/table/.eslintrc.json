@@ -9,7 +9,7 @@
           "error",
           {
             "type": "attribute",
-            "prefix": "genericTable",
+            "prefix": "shared",
             "style": "camelCase"
           }
         ],
@@ -17,7 +17,7 @@
           "error",
           {
             "type": "element",
-            "prefix": "generic-table",
+            "prefix": "shared",
             "style": "kebab-case"
           }
         ]
