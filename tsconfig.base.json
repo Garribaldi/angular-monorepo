@@ -14,7 +14,11 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@local/generic-table/feature/shell": [
+        "libs/generic-table/feature/shell/src/index.ts"
+      ]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

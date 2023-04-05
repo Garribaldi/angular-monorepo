@@ -12,6 +12,18 @@ Run `nx serve demo` for a dev server. Navigate to http://localhost:4200/. The ap
 
 Run `nx graph` to see a diagram of the dependencies of the projects.
 
+## Create lib
+
+```
+npx nx g @nrwl/angular:lib shell --prefix=local-generic-table --directory=generic-table/feature --lazy=true --routing=true
+```
+
+## Create component
+
+```
+npx nx g @nrwl/angular:component overview --prefix=local --project=generic-table-feature-shell --export=true 
+```
+
 ## Remote caching
 
 Run `npx nx connect-to-nx-cloud` to enable [remote caching](https://nx.app) and make CI faster.
