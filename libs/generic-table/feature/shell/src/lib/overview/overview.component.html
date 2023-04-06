@@ -3,24 +3,28 @@
 
 <!-- Basic configuration with header template -->
 <shared-table [data]="employees$ | async">
-  <ng-template #headers>
+  <ng-template appTableHeader>
     <th>Given name</th>
     <th>Last name</th>
   </ng-template>
 </shared-table>
 
-<!-- Max configuration with header mand rows template -->
-<shared-table [data]="inventory$ | async">
-  <ng-template #headers>
-    <th>Item</th>
-    <th>Price</th>
-    <th>Buy</th>
-  </ng-template>
-  <ng-template #rows let-row>
-    <td>{{row.name}}</td>
-    <td>{{row.price | currency: row.currency}}</td>
-    <td>
-      <button *ngIf="row.inStock > 0" (click)="purchaseItem(row.plu)">Buy now</button>
-    </td>
-  </ng-template>
-</shared-table>
+<ng-container *ngIf="inventory$ | async as inventory">
+  <!-- Max configuration with header mand rows template -->
+  <shared-table [data]="inventory">
+    <ng-template appTableHeader>
+      <th>Item</th>
+      <th>Price</th>
+      <th>Buy</th>
+    </ng-template>
+    <ng-template [appTableRow]="inventory" let-row>
+      <td>{{row.name}}</td>
+      <td>{{row.price | currency: row.currency}}</td>
+      <td>
+        <button *ngIf="row.inStock > 0" (click)="purchaseItem(row.plu)">Buy now</button>
+      </td>
+    </ng-template>
+  </shared-table>
+</ng-container>
+
+
