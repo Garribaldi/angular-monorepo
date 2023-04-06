@@ -1,5 +1,7 @@
+<!-- No templates provided, default layout is used -->
 <shared-table [data]="employees$ | async"></shared-table>
 
+<!-- Basic configuration with header template -->
 <shared-table [data]="employees$ | async">
   <ng-template #headers>
     <th>Given name</th>
@@ -7,6 +9,7 @@
   </ng-template>
 </shared-table>
 
+<!-- Max configuration with header mand rows template -->
 <shared-table [data]="inventory$ | async">
   <ng-template #headers>
     <th>Item</th>
