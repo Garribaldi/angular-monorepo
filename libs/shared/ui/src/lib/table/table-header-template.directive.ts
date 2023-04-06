@@ -10,9 +10,9 @@ export class TableHeaderTemplateDirective<TItem extends object> {
   @Input('appTableHeader') data!: TItem[] | '';
 
   static ngTemplateContextGuard<TContextItem extends object>(
-    dir: TableHeaderTemplateDirective<TContextItem>,
-    state: unknown,
-  ): state is TableHeaderTemplateContext<TContextItem> {
+    directive: TableHeaderTemplateDirective<TContextItem>,
+    context: unknown,
+  ): context is TableHeaderTemplateContext<TContextItem> {
     return true;
   }
 }
