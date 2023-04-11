@@ -27,3 +27,5 @@ $demo-theme: mat.define-light-theme((
     warn: $demo-warn,
   )
 ));
+
+@include mat.all-component-themes($demo-theme);
