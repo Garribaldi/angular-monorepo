@@ -10,6 +10,8 @@ import { Observable } from "rxjs";
 })
 export class OverviewComponent {
 
+  displayedColumns = ["firstName", "lastName"];
+
   employees$: Observable<Employee[]>;
   inventory$: Observable<Inventory[]>
 
@@ -18,7 +20,6 @@ export class OverviewComponent {
   ) {
     this.employees$ = tableDataService.getEmployees();
     this.inventory$ = tableDataService.getInventory();
-    tableDataService.getInventory()
   }
 
   purchaseItem(plu: number) {

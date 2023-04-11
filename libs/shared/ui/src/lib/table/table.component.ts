@@ -7,10 +7,11 @@ import { TableRowTemplateDirective } from "./table-row-template.directive";
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss'],
 })
-export class TableComponent<TItem extends object>{
+export class TableComponent<TItem extends object> {
   @Input() data!: TItem[] | null;
-  @ContentChild(TableHeaderTemplateDirective, {read: TemplateRef})
-  headers?: TemplateRef<TItem[]>;
-  @ContentChild(TableRowTemplateDirective, {read: TemplateRef})
-  rows?: TemplateRef<TItem>;
+
+  @ContentChild(TableHeaderTemplateDirective, {read: TemplateRef}) headers?: TemplateRef<TItem[]>;
+
+  @ContentChild(TableRowTemplateDirective, {read: TemplateRef}) rows?: TemplateRef<TItem>;
 }
+ 
