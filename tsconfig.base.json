@@ -15,12 +15,23 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@local/angular-material/feature/shell": [
+        "libs/angular-material/feature/shell/src/index.ts"
+      ],
+      "@local/angular-material/feature/table": [
+        "libs/angular-material/feature/table/src/index.ts"
+      ],
+      "@local/angular-material/ui": ["libs/angular-material/ui/src/index.ts"],
+      "@local/angular-material/ui/mat-table": [
+        "libs/angular-material/ui/mat-table/src/index.ts"
+      ],
       "@local/generic-table/data-access": [
         "libs/generic-table/data-access/src/index.ts"
       ],
       "@local/generic-table/feature/shell": [
         "libs/generic-table/feature/shell/src/index.ts"
       ],
+      "@local/shared/data-access": ["libs/shared/data-access/src/index.ts"],
       "@local/shared/feature/generic-table": [
         "libs/shared/feature/generic-table/src/index.ts"
       ],

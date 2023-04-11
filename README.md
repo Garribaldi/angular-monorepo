@@ -12,16 +12,30 @@ Run `nx serve demo` for a dev server. Navigate to http://localhost:4200/. The ap
 
 Run `nx graph` to see a diagram of the dependencies of the projects.
 
-## Create lib
+
+## Add Library
 
 ```
-npx nx g @nrwl/angular:lib shell --prefix=local-generic-table --directory=generic-table/feature --lazy=true --routing=true
+nx g @nrwl/angular:lib shell --prefix=angular-material --directory=angular-material/feature --routing=true --lazy=true
 ```
 
-## Create component
+## Add Component
 
 ```
-npx nx g @nrwl/angular:component overview --prefix=local --project=generic-table-feature-shell --export=true 
+nx g @nrwl/angular:component table --prefix=shared --project=shared-ui --export=true
+```
+
+
+## Add Service
+
+```
+nx g @nrwl/angular:service api/table-data --project=generic-table-data-access
+```
+
+## Add Directive
+
+```
+nx g @schematics/angular:directive table/table-row-template --prefix=shared --project=shared-ui --export=true
 ```
 
 ## Remote caching

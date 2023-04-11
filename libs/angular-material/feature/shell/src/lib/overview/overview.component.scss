@@ -1,0 +1,27 @@
+@use "sass:map";
+@use "@angular/material" as mat;
+
+.nav {
+  display: block;
+  padding: 0 0 1rem 0;
+  margin: 0 0 1rem 0;
+  border-bottom: 1px solid #ededed;
+
+  &__item {
+    display: inline-block;
+    padding: 0 .75rem;
+
+    &:not(:last-child) {
+      border-right: 1px solid #cccccc;
+    }
+  }
+
+  &__link {
+    color: #585858;
+    text-decoration: none;
+
+    &--active {
+      font-weight: 500;
+    }
+  }
+}

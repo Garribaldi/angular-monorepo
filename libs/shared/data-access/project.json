@@ -1,8 +1,8 @@
 {
-  "name": "generic-table-data-access",
+  "name": "shared-data-access",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/generic-table/data-access/src",
-  "prefix": "generic-table",
+  "sourceRoot": "libs/shared/data-access/src",
+  "prefix": "shared",
   "tags": [],
   "projectType": "library",
   "targets": {
@@ -10,7 +10,7 @@
       "executor": "@nrwl/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "libs/generic-table/data-access/jest.config.ts",
+        "jestConfig": "libs/shared/data-access/jest.config.ts",
         "passWithNoTests": true
       },
       "configurations": {
@@ -25,8 +25,8 @@
       "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": [
-          "libs/generic-table/data-access/**/*.ts",
-          "libs/generic-table/data-access/**/*.html"
+          "libs/shared/data-access/**/*.ts",
+          "libs/shared/data-access/**/*.html"
         ]
       }
     }
