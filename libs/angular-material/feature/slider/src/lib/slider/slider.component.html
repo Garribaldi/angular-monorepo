@@ -1,0 +1,25 @@
+<div class="slider">
+
+  <label for="basic">Basic Slider</label>
+  <mat-slider id="basic">
+    <input matSliderThumb>
+  </mat-slider>
+
+  <label for="basic-attr">Basic Slider with attributes</label>
+  <mat-slider discrete id="basic-attr">
+    <input matSliderThumb min="1" max="50" step="0.5" value="4.5">
+  </mat-slider>
+
+  <label for="range">Range Slider</label>
+  <mat-slider id="range">
+    <input matSliderStartThumb>
+    <input matSliderEndThumb>
+  </mat-slider>
+
+  <label for="range-attr">Range Slider with attributes</label>
+  <mat-slider discrete id="range-attr" min="0" max="300">
+    <input matSliderStartThumb value="100" (valueChange)="minChanged($event)">
+    <input matSliderEndThumb value="200" (valueChange)="maxChanged($event)">
+  </mat-slider>
+
+</div>

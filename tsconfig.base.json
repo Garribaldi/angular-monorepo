@@ -18,6 +18,9 @@
       "@local/angular-material/feature/shell": [
         "libs/angular-material/feature/shell/src/index.ts"
       ],
+      "@local/angular-material/feature/slider": [
+        "libs/angular-material/feature/slider/src/index.ts"
+      ],
       "@local/angular-material/feature/table": [
         "libs/angular-material/feature/table/src/index.ts"
       ],
