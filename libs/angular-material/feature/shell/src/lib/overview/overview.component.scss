@@ -9,19 +9,18 @@
 
   &__item {
     display: inline-block;
-    padding: 0 .75rem;
-
-    &:not(:last-child) {
-      border-right: 1px solid #cccccc;
-    }
   }
 
   &__link {
+    padding: .75rem;
     color: #585858;
     text-decoration: none;
+    font-size: 1.25rem;
 
     &--active {
       font-weight: 500;
+      color: #ffffff;
+      background-color: map.get(mat.$blue-gray-palette, 600);
     }
   }
 }
