@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { FormControl, FormGroup } from "@angular/forms";
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { TableDataService } from "@local/shared/data-access";
 import { take } from "rxjs";
 
@@ -8,16 +8,23 @@ import { take } from "rxjs";
   templateUrl: './overview.component.html',
   styleUrls: ['./overview.component.scss'],
 })
-export class OverviewComponent {
+export class OverviewComponent implements OnInit {
 
-  testForm = new FormGroup({
-    firstName: new FormControl(),
-    lastName: new FormControl()
-  });
+  testForm!: FormGroup;
 
-  constructor(dataService: TableDataService) {
+  constructor(
+    private readonly dataService: TableDataService,
+    private readonly fb: FormBuilder
+  ) {
+  }
 
-    dataService.getEmployees()
+  ngOnInit() {
+    this.testForm = this.fb.group({
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required]
+    });
+
+    this.dataService.getEmployees()
       .pipe(take(1))
       .subscribe(employees => this.testForm.patchValue(employees[0]));
   }
