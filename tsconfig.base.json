@@ -31,6 +31,9 @@
       "@local/generic-table/feature/shell": [
         "libs/generic-table/feature/shell/src/index.ts"
       ],
+      "@local/reactive-forms/feature/shell": [
+        "libs/reactive-forms/feature/shell/src/index.ts"
+      ],
       "@local/shared/data-access": ["libs/shared/data-access/src/index.ts"],
       "@local/shared/feature/generic-table": [
         "libs/shared/feature/generic-table/src/index.ts"

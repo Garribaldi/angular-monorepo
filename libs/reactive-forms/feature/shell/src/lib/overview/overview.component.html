@@ -1,0 +1,19 @@
+<div class="form">
+
+  <form [formGroup]="testForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="fill">
+      <mat-label>First Name</mat-label>
+      <input matInput formControlName="firstName">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Last Name</mat-label>
+      <input matInput formControlName="lastName">
+    </mat-form-field>
+
+    <button mat-flat-button color="primary" type="submit" [disabled]="!testForm.valid">Senden</button>
+
+    <div class="debug">Model: {{testForm.value | json}}</div>
+  </form>
+
+</div>
