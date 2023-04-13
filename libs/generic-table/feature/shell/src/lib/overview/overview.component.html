@@ -1,5 +1,5 @@
-<!-- Implementation with Generic table lib -->
 <ng-container *ngIf="employees$ | async as employees">
+
   <!-- No templates provided, default layout is used -->
   <shared-table [data]="employees"></shared-table>
 
@@ -12,11 +12,13 @@
   </shared-table>
 
   <!-- Implementation with material table -->
-  <shared-mat-table [tableData]="employees" [columnDefinition]="columnDefinition"></shared-mat-table>
+  <shared-mat-table [tableData]="employees" [columnDefinition]="employeeColumnDef"></shared-mat-table>
+
 </ng-container>
 
 <ng-container *ngIf="inventory$ | async as inventory">
-  <!-- Max configuration with header mand rows template -->
+
+  <!-- Max configuration with header and rows template -->
   <shared-table [data]="inventory">
     <ng-template appTableHeader>
       <th>Item</th>
@@ -31,4 +33,17 @@
       </td>
     </ng-template>
   </shared-table>
+
+  <!-- Implementation with material table -->
+  <shared-mat-table [tableData]="inventory" [columnDefinition]="inventoryColumnDef">
+
+    <ng-template name="price" let-item>
+      <span>{{item.price | currency: item.currency}}</span>
+    </ng-template>
+    <ng-template name="buy" let-item>
+      <button *ngIf="item.inStock" (click)="purchaseItem(item.plu)">Buy now</button>
+    </ng-template>
+
+  </shared-mat-table>
+
 </ng-container>

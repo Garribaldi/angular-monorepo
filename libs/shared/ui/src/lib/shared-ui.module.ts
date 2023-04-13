@@ -5,20 +5,22 @@ import { TableHeaderTemplateDirective } from './table/table-header-template.dire
 import { TableRowTemplateDirective } from './table/table-row-template.directive';
 import { MatTableModule } from '@angular/material/table';
 import { MatTableComponent } from './mat-table/mat-table.component';
+import { SharedUtilsModule } from "@local/shared/utils";
 
 @NgModule({
-  imports: [CommonModule, MatTableModule],
+  imports: [CommonModule, MatTableModule, SharedUtilsModule],
   declarations: [
     TableComponent,
     TableHeaderTemplateDirective,
     TableRowTemplateDirective,
-    MatTableComponent,
+    MatTableComponent
   ],
   exports: [
     TableComponent,
     TableHeaderTemplateDirective,
     TableRowTemplateDirective,
-    MatTableComponent,
+    MatTableComponent
   ],
 })
-export class SharedUiModule {}
+export class SharedUiModule {
+}

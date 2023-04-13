@@ -12,10 +12,16 @@ export class OverviewComponent {
   employees$: Observable<Employee[]>;
   inventory$: Observable<Inventory[]>;
 
-  columnDefinition: ColumnDef = {
+  employeeColumnDef: ColumnDef = {
     firstName: 'First Name',
     lastName: 'Last Name'
   };
+
+  inventoryColumnDef: ColumnDef = {
+    name: 'Item',
+    price: 'Price',
+    buy: 'Buy'
+  }
 
   constructor(
     private readonly tableDataService: TableDataService
