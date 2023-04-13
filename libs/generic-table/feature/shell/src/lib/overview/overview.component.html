@@ -10,6 +10,9 @@
       <th>Last name</th>
     </ng-template>
   </shared-table>
+
+  <!-- Implementation with material table -->
+  <shared-mat-table [tableData]="employees" [columnDefinition]="columnDefinition"></shared-mat-table>
 </ng-container>
 
 <ng-container *ngIf="inventory$ | async as inventory">

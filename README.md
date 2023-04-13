@@ -12,7 +12,6 @@ Run `nx serve demo` for a dev server. Navigate to http://localhost:4200/. The ap
 
 Run `nx graph` to see a diagram of the dependencies of the projects.
 
-
 ## Add Library
 
 ```
@@ -24,7 +23,6 @@ nx g @nrwl/angular:lib shell --prefix=angular-material --directory=angular-mater
 ```
 nx g @nrwl/angular:component table --prefix=shared --project=shared-ui --export=true
 ```
-
 
 ## Add Service
 
