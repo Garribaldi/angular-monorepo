@@ -7,8 +7,8 @@
       <ng-template #defaultCell>{{element[columnId]}}</ng-template>
       <ng-container *ngTemplateOutlet="
         (columnId | getTemplateRef: templates) || defaultCell;
-        context: {$implicit: element}"
-      ></ng-container>
+        context: {$implicit: element}">
+      </ng-container>
     </td>
   </ng-container>
 
