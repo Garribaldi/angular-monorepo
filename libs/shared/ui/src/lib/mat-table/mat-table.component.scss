@@ -1,0 +1,10 @@
+@use 'sass:map';
+@use '@angular/material' as mat;
+
+table {
+  margin-bottom: 2rem;
+
+  th {
+    background-color: map.get(mat.$blue-gray-palette, 100);
+  }
+}

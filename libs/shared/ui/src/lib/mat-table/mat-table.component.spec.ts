@@ -40,11 +40,11 @@ describe('MatTableComponent', () => {
     loader = TestbedHarnessEnvironment.loader(fixture);
   });
 
-  it('should create', () => {
+  test('create component', () => {
     expect(component).toBeTruthy();
   });
 
-  describe('Simple table', () => {
+  describe('Simple table with data and column definition', () => {
 
     beforeEach(() => {
       component.columnDefinition = testColumnDef;

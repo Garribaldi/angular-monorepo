@@ -8,7 +8,7 @@ import { NgTemplateNameDirective } from "@local/shared/utils";
   templateUrl: './mat-table.component.html',
   styleUrls: ['./mat-table.component.scss'],
 })
-export class MatTableComponent<T extends object> implements OnChanges {
+export class MatTableComponent<T extends object> implements OnChanges{
 
   @ContentChildren(NgTemplateNameDirective) templates!: QueryList<NgTemplateNameDirective>
 
@@ -16,10 +16,12 @@ export class MatTableComponent<T extends object> implements OnChanges {
   columns: string[] = [];
 
   /**
+   * __Optional__
    * A key value pair where the key should be matching the columns
    * in the table data and the value should be the column display name
+   * If no column definition is provided, the keys from the table data will be used
    */
-  @Input() columnDefinition!: ColumnDef;
+  @Input() columnDefinition: ColumnDef = {};
 
   /**
    * This is an array of the table data to be displayed
@@ -30,9 +32,22 @@ export class MatTableComponent<T extends object> implements OnChanges {
     this.dataSource.data = data;
   }
 
+  /**
+   * If column definition is not provided, use table data keys as table column header
+   * @param changes
+   */
   ngOnChanges(changes: SimpleChanges) {
-    if (changes['columnDefinition']) {
-      this.columns = Object.keys(this.columnDefinition);
+    const columnDefinition: ColumnDef = changes['columnDefinition']?.currentValue ?? this.columnDefinition;
+    const tableData: T[] = changes['tableData']?.currentValue ?? [];
+
+    const columnDefinitionIsEmpty = Object.keys(columnDefinition).length < 1;
+    const tableDataNotEmpty = tableData.length > 0;
+
+    if (columnDefinitionIsEmpty && tableDataNotEmpty) {
+      Object.keys(tableData[0]).forEach(key => columnDefinition[key] = key);
+      this.columnDefinition = {...columnDefinition};
     }
+
+    this.columns = Object.keys(columnDefinition);
   }
 }

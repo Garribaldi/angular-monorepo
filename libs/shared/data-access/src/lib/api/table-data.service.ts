@@ -16,7 +16,7 @@ const inventory: Inventory[] = [
   {
     plu: 110,
     supplier: 'X Corp',
-    name: 'Table extender',
+    name: 'Electric plug',
     inStock: 500,
     price: 50,
     currency: 'GBP'
@@ -27,23 +27,23 @@ const inventory: Inventory[] = [
     name: 'Heated toilet seat',
     inStock: 0,
     price: 80,
-    currency: 'GBP'
+    currency: 'EUR'
   },
   {
     plu: 155,
     supplier: 'Y Corp',
-    name: 'Really good pencil',
-    inStock: 1,
-    price: 8000,
+    name: 'Golden pencil',
+    inStock: 4,
+    price: 4500,
     currency: 'AUD'
   },
   {
     plu: 165,
     supplier: 'Y Corp',
-    name: 'Really good phone',
+    name: 'iPhone 20',
     inStock: 1,
     price: 8000,
-    currency: 'AUD'
+    currency: 'USD'
   }
 ];
 
