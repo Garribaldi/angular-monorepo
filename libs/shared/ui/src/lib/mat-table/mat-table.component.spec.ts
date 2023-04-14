@@ -1,11 +1,13 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatTableComponent } from './mat-table.component';
-import { MatCell, MatRow, MatTableModule } from "@angular/material/table";
+import { MatTableModule } from "@angular/material/table";
 import { ColumnDef, Employee } from "@local/shared/data-access";
-import { By } from "@angular/platform-browser";
-import { SimpleChange } from "@angular/core";
 import { MockPipe } from "ng-mocks";
 import { GetTemplateRefPipe } from "@local/shared/utils";
+import { HarnessLoader } from "@angular/cdk/testing";
+import { TestbedHarnessEnvironment } from "@angular/cdk/testing/testbed";
+import { MatHeaderCellHarness, MatRowHarness } from "@angular/material/table/testing";
+import { SimpleChange } from "@angular/core";
 
 describe('MatTableComponent', () => {
 
@@ -21,6 +23,7 @@ describe('MatTableComponent', () => {
 
   let component: MatTableComponent<Employee>;
   let fixture: ComponentFixture<MatTableComponent<Employee>>;
+  let loader: HarnessLoader;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -34,6 +37,7 @@ describe('MatTableComponent', () => {
     fixture = TestBed.createComponent(MatTableComponent<Employee>);
     component = fixture.componentInstance;
     fixture.detectChanges();
+    loader = TestbedHarnessEnvironment.loader(fixture);
   });
 
   it('should create', () => {
@@ -45,27 +49,25 @@ describe('MatTableComponent', () => {
     beforeEach(() => {
       component.columnDefinition = testColumnDef;
       component.tableData = testData;
-      component.ngOnChanges({columnDefinition: new SimpleChange(null, testColumnDef, true)})
-
-      fixture.detectChanges();
+      component.ngOnChanges({columnDefinition: new SimpleChange(null, testColumnDef, true)});
     });
 
-    test('table headers are created', () => {
-      const tableHeaders = fixture.debugElement.queryAll(By.css('th'));
+    test('table headers with harness', async () => {
+      const headerCells = await loader.getAllHarnesses(MatHeaderCellHarness.with({selector: '.mat-header-cell'}));
 
-      expect(tableHeaders.length).toEqual(2);
-      expect(tableHeaders[0].nativeElement.innerHTML).toEqual(testColumnDef['firstName']);
-      expect(tableHeaders[1].nativeElement.innerHTML).toEqual(testColumnDef['lastName']);
+      expect(headerCells.length).toEqual(2);
+      expect(await headerCells.at(0)?.getText()).toEqual(testColumnDef['firstName']);
+      expect(await headerCells.at(1)?.getText()).toEqual(testColumnDef['lastName']);
     });
 
-    test('table rows are created', () => {
-      const tableRows = fixture.debugElement.queryAll(By.directive(MatRow));
-      const tableCells = tableRows[0].queryAll(By.directive(MatCell));
+    test('table rows with harness', async () => {
+      const tableRows = await loader.getAllHarnesses(MatRowHarness);
+      const tableCells = await tableRows.at(0)?.getCells();
 
       expect(tableRows.length).toEqual(2);
-      expect(tableCells.length).toEqual(2);
-      expect(tableCells[0].nativeElement.innerHTML).toContain(testData[0].firstName);
-      expect(tableCells[1].nativeElement.innerHTML).toContain(testData[0].lastName);
+      expect(tableCells?.length).toEqual(2);
+      expect(await tableCells?.at(0)?.getText()).toContain(testData[0].firstName);
+      expect(await tableCells?.at(1)?.getText()).toContain(testData[0].lastName);
     });
   });
 });
