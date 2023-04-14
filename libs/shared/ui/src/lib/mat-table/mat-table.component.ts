@@ -8,7 +8,7 @@ import { NgTemplateNameDirective } from "@local/shared/utils";
   templateUrl: './mat-table.component.html',
   styleUrls: ['./mat-table.component.scss'],
 })
-export class MatTableComponent<T extends object> implements OnChanges{
+export class MatTableComponent<T extends object> implements OnChanges {
 
   @ContentChildren(NgTemplateNameDirective) templates!: QueryList<NgTemplateNameDirective>
 
@@ -22,6 +22,7 @@ export class MatTableComponent<T extends object> implements OnChanges{
    * If no column definition is provided, the keys from the table data will be used
    */
   @Input() columnDefinition: ColumnDef = {};
+  @Input() showCrudOperations = false;
 
   /**
    * This is an array of the table data to be displayed
@@ -37,7 +38,7 @@ export class MatTableComponent<T extends object> implements OnChanges{
    * @param changes
    */
   ngOnChanges(changes: SimpleChanges) {
-    const columnDefinition: ColumnDef = changes['columnDefinition']?.currentValue ?? this.columnDefinition;
+    let columnDefinition: ColumnDef = changes['columnDefinition']?.currentValue ?? this.columnDefinition;
     const tableData: T[] = changes['tableData']?.currentValue ?? [];
 
     const columnDefinitionIsEmpty = Object.keys(columnDefinition).length < 1;
@@ -48,6 +49,18 @@ export class MatTableComponent<T extends object> implements OnChanges{
       this.columnDefinition = {...columnDefinition};
     }
 
+    if (this.showCrudOperations) {
+      columnDefinition = {
+        '_crudOperations': 'Action',
+        ...columnDefinition
+      }
+    }
+
     this.columns = Object.keys(columnDefinition);
+  }
+
+  applySearchFilter(target: EventTarget | null) {
+    const filterValue = (target as HTMLInputElement).value ?? '';
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 }

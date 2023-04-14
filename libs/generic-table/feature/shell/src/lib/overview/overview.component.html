@@ -1,23 +1,24 @@
 <ng-container *ngIf="employees$ | async as employees">
 
-  <!-- Basic configuration with table data -->
-  <shared-mat-table [tableData]="employees"></shared-mat-table>
+<!--  &lt;!&ndash; Basic configuration with table data &ndash;&gt;-->
+<!--  <shared-mat-table [tableData]="employees"></shared-mat-table>-->
 
-  <!-- Basic configuration with table data and column definition -->
-  <shared-mat-table [tableData]="employees" [columnDefinition]="employeeColumnDef"></shared-mat-table>
+<!--  &lt;!&ndash; Basic configuration with table data and column definition &ndash;&gt;-->
+<!--  <shared-mat-table [tableData]="employees" [columnDefinition]="employeeColumnDef"></shared-mat-table>-->
 
 </ng-container>
 
 <ng-container *ngIf="inventory$ | async as inventory">
 
   <!-- Max configuration with table data, column definition and rows template -->
-  <shared-mat-table [tableData]="inventory" [columnDefinition]="inventoryColumnDef">
+  <shared-mat-table [tableData]="inventory" [columnDefinition]="inventoryColumnDef" [showCrudOperations]="false">
 
     <ng-template name="price" let-item>
       <span>{{item.price | currency: item.currency}}</span>
     </ng-template>
     <ng-template name="buy" let-item>
       <button *ngIf="item.inStock" (click)="purchaseItem(item.plu)" mat-flat-button color="primary">Buy now</button>
+      <span *ngIf="!item.inStock">Item out of stock</span>
     </ng-template>
 
   </shared-mat-table>

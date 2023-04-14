@@ -2,12 +2,13 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatTableComponent } from './mat-table.component';
 import { MatTableModule } from "@angular/material/table";
 import { ColumnDef, Employee } from "@local/shared/data-access";
-import { MockPipe } from "ng-mocks";
+import { MockModule, MockPipe } from "ng-mocks";
 import { GetTemplateRefPipe } from "@local/shared/utils";
 import { HarnessLoader } from "@angular/cdk/testing";
 import { TestbedHarnessEnvironment } from "@angular/cdk/testing/testbed";
 import { MatHeaderCellHarness, MatRowHarness } from "@angular/material/table/testing";
 import { SimpleChange } from "@angular/core";
+import { MatFormFieldModule } from "@angular/material/form-field";
 
 describe('MatTableComponent', () => {
 
@@ -29,6 +30,7 @@ describe('MatTableComponent', () => {
     await TestBed.configureTestingModule({
       imports: [
         MatTableModule,
+        MockModule(MatFormFieldModule),
         MockPipe(GetTemplateRefPipe)
       ],
       declarations: [MatTableComponent],
