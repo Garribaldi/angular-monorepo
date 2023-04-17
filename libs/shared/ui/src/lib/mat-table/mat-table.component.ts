@@ -2,6 +2,7 @@ import { Component, ContentChildren, Input, OnChanges, QueryList, SimpleChanges 
 import { MatTableDataSource } from "@angular/material/table";
 import { ColumnDef } from "@local/shared/data-access";
 import { NgTemplateNameDirective } from "@local/shared/utils";
+import { debounceTime, distinctUntilChanged, filter, map, Subject, takeUntil } from "rxjs";
 
 @Component({
   selector: 'shared-mat-table',
@@ -13,8 +14,9 @@ export class MatTableComponent<T extends object> implements OnChanges {
   @ContentChildren(NgTemplateNameDirective) templates!: QueryList<NgTemplateNameDirective>
 
   dataSource = new MatTableDataSource<T>();
-  columns: string[] = [];
+  displayedColumns: string[] = [];
 
+  readonly searchFilter = new Subject<EventTarget | null>();
   /**
    * __Optional__
    * A key value pair where the key should be matching the columns
@@ -22,6 +24,15 @@ export class MatTableComponent<T extends object> implements OnChanges {
    * If no column definition is provided, the keys from the table data will be used
    */
   @Input() columnDefinition: ColumnDef = {};
+  /**
+   * Enable a separate row with crud operation symbols:
+   * - add row
+   * - show details
+   * - edit row
+   * - delete row
+   *
+   * __Default: false__
+   */
   @Input() showCrudOperations = false;
 
   /**
@@ -33,8 +44,23 @@ export class MatTableComponent<T extends object> implements OnChanges {
     this.dataSource.data = data;
   }
 
+  private readonly unsubscribe = new Subject<void>();
+
+  constructor() {
+    this.searchFilter
+      .pipe(
+        takeUntil(this.unsubscribe),
+        debounceTime(500),
+        filter((eventTarget): eventTarget is HTMLInputElement => eventTarget !== null),
+        map(eventTarget => eventTarget.value),
+        distinctUntilChanged()
+      )
+      .subscribe(filterValue => this.dataSource.filter = filterValue.trim().toLowerCase());
+  }
+
   /**
-   * If column definition is not provided, use table data keys as table column header
+   * If column definition is not provided, use table data keys as table column header.
+   * If crud operations are enabled, add column definition for actions.
    * @param changes
    */
   ngOnChanges(changes: SimpleChanges) {
@@ -46,21 +72,13 @@ export class MatTableComponent<T extends object> implements OnChanges {
 
     if (columnDefinitionIsEmpty && tableDataNotEmpty) {
       Object.keys(tableData[0]).forEach(key => columnDefinition[key] = key);
-      this.columnDefinition = {...columnDefinition};
     }
 
     if (this.showCrudOperations) {
-      columnDefinition = {
-        '_crudOperations': 'Action',
-        ...columnDefinition
-      }
+      columnDefinition = {'_crudOperations': 'Action', ...columnDefinition}
     }
 
-    this.columns = Object.keys(columnDefinition);
-  }
-
-  applySearchFilter(target: EventTarget | null) {
-    const filterValue = (target as HTMLInputElement).value ?? '';
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+    this.columnDefinition = {...columnDefinition};
+    this.displayedColumns = Object.keys(columnDefinition);
   }
 }
