@@ -7,13 +7,17 @@ export const appRoutes: Route[] = [
     loadChildren: () => import('@local/generic-table/feature/shell').then(m => m.GenericTableFeatureShellModule)
   },
   {
+    path: 'charts',
+    loadChildren: () => import('@local/charts/feature/shell').then(m => m.ChartsFeatureShellModule)
+  },
+  {
     path: 'material',
     loadChildren: () => import('@local/angular-material/feature/shell').then(m => m.AngularMaterialFeatureShellModule)
   },
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'table'
+    redirectTo: 'charts'
   }
 ];
 
