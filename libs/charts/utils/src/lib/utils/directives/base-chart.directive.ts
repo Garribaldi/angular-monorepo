@@ -1,9 +1,8 @@
 import { AfterViewInit, Directive, ElementRef, EventEmitter, Input, Output } from '@angular/core';
 import { ActiveElement, ChartDataset, ChartOptions, ChartType, ChartTypeRegistry } from "chart.js";
 import { Chart } from "chart.js/auto";
-import { ChartEmitValue } from "@local/charts/data-access";
+import { ChartEmitValue, ChartPointerEvent } from "@local/charts/data-access";
 import { ChartsHelperService } from "../services/charts-helper.service";
-import { ChartPointerEvent } from "../../../../../data-access/src/lib/models/chart-pointer-event.model";
 
 @Directive({
   selector: 'canvas[baseChart]'
@@ -45,7 +44,8 @@ export class BaseChartDirective implements AfterViewInit {
           value = this.utils.getScaleValue(event, 'y');
         }
 
-        this.chartClicked.emit({key, value})
+        const chart = this.chart ?? {} as Chart;
+        this.chartClicked.emit({chart, key, value})
       }
     });
     const chartConfig = this.utils.buildConfig(this.chartType, options, this.labels, this.datasets);
