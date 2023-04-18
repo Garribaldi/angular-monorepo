@@ -6,6 +6,7 @@ import { OverviewComponent } from './overview/overview.component';
 import { ReactiveFormsModule } from "@angular/forms";
 import { MatInputModule } from "@angular/material/input";
 import { MatButtonModule } from "@angular/material/button";
+import { MatSelectModule } from "@angular/material/select";
 
 @NgModule({
   imports: [
@@ -14,6 +15,7 @@ import { MatButtonModule } from "@angular/material/button";
     RouterModule.forChild(reactiveFormsFeatureShellRoutes),
     MatInputModule,
     MatButtonModule,
+    MatSelectModule,
   ],
   declarations: [OverviewComponent],
   exports: [OverviewComponent],

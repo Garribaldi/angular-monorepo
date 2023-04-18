@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Employee, TableDataService } from "@local/shared/data-access";
+import { Employee, SharedDataService } from "@local/shared/data-access";
 import { Observable } from "rxjs";
 
 @Component({
@@ -14,8 +14,8 @@ export class TableComponent {
   employees$: Observable<Employee[]>;
 
   constructor(
-    private readonly tableDataService: TableDataService
+    private readonly tableDataService: SharedDataService
   ) {
-    this.employees$ = tableDataService.getEmployees();
+    this.employees$ = tableDataService.getEmployees$();
   }
 }

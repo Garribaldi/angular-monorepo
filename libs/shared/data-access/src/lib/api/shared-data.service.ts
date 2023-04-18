@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from "rxjs";
 import { Employee } from "../models/employee.model";
 import { Inventory } from "../models/inventory.model";
-
+import { City } from "../models/city.model";
 
 const employees: Employee[] = [
-  {firstName: 'Employee', lastName: 'One'},
+  {firstName: 'Employee', lastName: 'One', city: 'Boston'},
   {firstName: 'Employee', lastName: 'Two'},
   {firstName: 'Employee', lastName: 'Three'},
   {firstName: 'Employee', lastName: 'Four'},
@@ -20,15 +20,26 @@ const inventory: Inventory[] = [
   {plu: 165, supplier: 'Z Corp', name: 'iPhone 20', inStock: 0, price: 8000, currency: 'USD'}
 ];
 
+const cities: City[] = [
+  {name: 'Miami'},
+  {name: 'New York'},
+  {name: 'Boston'},
+  {name: 'Chicago'}
+]
+
 @Injectable({
   providedIn: 'root'
 })
-export class TableDataService {
-  getEmployees(): Observable<Employee[]> {
+export class SharedDataService {
+  getEmployees$(): Observable<Employee[]> {
     return of(employees);
   }
 
-  getInventory(): Observable<Inventory[]> {
+  getCities$(): Observable<City[]> {
+    return of(cities);
+  }
+
+  getInventory$(): Observable<Inventory[]> {
     return of(inventory);
   }
 }

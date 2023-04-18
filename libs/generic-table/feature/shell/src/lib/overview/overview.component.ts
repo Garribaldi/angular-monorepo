@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Observable } from "rxjs";
-import { ColumnDef, Employee, Inventory, TableDataService } from "@local/shared/data-access";
+import { ColumnDef, Employee, Inventory, SharedDataService } from "@local/shared/data-access";
 
 @Component({
   selector: 'generic-table-overview',
@@ -24,10 +24,10 @@ export class OverviewComponent {
   }
 
   constructor(
-    private readonly tableDataService: TableDataService
+    private readonly tableDataService: SharedDataService
   ) {
-    this.employees$ = tableDataService.getEmployees();
-    this.inventory$ = tableDataService.getInventory();
+    this.employees$ = tableDataService.getEmployees$();
+    this.inventory$ = tableDataService.getInventory$();
   }
 
   purchaseItem(plu: number) {
