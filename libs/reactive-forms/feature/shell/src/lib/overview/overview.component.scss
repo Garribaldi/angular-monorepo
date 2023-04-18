@@ -1,0 +1,18 @@
+.form {
+  mat-form-field {
+    display: block;
+    max-width: 20rem;
+    margin-bottom: .5rem;
+  }
+
+  mat-error {
+    font-size: .75rem;
+  }
+
+  .debug {
+    padding: .5rem;
+    margin: 1rem 0;
+    color: #585858;
+    border: 1px solid #ededed;
+  }
+}

@@ -7,6 +7,10 @@ export const appRoutes: Route[] = [
     loadChildren: () => import('@local/generic-table/feature/shell').then(m => m.GenericTableFeatureShellModule)
   },
   {
+    path: 'form',
+    loadChildren: () => import('@local/reactive-forms/feature/shell').then(m => m.ReactiveFormsFeatureShellModule)
+  },
+  {
     path: 'charts',
     loadChildren: () => import('@local/charts/feature/shell').then(m => m.ChartsFeatureShellModule)
   },
