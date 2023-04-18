@@ -1,5 +1,5 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
-import { Chart, ChartConfiguration, ChartItem } from "chart.js/auto";
+import { Chart, ChartConfiguration, ChartDataset, ChartItem, ChartOptions } from "chart.js/auto";
 
 @Component({
   selector: 'charts-bar',
@@ -10,12 +10,23 @@ export class BarComponent implements OnInit {
 
   @ViewChild('chartCanvas', {static: true}) canvas!: ElementRef<HTMLCanvasElement>;
 
-  chart?: Chart;
+  @Input() datasets?: ChartDataset<'bar'>[];
+  @Input() labels?: string[];
+  @Input() options?: ChartOptions;
 
-  @Input() config!: ChartConfiguration<'bar'>;
+  chart?: Chart;
 
   ngOnInit() {
     const chartItem: ChartItem = this.canvas.nativeElement;
-    this.chart = new Chart(chartItem, this.config);
+    const chartConfig: ChartConfiguration<'bar'> = {
+      type: 'bar',
+      data: {
+        labels: this.labels ?? [],
+        datasets: this.datasets ?? []
+      },
+      options: this.options
+    };
+
+    this.chart = new Chart(chartItem, chartConfig);
   }
 }

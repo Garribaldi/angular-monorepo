@@ -28,10 +28,13 @@
       "@local/angular-material/ui/mat-table": [
         "libs/angular-material/ui/mat-table/src/index.ts"
       ],
+      "@local/charts/data-access": ["libs/charts/data-access/src/index.ts"],
       "@local/charts/feature/bar": ["libs/charts/feature/bar/src/index.ts"],
       "@local/charts/feature/line": ["libs/charts/feature/line/src/index.ts"],
+      "@local/charts/feature/pie": ["libs/charts/feature/pie/src/index.ts"],
       "@local/charts/feature/shell": ["libs/charts/feature/shell/src/index.ts"],
       "@local/charts/ui": ["libs/charts/ui/src/index.ts"],
+      "@local/charts/utils": ["libs/charts/utils/src/index.ts"],
       "@local/generic-table/data-access": [
         "libs/generic-table/data-access/src/index.ts"
       ],

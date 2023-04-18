@@ -12,7 +12,7 @@ export class LineComponent implements OnInit {
   @Input() datasets?: ChartDataset<'line'>[];
   @Input() labels?: string[];
   @Input() options?: ChartOptions;
-  
+
   chart?: Chart;
 
   ngOnInit() {
@@ -23,7 +23,7 @@ export class LineComponent implements OnInit {
         labels: this.labels ?? [],
         datasets: this.datasets ?? []
       },
-      options: this.options ?? {}
+      options: this.options
     };
 
     this.chart = new Chart(chartItem, chartConfig);

@@ -1,2 +1,23 @@
-<charts-bar [config]="testBarChart"></charts-bar>
-<charts-line [datasets]="lineDatasets" [labels]="lineLabels" [options]="lineOptions"></charts-line>
+<charts-bar [datasets]="testDatasets" [labels]="testLabels" [options]="testOptions"></charts-bar>
+<charts-line [datasets]="testDatasets" [labels]="testLabels" [options]="testOptions"></charts-line>
+
+<div class="chart-container">
+  <canvas baseChart
+          [chartType]="'line'"
+          [datasets]="testDatasets"
+          [labels]="testLabels"
+          [options]="testOptions"
+          (chartClicked)="updateData($event)">
+  </canvas>
+</div>
+
+<div class="chart-container">
+  <canvas baseChart
+          [chartType]="'pie'"
+          [datasets]="testPieDatasets"
+          [labels]="testPieLabels"
+          [options]="testPieOptions"
+          (chartClicked)="updateData($event)">
+  </canvas>
+</div>
+
