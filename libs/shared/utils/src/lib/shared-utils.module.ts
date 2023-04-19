@@ -2,16 +2,19 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgTemplateNameDirective } from "./directives/ng-template-name.directive";
 import { GetTemplateRefPipe } from './pipes/get-template-ref.pipe';
+import { DisableInputAssistanceDirective } from './directives/disable-input-assistance.directive';
 
 @NgModule({
   imports: [CommonModule],
   declarations: [
     NgTemplateNameDirective,
-    GetTemplateRefPipe
+    GetTemplateRefPipe,
+    DisableInputAssistanceDirective
   ],
   exports: [
     NgTemplateNameDirective,
-    GetTemplateRefPipe
+    GetTemplateRefPipe,
+    DisableInputAssistanceDirective
   ],
 })
 export class SharedUtilsModule {}

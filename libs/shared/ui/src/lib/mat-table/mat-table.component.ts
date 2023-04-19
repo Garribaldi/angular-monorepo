@@ -1,8 +1,8 @@
 import { Component, ContentChildren, Input, OnChanges, QueryList, SimpleChanges } from '@angular/core';
 import { MatTableDataSource } from "@angular/material/table";
 import { ColumnDef } from "@local/shared/data-access";
-import { NgTemplateNameDirective } from "@local/shared/utils";
 import { debounceTime, distinctUntilChanged, filter, map, Subject, takeUntil } from "rxjs";
+import { NgTemplateNameDirective } from "@local/shared/utils";
 
 @Component({
   selector: 'shared-mat-table',
@@ -48,6 +48,7 @@ export class MatTableComponent<T extends object> implements OnChanges {
 
   constructor() {
     this.searchFilter
+      .asObservable()
       .pipe(
         takeUntil(this.unsubscribe),
         debounceTime(500),

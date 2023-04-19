@@ -21,7 +21,7 @@ export const appRoutes: Route[] = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'charts'
+    redirectTo: 'form'
   }
 ];
 

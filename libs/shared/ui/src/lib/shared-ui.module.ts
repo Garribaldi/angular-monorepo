@@ -12,7 +12,15 @@ import { MatTooltipModule } from "@angular/material/tooltip";
 import { MatIconModule } from "@angular/material/icon";
 
 @NgModule({
-  imports: [CommonModule, MatTableModule, SharedUtilsModule, MatInputModule, MatButtonModule, MatTooltipModule, MatIconModule],
+  imports: [
+    CommonModule,
+    MatTableModule,
+    SharedUtilsModule,
+    MatInputModule,
+    MatButtonModule,
+    MatTooltipModule,
+    MatIconModule
+  ],
   declarations: [
     TableComponent,
     TableHeaderTemplateDirective,

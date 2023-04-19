@@ -7,16 +7,18 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { MatInputModule } from "@angular/material/input";
 import { MatButtonModule } from "@angular/material/button";
 import { MatSelectModule } from "@angular/material/select";
+import { SharedUtilsModule } from "@local/shared/utils";
 
 @NgModule({
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    RouterModule.forChild(reactiveFormsFeatureShellRoutes),
-    MatInputModule,
-    MatButtonModule,
-    MatSelectModule,
-  ],
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        RouterModule.forChild(reactiveFormsFeatureShellRoutes),
+        MatInputModule,
+        MatButtonModule,
+        MatSelectModule,
+        SharedUtilsModule,
+    ],
   declarations: [OverviewComponent],
   exports: [OverviewComponent],
 })
