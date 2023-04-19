@@ -14,4 +14,4 @@ export class TableComponent<TItem extends object> {
 
   @ContentChild(TableRowTemplateDirective, {read: TemplateRef}) rows?: TemplateRef<TItem>;
 }
- 
+

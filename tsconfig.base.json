@@ -10,7 +10,10 @@
     "importHelpers": true,
     "target": "es2015",
     "module": "esnext",
-    "lib": ["es2017", "dom"],
+    "lib": [
+      "es2017",
+      "dom"
+    ],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
@@ -24,19 +27,32 @@
       "@local/angular-material/feature/table": [
         "libs/angular-material/feature/table/src/index.ts"
       ],
-      "@local/angular-material/ui": ["libs/angular-material/ui/src/index.ts"],
+      "@local/angular-material/ui": [
+        "libs/angular-material/ui/src/index.ts"
+      ],
       "@local/angular-material/ui/mat-table": [
         "libs/angular-material/ui/mat-table/src/index.ts"
       ],
-      "@local/charts/data-access": ["libs/charts/data-access/src/index.ts"],
-      "@local/charts/feature/bar": ["libs/charts/feature/bar/src/index.ts"],
-      "@local/charts/feature/line": ["libs/charts/feature/line/src/index.ts"],
-      "@local/charts/feature/pie": ["libs/charts/feature/pie/src/index.ts"],
-      "@local/charts/feature/shell": ["libs/charts/feature/shell/src/index.ts"],
-      "@local/charts/ui": ["libs/charts/ui/src/index.ts"],
-      "@local/charts/utils": ["libs/charts/utils/src/index.ts"],
-      "@local/generic-table/data-access": [
-        "libs/generic-table/data-access/src/index.ts"
+      "@local/charts/data-access": [
+        "libs/charts/data-access/src/index.ts"
+      ],
+      "@local/charts/feature/bar": [
+        "libs/charts/feature/bar/src/index.ts"
+      ],
+      "@local/charts/feature/line": [
+        "libs/charts/feature/line/src/index.ts"
+      ],
+      "@local/charts/feature/pie": [
+        "libs/charts/feature/pie/src/index.ts"
+      ],
+      "@local/charts/feature/shell": [
+        "libs/charts/feature/shell/src/index.ts"
+      ],
+      "@local/charts/ui": [
+        "libs/charts/ui/src/index.ts"
+      ],
+      "@local/charts/utils": [
+        "libs/charts/utils/src/index.ts"
       ],
       "@local/generic-table/feature/shell": [
         "libs/generic-table/feature/shell/src/index.ts"
@@ -44,15 +60,19 @@
       "@local/reactive-forms/feature/shell": [
         "libs/reactive-forms/feature/shell/src/index.ts"
       ],
-      "@local/shared/data-access": ["libs/shared/data-access/src/index.ts"],
-      "@local/shared/feature/generic-table": [
-        "libs/shared/feature/generic-table/src/index.ts"
+      "@local/shared/data-access": [
+        "libs/shared/data-access/src/index.ts"
       ],
-      "@local/shared/feature/table": ["libs/shared/feature/table/src/index.ts"],
-      "@local/shared/ui": ["libs/shared/ui/src/index.ts"],
-      "@local/shared/ui/ui": ["libs/shared/ui/ui/src/index.ts"],
-      "@local/shared/utils": ["libs/shared/utils/src/index.ts"]
+      "@local/shared/ui": [
+        "libs/shared/ui/src/index.ts"
+      ],
+      "@local/shared/utils": [
+        "libs/shared/utils/src/index.ts"
+      ]
     }
   },
-  "exclude": ["node_modules", "tmp"]
+  "exclude": [
+    "node_modules",
+    "tmp"
+  ]
 }

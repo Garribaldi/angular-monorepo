@@ -6,7 +6,9 @@ describe('ChartsHelperService', () => {
   let service: ChartsHelperService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      providers: [ChartsHelperService]
+    });
     service = TestBed.inject(ChartsHelperService);
   });
 

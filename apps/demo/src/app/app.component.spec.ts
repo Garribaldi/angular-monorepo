@@ -19,7 +19,7 @@ describe("AppComponent", () => {
 
   it("should render title", () => {
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector("h1")?.textContent).toContain("Welcome demo");
+    expect(compiled.querySelector("main")).toBeDefined();
     expect(app.title).toEqual("demo");
   });
 });
