@@ -1,0 +1,24 @@
+:host {
+  ol {
+    list-style: none;
+    counter-reset: items;
+    padding: 0;
+
+    li {
+      display: flex;
+      align-items: center;
+      counter-increment: items;
+      text-align: left;
+      height: 5rem;
+
+      &:before {
+        content: "0" counter(items) ". ";
+        padding-right: .5rem;
+      }
+
+      &:nth-child(n+10):before {
+        content: counter(items) ". ";
+      }
+    }
+  }
+}

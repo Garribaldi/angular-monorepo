@@ -18,6 +18,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@local/angular-material/feature/dialog": [
+        "libs/angular-material/feature/dialog/src/index.ts"
+      ],
       "@local/angular-material/feature/shell": [
         "libs/angular-material/feature/shell/src/index.ts"
       ],

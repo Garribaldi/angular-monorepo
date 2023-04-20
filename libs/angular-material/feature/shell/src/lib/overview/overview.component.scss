@@ -18,7 +18,6 @@
     font-size: 1.25rem;
 
     &--active {
-      font-weight: 500;
       color: #ffffff;
       background-color: map.get(mat.$blue-gray-palette, 600);
     }

@@ -10,16 +10,17 @@ import { MatSelectModule } from "@angular/material/select";
 import { SharedUtilsModule } from "@local/shared/utils";
 
 @NgModule({
-    imports: [
-        CommonModule,
-        ReactiveFormsModule,
-        RouterModule.forChild(reactiveFormsFeatureShellRoutes),
-        MatInputModule,
-        MatButtonModule,
-        MatSelectModule,
-        SharedUtilsModule,
-    ],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    RouterModule.forChild(reactiveFormsFeatureShellRoutes),
+    MatInputModule,
+    MatButtonModule,
+    MatSelectModule,
+    SharedUtilsModule,
+  ],
   declarations: [OverviewComponent],
   exports: [OverviewComponent],
 })
-export class ReactiveFormsFeatureShellModule {}
+export class ReactiveFormsFeatureShellModule {
+}

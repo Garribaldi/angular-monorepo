@@ -1,0 +1,14 @@
+<ol>
+  <li>
+    <mat-form-field appearance="fill">
+      <mat-label>What's your car brand?</mat-label>
+      <input matInput [(ngModel)]="carBrand">
+    </mat-form-field>
+  </li>
+  <li>
+    <button mat-raised-button (click)="openDialog()">Pick model</button>
+  </li>
+  <li *ngIf="carType">
+    You chose: <i>{{carType}}</i>
+  </li>
+</ol>

@@ -3,6 +3,7 @@ import { NgModule } from "@angular/core";
 import { OverviewComponent } from "./overview/overview.component";
 import { TableComponent } from "@local/angular-material/feature/table";
 import { SliderComponent } from "@local/angular-material/feature/slider";
+import { DialogShellComponent } from "@local/angular-material/feature/dialog";
 
 const routes: Route[] = [
   {
@@ -11,17 +12,16 @@ const routes: Route[] = [
     pathMatch: "prefix",
     children: [
       {
-        path: '',
-        pathMatch: "full",
-        redirectTo: 'table'
-      },
-      {
         path: 'table',
         component: TableComponent
       },
       {
         path: 'slider',
         component: SliderComponent
+      },
+      {
+        path: 'dialog',
+        component: DialogShellComponent
       }
     ]
   }

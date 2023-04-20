@@ -1,6 +1,7 @@
 <ul class="nav">
-  <li class="nav__item"><a routerLink="table" class="nav__link" routerLinkActive="nav__link--active">Table</a></li>
-  <li class="nav__item"><a routerLink="slider" class="nav__link" routerLinkActive="nav__link--active">Slider</a></li>
+  <li *ngFor="let link of routerLinks" class="nav__item">
+    <a [routerLink]="link.url" class="nav__link" routerLinkActive="nav__link--active">{{link.caption}}</a>
+  </li>
 </ul>
 
 <router-outlet></router-outlet>
