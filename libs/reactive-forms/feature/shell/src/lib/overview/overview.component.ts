@@ -15,7 +15,7 @@ export class OverviewComponent {
   employee$!: Observable<Employee>;
 
   /**
-   * To benefit from type safety, declare form group outside of constructor / ngoninit.
+   * To benefit from type safety, declare form group outside of constructor / ngOnInit.
    * Otherwise, from group uses _any_ and type safety is lost:
    *
    * {@link https://blog.angular-university.io/angular-typed-forms/}

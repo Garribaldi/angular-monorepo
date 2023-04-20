@@ -8,14 +8,14 @@ import { SharedUtilsModule } from "@local/shared/utils";
 import { MatButtonModule } from "@angular/material/button";
 
 @NgModule({
-    imports: [
-        CommonModule,
-        GenericTableFeatureShellRoutingModule,
-        SharedUiModule,
-        MatTableModule,
-        SharedUtilsModule,
-        MatButtonModule
-    ],
+  imports: [
+    CommonModule,
+    GenericTableFeatureShellRoutingModule,
+    SharedUiModule,
+    MatTableModule,
+    SharedUtilsModule,
+    MatButtonModule
+  ],
   declarations: [OverviewComponent],
   exports: [OverviewComponent],
 })
