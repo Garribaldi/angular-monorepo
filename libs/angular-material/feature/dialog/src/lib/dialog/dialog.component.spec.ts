@@ -1,5 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DialogComponent } from './dialog.component';
+import { MockModule, MockProvider } from "ng-mocks";
+import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from "@angular/material/dialog";
+import { DialogData } from "./dialog-data.model";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { FormsModule } from "@angular/forms";
 
 describe('DialogComponent', () => {
   let component: DialogComponent;
@@ -7,7 +12,16 @@ describe('DialogComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [
+        MockModule(MatDialogModule),
+        MockModule(MatFormFieldModule),
+        MockModule(FormsModule)
+      ],
       declarations: [DialogComponent],
+      providers: [
+        MockProvider(MatDialogRef),
+        {provide: MAT_DIALOG_DATA, useFactory: () => ({brand: '', type: ''} as DialogData)}
+      ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(DialogComponent);
