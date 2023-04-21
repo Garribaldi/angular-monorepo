@@ -3,7 +3,7 @@
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/angular-material/feature/slider/src",
   "prefix": "angular-material",
-  "tags": [],
+  "tags": ["scope:angular-material"],
   "projectType": "library",
   "targets": {
     "test": {

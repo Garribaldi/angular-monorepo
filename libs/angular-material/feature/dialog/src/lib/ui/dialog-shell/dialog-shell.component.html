@@ -1,14 +1,43 @@
-<ol>
-  <li>
-    <mat-form-field appearance="fill">
-      <mat-label>What's your car brand?</mat-label>
-      <input matInput [(ngModel)]="carBrand">
+<div *ngIf="courseData">
+  <h2>Course data</h2>
+
+  <p>Description: {{courseData.description}}</p>
+  <p>Category: {{courseData.category}}</p>
+  <p>Date: {{courseData.date | date:'MM/dd/YYYY'}}</p>
+
+  <button mat-raised-button (click)="openDialog()">Edit course with component</button>
+  <button mat-raised-button (click)="openTemplateDialog()">Edit course with template</button>
+</div>
+
+<ng-template #secondDialog>
+  <h2 mat-dialog-title>Angular for Beginners</h2>
+
+  <div mat-dialog-content class="dialog-content" [formGroup]="form">
+
+    <mat-form-field>
+      <mat-label>Course Description</mat-label>
+      <input matInput formControlName="description">
     </mat-form-field>
-  </li>
-  <li>
-    <button mat-raised-button (click)="openDialog()">Pick model</button>
-  </li>
-  <li *ngIf="carType">
-    You chose: <i>{{carType}}</i>
-  </li>
-</ol>
+
+    <mat-form-field>
+      <mat-label>Category</mat-label>
+      <mat-select formControlName="category">
+        <mat-option *ngFor="let category of categories" [value]="category">{{category}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Date</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="date">
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+  </div>
+
+  <div mat-dialog-actions>
+    <button mat-button [mat-dialog-close]="">Close</button>
+    <button mat-button color="primary" [mat-dialog-close]="form.value">Save</button>
+  </div>
+</ng-template>

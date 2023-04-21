@@ -1,4 +1,5 @@
 export interface DialogData {
-  brand: string;
-  type: string
+  description: string;
+  category: string
+  date: Date | null
 }

@@ -4,7 +4,9 @@ import { MockModule, MockProvider } from "ng-mocks";
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from "@angular/material/dialog";
 import { DialogData } from "../../data-access/dialog-data.model";
 import { MatFormFieldModule } from "@angular/material/form-field";
-import { FormsModule } from "@angular/forms";
+import { ReactiveFormsModule } from "@angular/forms";
+import { MatDatepickerModule } from "@angular/material/datepicker";
+import { MatOptionModule } from "@angular/material/core";
 
 describe('DialogComponent', () => {
   let component: DialogComponent;
@@ -15,12 +17,14 @@ describe('DialogComponent', () => {
       imports: [
         MockModule(MatDialogModule),
         MockModule(MatFormFieldModule),
-        MockModule(FormsModule)
+        MockModule(MatDatepickerModule),
+        MockModule(ReactiveFormsModule),
+        MockModule(MatOptionModule)
       ],
       declarations: [DialogComponent],
       providers: [
         MockProvider(MatDialogRef),
-        {provide: MAT_DIALOG_DATA, useFactory: () => ({brand: '', type: ''} as DialogData)}
+        {provide: MAT_DIALOG_DATA, useFactory: () => ({description: '', category: '', date: null} as DialogData)}
       ]
     }).compileComponents();
 
