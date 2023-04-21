@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { MatDialog } from "@angular/material/dialog";
-import { DialogData } from "../dialog/dialog-data.model";
+import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
+import { DialogData } from "../../data-access/dialog-data.model";
 import { take } from "rxjs";
 import { DialogComponent } from "../dialog/dialog.component";
 
@@ -14,15 +14,18 @@ export class DialogShellComponent {
   carBrand = '';
   carType = '';
 
+  private readonly dialogConfig: MatDialogConfig;
+
   constructor(public dialog: MatDialog) {
+    this.dialogConfig = new MatDialogConfig();
+    this.dialogConfig.disableClose = true;
+    this.dialogConfig.autoFocus = true;
   }
 
   openDialog(): void {
-    const data: DialogData = {brand: this.carBrand, type: this.carType}
+    this.dialogConfig.data = {brand: this.carBrand, type: this.carType} as DialogData;
 
-    const dialogRef = this.dialog.open(DialogComponent, {
-      data
-    });
+    const dialogRef = this.dialog.open(DialogComponent, this.dialogConfig);
 
     dialogRef.afterClosed()
       .pipe(take(1))

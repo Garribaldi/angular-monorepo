@@ -3,7 +3,7 @@
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/reactive-forms/feature/shell/src",
   "prefix": "reactive-forms",
-  "tags": [],
+  "tags": ["scope:reactive-forms"],
   "projectType": "library",
   "targets": {
     "test": {

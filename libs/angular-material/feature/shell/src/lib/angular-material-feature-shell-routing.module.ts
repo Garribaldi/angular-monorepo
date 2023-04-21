@@ -12,6 +12,11 @@ const routes: Route[] = [
     pathMatch: "prefix",
     children: [
       {
+        path: '',
+        pathMatch: "full",
+        redirectTo: 'dialog'
+      },
+      {
         path: 'table',
         component: TableComponent
       },

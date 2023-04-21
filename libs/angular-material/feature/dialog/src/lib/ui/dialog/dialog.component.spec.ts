@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DialogComponent } from './dialog.component';
 import { MockModule, MockProvider } from "ng-mocks";
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from "@angular/material/dialog";
-import { DialogData } from "./dialog-data.model";
+import { DialogData } from "../../data-access/dialog-data.model";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { FormsModule } from "@angular/forms";
 

@@ -13,8 +13,24 @@
             "allow": [],
             "depConstraints": [
               {
-                "sourceTag": "*",
-                "onlyDependOnLibsWithTags": ["*"]
+                "sourceTag": "scope:shared",
+                "onlyDependOnLibsWithTags": ["scope:shared"]
+              },
+              {
+                "sourceTag": "scope:angular-material",
+                "onlyDependOnLibsWithTags": ["scope:angular-material", "scope:shared"]
+              },
+              {
+                "sourceTag": "scope:charts",
+                "onlyDependOnLibsWithTags": ["scope:charts", "scope:shared"]
+              },
+              {
+                "sourceTag": "scope:generic-table",
+                "onlyDependOnLibsWithTags": ["scope:generic-table", "scope:shared"]
+              },
+              {
+                "sourceTag": "scope:reactive-forms",
+                "onlyDependOnLibsWithTags": ["scope:reactive-forms", "scope:shared"]
               }
             ]
           }

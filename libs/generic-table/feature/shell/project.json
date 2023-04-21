@@ -3,7 +3,7 @@
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/generic-table/feature/shell/src",
   "prefix": "generic-table",
-  "tags": [],
+  "tags": ["scope:generic-table"],
   "projectType": "library",
   "targets": {
     "test": {

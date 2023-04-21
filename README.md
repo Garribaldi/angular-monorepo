@@ -15,7 +15,7 @@ Run `nx graph` to see a diagram of the dependencies of the projects.
 ## Add Library
 
 ```
-nx g @nrwl/angular:lib shell --prefix=angular-material --directory=angular-material/feature --routing=true --lazy=true
+nx g @nrwl/angular:lib shell --prefix=angular-material --tags=angular-material --directory=angular-material/feature --routing=true --lazy=true
 ```
 
 ## Add Component
