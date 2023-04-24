@@ -4,14 +4,19 @@
   "projectType": "application",
   "prefix": "local",
   "sourceRoot": "apps/demo/src",
-  "tags": ["scope:app"],
+  "tags": [
+    "scope:app"
+  ],
   "targets": {
     "build": {
-      "executor": "@angular-devkit/build-angular:browser",
+      "executor": "@nrwl/angular:webpack-browser",
       "outputs": [
         "{options.outputPath}"
       ],
       "options": {
+        "customWebpackConfig": {
+          "path": "apps/demo/webpack.config.js"
+        },
         "outputPath": "dist/apps/demo",
         "index": "apps/demo/src/index.html",
         "main": "apps/demo/src/main.ts",
@@ -43,7 +48,13 @@
               "maximumError": "4kb"
             }
           ],
-          "outputHashing": "all"
+          "outputHashing": "all",
+          "fileReplacements": [
+            {
+              "replace": "apps/demo/src/environments/environment.ts",
+              "with": "apps/demo/src/environments/environment.prod.ts"
+            }
+          ]
         },
         "development": {
           "buildOptimizer": false,
@@ -51,7 +62,13 @@
           "vendorChunk": true,
           "extractLicenses": false,
           "sourceMap": true,
-          "namedChunks": true
+          "namedChunks": true,
+          "fileReplacements": [
+            {
+              "replace": "apps/demo/src/environments/environment.ts",
+              "with": "apps/demo/src/environments/environment.dev.ts"
+            }
+          ]
         }
       },
       "defaultConfiguration": "production"

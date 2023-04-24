@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from "@angular/forms";
-import { City, Employee, SharedDataService } from "@local/shared/data-access";
+import { City, Country, Employee, SharedDataService } from "@local/shared/data-access";
 import { map, Observable, tap } from "rxjs";
 import { validatePasswordStrength } from "@local/shared/utils";
+import { CountryService } from "../../../../../../shared/utils/src/lib/services/country.service";
 
 @Component({
   selector: 'reactive-forms-overview',
@@ -13,6 +14,7 @@ export class OverviewComponent {
 
   cities$!: Observable<City[]>;
   employee$!: Observable<Employee>;
+  countries$!: Observable<Country[]>;
 
   /**
    * To benefit from type safety, declare form group outside of constructor / ngOnInit.
@@ -25,14 +27,19 @@ export class OverviewComponent {
     lastName: ['', [Validators.required]],
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(8), validatePasswordStrength()]],
-    city: ['', [Validators.required]]
+    city: ['', [Validators.required]],
+    country: [0, [Validators.required]]
   });
 
   constructor(
     private readonly dataService: SharedDataService,
+    private readonly countryService: CountryService,
     private readonly fb: FormBuilder
   ) {
     this.cities$ = dataService.getCities$();
+    this.countries$ = dataService.getCountries$().pipe(
+      map(countries => countryService.setPreferredCountries(countries, [756]))
+    );
     this.employee$ = dataService.getEmployees$().pipe(
       map((employees) => (employees[1])),
       tap(employee => this.testForm.patchValue(employee))
