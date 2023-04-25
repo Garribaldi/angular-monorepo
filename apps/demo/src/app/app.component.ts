@@ -10,6 +10,7 @@ import { Title } from "@angular/platform-browser";
 export class AppComponent {
 
   backendUrl: string;
+  integrationUrl: string;
 
   private title = "Local demo app";
 
@@ -20,5 +21,6 @@ export class AppComponent {
     titleService.setTitle(this.title);
 
     this.backendUrl = environmentService.apiBackendUrl ?? '';
+    this.integrationUrl = environmentService.externalIntegrationUrl ?? '';
   }
 }

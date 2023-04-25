@@ -7,7 +7,8 @@ import { Environment, EnvironmentsService } from "@local/shared/environments";
 
 const env: Environment = {
   production: false,
-  apiBackendUrl: 'https://test.com:8080'
+  apiBackendUrl: 'https://test.com:8080',
+  externalIntegrationUrl: 'https://integration.com:8080'
 };
 
 describe("AppComponent", () => {
@@ -15,9 +16,6 @@ describe("AppComponent", () => {
   let app: AppComponent;
 
   let titleService: Title;
-  let environmentService: EnvironmentsService;
-
-  let spyOnBackendUrl: jest.SpyInstance;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -25,16 +23,16 @@ describe("AppComponent", () => {
       declarations: [AppComponent],
       providers: [
         Title,
-        MockProvider(EnvironmentsService)
+        MockProvider(EnvironmentsService, {
+          apiBackendUrl: env.apiBackendUrl,
+          externalIntegrationUrl: env.externalIntegrationUrl
+        })
       ]
     }).compileComponents();
 
     jest.clearAllMocks();
 
     titleService = TestBed.inject(Title);
-    environmentService = TestBed.inject(EnvironmentsService);
-
-    spyOnBackendUrl = jest.spyOn(environmentService, 'apiBackendUrl', 'get').mockReturnValue(env.apiBackendUrl);
 
     fixture = TestBed.createComponent(AppComponent);
     app = fixture.componentInstance;
@@ -59,8 +57,11 @@ describe("AppComponent", () => {
   describe('Environment', () => {
 
     it('should set backend url', () => {
-      expect(spyOnBackendUrl).toHaveBeenCalledTimes(1);
       expect(app.backendUrl).toEqual(env.apiBackendUrl);
     })
+
+    it('should set integration url', () => {
+      expect(app.integrationUrl).toEqual(env.externalIntegrationUrl);
+    });
   });
 });
