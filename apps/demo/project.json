@@ -51,8 +51,8 @@
           "outputHashing": "all",
           "fileReplacements": [
             {
-              "replace": "apps/demo/src/environments/environment.ts",
-              "with": "apps/demo/src/environments/environment.prod.ts"
+              "replace": "libs/shared/environments/src/lib/stages/environment.ts",
+              "with": "libs/shared/environments/src/lib/stages/environment.prod.ts"
             }
           ]
         },
@@ -65,8 +65,8 @@
           "namedChunks": true,
           "fileReplacements": [
             {
-              "replace": "apps/demo/src/environments/environment.ts",
-              "with": "apps/demo/src/environments/environment.dev.ts"
+              "replace": "libs/shared/environments/src/lib/stages/environment.ts",
+              "with": "libs/shared/environments/src/lib/stages/environment.dev.ts"
             }
           ]
         }

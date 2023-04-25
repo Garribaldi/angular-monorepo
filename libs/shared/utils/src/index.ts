@@ -4,3 +4,4 @@ export * from './lib/validators/validate-password-strength';
 export * from './lib/pipes/get-template-ref.pipe';
 export * from './lib/helpers/type-guards';
 export * from './lib/helpers/utilities';
+export * from './lib/services/country.service';

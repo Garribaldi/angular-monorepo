@@ -29,24 +29,24 @@ const cities: City[] = [
 ];
 
 const countries: Country[] = [
-  {name: 'Hungary', iso: 348},
-  {name: 'Germany', iso: 276},
-  {name: 'Jamaica', iso: 388},
-  {name: 'Switzerland', iso: 756},
-  {name: 'Korea', iso: 410},
-  {name: 'Greece', iso: 300},
-  {name: 'Croatia', iso: 191},
-  {name: 'Nepal', iso: 524},
-  {name: 'Paraguay', iso: 600},
-  {name: 'Vietnam', iso: 704},
-  {name: 'Sweden', iso: 752},
-  {name: 'United States', iso: 581},
-  {name: 'Zambia', iso: 894},
-  {name: 'Slovenia', iso: 705},
-  {name: 'Thailand', iso: 764},
-  {name: 'United Kingdom', iso: 826},
-  {name: 'Serbia', iso: 688},
-  {name: 'Bulgaria', iso: 100}
+  {name: 'Hungary', iso: 'HUN'},
+  {name: 'Germany', iso: 'DEU'},
+  {name: 'Jamaica', iso: 'JAM'},
+  {name: 'Switzerland', iso: 'CHE'},
+  {name: 'Korea', iso: 'KOR'},
+  {name: 'Greece', iso: 'GRC'},
+  {name: 'Croatia', iso: 'HRV'},
+  {name: 'Nepal', iso: 'NPL'},
+  {name: 'Paraguay', iso: 'PRY'},
+  {name: 'Vietnam', iso: 'VNM'},
+  {name: 'Sweden', iso: 'SWE'},
+  {name: 'United States', iso: 'USA'},
+  {name: 'Zambia', iso: 'ZMB'},
+  {name: 'Slovenia', iso: 'SVN'},
+  {name: 'Thailand', iso: 'THA'},
+  {name: 'United Kingdom', iso: 'GBR'},
+  {name: 'Serbia', iso: 'SRB'},
+  {name: 'Bulgaria', iso: 'BGR'}
 ];
 
 

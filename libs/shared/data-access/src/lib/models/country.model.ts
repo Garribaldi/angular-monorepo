@@ -1,4 +1,4 @@
 export interface Country {
   name: string;
-  iso: number;
+  iso: string;
 }

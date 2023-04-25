@@ -13,7 +13,7 @@ export class CountryService {
    * @param isoList number array with iso codes of preferred countries
    * @return altered country list
    */
-  setPreferredCountries(countries: Country[], isoList: number[]): Country[] {
+  setPreferredCountries(countries: Country[], isoList: string[]): Country[] {
 
     const preferredCountries = isoList
       .map(currIso => countries.find((country, index) => {

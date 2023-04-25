@@ -2,8 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators } from "@angular/forms";
 import { City, Country, Employee, SharedDataService } from "@local/shared/data-access";
 import { map, Observable, tap } from "rxjs";
-import { validatePasswordStrength } from "@local/shared/utils";
-import { CountryService } from "../../../../../../shared/utils/src/lib/services/country.service";
+import { CountryService, validatePasswordStrength } from "@local/shared/utils";
 
 @Component({
   selector: 'reactive-forms-overview',
@@ -38,7 +37,7 @@ export class OverviewComponent {
   ) {
     this.cities$ = dataService.getCities$();
     this.countries$ = dataService.getCountries$().pipe(
-      map(countries => countryService.setPreferredCountries(countries, [756]))
+      map(countries => countryService.setPreferredCountries(countries, ['CHE']))
     );
     this.employee$ = dataService.getEmployees$().pipe(
       map((employees) => (employees[1])),

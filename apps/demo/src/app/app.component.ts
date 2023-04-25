@@ -1,4 +1,6 @@
 import { Component } from "@angular/core";
+import { EnvironmentsService } from "@local/shared/environments";
+import { Title } from "@angular/platform-browser";
 
 @Component({
   selector: "local-root",
@@ -6,5 +8,17 @@ import { Component } from "@angular/core";
   styleUrls: ["./app.component.scss"],
 })
 export class AppComponent {
-  title = "demo";
+
+  backendUrl: string;
+
+  private title = "Local demo app";
+
+  constructor(
+    private readonly environmentService: EnvironmentsService,
+    private readonly titleService: Title
+  ) {
+    titleService.setTitle(this.title);
+
+    this.backendUrl = environmentService.apiBackendUrl ?? '';
+  }
 }
