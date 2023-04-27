@@ -8,7 +8,6 @@
 
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
-
         <ng-container *ngFor="let columnId of displayedColumns" [matColumnDef]="columnId">
 
             <ng-container *ngIf="showCrudOperations && columnId === '_crudOperations'">

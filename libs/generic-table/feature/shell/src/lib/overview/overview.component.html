@@ -11,7 +11,7 @@
 <ng-container *ngIf="inventory$ | async as inventory">
 
   <!-- Max configuration with table data, column definition and rows template -->
-  <shared-mat-table [tableData]="inventory" [columnDefinition]="inventoryColumnDef" [showCrudOperations]="false">
+  <shared-mat-table [tableData]="inventory" [columnDefinition]="inventoryColumnDef" [showCrudOperations]="false" data-cy="generic-table">
 
     <ng-template name="price" let-item>
       <span>{{item.price | currency: item.currency}}</span>

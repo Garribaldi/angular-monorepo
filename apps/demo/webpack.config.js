@@ -1,4 +1,5 @@
 const webpack = require('webpack');
+const NodePolyfillPlugin = require('node-polyfill-webpack-plugin');
 
 function getClientEnvironment() {
   // Grab NX_* environment variables and prepare them to be injected
@@ -25,5 +26,6 @@ module.exports = (config, options, context) => {
   // Overwrite the mode set by Angular if the NODE_ENV is set
   config.mode = process.env.NODE_ENV || config.mode;
   config.plugins.push(new webpack.DefinePlugin(getClientEnvironment()));
+  config.plugins.push(new NodePolyfillPlugin());
   return config;
 };

@@ -1,6 +1,6 @@
 <div *ngIf="employee$ | async" class="form">
 
-  <form [formGroup]="testForm" (ngSubmit)="onSubmit()">
+  <form [formGroup]="testForm" (ngSubmit)="onSubmit()" data-cy="reactive-form">
     <mat-form-field appearance="fill">
       <mat-label>First Name</mat-label>
       <input matInput formControlName="firstName">

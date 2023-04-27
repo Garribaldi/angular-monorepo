@@ -21,7 +21,7 @@ export const appRoutes: Route[] = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'material'
+    redirectTo: 'table'
   }
 ];
 
