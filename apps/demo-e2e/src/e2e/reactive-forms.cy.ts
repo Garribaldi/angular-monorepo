@@ -9,15 +9,17 @@ describe("reactive forms", () => {
   beforeEach(() => {
     cy.visit("/form");
     cy.viewport(1920, 1080);
-
-    getForm().then(element => {
-      inputs = element.find('input');
-      selects = element.find('mat-select');
-      button = element.find('button[type="submit"]');
-    });
   });
 
   describe('default form', () => {
+
+    beforeEach(() => {
+      getForm().then(element => {
+        inputs = element.find('input');
+        selects = element.find('mat-select');
+        button = element.find('button[type="submit"]');
+      });
+    });
 
     it("should have 4 inputs", () => {
       expect(inputs.length).to.eq(4);
@@ -41,12 +43,35 @@ describe("reactive forms", () => {
     });
   });
 
-  describe('fill out form', () => {
+  describe('filled out form', () => {
+
+    it('should disable send button', () => {
+      cy.updateInput('mat-input-2', 'test@test.com');
+      cy.get('button[type="submit"]').should('be.disabled');
+    });
 
     it('should enable send button', () => {
-      (inputs[2] as HTMLInputElement).value = 'test@test.com';
-      (inputs[3] as HTMLInputElement).value = 'aBcD12$eFg';
-      // (selects[0] as HTMLSelectElement).value =
+      cy.updateInput('mat-input-2', 'test@test.com');
+      cy.updateInput('mat-input-3', 'aBcD12$eFg');
+      // eslint-disable-next-line cypress/unsafe-to-chain-command
+      cy.get('mat-select[id=mat-select-2]').click().get('mat-option').contains('United States').click();
+      // eslint-disable-next-line cypress/unsafe-to-chain-command
+      cy.get('mat-select[id=mat-select-0]').click().get('mat-option').contains('Miami').click();
+
+      cy.get('button[type="submit"]').should('not.be.disabled');
+    });
+
+    it('should show error for invalid eMail', () => {
+      cy.updateInput('mat-input-2', 'testneu').blur();
+      cy.get('mat-error[id=mat-mdc-error-2]').should('contain', 'Please enter a valid eMail');
+    });
+
+    it('should show error for invalid password', () => {
+      cy.updateInput('mat-input-2', 'test@test.com');
+      cy.updateInput('mat-input-3', '123456').blur();
+      cy.get('mat-error[id=mat-mdc-error-3]')
+        .should('contain', 'Your password must be at least 8 characters long.')
+        .should('contain', 'Your password must have lower case, upper case and numeric or special characters');
     });
   });
 });

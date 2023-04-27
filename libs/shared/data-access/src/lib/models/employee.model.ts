@@ -4,5 +4,5 @@ export interface Employee {
   email?: string;
   password?: string;
   city?: string;
-  country?: number;
+  country?: string;
 }

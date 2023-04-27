@@ -28,6 +28,6 @@
       }
     }
   },
-  "tags": [],
+  "tags": ["scope:app"],
   "implicitDependencies": ["demo"]
 }

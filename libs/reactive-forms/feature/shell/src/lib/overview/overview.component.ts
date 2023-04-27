@@ -27,7 +27,7 @@ export class OverviewComponent {
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(8), validatePasswordStrength()]],
     city: ['', [Validators.required]],
-    country: [0, [Validators.required]]
+    country: ['', [Validators.required]]
   });
 
   constructor(
