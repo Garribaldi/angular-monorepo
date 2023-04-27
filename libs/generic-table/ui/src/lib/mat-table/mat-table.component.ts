@@ -1,8 +1,22 @@
-import { Component, ContentChildren, Input, OnChanges, QueryList, SimpleChanges } from '@angular/core';
-import { MatTableDataSource } from "@angular/material/table";
-import { ColumnDef } from "@local/shared/data-access";
-import { debounceTime, distinctUntilChanged, filter, map, Subject, takeUntil } from "rxjs";
-import { NgTemplateNameDirective } from "@local/shared/utils";
+import {
+  Component,
+  ContentChildren,
+  Input,
+  OnChanges,
+  QueryList,
+  SimpleChanges,
+} from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
+import { ColumnDef } from '@local/shared/data-access';
+import {
+  debounceTime,
+  distinctUntilChanged,
+  filter,
+  map,
+  Subject,
+  takeUntil,
+} from 'rxjs';
+import { NgTemplateNameDirective } from '@local/shared/utils';
 
 @Component({
   selector: 'shared-mat-table',
@@ -10,8 +24,8 @@ import { NgTemplateNameDirective } from "@local/shared/utils";
   styleUrls: ['./mat-table.component.scss'],
 })
 export class MatTableComponent<T extends object> implements OnChanges {
-
-  @ContentChildren(NgTemplateNameDirective) templates!: QueryList<NgTemplateNameDirective>
+  @ContentChildren(NgTemplateNameDirective)
+  templates!: QueryList<NgTemplateNameDirective>;
 
   dataSource = new MatTableDataSource<T>();
   displayedColumns: string[] = [];
@@ -52,11 +66,16 @@ export class MatTableComponent<T extends object> implements OnChanges {
       .pipe(
         takeUntil(this.unsubscribe),
         debounceTime(500),
-        filter((eventTarget): eventTarget is HTMLInputElement => eventTarget !== null),
-        map(eventTarget => eventTarget.value),
+        filter(
+          (eventTarget): eventTarget is HTMLInputElement => eventTarget !== null
+        ),
+        map((eventTarget) => eventTarget.value),
         distinctUntilChanged()
       )
-      .subscribe(filterValue => this.dataSource.filter = filterValue.trim().toLowerCase());
+      .subscribe(
+        (filterValue) =>
+          (this.dataSource.filter = filterValue.trim().toLowerCase())
+      );
   }
 
   /**
@@ -65,21 +84,22 @@ export class MatTableComponent<T extends object> implements OnChanges {
    * @param changes
    */
   ngOnChanges(changes: SimpleChanges) {
-    let columnDefinition: ColumnDef = changes['columnDefinition']?.currentValue ?? this.columnDefinition;
+    let columnDefinition: ColumnDef =
+      changes['columnDefinition']?.currentValue ?? this.columnDefinition;
     const tableData: T[] = changes['tableData']?.currentValue ?? [];
 
     const columnDefinitionIsEmpty = Object.keys(columnDefinition).length < 1;
     const tableDataNotEmpty = tableData.length > 0;
 
     if (columnDefinitionIsEmpty && tableDataNotEmpty) {
-      Object.keys(tableData[0]).forEach(key => columnDefinition[key] = key);
+      Object.keys(tableData[0]).forEach((key) => (columnDefinition[key] = key));
     }
 
     if (this.showCrudOperations) {
-      columnDefinition = {'_crudOperations': 'Action', ...columnDefinition}
+      columnDefinition = { _crudOperations: 'Action', ...columnDefinition };
     }
 
-    this.columnDefinition = {...columnDefinition};
+    this.columnDefinition = { ...columnDefinition };
     this.displayedColumns = Object.keys(columnDefinition);
   }
 }

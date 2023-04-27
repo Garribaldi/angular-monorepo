@@ -1,21 +1,21 @@
 {
   "name": "shared-cypress-commands",
-  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/shared/cypress-commands/src",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/shared/feature/cypress-commands/src",
   "projectType": "library",
   "targets": {
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["libs/shared/cypress-commands/**/*.ts"]
+        "lintFilePatterns": ["libs/shared/feature/cypress-commands/**/*.ts"]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "libs/shared/cypress-commands/jest.config.ts",
+        "jestConfig": "libs/shared/feature/cypress-commands/jest.config.ts",
         "passWithNoTests": true
       },
       "configurations": {
@@ -26,5 +26,5 @@
       }
     }
   },
-  "tags": []
+  "tags": ["scope:shared"]
 }

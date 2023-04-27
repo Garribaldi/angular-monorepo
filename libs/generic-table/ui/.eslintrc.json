@@ -8,9 +8,7 @@
         "@angular-eslint/directive-selector": [
           "error",
           {
-            "type": "attribute",
-            "prefix": "shared",
-            "style": "camelCase"
+            "type": "attribute"
           }
         ],
         "@angular-eslint/component-selector": [

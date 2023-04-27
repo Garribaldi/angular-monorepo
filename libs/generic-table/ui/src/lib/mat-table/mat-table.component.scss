@@ -4,8 +4,6 @@
 .gen-mat-table {
   margin-bottom: 2rem;
 
-
-
   table {
     #col-CRUD_OPERATION {
       width: 12rem;
@@ -15,6 +13,4 @@
       background-color: map.get(mat.$blue-gray-palette, 100);
     }
   }
-
 }
-
