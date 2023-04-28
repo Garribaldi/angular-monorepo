@@ -17,11 +17,7 @@
       <span>{{ item.price | currency : item.currency }}</span>
     </ng-template>
     <ng-template name="buy" let-item>
-      <button
-        *ngIf="item.inStock"
-        (click)="purchaseItem(item.plu)"
-        mat-flat-button
-        color="primary">
+      <button *ngIf="item.inStock" (click)="purchaseItem(item.plu)" mat-flat-button color="primary">
         Buy now
       </button>
       <span *ngIf="!item.inStock">Item out of stock</span>

@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { MatTableModule } from '@angular/material/table';
 import { ColumnDef, Employee } from '@local/shared/data-access';
 import { MockModule, MockPipe } from 'ng-mocks';
@@ -6,11 +6,14 @@ import { GetTemplateRefPipe } from '@local/shared/utils';
 import { HarnessLoader } from '@angular/cdk/testing';
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { MatHeaderCellHarness, MatRowHarness, } from '@angular/material/table/testing';
-import { SimpleChange } from '@angular/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { GenericTableComponent } from "./generic-table.component";
+import { FormsModule } from "@angular/forms";
+import { MatIconModule } from "@angular/material/icon";
+import { SimpleChange } from "@angular/core";
 
 describe('GenericTableComponent', () => {
+
   const testData: Employee[] = [
     {firstName: 'Employee', lastName: 'One'},
     {firstName: 'Employee', lastName: 'Two'},
@@ -30,6 +33,8 @@ describe('GenericTableComponent', () => {
       imports: [
         MatTableModule,
         MockModule(MatFormFieldModule),
+        MockModule(MatIconModule),
+        MockModule(FormsModule),
         MockPipe(GetTemplateRefPipe),
       ],
       declarations: [GenericTableComponent],
@@ -37,7 +42,7 @@ describe('GenericTableComponent', () => {
 
     fixture = TestBed.createComponent(GenericTableComponent<Employee>);
     component = fixture.componentInstance;
-    fixture.detectChanges();
+
     loader = TestbedHarnessEnvironment.loader(fixture);
   });
 
@@ -45,8 +50,11 @@ describe('GenericTableComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  describe('Simple table with data and column definition', () => {
+  describe('Table with data and column definition', () => {
+
     beforeEach(() => {
+      fixture.detectChanges();
+
       component.columnDefinition = testColumnDef;
       component.tableData = testData;
       component.ngOnChanges({
@@ -81,5 +89,25 @@ describe('GenericTableComponent', () => {
         testData[0].lastName
       );
     });
+  });
+
+  describe('Filter', () => {
+
+    beforeEach(() => {
+      component.columnDefinition = testColumnDef;
+      component.tableData = testData;
+    });
+
+    test('updateSearch()', fakeAsync(() => {
+      fixture.detectChanges();
+      const searchphrase = 'One';
+
+      component.updateSearch(searchphrase);
+      tick(500);
+
+      const {filteredData} = component.dataSource;
+      expect(filteredData.length).toEqual(1);
+      expect(filteredData[0].lastName).toEqual('One');
+    }));
   });
 });

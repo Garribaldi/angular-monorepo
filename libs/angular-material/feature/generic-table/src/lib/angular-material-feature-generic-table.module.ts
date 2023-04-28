@@ -8,22 +8,23 @@ import { GenericTableShellComponent } from './ui/generic-table-shell/generic-tab
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatIconModule } from "@angular/material/icon";
 import { MatInputModule } from "@angular/material/input";
-import { MatTooltipModule } from "@angular/material/tooltip";
 import { FormsModule } from "@angular/forms";
+import { MatTooltipModule } from "@angular/material/tooltip";
 
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
     MatTableModule,
     SharedUtilsModule,
     MatButtonModule,
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
-    MatTooltipModule,
-    FormsModule
+    MatTooltipModule
   ],
   declarations: [GenericTableComponent, GenericTableShellComponent],
-  exports: [GenericTableComponent, GenericTableShellComponent],
+  exports: [GenericTableComponent, GenericTableShellComponent]
 })
-export class AngularMaterialFeatureGenericTableModule {}
+export class AngularMaterialFeatureGenericTableModule {
+}

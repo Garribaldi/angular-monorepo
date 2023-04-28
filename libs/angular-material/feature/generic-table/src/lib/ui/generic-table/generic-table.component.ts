@@ -1,4 +1,4 @@
-import { Component, ContentChildren, Input, OnChanges, QueryList, SimpleChanges } from '@angular/core';
+import { Component, ContentChildren, Input, OnChanges, OnInit, QueryList, SimpleChanges } from '@angular/core';
 import { BehaviorSubject, debounceTime, distinctUntilChanged, Subject, takeUntil } from 'rxjs';
 import { ColumnDef, } from '@local/shared/data-access';
 import { NgTemplateNameDirective } from "@local/shared/utils";
@@ -9,7 +9,7 @@ import { MatTableDataSource } from "@angular/material/table";
   templateUrl: './generic-table.component.html',
   styleUrls: ['./generic-table.component.scss'],
 })
-export class GenericTableComponent<T extends object> implements OnChanges {
+export class GenericTableComponent<T extends object> implements OnInit, OnChanges {
   @ContentChildren(NgTemplateNameDirective)
   templates!: QueryList<NgTemplateNameDirective>;
 
@@ -47,14 +47,14 @@ export class GenericTableComponent<T extends object> implements OnChanges {
 
   private readonly unsubscribe = new Subject<void>();
 
-  constructor() {
+  ngOnInit() {
     this.searchFilter.asObservable()
       .pipe(
         takeUntil(this.unsubscribe),
         debounceTime(500),
         distinctUntilChanged()
       )
-      .subscribe(value => this.dataSource.filter = value.trim().toLowerCase())
+      .subscribe(value => this.dataSource.filter = value.trim().toLowerCase());
   }
 
   /**

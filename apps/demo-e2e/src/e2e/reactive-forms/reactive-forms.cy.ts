@@ -1,4 +1,4 @@
-import { getForm } from "../support/app.po";
+import { getForm } from "../../support/app.po";
 
 describe("reactive forms", () => {
 

@@ -8,7 +8,7 @@ import { SharedUtilsModule } from '@local/shared/utils';
 @NgModule({
   imports: [
     CommonModule,
-    SharedUtilsModule,
+    SharedUtilsModule
   ],
   declarations: [
     TableComponent,

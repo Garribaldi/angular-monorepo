@@ -1,4 +1,4 @@
-import { getTable } from "../support/app.po";
+import { getTable } from "../../support/app.po";
 
 describe("generic table", () => {
 
