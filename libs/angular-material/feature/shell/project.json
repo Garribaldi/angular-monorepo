@@ -2,7 +2,7 @@
   "name": "angular-material-feature-shell",
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/angular-material/feature/shell/src",
-  "prefix": "angular-material",
+  "prefix": "agr-angular-material",
   "tags": ["scope:angular-material"],
   "projectType": "library",
   "targets": {

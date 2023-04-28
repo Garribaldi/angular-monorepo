@@ -15,7 +15,7 @@ Run `nx graph` to see a diagram of the dependencies of the projects.
 ## Add Library
 
 ```
-nx g @nrwl/angular:lib shell --prefix=angular-material --tags=scope:angular-material --directory=angular-material/feature --routing=true --lazy=true
+nx g @nrwl/angular:lib shell --prefix=agr-angular-material --tags=scope:angular-material --directory=angular-material/feature --routing=true --lazy=true
 ```
 
 ## Move Library
@@ -27,7 +27,7 @@ nx g @nrwl/angular:move --project shared-ui --destination generic-table/ui
 ## Add Component
 
 ```
-nx g @nrwl/angular:component table --prefix=shared --project=shared-ui --export=true
+nx g @nrwl/angular:component table --prefix=agr-shared --project=shared-ui --export=true
 ```
 
 ## Add Service
@@ -39,7 +39,7 @@ nx g @nrwl/angular:service api/table-data --project=generic-table-data-access
 ## Add Directive
 
 ```
-nx g @schematics/angular:directive table/table-row-template --prefix=shared --project=shared-ui --export=true
+nx g @schematics/angular:directive table/table-row-template --prefix=agr-shared --project=shared-ui --export=true
 ```
 
 ## Remote caching

@@ -16,7 +16,7 @@
           "error",
           {
             "type": "element",
-            "prefix": "charts",
+            "prefix": "agr-charts",
             "style": "kebab-case"
           }
         ]

@@ -16,7 +16,7 @@
           "error",
           {
             "type": "element",
-            "prefix": "shared",
+            "prefix": "agr-shared",
             "style": "kebab-case"
           }
         ]

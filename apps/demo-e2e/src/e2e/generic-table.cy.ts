@@ -5,7 +5,7 @@ describe("generic table", () => {
   let headers: JQuery<HTMLElement>;
 
   beforeEach(() => {
-    cy.visit("/table");
+    cy.visit("/material/generic-table");
 
     getTable().then(element => {
       headers = element.find('th');

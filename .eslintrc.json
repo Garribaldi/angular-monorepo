@@ -29,8 +29,8 @@
                 "onlyDependOnLibsWithTags": ["scope:charts", "scope:shared"]
               },
               {
-                "sourceTag": "scope:generic-table",
-                "onlyDependOnLibsWithTags": ["scope:generic-table", "scope:shared"]
+                "sourceTag": "scope:table",
+                "onlyDependOnLibsWithTags": ["scope:table", "scope:shared"]
               },
               {
                 "sourceTag": "scope:reactive-forms",
