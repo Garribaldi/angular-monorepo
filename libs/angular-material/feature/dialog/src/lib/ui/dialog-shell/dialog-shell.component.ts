@@ -7,7 +7,7 @@ import { FormGroup } from "@angular/forms";
 import { FormService } from "../../utils/form.service";
 
 @Component({
-  selector: 'angular-material-dialog-shell',
+  selector: 'agr-angular-material-dialog-shell',
   templateUrl: './dialog-shell.component.html',
   styleUrls: ['./dialog-shell.component.scss'],
 })

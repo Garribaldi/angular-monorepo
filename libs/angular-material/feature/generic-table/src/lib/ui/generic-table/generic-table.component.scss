@@ -4,6 +4,10 @@
 .gen-mat-table {
   margin-bottom: 2rem;
 
+  &__filter {
+    width: 18rem;
+  }
+
   table {
     #col-CRUD_OPERATION {
       width: 12rem;

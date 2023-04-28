@@ -4,11 +4,12 @@ import { GenericTableComponent } from './ui/generic-table/generic-table.componen
 import { MatTableModule } from '@angular/material/table';
 import { SharedUtilsModule } from '@local/shared/utils';
 import { MatButtonModule } from '@angular/material/button';
-import { GenericTableShellComponent } from './ui/overview/generic-table-shell.component';
+import { GenericTableShellComponent } from './ui/generic-table-shell/generic-table-shell.component';
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatIconModule } from "@angular/material/icon";
 import { MatInputModule } from "@angular/material/input";
 import { MatTooltipModule } from "@angular/material/tooltip";
+import { FormsModule } from "@angular/forms";
 
 @NgModule({
   imports: [
@@ -19,7 +20,8 @@ import { MatTooltipModule } from "@angular/material/tooltip";
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
-    MatTooltipModule
+    MatTooltipModule,
+    FormsModule
   ],
   declarations: [GenericTableComponent, GenericTableShellComponent],
   exports: [GenericTableComponent, GenericTableShellComponent],

@@ -5,6 +5,7 @@ import { GenericTableShellComponent } from "@local/angular-material/feature/gene
 import { TableComponent } from "@local/angular-material/feature/table";
 import { SliderComponent } from "@local/angular-material/feature/slider";
 import { DialogShellComponent } from "@local/angular-material/feature/dialog";
+import { FilterShellComponent } from "@local/angular-material/feature/filter";
 
 const routes: Route[] = [
   {
@@ -15,7 +16,7 @@ const routes: Route[] = [
       {
         path: '',
         pathMatch: "full",
-        redirectTo: 'generic-table'
+        redirectTo: 'filter'
       },
       {
         path: 'table',
@@ -32,6 +33,10 @@ const routes: Route[] = [
       {
         path: 'dialog',
         component: DialogShellComponent
+      },
+      {
+        path: 'filter',
+        component: FilterShellComponent
       }
     ]
   }

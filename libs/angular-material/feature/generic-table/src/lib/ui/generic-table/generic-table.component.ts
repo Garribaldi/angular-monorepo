@@ -1,5 +1,5 @@
 import { Component, ContentChildren, Input, OnChanges, QueryList, SimpleChanges } from '@angular/core';
-import { debounceTime, distinctUntilChanged, filter, map, Subject, takeUntil } from 'rxjs';
+import { BehaviorSubject, debounceTime, distinctUntilChanged, Subject, takeUntil } from 'rxjs';
 import { ColumnDef, } from '@local/shared/data-access';
 import { NgTemplateNameDirective } from "@local/shared/utils";
 import { MatTableDataSource } from "@angular/material/table";
@@ -16,7 +16,8 @@ export class GenericTableComponent<T extends object> implements OnChanges {
   dataSource = new MatTableDataSource<T>();
   displayedColumns: string[] = [];
 
-  readonly searchFilter = new Subject<EventTarget | null>();
+  readonly searchFilter = new BehaviorSubject<string>('');
+
   /**
    * __Optional__
    * A key value pair where the key should be matching the columns
@@ -47,21 +48,13 @@ export class GenericTableComponent<T extends object> implements OnChanges {
   private readonly unsubscribe = new Subject<void>();
 
   constructor() {
-    this.searchFilter
-      .asObservable()
+    this.searchFilter.asObservable()
       .pipe(
         takeUntil(this.unsubscribe),
         debounceTime(500),
-        filter(
-          (eventTarget): eventTarget is HTMLInputElement => eventTarget !== null
-        ),
-        map((eventTarget) => eventTarget.value),
         distinctUntilChanged()
       )
-      .subscribe(
-        (filterValue) =>
-          (this.dataSource.filter = filterValue.trim().toLowerCase())
-      );
+      .subscribe(value => this.dataSource.filter = value.trim().toLowerCase())
   }
 
   /**
@@ -87,5 +80,22 @@ export class GenericTableComponent<T extends object> implements OnChanges {
 
     this.columnDefinition = {...columnDefinition};
     this.displayedColumns = Object.keys(columnDefinition);
+  }
+
+  /**
+   * Search can be triggered by input event or with a new string value.
+   * This type guard ensures that only a string is passed to search subject.
+   * @param event input event from HTMLInputElement or string value
+   */
+  updateSearch(event: EventTarget | string | null): void {
+    let value: string;
+    if (event instanceof EventTarget) {
+      value = (event as HTMLInputElement).value
+
+    } else {
+      value = event ?? '';
+    }
+
+    this.searchFilter.next(value);
   }
 }
