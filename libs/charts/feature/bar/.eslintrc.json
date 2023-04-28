@@ -9,7 +9,7 @@
           "error",
           {
             "type": "attribute",
-            "prefix": "charts",
+            "prefix": "localCharts",
             "style": "camelCase"
           }
         ],
@@ -17,7 +17,7 @@
           "error",
           {
             "type": "element",
-            "prefix": "charts",
+            "prefix": "local-charts",
             "style": "kebab-case"
           }
         ]

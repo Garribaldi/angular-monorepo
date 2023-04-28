@@ -5,7 +5,7 @@ import { map, Observable, tap } from "rxjs";
 import { CountryService, validatePasswordStrength } from "@local/shared/utils";
 
 @Component({
-  selector: 'reactive-forms-overview',
+  selector: 'local-reactive-forms-overview',
   templateUrl: './overview.component.html',
   styleUrls: ['./overview.component.scss'],
 })

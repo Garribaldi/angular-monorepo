@@ -9,7 +9,7 @@
           "error",
           {
             "type": "attribute",
-            "prefix": "agrReactiveForms",
+            "prefix": "localReactiveForms",
             "style": "camelCase"
           }
         ],
@@ -17,7 +17,7 @@
           "error",
           {
             "type": "element",
-            "prefix": "agr-reactive-forms",
+            "prefix": "local-reactive-forms",
             "style": "kebab-case"
           }
         ]

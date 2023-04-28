@@ -2,7 +2,7 @@
   "name": "shared-environments",
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/shared/feature/environments/src",
-  "prefix": "agr-shared",
+  "prefix": "local-shared",
   "tags": ["scope:shared"],
   "projectType": "library",
   "targets": {

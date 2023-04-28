@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { OverviewRouterModel } from "./overview.router.model";
 
 @Component({
-  selector: 'agr-angular-material-overview',
+  selector: 'local-angular-material-overview',
   templateUrl: './overview.component.html',
   styleUrls: ['./overview.component.scss'],
 })

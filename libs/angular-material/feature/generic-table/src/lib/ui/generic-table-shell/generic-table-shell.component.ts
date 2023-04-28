@@ -3,7 +3,7 @@ import { Observable } from "rxjs";
 import { ColumnDef, Employee, Inventory, SharedDataService } from "@local/shared/data-access";
 
 @Component({
-  selector: 'agr-angular-material-generic-table-shell',
+  selector: 'local-angular-material-generic-table-shell',
   templateUrl: './generic-table-shell.component.html',
   styleUrls: ['./generic-table-shell.component.scss'],
 })

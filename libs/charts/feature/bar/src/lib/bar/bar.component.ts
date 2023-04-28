@@ -2,7 +2,7 @@ import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { Chart, ChartConfiguration, ChartDataset, ChartItem, ChartOptions } from "chart.js/auto";
 
 @Component({
-  selector: 'charts-bar',
+  selector: 'local-charts-bar',
   templateUrl: './bar.component.html',
   styleUrls: ['./bar.component.scss'],
 })

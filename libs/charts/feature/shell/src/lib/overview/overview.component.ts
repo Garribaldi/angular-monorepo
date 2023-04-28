@@ -4,7 +4,7 @@ import { ChartConfiguration, ChartOptions } from "chart.js/auto";
 
 
 @Component({
-  selector: 'charts-overview',
+  selector: 'local-charts-overview',
   templateUrl: './overview.component.html',
   styleUrls: ['./overview.component.scss'],
 })

@@ -2,7 +2,7 @@
   "name": "angular-material-feature-dialog",
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/angular-material/feature/dialog/src",
-  "prefix": "agr-angular-material",
+  "prefix": "local-angular-material",
   "tags": ["scope:angular-material"],
   "projectType": "library",
   "targets": {

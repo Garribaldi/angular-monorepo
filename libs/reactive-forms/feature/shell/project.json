@@ -2,7 +2,7 @@
   "name": "reactive-forms-feature-shell",
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/reactive-forms/feature/shell/src",
-  "prefix": "agr-reactive-forms",
+  "prefix": "local-reactive-forms",
   "tags": ["scope:reactive-forms"],
   "projectType": "library",
   "targets": {

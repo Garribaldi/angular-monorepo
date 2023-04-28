@@ -2,7 +2,7 @@
   "name": "charts-feature-pie",
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/charts/feature/pie/src",
-  "prefix": "charts",
+  "prefix": "local-charts",
   "tags": ["scope:charts"],
   "projectType": "library",
   "targets": {

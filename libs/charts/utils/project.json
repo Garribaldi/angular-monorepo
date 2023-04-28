@@ -2,7 +2,7 @@
   "name": "charts-utils",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/charts/utils/src",
-  "prefix": "agr-charts",
+  "prefix": "local-charts",
   "tags": ["scope:charts"],
   "projectType": "library",
   "targets": {

@@ -15,7 +15,7 @@
           "error",
           {
             "type": "element",
-            "prefix": "agr-table",
+            "prefix": "local-table",
             "style": "kebab-case"
           }
         ]

@@ -2,7 +2,7 @@
   "name": "angular-material-feature-generic-table",
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/angular-material/feature/generic-table/src",
-  "prefix": "agr-angular-material",
+  "prefix": "local-angular-material",
   "tags": ["scope:angular-material"],
   "projectType": "library",
   "targets": {

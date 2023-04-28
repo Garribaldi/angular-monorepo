@@ -3,7 +3,7 @@ import { Employee, SharedDataService } from "@local/shared/data-access";
 import { Observable } from "rxjs";
 
 @Component({
-  selector: 'angular-material-table',
+  selector: 'local-angular-material-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss'],
 })

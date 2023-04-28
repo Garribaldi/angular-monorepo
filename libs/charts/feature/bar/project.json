@@ -2,7 +2,7 @@
   "name": "charts-feature-bar",
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/charts/feature/bar/src",
-  "prefix": "charts",
+  "prefix": "local-charts",
   "tags": ["scope:charts"],
   "projectType": "library",
   "targets": {

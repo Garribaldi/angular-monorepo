@@ -2,7 +2,7 @@
   "name": "shared-utils",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/shared/utils/src",
-  "prefix": "agr-shared",
+  "prefix": "local-shared",
   "tags": ["scope:shared"],
   "projectType": "library",
   "targets": {

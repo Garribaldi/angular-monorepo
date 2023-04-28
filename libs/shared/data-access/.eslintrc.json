@@ -9,7 +9,7 @@
           "error",
           {
             "type": "attribute",
-            "prefix": "agrShared",
+            "prefix": "localShared",
             "style": "camelCase"
           }
         ],
@@ -17,7 +17,7 @@
           "error",
           {
             "type": "element",
-            "prefix": "agr-shared",
+            "prefix": "local-shared",
             "style": "kebab-case"
           }
         ]

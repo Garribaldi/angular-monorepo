@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'agr-angular-material-filter',
+  selector: 'local-angular-material-filter',
   templateUrl: './filter.component.html',
   styleUrls: ['./filter.component.scss'],
 })

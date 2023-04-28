@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'angular-material-slider',
+  selector: 'local-angular-material-slider',
   templateUrl: './slider.component.html',
   styleUrls: ['./slider.component.scss'],
 })

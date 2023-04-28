@@ -8,7 +8,7 @@
 
 <ng-container *ngIf="inventory$ | async as inventory">
   <!-- Max configuration with table data, column definition and rows template -->
-  <agr-angular-material-generic-table
+  <local-angular-material-generic-table
     [tableData]="inventory"
     data-cy="generic-table"
     [columnDefinition]="inventoryColumnDef"
@@ -22,5 +22,5 @@
       </button>
       <span *ngIf="!item.inStock">Item out of stock</span>
     </ng-template>
-  </agr-angular-material-generic-table>
+  </local-angular-material-generic-table>
 </ng-container>

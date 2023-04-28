@@ -2,7 +2,7 @@
   "name": "demo",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
-  "prefix": "agr-app",
+  "prefix": "local-app",
   "sourceRoot": "apps/demo/src",
   "tags": ["scope:app"],
   "targets": {

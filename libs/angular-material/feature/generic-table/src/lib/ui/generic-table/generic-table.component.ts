@@ -5,7 +5,7 @@ import { NgTemplateNameDirective } from "@local/shared/utils";
 import { MatTableDataSource } from "@angular/material/table";
 
 @Component({
-  selector: 'agr-angular-material-generic-table',
+  selector: 'local-angular-material-generic-table',
   templateUrl: './generic-table.component.html',
   styleUrls: ['./generic-table.component.scss'],
 })
