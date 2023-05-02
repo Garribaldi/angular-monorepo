@@ -1,1 +1,9 @@
-<p>filter works!</p>
+<form [formGroup]="formGroup">
+  <mat-form-field class="col-sm-4 inp">
+    <mat-label>{{filterDefinition.filterLabel}}</mat-label>
+    <mat-select formControlName="selectedFilter">
+      <mat-option [value]="''">All</mat-option>
+      <mat-option *ngFor="let data of filterValues" [value]="data">{{data}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</form>
