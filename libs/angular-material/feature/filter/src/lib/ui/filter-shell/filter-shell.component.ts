@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NbaTeam, SharedDataService } from "@local/shared/data-access";
 import { Observable } from "rxjs";
-import { FilterDefinition } from "../filter/filter-definition.model";
 
 
 @Component({
@@ -15,7 +14,7 @@ export class FilterShellComponent {
   displayedColumns: string[] = ['team', 'location'];
 
   dataSource: NbaTeam[] = [];
-  filterDefinition: FilterDefinition = {filterLabel: 'Select location', filterColumn: 'location'};
+  filterColumn = 'teamName';
 
   constructor(
     sharedDataService: SharedDataService

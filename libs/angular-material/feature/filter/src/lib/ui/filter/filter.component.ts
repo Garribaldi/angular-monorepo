@@ -10,7 +10,6 @@ import {
   ViewChild
 } from '@angular/core';
 import { FormControl, FormGroup } from "@angular/forms";
-import { FilterDefinition } from "./filter-definition.model";
 
 @Component({
   selector: 'local-angular-material-filter',
@@ -22,16 +21,16 @@ export class FilterComponent<T extends { [key: string]: any }> implements OnInit
   @ViewChild('inputFilter', {static: true}) inputFilter!: ElementRef<HTMLInputElement>;
 
   @Input() unfilteredData: T[] | null = [];
-  @Input() filterDefinition: FilterDefinition = {filterLabel: '', filterColumn: ''};
+  @Input() filterColumn = '';
 
   filteredData: T[] = [];
-  filteredFilterValues: Array<unknown> = [];
+  filteredFilterValues: Array<string | number> = [];
 
   formGroup: FormGroup = new FormGroup({
     selectedFilter: new FormControl("")
   });
 
-  private unfilteredFilterValues: Array<unknown> = [];
+  private unfilteredFilterValues: Array<string | number> = [];
 
   @Output() dataFiltered = new EventEmitter<T[]>();
 
@@ -44,7 +43,7 @@ export class FilterComponent<T extends { [key: string]: any }> implements OnInit
         if (!selectedFilter) {
           this.filteredData = unfiltered;
         } else {
-          this.filteredData = unfiltered.filter(data => data[this.filterDefinition.filterColumn] === selectedFilter) ?? [];
+          this.filteredData = unfiltered.filter(data => data[this.filterColumn] === selectedFilter) ?? [];
         }
 
         this.clear();
@@ -55,10 +54,10 @@ export class FilterComponent<T extends { [key: string]: any }> implements OnInit
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    const {unfilteredData, filterDefinition} = changes;
-    const filterColumnValues = unfilteredData.currentValue.map((data: T) => data[filterDefinition.currentValue.filterColumn]);
+    const {unfilteredData, filterColumn} = changes;
+    const filterColumnValues = (unfilteredData.currentValue as T[]).map((data: T) => data[filterColumn.currentValue]);
 
-    this.filteredData = unfilteredData.currentValue;
+    this.filteredData = unfilteredData.currentValue as T[];
     this.unfilteredFilterValues = [...new Set(filterColumnValues)];
 
     this.clear();

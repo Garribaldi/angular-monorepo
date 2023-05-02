@@ -1,6 +1,6 @@
 <form [formGroup]="formGroup">
   <mat-form-field class="col-sm-4">
-    <mat-label>{{filterDefinition.filterLabel}}</mat-label>
+    <mat-label>Select</mat-label>
     <mat-select formControlName="selectedFilter">
       <mat-form-field>
         <input matInput (input)="lookup($event.target)" placeholder="Search filter value" #inputFilter>
