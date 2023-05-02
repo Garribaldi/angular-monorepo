@@ -1,4 +1,14 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChanges,
+  ViewChild
+} from '@angular/core';
 import { FormControl, FormGroup } from "@angular/forms";
 import { FilterDefinition } from "./filter-definition.model";
 
@@ -9,15 +19,19 @@ import { FilterDefinition } from "./filter-definition.model";
 })
 export class FilterComponent<T extends { [key: string]: any }> implements OnInit, OnChanges {
 
+  @ViewChild('inputFilter', {static: true}) inputFilter!: ElementRef<HTMLInputElement>;
+
   @Input() unfilteredData: T[] | null = [];
   @Input() filterDefinition: FilterDefinition = {filterLabel: '', filterColumn: ''};
 
   filteredData: T[] = [];
-  filterValues: Array<unknown> = [];
+  filteredFilterValues: Array<unknown> = [];
 
   formGroup: FormGroup = new FormGroup({
     selectedFilter: new FormControl("")
   });
+
+  private unfilteredFilterValues: Array<unknown> = [];
 
   @Output() dataFiltered = new EventEmitter<T[]>();
 
@@ -33,6 +47,8 @@ export class FilterComponent<T extends { [key: string]: any }> implements OnInit
           this.filteredData = unfiltered.filter(data => data[this.filterDefinition.filterColumn] === selectedFilter) ?? [];
         }
 
+        this.clear();
+
         this.dataFiltered.emit(this.filteredData);
       }
     );
@@ -43,8 +59,21 @@ export class FilterComponent<T extends { [key: string]: any }> implements OnInit
     const filterColumnValues = unfilteredData.currentValue.map((data: T) => data[filterDefinition.currentValue.filterColumn]);
 
     this.filteredData = unfilteredData.currentValue;
-    this.filterValues = [...new Set(filterColumnValues)];
+    this.unfilteredFilterValues = [...new Set(filterColumnValues)];
+
+    this.clear();
 
     this.dataFiltered.emit(this.filteredData);
+  }
+
+  lookup(target: EventTarget | null) {
+    const searchPhrase = (target as HTMLInputElement).value.toLowerCase();
+
+    this.filteredFilterValues = this.unfilteredFilterValues.filter(value => (value as string).toLowerCase().indexOf(searchPhrase) > -1);
+  }
+
+  clear(): void {
+    this.inputFilter.nativeElement.value = '';
+    this.filteredFilterValues = this.unfilteredFilterValues;
   }
 }

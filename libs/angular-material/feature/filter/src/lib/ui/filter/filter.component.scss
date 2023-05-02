@@ -1,24 +1,14 @@
-//p {
-//  font-family: Lato;
-//}
-//
-//.inp {
-//  width: 360px;
-//}
-//
-//.parent {
-//  position: relative;
-//}
-//
-//.child {
-//  position: absolute;
-//  top: 50%;
-//  left: 50%;
-//  transform: translate(-50%, -50%);
-//}
-//
-//.fixed{
-//  position: sticky;
-//  top:0;
-//  z-index: 999;
-//}
+form {
+  width: 300px;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+mat-icon-button {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+}
+
