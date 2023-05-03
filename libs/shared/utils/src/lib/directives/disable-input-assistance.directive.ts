@@ -1,7 +1,7 @@
 import { AfterViewInit, Directive, ElementRef } from '@angular/core';
 
 @Directive({
-  selector: 'input[matInput]'
+  selector: 'input[matInput], ngx-mat-select-search'
 })
 export class DisableInputAssistanceDirective implements AfterViewInit{
 

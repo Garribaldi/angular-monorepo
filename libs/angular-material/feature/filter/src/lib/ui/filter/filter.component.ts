@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormControl, FormGroup } from "@angular/forms";
-import { filter, Subject, takeUntil } from "rxjs";
+import { filter, map, Subject, takeUntil } from "rxjs";
 
 type FilterType = string | number;
 
@@ -81,11 +81,9 @@ export class FilterComponent<T extends { [Property in keyof T]: T[Property] exte
     this.formGroup.get('filterSearch')?.valueChanges
       .pipe(
         takeUntil(this.unsubscribe),
-        filter((search): search is string => search !== null)
+        filter((search): search is string => search !== null),
+        map(search => search.toLowerCase())
       )
-      .subscribe(search => {
-        this.filteredFilterValues = this.unfilteredFilterValues.filter(value => value.toString().toLowerCase().indexOf(search) > -1);
-      });
-
+      .subscribe(search => this.filteredFilterValues = this.unfilteredFilterValues.filter(value => value.toString().toLowerCase().indexOf(search) > -1));
   }
 }
