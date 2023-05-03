@@ -14,7 +14,7 @@ export class FilterShellComponent {
   displayedColumns: string[] = ['team', 'location'];
 
   dataSource: NbaTeam[] = [];
-  filterColumn = 'teamName';
+  filterColumn = 'location';
 
   constructor(
     sharedDataService: SharedDataService

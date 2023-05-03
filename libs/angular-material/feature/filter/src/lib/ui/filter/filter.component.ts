@@ -1,79 +1,50 @@
-import {
-  Component,
-  ElementRef,
-  EventEmitter,
-  Input,
-  OnChanges,
-  OnDestroy,
-  OnInit,
-  Output,
-  SimpleChanges,
-  ViewChild
-} from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormControl, FormGroup } from "@angular/forms";
-import { Subject, takeUntil } from "rxjs";
+import { filter, Subject, takeUntil } from "rxjs";
+
+type FilterType = string | number;
 
 @Component({
   selector: 'local-angular-material-filter',
   templateUrl: './filter.component.html',
   styleUrls: ['./filter.component.scss'],
 })
-export class FilterComponent<T extends {[key: string]: K}, K extends string | number> implements OnInit, OnChanges, OnDestroy {
-
-  @ViewChild('inputFilter', {static: true}) inputFilter!: ElementRef<HTMLInputElement>;
+export class FilterComponent<T extends { [Property in keyof T]: T[Property] extends FilterType ? FilterType : never }> implements OnInit, OnChanges, OnDestroy {
 
   @Input() unfilteredData: T[] | null = [];
   @Input() filterColumn = '';
 
   filteredData: T[] = [];
-  filteredFilterValues: Array<K> = [];
+  filteredFilterValues: Array<FilterType> = [];
 
   formGroup: FormGroup = new FormGroup({
-    selectedFilter: new FormControl("")
+    selectedFilter: new FormControl(''),
+    filterSearch: new FormControl('')
   });
 
-  private unfilteredFilterValues: Array<K> = [];
+  private unfilteredFilterValues: Array<FilterType> = [];
   private unsubscribe = new Subject<void>();
 
   @Output() dataFiltered = new EventEmitter<T[]>();
 
   ngOnInit() {
-    this.formGroup.valueChanges
-      .pipe(takeUntil(this.unsubscribe))
-      .subscribe(
-      changed => {
-        const {selectedFilter} = changed;
-        const unfiltered = this.unfilteredData ?? [];
-
-        if (!selectedFilter) {
-          this.filteredData = unfiltered;
-        } else {
-          this.filteredData = unfiltered.filter(data => data[this.filterColumn] === selectedFilter) ?? [];
-        }
-
-        this.clear();
-
-        this.dataFiltered.emit(this.filteredData);
-      }
-    );
+    this.listenSelectedFilter();
+    this.listenFilterSearch();
   }
 
   ngOnChanges(changes: SimpleChanges) {
     const {unfilteredData, filterColumn} = changes;
-    const filterColumnValues = (unfilteredData.currentValue as T[]).map((data: T) => data[filterColumn.currentValue]);
+    const filterColumnValues = (unfilteredData.currentValue as T[]).map((data: T) => {
+      const filterValue = data[filterColumn.currentValue as keyof T];
+      return filterValue ?? `Error: Key '${filterColumn.currentValue}' does not exist in datasource`;
+    });
 
     this.filteredData = unfilteredData.currentValue as T[];
     this.unfilteredFilterValues = [...new Set(filterColumnValues)];
 
-    this.clear();
+    this.clearFilterSearch();
 
     this.dataFiltered.emit(this.filteredData);
-  }
-
-  lookup(target: EventTarget | null) {
-    const searchPhrase = (target as HTMLInputElement).value.toLowerCase();
-
-    this.filteredFilterValues = this.unfilteredFilterValues.filter(value => value.toString().toLowerCase().indexOf(searchPhrase) > -1);
   }
 
   ngOnDestroy() {
@@ -81,8 +52,40 @@ export class FilterComponent<T extends {[key: string]: K}, K extends string | nu
     this.unsubscribe.complete();
   }
 
-  clear(): void {
-    this.inputFilter.nativeElement.value = '';
+  clearFilterSearch(): void {
+    this.formGroup.get('filterSearch')?.setValue('');
     this.filteredFilterValues = this.unfilteredFilterValues;
+  }
+
+  private listenSelectedFilter(): void {
+    this.formGroup.get('selectedFilter')?.valueChanges
+      .pipe(takeUntil(this.unsubscribe))
+      .subscribe(
+        filter => {
+          const unfiltered = this.unfilteredData ?? [];
+
+          if (!filter) {
+            this.filteredData = unfiltered;
+          } else {
+            this.filteredData = unfiltered.filter(data => data[this.filterColumn as keyof T] === filter) ?? [];
+          }
+
+          this.clearFilterSearch();
+
+          this.dataFiltered.emit(this.filteredData);
+        }
+      );
+  }
+
+  private listenFilterSearch(): void {
+    this.formGroup.get('filterSearch')?.valueChanges
+      .pipe(
+        takeUntil(this.unsubscribe),
+        filter((search): search is string => search !== null)
+      )
+      .subscribe(search => {
+        this.filteredFilterValues = this.unfilteredFilterValues.filter(value => value.toString().toLowerCase().indexOf(search) > -1);
+      });
+
   }
 }

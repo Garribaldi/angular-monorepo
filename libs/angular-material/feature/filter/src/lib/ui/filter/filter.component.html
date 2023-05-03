@@ -1,15 +1,15 @@
 <form [formGroup]="formGroup">
   <mat-form-field class="col-sm-4">
     <mat-label>Select</mat-label>
-    <mat-select formControlName="selectedFilter">
-      <mat-form-field>
-        <input matInput (input)="lookup($event.target)" placeholder="Search filter value" #inputFilter>
-        <button *ngIf="inputFilter.value !== ''" matSuffix mat-icon-button aria-label="Clear" (click)="clear()">
-          <mat-icon>close</mat-icon>
-        </button>
-      </mat-form-field>
-      <mat-option *ngIf="inputFilter.value === ''" [value]="''">All</mat-option>
-      <mat-option *ngFor="let data of filteredFilterValues" [value]="data">{{data}}</mat-option>
+    <mat-select [formControlName]="'selectedFilter'">
+      <mat-option>
+        <ngx-mat-select-search [formControlName]="'filterSearch'" noEntriesFoundLabel="No results found"></ngx-mat-select-search>
+      </mat-option>
+      <mat-option *ngIf="formGroup.get('filterSearch')?.value === ''" [value]="''">All</mat-option>
+      <mat-option *ngFor="let data of filteredFilterValues"
+                  [value]="data"
+                  [disabled]="data.toString().indexOf('Error') > -1"
+      >{{data}}</mat-option>
     </mat-select>
   </mat-form-field>
 </form>
