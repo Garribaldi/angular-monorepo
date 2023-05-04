@@ -1,10 +1,10 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogRef } from "@angular/material/dialog";
-import { DialogData } from "../dialog-data.model";
+import { DialogData } from "../../../../dialog/src/lib/dialog-data.model";
 import { take } from "rxjs";
-import { DialogComponent } from "../dialog/dialog.component";
+import { DialogComponent } from "../../../../dialog/src/lib/dialog/dialog.component";
 import { FormGroup } from "@angular/forms";
-import { DialogFormService } from "../dialog-form.service";
+import { DialogFormService } from "../../../../dialog/src/lib/dialog-form.service";
 
 @Component({
   selector: 'local-angular-material-dialog-shell',

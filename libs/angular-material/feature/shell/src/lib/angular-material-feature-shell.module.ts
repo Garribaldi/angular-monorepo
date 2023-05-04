@@ -13,12 +13,18 @@ import { AngularMaterialFeatureFilterModule } from "@local/angular-material/feat
 import { MatCardModule } from "@angular/material/card";
 import { ReactiveFormsModule } from "@angular/forms";
 import { MatTableModule } from "@angular/material/table";
+import { AngularMaterialFeatureDialogModule } from "@local/angular-material/feature/dialog";
+import { MatDatepickerModule } from "@angular/material/datepicker";
+import { MatNativeDateModule } from "@angular/material/core";
+import { DialogShellComponent } from "./dialog-shell/dialog-shell.component";
+import { MatButtonModule } from "@angular/material/button";
 
 @NgModule({
   imports: [
     CommonModule,
     AngularMaterialFeatureShellRoutingModule,
     AngularMaterialFeatureFilterModule,
+    AngularMaterialFeatureDialogModule,
     ReactiveFormsModule,
     MatCardModule,
     MatTableModule,
@@ -27,9 +33,16 @@ import { MatTableModule } from "@angular/material/table";
     MatSelectModule,
     MatFormFieldModule,
     MatInputModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatButtonModule
   ],
-  declarations: [OverviewComponent, FilterShellComponent],
+  declarations: [
+    OverviewComponent,
+    FilterShellComponent,
+    DialogShellComponent
+  ],
   exports: [OverviewComponent]
 })
 export class AngularMaterialFeatureShellModule {

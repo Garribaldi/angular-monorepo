@@ -4,9 +4,8 @@ import { OverviewComponent } from "./overview/overview.component";
 import { GenericTableShellComponent } from "@local/angular-material/feature/generic-table"
 import { TableComponent } from "@local/angular-material/feature/table";
 import { SliderComponent } from "@local/angular-material/feature/slider";
-import { DialogShellComponent } from "@local/angular-material/feature/dialog";
 import { FilterShellComponent } from "./filter-shell/filter-shell.component";
-
+import { DialogShellComponent } from "./dialog-shell/dialog-shell.component";
 
 const routes: Route[] = [
   {
