@@ -15,6 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@local/angular-material/feature/data-grid": [
+        "libs/angular-material/feature/data-grid/src/index.ts"
+      ],
       "@local/angular-material/feature/dialog": [
         "libs/angular-material/feature/dialog/src/index.ts"
       ],

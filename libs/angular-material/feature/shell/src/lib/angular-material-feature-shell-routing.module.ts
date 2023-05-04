@@ -6,6 +6,7 @@ import { TableComponent } from "@local/angular-material/feature/table";
 import { SliderComponent } from "@local/angular-material/feature/slider";
 import { FilterShellComponent } from "./filter-shell/filter-shell.component";
 import { DialogShellComponent } from "./dialog-shell/dialog-shell.component";
+import { DataGridShellComponent } from "./data-grid-shell/data-grid-shell.component";
 
 const routes: Route[] = [
   {
@@ -16,7 +17,7 @@ const routes: Route[] = [
       {
         path: '',
         pathMatch: "full",
-        redirectTo: 'filter'
+        redirectTo: 'data-grid'
       },
       {
         path: 'table',
@@ -37,6 +38,10 @@ const routes: Route[] = [
       {
         path: 'filter',
         component: FilterShellComponent
+      },
+      {
+        path: 'data-grid',
+        component: DataGridShellComponent
       }
     ]
   }

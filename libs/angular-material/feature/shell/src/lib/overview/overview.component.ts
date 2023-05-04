@@ -13,6 +13,7 @@ export class OverviewComponent {
     {url: 'generic-table', caption: 'Generic Table'},
     {url: 'slider', caption: 'Slider'},
     {url: 'dialog', caption: 'Dialog'},
-    {url: 'filter', caption: 'Filter'}
+    {url: 'filter', caption: 'Filter'},
+    {url: 'data-grid', caption: 'Data Grid'}
   ];
 }
