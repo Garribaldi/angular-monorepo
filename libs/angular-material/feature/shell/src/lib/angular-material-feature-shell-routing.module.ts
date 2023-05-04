@@ -5,7 +5,8 @@ import { GenericTableShellComponent } from "@local/angular-material/feature/gene
 import { TableComponent } from "@local/angular-material/feature/table";
 import { SliderComponent } from "@local/angular-material/feature/slider";
 import { DialogShellComponent } from "@local/angular-material/feature/dialog";
-import { FilterShellComponent } from "@local/angular-material/feature/filter";
+import { FilterShellComponent } from "./filter-shell/filter-shell.component";
+
 
 const routes: Route[] = [
   {

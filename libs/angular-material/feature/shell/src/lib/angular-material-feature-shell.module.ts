@@ -8,11 +8,20 @@ import { MatSelectModule } from "@angular/material/select";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { MatAutocompleteModule } from "@angular/material/autocomplete";
+import { FilterShellComponent } from "./filter-shell/filter-shell.component";
+import { AngularMaterialFeatureFilterModule } from "@local/angular-material/feature/filter";
+import { MatCardModule } from "@angular/material/card";
+import { ReactiveFormsModule } from "@angular/forms";
+import { MatTableModule } from "@angular/material/table";
 
 @NgModule({
   imports: [
     CommonModule,
     AngularMaterialFeatureShellRoutingModule,
+    AngularMaterialFeatureFilterModule,
+    ReactiveFormsModule,
+    MatCardModule,
+    MatTableModule,
     MatTooltipModule,
     MatDialogModule,
     MatSelectModule,
@@ -20,7 +29,7 @@ import { MatAutocompleteModule } from "@angular/material/autocomplete";
     MatInputModule,
     MatAutocompleteModule
   ],
-  declarations: [OverviewComponent],
+  declarations: [OverviewComponent, FilterShellComponent],
   exports: [OverviewComponent]
 })
 export class AngularMaterialFeatureShellModule {

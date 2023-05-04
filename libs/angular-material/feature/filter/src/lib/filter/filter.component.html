@@ -5,7 +5,6 @@
       <mat-option>
         <ngx-mat-select-search [formControlName]="'filterSearch'" noEntriesFoundLabel="No results found"></ngx-mat-select-search>
       </mat-option>
-<!--      <mat-option *ngIf="formGroup.get('filterSearch')?.value === ''" [value]="''">All</mat-option>-->
       <mat-option *ngFor="let data of filteredFilterValues"
                   [value]="data.filterValue"
                   [disabled]="data.toString().indexOf('Error') > -1"
