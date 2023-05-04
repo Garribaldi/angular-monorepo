@@ -59,7 +59,8 @@ describe('FilterComponent', () => {
 
     expect(component).toBeTruthy();
     expect(component.filteredData).toEqual(testData);
-    expect(component.filteredFilterValues).toEqual(expectedFilterValues);
+    expect(component.filteredFilterValues.length).toEqual(4);
+    expect(component.filteredFilterValues[0].filterLabel).toEqual('All');
   });
 
   describe('search filter values', () => {
@@ -69,11 +70,12 @@ describe('FilterComponent', () => {
     beforeEach(() => filterSearch = component.formGroup.get('filterSearch'));
 
     test('search filter with result', fakeAsync(() => {
+      const expectedResult = [{filterLabel: testData[0].name, filterValue: testData[0].name}];
       filterSearch?.setValue('At');
 
       tick();
 
-      expect(component.filteredFilterValues).toEqual([testData[0].name]);
+      expect(component.filteredFilterValues).toEqual(expectedResult);
     }));
 
     test('search filter without result', fakeAsync(() => {

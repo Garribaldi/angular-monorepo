@@ -1,8 +1,7 @@
 import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormControl, FormGroup } from "@angular/forms";
 import { filter, map, Subject, takeUntil } from "rxjs";
-
-type FilterType = string | number;
+import { FilterColumnProperty, FilterDefinition, FilterType } from "../../data-access/filter.model";
 
 @Component({
   selector: 'local-angular-material-filter',
@@ -12,17 +11,17 @@ type FilterType = string | number;
 export class FilterComponent<T extends { [Property in keyof T]: T[Property] extends FilterType ? FilterType : never }> implements OnInit, OnChanges, OnDestroy {
 
   @Input() unfilteredData: T[] | null = [];
-  @Input() filterColumn = '';
+  @Input() filterColumn: FilterColumnProperty = '';
 
   filteredData: T[] = [];
-  filteredFilterValues: Array<FilterType> = [];
+  filteredFilterValues: Array<FilterDefinition> = [];
 
   formGroup: FormGroup = new FormGroup({
     selectedFilter: new FormControl(''),
     filterSearch: new FormControl('')
   });
 
-  private unfilteredFilterValues: Array<FilterType> = [];
+  private unfilteredFilterValues: Array<FilterDefinition> = [];
   private unsubscribe = new Subject<void>();
 
   @Output() dataFiltered = new EventEmitter<T[]>();
@@ -33,18 +32,22 @@ export class FilterComponent<T extends { [Property in keyof T]: T[Property] exte
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    const {unfilteredData, filterColumn} = changes;
-    const filterColumnValues = (unfilteredData.currentValue as T[]).map((data: T) => {
-      const filterValue = data[filterColumn.currentValue as keyof T];
-      return filterValue ?? `Error: Key '${filterColumn.currentValue}' does not exist in datasource`;
+    const unfilteredData = changes['unfilteredData'].currentValue as T[];
+    const filterColumn = changes['filterColumn'].currentValue as keyof T;
+
+    const filterColumnValues = unfilteredData.map((data: T) => {
+      const filterValue = data[filterColumn];
+      return filterValue ?? `Error: Key '${String(filterColumn)}' does not exist in datasource`;
     });
 
-    this.filteredData = unfilteredData.currentValue as T[];
-    this.unfilteredFilterValues = [...new Set(filterColumnValues)];
+    this.filteredData = unfilteredData;
+    this.unfilteredFilterValues = [...new Set(filterColumnValues)].map(value => ({
+      filterLabel: String(value),
+      filterValue: value
+    }))
+    this.unfilteredFilterValues.unshift({filterLabel: 'All', filterValue: ''});
 
-    this.clearFilterSearch();
-
-    this.dataFiltered.emit(this.filteredData);
+    this.clearSearchAndEmit();
   }
 
   ngOnDestroy() {
@@ -70,9 +73,7 @@ export class FilterComponent<T extends { [Property in keyof T]: T[Property] exte
             this.filteredData = unfiltered.filter(data => data[this.filterColumn as keyof T] === filter) ?? [];
           }
 
-          this.clearFilterSearch();
-
-          this.dataFiltered.emit(this.filteredData);
+          this.clearSearchAndEmit();
         }
       );
   }
@@ -84,6 +85,13 @@ export class FilterComponent<T extends { [Property in keyof T]: T[Property] exte
         filter((search): search is string => search !== null),
         map(search => search.toLowerCase())
       )
-      .subscribe(search => this.filteredFilterValues = this.unfilteredFilterValues.filter(value => value.toString().toLowerCase().indexOf(search) > -1));
+      .subscribe(search => this.filteredFilterValues = this.unfilteredFilterValues.filter(filterDefinition =>
+        filterDefinition.filterLabel.toLowerCase().indexOf(search) > -1)
+      );
+  }
+
+  private clearSearchAndEmit(): void {
+    this.clearFilterSearch();
+    this.dataFiltered.emit(this.filteredData);
   }
 }
