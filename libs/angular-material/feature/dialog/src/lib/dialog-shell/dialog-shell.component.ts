@@ -1,10 +1,10 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogRef } from "@angular/material/dialog";
-import { DialogData } from "../../data-access/dialog-data.model";
+import { DialogData } from "../dialog-data.model";
 import { take } from "rxjs";
 import { DialogComponent } from "../dialog/dialog.component";
 import { FormGroup } from "@angular/forms";
-import { FormService } from "../../utils/form.service";
+import { DialogFormService } from "../dialog-form.service";
 
 @Component({
   selector: 'local-angular-material-dialog-shell',
@@ -24,13 +24,13 @@ export class DialogShellComponent implements OnInit {
 
   constructor(
     public dialog: MatDialog,
-    private readonly formService: FormService
+    private readonly formService: DialogFormService
   ) {
     this.dialogConfig = new MatDialogConfig();
     this.dialogConfig.disableClose = true;
     this.dialogConfig.autoFocus = true;
 
-    this.form = formService.buildForm;
+    this.form = formService.form;
     this.categories = formService.categories;
   }
 

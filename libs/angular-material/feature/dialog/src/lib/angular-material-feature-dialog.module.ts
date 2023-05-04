@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DialogComponent } from './ui/dialog/dialog.component';
+import { DialogComponent } from './dialog/dialog.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
-import { DialogShellComponent } from './ui/dialog-shell/dialog-shell.component';
+import { DialogShellComponent } from './dialog-shell/dialog-shell.component';
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MatInputModule } from "@angular/material/input";

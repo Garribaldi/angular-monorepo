@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FilterComponent } from './ui/filter/filter.component';
-import { FilterShellComponent } from './ui/filter-shell/filter-shell.component';
+import { FilterComponent } from './filter/filter.component';
+import { FilterShellComponent } from './filter-shell/filter-shell.component';
 import { MatCardModule } from "@angular/material/card";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MatFormFieldModule } from "@angular/material/form-field";

@@ -1,8 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
-import { DialogData } from "../../data-access/dialog-data.model";
+import { DialogData } from "../dialog-data.model";
 import { FormGroup } from "@angular/forms";
-import { FormService } from "../../utils/form.service";
+import { DialogFormService } from "../dialog-form.service";
 
 @Component({
   selector: 'local-angular-material-dialog',
@@ -16,12 +16,12 @@ export class DialogComponent implements OnInit {
   form: FormGroup;
 
   constructor(
-    private readonly formService: FormService,
+    private readonly formService: DialogFormService,
     public readonly dialogRef: MatDialogRef<DialogComponent>,
     @Inject(MAT_DIALOG_DATA) private readonly data: DialogData
   ) {
     this.dialogData = {...data};
-    this.form = formService.buildForm;
+    this.form = formService.form;
     this.categories = formService.categories;
   }
 

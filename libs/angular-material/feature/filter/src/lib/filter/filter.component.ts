@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormControl, FormGroup } from "@angular/forms";
 import { filter, map, Subject, takeUntil } from "rxjs";
-import { FilterColumnProperty, FilterDefinition, FilterType } from "../../data-access/filter.model";
+import { FilterColumnProperty, FilterDefinition, FilterType } from "../filter.model";
 
 @Component({
   selector: 'local-angular-material-filter',

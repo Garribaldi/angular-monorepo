@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { FormService } from './form.service';
+import { DialogFormService } from './dialog-form.service';
 
 describe('FormService', () => {
-  let service: FormService;
+  let service: DialogFormService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(FormService);
+    service = TestBed.inject(DialogFormService);
   });
 
   it('should be created', () => {

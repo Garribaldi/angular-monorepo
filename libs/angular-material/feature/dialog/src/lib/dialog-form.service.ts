@@ -4,7 +4,7 @@ import { FormBuilder } from "@angular/forms";
 @Injectable({
   providedIn: 'root'
 })
-export class FormService {
+export class DialogFormService {
 
   private _form = this.fb.group({
     description: ['', []],
@@ -14,7 +14,7 @@ export class FormService {
 
   private _categories = ['Beginner', 'Advanced', 'Pro'];
 
-  get buildForm() {
+  get form() {
     return this._form;
   }
 
