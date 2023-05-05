@@ -1,1 +1,12 @@
-<p>data-grid-column works!</p>
+<mat-card [ngSwitch]="type">
+
+  <ng-container *ngSwitchCase="filterType.TEXT_FILTER">
+    <div>{{label}}</div>
+    <local-angular-material-data-grid-text-filter [data]="columnData"></local-angular-material-data-grid-text-filter>
+  </ng-container>
+
+  <ng-container *ngSwitchDefault>
+    <div>No Filter available</div>
+  </ng-container>
+
+</mat-card>

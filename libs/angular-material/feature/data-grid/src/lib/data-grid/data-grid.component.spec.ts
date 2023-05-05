@@ -1,9 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DataGridComponent } from './data-grid.component';
+import { MockModule } from "ng-mocks";
+import { MatCardModule } from "@angular/material/card";
 
-
-type TestData = [];
-
+type TestData = {name: string};
 
 describe('DataGridComponent', () => {
   let component: DataGridComponent<TestData>;
@@ -11,6 +11,9 @@ describe('DataGridComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [
+        MockModule(MatCardModule)
+      ],
       declarations: [DataGridComponent],
     }).compileComponents();
 
