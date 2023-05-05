@@ -42,6 +42,12 @@ nx g @nrwl/angular:service api/table-data --project=generic-table-data-access
 nx g @schematics/angular:directive table/table-row-template --prefix=local-shared --project=shared-ui --export=true
 ```
 
+## Add Pipe
+
+```
+nx g @schematics/angular:pipe pipes/add-value --project=shared-utils --export=true
+```
+
 ## Remote caching
 
 Run `npx nx connect-to-nx-cloud` to enable [remote caching](https://nx.app) and make CI faster.

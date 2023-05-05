@@ -2,16 +2,19 @@
 @use "@angular/material" as mat;
 
 .nav {
-  display: block;
-  padding: 0 0 1rem 0;
+  display: flex;
+  padding: 0;
   margin: 0 0 1rem 0;
   border-bottom: 1px solid #ededed;
 
   &__item {
-    display: inline-block;
+    flex: 1 1 auto;
+    display: inline-flex;
   }
 
   &__link {
+    width: 100%;
+    text-align: center;
     padding: .75rem;
     color: #585858;
     text-decoration: none;

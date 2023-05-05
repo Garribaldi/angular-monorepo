@@ -1,4 +1,11 @@
 <mat-card>
+  <local-angular-material-data-grid>
+    <local-angular-material-data-grid-column column="'teamName'" [filterType]="filterType.TEXT_FILTER"></local-angular-material-data-grid-column>
+    <local-angular-material-data-grid-column column="'teamId'" [filterType]="filterType.NUMBER_FILTER"></local-angular-material-data-grid-column>
+  </local-angular-material-data-grid>
+</mat-card>
+
+<mat-card>
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
     <ng-container matColumnDef="teamId">

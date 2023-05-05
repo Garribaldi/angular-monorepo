@@ -17,8 +17,6 @@ export class OverviewComponent {
     }
   ];
   testPieOptions: ChartOptions = {
-    responsive: true,
-    maintainAspectRatio: false,
     plugins: {
       legend: {
         display: true,
@@ -45,8 +43,14 @@ export class OverviewComponent {
     }
   ];
   testOptions = {
-    responsive: true,
-    maintainAspectRatio: false
+    scales: {
+      x: {
+        stacked: true,
+      },
+      y: {
+        stacked: true
+      }
+    }
   };
 
   testBarChart: ChartConfiguration<'bar'> = {

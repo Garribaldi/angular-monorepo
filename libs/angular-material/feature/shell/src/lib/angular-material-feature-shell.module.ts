@@ -19,6 +19,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { DialogShellComponent } from './dialog-shell/dialog-shell.component';
 import { MatButtonModule } from '@angular/material/button';
 import { DataGridShellComponent } from './data-grid-shell/data-grid-shell.component';
+import { MatTabsModule } from "@angular/material/tabs";
+import { AngularMaterialFeatureDataGridModule } from "@local/angular-material/feature/data-grid";
 
 @NgModule({
   imports: [
@@ -38,6 +40,8 @@ import { DataGridShellComponent } from './data-grid-shell/data-grid-shell.compon
     MatDatepickerModule,
     MatNativeDateModule,
     MatButtonModule,
+    MatTabsModule,
+    AngularMaterialFeatureDataGridModule,
   ],
   declarations: [
     OverviewComponent,
