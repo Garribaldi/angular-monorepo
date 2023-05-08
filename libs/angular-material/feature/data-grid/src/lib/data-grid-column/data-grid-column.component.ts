@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Filter, FilterType } from "../data-grid.model";
 import { DataGridService } from "../data-grid.service";
+import { DataGridStateService } from "../data-grid-state.service";
 
 @Component({
   selector: 'local-angular-material-data-grid-column',
@@ -13,16 +14,21 @@ export class DataGridColumnComponent<T extends Record<string, any>> implements O
   @Input() type!: FilterType;
   @Input() label!: string;
 
-  filterType = FilterType;
+  readonly filterType = FilterType;
 
   filters: Filter[] = [];
 
   constructor(
-    private readonly dataGridService: DataGridService<T>
+    private readonly dataGridService: DataGridService<T>,
+    private readonly dataGridStateService: DataGridStateService
   ) {
   }
 
   ngOnInit() {
-    this.filters = this.dataGridService.getFiltersForColumn(this.column, this.type);
+    this.filters = this.dataGridService.getFiltersForColumn(this.column, this.type, this.label);
+  }
+
+  resetColumn() {
+    this.dataGridStateService.removeFiltersByColumn(this.column);
   }
 }

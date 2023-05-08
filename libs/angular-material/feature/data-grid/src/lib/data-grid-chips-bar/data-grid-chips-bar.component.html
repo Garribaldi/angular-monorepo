@@ -1,0 +1,13 @@
+<mat-chip-listbox aria-label="Selected Filters">
+
+  <mat-chip-option color="primary"
+                   *ngFor="let chip of chipsList"
+                   [removable]="true"
+                   (removed)="remove(chip)">
+    {{chip.displayValue}}
+    <button matChipRemove>
+      <mat-icon aria-hidden="false" aria-label="Close" fontIcon="close"></mat-icon>
+    </button>
+  </mat-chip-option>
+
+</mat-chip-listbox>

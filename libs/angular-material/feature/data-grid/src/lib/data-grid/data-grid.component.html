@@ -1,3 +1,7 @@
-<div class="data-grid">
+<div class="data-grid__chips-bar">
+  <local-angular-material-data-grid-chips-bar [chipsList]="chipsList" (removeFilter)="removeFilter($event)"></local-angular-material-data-grid-chips-bar>
+</div>
+
+<div class="data-grid__columns">
   <ng-content></ng-content>
 </div>

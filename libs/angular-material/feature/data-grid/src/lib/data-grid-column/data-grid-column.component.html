@@ -1,8 +1,10 @@
 <div [ngSwitch]="type">
 
   <ng-container *ngSwitchCase="filterType.CHECK_FILTER">
-    <local-angular-material-data-grid-text-filter [data]="filters" [label]="label"></local-angular-material-data-grid-text-filter>
+    <local-angular-material-data-grid-check-filter [filters]="filters" (resetColumn)="resetColumn()"></local-angular-material-data-grid-check-filter>
   </ng-container>
+
+  <ng-container *ngSwitchCase="filterType.DATE_FILTER"></ng-container>
 
   <ng-container *ngSwitchDefault>
     <div>No Filter available</div>

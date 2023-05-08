@@ -52,8 +52,8 @@ export class DataGridStateService {
     this._selectedFilters.next([]);
   }
 
-  removeFiltersByType(filterType: FilterType): void {
-    const filters = this._selectedFilters.value.filter(existingFilter => existingFilter.type !== filterType);
+  removeFiltersByColumn(column: string): void {
+    const filters = this._selectedFilters.value.filter(existingFilter => existingFilter.column !== column);
     this._selectedFilters.next(filters);
   }
 }

@@ -1,9 +1,16 @@
 .data-grid {
-  display: flex;
-  flex-direction: row;
-  height: 3rem;
-  border: 1px solid #ededed;
-  margin-bottom: .5rem;
+
+  &__chips-bar {
+
+  }
+
+  &__columns {
+    display: flex;
+    flex-direction: row;
+    height: 3rem;
+    border: 1px solid #ededed;
+    margin-bottom: .5rem;
+  }
 }
 
 ::ng-deep {

@@ -28,8 +28,9 @@ export class DataGridService<T extends Record<string, any>> {
    * Reduce datasource to unique values per column and return a __Filter__ array with each unique value.
    * @param column object column to take values from
    * @param type filter type to apply on column
+   * @param label column display value (for chips list)
    */
-  getFiltersForColumn(column: string, type: FilterType): Filter[] {
+  getFiltersForColumn(column: string, type: FilterType, label?: string): Filter[] {
     return this.dataSource
       .reduce((acc, curr) => {
         const exists = acc.find(data => data.value === curr[column]);
@@ -48,6 +49,7 @@ export class DataGridService<T extends Record<string, any>> {
           value: data.value,
           column,
           displayValue: data.value.toString(),
+          label: label ?? '',
           hitCount: data.hitCount,
           selected: false
         })

@@ -17,7 +17,7 @@ describe('DataGridTextFilterComponent', () => {
 
     fixture = TestBed.createComponent(DataGridCheckFilterComponent);
     component = fixture.componentInstance;
-    component.data = [];
+    component.filters = [];
 
     fixture.detectChanges();
   });

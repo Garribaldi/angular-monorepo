@@ -17,19 +17,14 @@ export type FilterNestedNode = {
   children?: FilterNestedNode[]
 }
 
-// export type FilterTreeItem = {
-//   name: string;
-//   children?: FilterTreeItem[];
-// };
-
 export type Filter = {
   id: string;
+  column: string;
   type: FilterType;
   value: FilterValue;
-  column: string;
   displayValue: string;
+  label: string;
   hitCount: number;
-  selected: boolean;
 }
 
 export type FilterCount = Pick<Filter, 'value' | 'hitCount'>;
