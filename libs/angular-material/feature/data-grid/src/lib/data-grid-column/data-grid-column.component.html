@@ -1,12 +1,11 @@
-<mat-card [ngSwitch]="type">
+<div [ngSwitch]="type">
 
-  <ng-container *ngSwitchCase="filterType.TEXT_FILTER">
-    <div>{{label}}</div>
-    <local-angular-material-data-grid-text-filter [data]="columnData"></local-angular-material-data-grid-text-filter>
+  <ng-container *ngSwitchCase="filterType.CHECK_FILTER">
+    <local-angular-material-data-grid-text-filter [data]="filters" [label]="label"></local-angular-material-data-grid-text-filter>
   </ng-container>
 
   <ng-container *ngSwitchDefault>
     <div>No Filter available</div>
   </ng-container>
 
-</mat-card>
+</div>

@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Filter, FilterType, FilterValue } from "../data-grid.model";
-import { v4 as uuidv4 } from "uuid";
+import { Filter, FilterType } from "../data-grid.model";
 import { DataGridService } from "../data-grid.service";
 
 @Component({
@@ -16,15 +15,7 @@ export class DataGridColumnComponent<T extends Record<string, any>> implements O
 
   filterType = FilterType;
 
-  private readonly filter: Filter = {
-    id: uuidv4(),
-    type: FilterType.UNKNOWN_FILTER,
-    value: '',
-    displayValue: '',
-    hitCount: 0
-  };
-
-  columnData: FilterValue[] = [];
+  filters: Filter[] = [];
 
   constructor(
     private readonly dataGridService: DataGridService<T>
@@ -32,8 +23,6 @@ export class DataGridColumnComponent<T extends Record<string, any>> implements O
   }
 
   ngOnInit() {
-    this.filter.type = this.type;
-    this.filter.displayValue = this.label;
-    this.columnData = this.dataGridService.getColumnData(this.column);
+    this.filters = this.dataGridService.getFiltersForColumn(this.column, this.type);
   }
 }

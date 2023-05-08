@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { take } from "rxjs";
 import { NbaTeam, SharedDataService } from "@local/shared/data-access";
-import { FilterType } from "../../../../data-grid/src/lib/data-grid.model";
+import { FilterType } from "@local/angular-material/feature/data-grid";
 
 
 // abbreviation: string;
@@ -26,5 +26,9 @@ export class DataGridShellComponent {
     sharedDataService.getNbaTeams$()
       .pipe(take(1))
       .subscribe(data => this.dataSource = data);
+  }
+
+  onFilter(filteredData: NbaTeam[]) {
+    this.dataSource = filteredData;
   }
 }

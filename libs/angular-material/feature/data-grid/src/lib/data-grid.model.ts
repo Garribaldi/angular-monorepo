@@ -1,9 +1,6 @@
 export enum FilterType {
-  UNKNOWN_FILTER,
-  DATE_FILTER,
-  NUMBER_FILTER,
-  TEXT_FILTER,
-  BOOLEAN_FILTER,
+  CHECK_FILTER,
+  DATE_FILTER
 }
 
 export type FilterValue = string | number | Date;
@@ -13,22 +10,26 @@ export type FilterDate = {
   to?: Date | null;
 }
 
-export type FilterFlatNode = {
-  name: string;
-  expandable: boolean;
-  level: number;
-  isExpanded?: boolean;
+export type FilterNestedNode = {
+  value: FilterValue;
+  hitCount?: number;
+  checked?: boolean;
+  children?: FilterNestedNode[]
 }
 
-export type FilterTreeItem = {
-  name: string;
-  children?: FilterTreeItem[];
-};
+// export type FilterTreeItem = {
+//   name: string;
+//   children?: FilterTreeItem[];
+// };
 
 export type Filter = {
   id: string;
   type: FilterType;
   value: FilterValue;
+  column: string;
   displayValue: string;
   hitCount: number;
+  selected: boolean;
 }
+
+export type FilterCount = Pick<Filter, 'value' | 'hitCount'>;

@@ -1,21 +1,21 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { DataGridTextFilterComponent } from './data-grid-text-filter.component';
+import { DataGridCheckFilterComponent } from './data-grid-check-filter.component';
 import { MockModule } from "ng-mocks";
 import { CdkTreeModule } from "@angular/cdk/tree";
 
 describe('DataGridTextFilterComponent', () => {
-  let component: DataGridTextFilterComponent;
-  let fixture: ComponentFixture<DataGridTextFilterComponent>;
+  let component: DataGridCheckFilterComponent;
+  let fixture: ComponentFixture<DataGridCheckFilterComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
         MockModule(CdkTreeModule)
       ],
-      declarations: [DataGridTextFilterComponent],
+      declarations: [DataGridCheckFilterComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(DataGridTextFilterComponent);
+    fixture = TestBed.createComponent(DataGridCheckFilterComponent);
     component = fixture.componentInstance;
     component.data = [];
 
