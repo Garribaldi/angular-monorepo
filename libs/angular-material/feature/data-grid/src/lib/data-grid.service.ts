@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Filter, FilterCount, FilterDate, FilterType } from "./data-grid.model";
+import { Filter, FilterCount, FilterDate, FilterType, GroupedFilter } from "./data-grid.model";
 import { v4 as uuidv4 } from 'uuid';
 import * as moment from "moment";
 import { assertCannotReach } from "@local/shared/utils";
@@ -62,6 +62,32 @@ export class DataGridService<T extends Record<string, any>> {
     }
 
     const foundData: T[] = [];
+
+    const groupedFilter = this.getGroupedFilter(filters);
+    let constraint = '';
+
+    let filtered: T[] = this._dataSource;
+
+    Object.keys(groupedFilter).forEach(column => {
+      const columnFilter = groupedFilter[column];
+      constraint = columnFilter.map(filter => filter.value.toString()).join('|');
+
+      console.log(new RegExp(constraint));
+
+      filtered = filtered.filter(data => {
+        const dataColumn = data[column];
+
+        return !!dataColumn.match(new RegExp('(' + constraint + ')', 'ig')) ?? false;
+
+        // if (typeof dataColumn === "string") {
+        //  console.log(dataColumn.match(new RegExp('(' + constraint + ')', 'ig')));
+        // }
+      });
+    });
+
+    console.log(filtered);
+
+
 
     filters.forEach(filter => {
       const newValue = this._dataSource.filter(data => {
@@ -141,5 +167,19 @@ export class DataGridService<T extends Record<string, any>> {
           hitCount: data.hitCount
         })
       );
+  }
+
+  private getGroupedFilter(filters: Filter[]): GroupedFilter {
+    const grouped: GroupedFilter = {};
+
+    filters.forEach(filter => {
+      if (!grouped[filter.column]) {
+        grouped[filter.column] = [];
+      }
+
+      grouped[filter.column].push(filter);
+    });
+
+    return grouped;
   }
 }

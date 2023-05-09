@@ -29,4 +29,8 @@ export type Filter = {
   hitCount: number;
 }
 
+export type GroupedFilter = {
+  [column: string]: Filter[]
+}
+
 export type FilterCount = Pick<Filter, 'value' | 'hitCount'>;
