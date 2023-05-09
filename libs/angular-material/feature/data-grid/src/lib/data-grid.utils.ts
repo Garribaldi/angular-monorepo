@@ -1,17 +1,7 @@
-import { FilterDate } from "@local/angular-material/feature/data-grid";
-import * as moment from "moment";
+import { FilterDate } from "./data-grid.model";
 
-type DateBrand = (FilterDate | string) & { __brand: 'Date' };
+type DateBrand = FilterDate & { __brand: 'Date' };
 
-const dateFormat = 'DDMMYYYY';
-
-export function isValidFilterDate(date: FilterDate | string): date is DateBrand {
-  if (typeof date === 'string') {
-    const dateSegments = date.split('-').filter(dateSegment => !!dateSegment);
-    return dateSegments.length
-      ? !dateSegments.some(dateSegment => !moment(dateSegment, dateFormat, true).isValid())
-      : false;
-  }
-
+export function isValidFilterDate(date: FilterDate): date is DateBrand {
   return !!date.from || !!date.to;
 }

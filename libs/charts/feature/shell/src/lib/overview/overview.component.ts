@@ -63,6 +63,6 @@ export class OverviewComponent {
   };
 
   updateData(values: ChartEmitValue) {
-    console.log(values);
+    // console.log(values);
   }
 }

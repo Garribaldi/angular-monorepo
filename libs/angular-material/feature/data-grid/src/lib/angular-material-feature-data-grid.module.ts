@@ -15,6 +15,7 @@ import { DataGridDateFilterComponent } from './data-grid-date-filter/data-grid-d
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MatMomentDateModule } from "@angular/material-moment-adapter";
+import { MAT_DATE_LOCALE } from "@angular/material/core";
 
 @NgModule({
   imports: [
@@ -43,5 +44,10 @@ import { MatMomentDateModule } from "@angular/material-moment-adapter";
     DataGridChipsBarComponent,
     DataGridDateFilterComponent,
   ],
+  providers: [
+    {
+      provide: MAT_DATE_LOCALE, useValue: 'de-DE'
+    }
+  ]
 })
 export class AngularMaterialFeatureDataGridModule {}

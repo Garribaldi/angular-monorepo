@@ -26,7 +26,6 @@ export class DataGridColumnComponent<T extends Record<string, any>> implements O
 
   ngOnInit() {
     this.filters = this.dataGridService.getFiltersForColumn(this.column, this.type, this.label);
-    console.log(this.filters);
   }
 
   resetColumn() {

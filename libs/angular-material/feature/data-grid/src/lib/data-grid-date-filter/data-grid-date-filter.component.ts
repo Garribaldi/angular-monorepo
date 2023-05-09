@@ -1,44 +1,60 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import moment, { Moment } from "moment";
 import { DateRange, ExtractDateTypeFromSelection, MatDatepickerInputEvent } from "@angular/material/datepicker";
-import { Subject } from "rxjs";
 import { Filter, FilterDate } from "../data-grid.model";
 import { isValidFilterDate } from "../data-grid.utils";
 import { DataGridStateService } from "../data-grid-state.service";
+import { Subject, takeUntil } from "rxjs";
 
 @Component({
   selector: 'local-angular-material-data-grid-date-filter',
   templateUrl: './data-grid-date-filter.component.html',
   styleUrls: ['./data-grid-date-filter.component.scss'],
 })
-export class DataGridDateFilterComponent {
+export class DataGridDateFilterComponent implements OnInit, OnDestroy {
 
   @Input() filter!: Filter[];
 
   maxDate!: Moment;
   fromDate: Moment | null = null;
   toDate: Moment | null = null;
-  opened = false;
 
-  private readonly focus = new Subject<boolean>();
+  label = '';
+
+  private readonly unsubscribe = new Subject<void>();
 
   constructor(
     private readonly dataGridStateService: DataGridStateService
   ) {
     this.maxDate = moment();
+    this.dataGridStateService.selectedFilter$
+      .pipe(takeUntil(this.unsubscribe))
+      .subscribe(
+        filters => {
+          this.resetFilter(filters);
+        }
+      );
   }
 
-
-  onFocusIn() {
-    this.focus.next(true);
+  ngOnInit() {
+    this.label = this.filter[0].label;
   }
 
-  onFocusOut() {
-    this.focus.next(false);
+  ngOnDestroy() {
+    this.unsubscribe.next();
+    this.unsubscribe.complete();
   }
 
   fromDateChanged<D extends Moment>(event: MatDatepickerInputEvent<ExtractDateTypeFromSelection<DateRange<D>>, DateRange<D>>) {
     this.fromDate = event.value;
+  }
+
+  toDateChanged<D extends Moment>(event: MatDatepickerInputEvent<ExtractDateTypeFromSelection<DateRange<D>>, DateRange<D>>) {
+    this.toDate = event.value;
+  }
+
+  datePickerClosed() {
+    this.updateFilterState();
   }
 
   onKeyUp(event: KeyboardEvent) {
@@ -47,26 +63,23 @@ export class DataGridDateFilterComponent {
     }
   }
 
-  toDateChanged<D extends Moment>(event: MatDatepickerInputEvent<ExtractDateTypeFromSelection<DateRange<D>>, DateRange<D>>) {
-    this.toDate = event.value;
-  }
-
-  datePickerOpened() {
-    this.opened = true;
-  }
-
-  datePickerClosed() {
-    this.opened = false;
-    this.updateFilterState();
+  resetFilter(filters: Filter[]) {
+    const currentFilter = filters.filter(filter => filter.id === this.filter[0].id);
+    if (!currentFilter.length) {
+      this.fromDate = null;
+      this.toDate = null;
+    }
   }
 
   private updateFilterState() {
     const filterDate = this.mapToFilterDate(this.fromDate, this.toDate);
 
-    console.log(filterDate);
-
     if (isValidFilterDate(filterDate)) {
-      const updatedFilter: Filter = {...this.filter[0], value: filterDate};
+      const updatedFilter: Filter = {
+        ...this.filter[0],
+        value: filterDate,
+        displayValue: `${filterDate.from?.format('L')} - ${filterDate.to?.format('L')}`
+      };
       this.dataGridStateService.unpdateFiltersByColumn(updatedFilter);
     } else {
       this.dataGridStateService.removeFiltersByColumn(this.filter[0].column);
@@ -74,9 +87,6 @@ export class DataGridDateFilterComponent {
   }
 
   private mapToFilterDate(from: Moment | null, to: Moment | null): FilterDate {
-    return {
-      from: from?.toDate(),
-      to: to?.toDate()
-    };
+    return {from, to};
   }
 }

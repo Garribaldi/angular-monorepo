@@ -1,3 +1,5 @@
+import { Moment } from "moment";
+
 export enum FilterType {
   CHECK_FILTER,
   DATE_FILTER
@@ -6,8 +8,8 @@ export enum FilterType {
 export type FilterValue = string | number | FilterDate;
 
 export type FilterDate = {
-  from?: Date | null;
-  to?: Date | null;
+  from?: Moment | null;
+  to?: Moment | null;
 }
 
 export type FilterNestedNode = {
