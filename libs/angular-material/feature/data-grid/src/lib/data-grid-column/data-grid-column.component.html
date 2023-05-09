@@ -4,7 +4,9 @@
     <local-angular-material-data-grid-check-filter [filters]="filters" (resetColumn)="resetColumn()"></local-angular-material-data-grid-check-filter>
   </ng-container>
 
-  <ng-container *ngSwitchCase="filterType.DATE_FILTER"></ng-container>
+  <ng-container *ngSwitchCase="filterType.DATE_FILTER">
+    <local-angular-material-data-grid-date-filter [filter]="filters"></local-angular-material-data-grid-date-filter>
+  </ng-container>
 
   <ng-container *ngSwitchDefault>
     <div>No Filter available</div>

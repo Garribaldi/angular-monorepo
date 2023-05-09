@@ -4,4 +4,5 @@ export interface NbaTeam {
   teamName: string;
   simpleName: string;
   location: string;
+  date: Date;
 }

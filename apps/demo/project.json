@@ -15,7 +15,10 @@
         "customWebpackConfig": {
           "path": "apps/demo/webpack.config.js"
         },
-        "allowedCommonJsDependencies": ["@angular-devkit/core"],
+        "allowedCommonJsDependencies": [
+          "@angular-devkit/core",
+          "moment"
+        ],
         "outputPath": "dist/apps/demo",
         "index": "apps/demo/src/index.html",
         "main": "apps/demo/src/main.ts",

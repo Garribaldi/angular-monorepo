@@ -4,3 +4,5 @@ export * from './lib/data-grid-column/data-grid-column.component';
 export * from './lib/data-grid.model';
 
 export * from './lib/data-grid-chips-bar/data-grid-chips-bar.component';
+
+export * from './lib/data-grid-date-filter/data-grid-date-filter.component';

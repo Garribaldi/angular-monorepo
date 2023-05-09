@@ -1,3 +1,3 @@
 export type FilterColumnProperty = string | number | symbol;
-export type FilterType = string | number;
-export type FilterDefinition = { filterLabel: string; filterValue: FilterType; };
+export type FilterTypes = string | number | Date;
+export type FilterDefinition = { filterLabel: string; filterValue: FilterTypes; };

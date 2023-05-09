@@ -3,7 +3,7 @@ export enum FilterType {
   DATE_FILTER
 }
 
-export type FilterValue = string | number | Date;
+export type FilterValue = string | number | FilterDate;
 
 export type FilterDate = {
   from?: Date | null;

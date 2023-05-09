@@ -16,7 +16,7 @@ import { FilterType } from "@local/angular-material/feature/data-grid";
 })
 export class DataGridShellComponent {
 
-  displayedColumns: string[] = ['teamId', 'teamName', 'simpleName', 'location', 'abbreviation'];
+  displayedColumns: string[] = ['teamId', 'teamName', 'simpleName', 'location', 'abbreviation', 'date'];
   dataSource: NbaTeam[] = [];
   filterType = FilterType;
 

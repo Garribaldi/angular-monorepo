@@ -10,7 +10,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { DataGridChipsBarComponent } from './data-grid-chips-bar/data-grid-chips-bar.component';
-import { MatChipsModule } from "@angular/material/chips";
+import { MatChipsModule } from '@angular/material/chips';
+import { DataGridDateFilterComponent } from './data-grid-date-filter/data-grid-date-filter.component';
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatDatepickerModule } from "@angular/material/datepicker";
+import { MatMomentDateModule } from "@angular/material-moment-adapter";
 
 @NgModule({
   imports: [
@@ -22,17 +26,22 @@ import { MatChipsModule } from "@angular/material/chips";
     MatIconModule,
     MatCheckboxModule,
     MatChipsModule,
+    MatFormFieldModule,
+    MatDatepickerModule,
+    MatMomentDateModule
   ],
   declarations: [
     DataGridComponent,
     DataGridColumnComponent,
     DataGridCheckFilterComponent,
     DataGridChipsBarComponent,
+    DataGridDateFilterComponent,
   ],
   exports: [
     DataGridComponent,
     DataGridColumnComponent,
     DataGridChipsBarComponent,
+    DataGridDateFilterComponent,
   ],
 })
 export class AngularMaterialFeatureDataGridModule {}

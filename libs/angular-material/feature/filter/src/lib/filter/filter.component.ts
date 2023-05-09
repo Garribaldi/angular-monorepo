@@ -1,14 +1,14 @@
 import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormControl, FormGroup } from "@angular/forms";
 import { filter, map, Subject, takeUntil } from "rxjs";
-import { FilterColumnProperty, FilterDefinition, FilterType } from "../filter.model";
+import { FilterColumnProperty, FilterDefinition, FilterTypes } from "../filter.model";
 
 @Component({
   selector: 'local-angular-material-filter',
   templateUrl: './filter.component.html',
   styleUrls: ['./filter.component.scss'],
 })
-export class FilterComponent<T extends { [Property in keyof T]: T[Property] extends FilterType ? FilterType : never }> implements OnInit, OnChanges, OnDestroy {
+export class FilterComponent<T extends { [Property in keyof T]: T[Property] extends FilterTypes ? FilterTypes : never }> implements OnInit, OnChanges, OnDestroy {
 
   @Input() unfilteredData: T[] | null = [];
   @Input() filterColumn: FilterColumnProperty = '';

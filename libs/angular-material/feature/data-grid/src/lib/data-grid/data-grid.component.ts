@@ -23,7 +23,7 @@ export class DataGridComponent<T extends Record<string, any>> implements OnInit 
   }
 
   ngOnInit() {
-    this.dataGridService.setDataSource(this.dataSource ?? []);
+    this.dataGridService.dataSource = this.dataSource ?? [];
 
     this.dateGridStateService.selectedFilter$
       .subscribe(filters => {

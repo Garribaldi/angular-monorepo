@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, distinctUntilChanged, shareReplay } from "rxjs";
-import { Filter, FilterType } from "./data-grid.model";
+import { Filter } from "./data-grid.model";
 
 @Injectable({
   providedIn: 'root'
@@ -31,14 +31,14 @@ export class DataGridStateService {
    * @param filterType type from **FilterType** enum
    * @param filter array of filter objects
    */
-  unpdateFiltersByType(filterType: FilterType, filter: Filter[]): void
-
-  unpdateFiltersByType(filterType: FilterType, filter: Filter): void
-  unpdateFiltersByType(filterType: FilterType, filter: Filter | Filter[]): void {
+  unpdateFiltersByColumn(filter: Filter[]): void
+  unpdateFiltersByColumn(filter: Filter): void
+  unpdateFiltersByColumn(filter: Filter | Filter[]): void {
     const newFilters: Filter[] = Array.isArray(filter) ? filter : [filter];
+    const column = newFilters[0].column;
     const updatedFilters = this._selectedFilters.value
-      .filter(existingFilter => existingFilter.type !== filterType)
-      .concat(newFilters.filter(newFilter => newFilter.type === filterType));
+      .filter(existingFilter => existingFilter.column !== column)
+      .concat(newFilters.filter(newFilter => newFilter.column === column));
 
     this._selectedFilters.next(updatedFilters);
   }
