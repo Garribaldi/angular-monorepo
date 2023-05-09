@@ -63,6 +63,7 @@ export class DataGridCheckFilterComponent implements OnInit, OnDestroy {
   resetFilter() {
     this.filtersSelected = 0;
     this.resetColumn.emit();
+    this.treeControl.collapseAll();
   }
 
   private mapToFlatNodes(): FilterNestedNode[] {

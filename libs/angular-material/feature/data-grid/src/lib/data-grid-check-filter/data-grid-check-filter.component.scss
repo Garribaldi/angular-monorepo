@@ -2,7 +2,6 @@
   position: relative;
   display: block;
   min-width: 14rem;
-  height: 3rem;
   margin-right: .1rem;
 }
 
@@ -39,6 +38,7 @@
   &__nested-node {
     display: flex;
     align-items: center;
+    height: 3.4rem;
 
     background-color: gray;
     color: #fff;

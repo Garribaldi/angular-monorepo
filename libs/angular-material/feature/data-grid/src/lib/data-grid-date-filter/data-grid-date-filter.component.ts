@@ -1,5 +1,5 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import moment, { Moment } from "moment";
+import moment, { Moment, now } from "moment";
 import { DateRange, ExtractDateTypeFromSelection, MatDatepickerInputEvent } from "@angular/material/datepicker";
 import { Filter, FilterDate } from "../data-grid.model";
 import { isValidFilterDate } from "../data-grid.utils";
@@ -16,8 +16,8 @@ export class DataGridDateFilterComponent implements OnInit, OnDestroy {
   @Input() filter!: Filter[];
 
   maxDate!: Moment;
-  fromDate: Moment | null = null;
-  toDate: Moment | null = null;
+  fromDate: Moment | null = moment(now());
+  toDate: Moment | null = moment(now());
 
   label = '';
 
