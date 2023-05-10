@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DataGridStateService } from './data-grid-state.service';
+import { SelectedFilterStateService } from './selected-filter-state.service';
 
 describe('DataGridStateService', () => {
-  let service: DataGridStateService;
+  let service: SelectedFilterStateService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(DataGridStateService);
+    service = TestBed.inject(SelectedFilterStateService);
   });
 
   it('should be created', () => {

@@ -9,8 +9,13 @@ export const isInEnum = <T extends {[s: string | number]: unknown}>(value: unkno
 }
 
 /**
- * Check if a value is undefined. Otherwise, it is ensured that this value is of a certain type.
+ * Check if a value is defined, so it is ensured that this value is of a certain type.
  *
  * @param value test value that could be undefined
  */
-export const isTypeOrUndefined = <T>(value: T): value is NonNullable<T> => value !== undefined && value !== null;
+export const isDefined = <T>(value: T): value is NonNullable<T> => value !== undefined && value !== null;
+
+
+export const isRegExp = (value: unknown): value is RegExp => {
+  return value instanceof RegExp;
+}

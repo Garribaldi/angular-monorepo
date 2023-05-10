@@ -5,23 +5,17 @@ import {
   FilterCount,
   FilterDate,
   FilterType,
-  FilterValue,
   GroupedFilter
-} from "./data-grid.model";
+} from "./data-grid-filter.model";
 import { v4 as uuidv4 } from 'uuid';
 import * as moment from "moment";
-import { assertCannotReach } from "@local/shared/utils";
-import { isFilterDate, isRegExp } from "./data-grid.utils";
+import { assertCannotReach, isRegExp } from "@local/shared/utils";
+import { isFilterDate, isValidFilterDate, isValidFilterString } from "./data-grid.utils";
 
 @Injectable({
   providedIn: 'root'
 })
-export class DataGridService<T extends Record<string, any>> {
-
-  private _filteredData: T[] = [];
-  get filteredData(): T[] {
-    return this._filteredData;
-  }
+export class DataSourceService<T extends Record<string, any>> {
 
   private _dataSource: T[] = [];
   /**
@@ -31,6 +25,11 @@ export class DataGridService<T extends Record<string, any>> {
   set dataSource(data: T[]) {
     this._dataSource = data;
     this.reset();
+  }
+
+  private _filteredData: T[] = [];
+  get filteredData(): T[] {
+    return this._filteredData;
   }
 
   /**
@@ -85,7 +84,7 @@ export class DataGridService<T extends Record<string, any>> {
 
       switch (filterType) {
         case FilterType.CHECK_FILTER:
-          pattern = columnFilters.map(filter => filter.value.toString()).join('|');
+          pattern = columnFilters.map(filter => filter.value?.toString() ?? '').join('|');
           constraint = new RegExp(`(${pattern})`, 'ig');
           break;
 
@@ -98,15 +97,15 @@ export class DataGridService<T extends Record<string, any>> {
       }
 
       filtered = filtered.filter(data => {
-        const columnValue: FilterValue = data[column];
+        const columnValue = data[column];
         let found = false;
 
         if (isRegExp(constraint)) {
-          found = this.filterByCheck(columnValue as string, constraint);
+          found = this.filterByCheck(columnValue, constraint);
         }
 
         if (isFilterDate(constraint)) {
-          found = this.filterByDate(columnValue as Date, constraint);
+          found = this.filterByDate(columnValue, constraint);
         }
 
         return found;
@@ -129,13 +128,15 @@ export class DataGridService<T extends Record<string, any>> {
   }
 
   private getDateFilter(column: string, label?: string): Filter {
+    const filterDate: FilterDate = {
+      from: null,
+      to: null
+    };
+
     return {
       id: uuidv4(),
       type: FilterType.DATE_FILTER,
-      value: {
-        from: null,
-        to: null
-      },
+      value: isValidFilterDate(filterDate) ? filterDate : null,
       column,
       displayValue: '',
       label: label ?? '',
@@ -156,15 +157,19 @@ export class DataGridService<T extends Record<string, any>> {
 
         return acc;
       }, [] as Array<FilterCount>)
-      .map((data): Filter => ({
-          id: uuidv4(),
-          type: FilterType.CHECK_FILTER,
-          value: data.value,
-          column,
-          displayValue: data.value.toString(),
-          label: label ?? '',
-          hitCount: data.hitCount
-        })
+      .map((data): Filter => {
+          const filterValue = isValidFilterString(data.value) ? data.value : null;
+          return (
+            {
+              id: uuidv4(),
+              type: FilterType.CHECK_FILTER,
+              value: filterValue,
+              column,
+              displayValue: filterValue ?? '',
+              label: label ?? '',
+              hitCount: data.hitCount
+            })
+        }
       );
   }
 

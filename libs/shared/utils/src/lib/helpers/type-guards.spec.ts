@@ -1,4 +1,4 @@
-import { isInEnum, isTypeOrUndefined } from "./type-guards";
+import { isDefined, isInEnum } from "./type-guards";
 
 describe('Type Guards', () => {
 
@@ -34,7 +34,7 @@ describe('Type Guards', () => {
     test('value is string', () => {
       const testValue = '100';
 
-      const result = isTypeOrUndefined(testValue) ? testValue : defaultValue;
+      const result = isDefined(testValue) ? testValue : defaultValue;
 
       expect(result).toBeDefined();
       expect(result).toEqual(testValue);
@@ -44,7 +44,7 @@ describe('Type Guards', () => {
     test('value is number', () => {
       const testValue = 100;
 
-      const result = isTypeOrUndefined(testValue) ? testValue : defaultValue;
+      const result = isDefined(testValue) ? testValue : defaultValue;
 
       expect(result).toBeDefined();
       expect(result).toEqual(testValue);
@@ -54,7 +54,7 @@ describe('Type Guards', () => {
     test('value is object', () => {
       const testValue = {value: '100'};
 
-      const result = isTypeOrUndefined(testValue) ? testValue : defaultValue;
+      const result = isDefined(testValue) ? testValue : defaultValue;
 
       expect(result).toBeDefined();
       expect(result).toEqual(testValue);
@@ -64,7 +64,7 @@ describe('Type Guards', () => {
     test('value is undefined', () => {
       const testValue = undefined;
 
-      const result = isTypeOrUndefined(testValue) ? testValue : defaultValue;
+      const result = isDefined(testValue) ? testValue : defaultValue;
 
       expect(result).toBeDefined();
       expect(result).toEqual('default');

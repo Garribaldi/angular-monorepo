@@ -1,9 +1,10 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { NestedTreeControl } from "@angular/cdk/tree";
-import { Filter, FilterNestedNode } from "../data-grid.model";
+import { Filter, FilterNestedNode } from "../data-grid-filter.model";
 import { MatTreeNestedDataSource } from "@angular/material/tree";
-import { DataGridStateService } from "../data-grid-state.service";
+import { SelectedFilterStateService } from "../selected-filter-state.service";
 import { Subject, takeUntil } from "rxjs";
+import { isValidFilterString } from "../data-grid.utils";
 
 @Component({
   selector: 'local-angular-material-data-grid-check-filter',
@@ -23,15 +24,15 @@ export class DataGridCheckFilterComponent implements OnInit, OnDestroy {
   private readonly unsubscribe = new Subject<void>();
 
   constructor(
-    private readonly dataGridStateService: DataGridStateService
+    private readonly selectedFilterService: SelectedFilterStateService
   ) {
-    this.dataGridStateService.selectedFilter$
+    this.selectedFilterService.selectedFilter$
       .pipe(takeUntil(this.unsubscribe))
-      .subscribe(
-      filters => {
-        this.updateSelectedFilters(filters);
-      }
-    );
+      .subscribe(filters => this.updateSelectedFilters(filters));
+
+    this.selectedFilterService.resetAll$
+      .pipe(takeUntil(this.unsubscribe))
+      .subscribe(() => this.treeControl.collapseAll());
   }
 
   ngOnInit() {
@@ -54,9 +55,9 @@ export class DataGridCheckFilterComponent implements OnInit, OnDestroy {
     }
 
     if (node.checked) {
-      this.dataGridStateService.addFilter(filter);
+      this.selectedFilterService.addFilter(filter);
     } else {
-      this.dataGridStateService.removeFilter(filter);
+      this.selectedFilterService.removeFilter(filter);
     }
   }
 
@@ -68,7 +69,7 @@ export class DataGridCheckFilterComponent implements OnInit, OnDestroy {
 
   private mapToFlatNodes(): FilterNestedNode[] {
     return [{
-      value: this.filters[0].label,
+      value: isValidFilterString(this.filters[0].label) ? this.filters[0].label : null,
       children: this.filters.map(node => ({value: node.value, hitCount: node.hitCount}))
     }];
   }
@@ -78,13 +79,17 @@ export class DataGridCheckFilterComponent implements OnInit, OnDestroy {
   }
 
   private updateSelectedFilters(filters: Filter[]) {
-    const currentFilter = filters.filter(filter=> this.filters.includes(filter));
+    const updatedColumnFilter = filters.filter(filter => this.filters.includes(filter));
 
-    this.dataSource.data.forEach(data => data.children?.map(child => child.checked = !!currentFilter.find(filter => filter.value === child.value) ?? false));
+    this.dataSource.data.forEach(data =>
+      data.children?.map(child =>
+        child.checked = !!updatedColumnFilter.find(filter => filter.value === child.value)
+      )
+    );
     const data = this.dataSource.data;
     this.dataSource.data = [];
     this.dataSource.data = data;
 
-    this.filtersSelected = currentFilter.length;
+    this.filtersSelected = updatedColumnFilter.length;
   }
 }

@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { DataGridService } from "../data-grid.service";
-import { DataGridStateService } from "../data-grid-state.service";
-import { Filter } from "../data-grid.model";
+import { DataSourceService } from "../data-source.service";
+import { SelectedFilterStateService } from "../selected-filter-state.service";
+import { Filter } from "../data-grid-filter.model";
 
 @Component({
   selector: 'local-angular-material-data-grid',
@@ -17,23 +17,27 @@ export class DataGridComponent<T extends Record<string, any>> implements OnInit 
   @Output() filtered = new EventEmitter<T[]>();
 
   constructor(
-    private readonly dataGridService: DataGridService<T>,
-    private readonly dateGridStateService: DataGridStateService
+    private readonly dataSourceService: DataSourceService<T>,
+    private readonly selectedFilterService: SelectedFilterStateService
   ) {
   }
 
   ngOnInit() {
-    this.dataGridService.dataSource = this.dataSource ?? [];
+    this.dataSourceService.dataSource = this.dataSource ?? [];
 
-    this.dateGridStateService.selectedFilter$
+    this.selectedFilterService.selectedFilter$
       .subscribe(filters => {
-        this.dataGridService.filter(filters);
-        this.filtered.next(this.dataGridService.filteredData);
+        this.dataSourceService.filter(filters);
+        this.filtered.next(this.dataSourceService.filteredData);
         this.chipsList = filters;
       });
   }
 
   removeFilter(filter: Filter) {
-    this.dateGridStateService.removeFilter(filter);
+    this.selectedFilterService.removeFilter(filter);
+  }
+
+  removelAllFilter() {
+    this.selectedFilterService.removeAllFilters();
   }
 }
