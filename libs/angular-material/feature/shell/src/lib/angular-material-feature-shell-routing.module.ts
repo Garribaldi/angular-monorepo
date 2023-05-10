@@ -17,7 +17,7 @@ const routes: Route[] = [
       {
         path: '',
         pathMatch: "full",
-        redirectTo: 'data-grid'
+        redirectTo: 'table'
       },
       {
         path: 'table',

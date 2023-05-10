@@ -3,7 +3,7 @@ import { TableHeaderTemplateDirective } from './table-header-template.directive'
 import { TableRowTemplateDirective } from './table-row-template.directive';
 
 @Component({
-  selector: 'agr-table',
+  selector: 'local-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss'],
 })

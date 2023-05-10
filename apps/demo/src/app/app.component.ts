@@ -1,14 +1,17 @@
 import { Component, OnInit } from "@angular/core";
-import { EnvironmentsService } from "@local/shared/environments";
+import { EnvironmentsService } from "@local/shared/feature/environments";
 import { Title } from "@angular/platform-browser";
 import moment from "moment";
+import { Router } from "@angular/router";
 
 @Component({
-  selector: "local-root",
+  selector: "local-app",
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.scss"],
 })
 export class AppComponent implements OnInit{
+
+  mainNav:Array<{url: string, caption: string}> = []
 
   backendUrl: string;
   integrationUrl: string;
@@ -17,9 +20,16 @@ export class AppComponent implements OnInit{
 
   constructor(
     private readonly environmentService: EnvironmentsService,
-    private readonly titleService: Title
+    private readonly titleService: Title,
+    private readonly router: Router
   ) {
     titleService.setTitle(this.title);
+
+    this.mainNav = this.router.config
+      .filter(conf => conf.path)
+      .map(conf => ({url: conf.path as string, caption: conf.title as string}));
+
+    console.log(this.mainNav);
 
     this.backendUrl = environmentService.apiBackendUrl ?? '';
     this.integrationUrl = environmentService.externalIntegrationUrl ?? '';

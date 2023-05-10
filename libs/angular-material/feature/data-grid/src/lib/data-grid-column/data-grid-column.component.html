@@ -1,4 +1,4 @@
-<div [ngSwitch]="type">
+<ng-container [ngSwitch]="type">
 
   <ng-container *ngSwitchCase="filterType.CHECK_FILTER">
     <local-angular-material-data-grid-check-filter [filters]="filters" (resetColumn)="resetColumn()"></local-angular-material-data-grid-check-filter>
@@ -12,4 +12,4 @@
     <div>No Filter available</div>
   </ng-container>
 
-</div>
+</ng-container>

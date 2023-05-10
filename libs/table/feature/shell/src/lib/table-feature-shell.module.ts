@@ -3,13 +3,13 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { tableFeatureShellRoutes } from './lib.routes';
 import { OverviewComponent } from './overview/overview.component';
-import { TableUiModule } from "@local/table/ui";
+import { TableFeatureTableModule } from '@local/table/feature/table';
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule.forChild(tableFeatureShellRoutes),
-    TableUiModule,
+    TableFeatureTableModule,
   ],
   declarations: [OverviewComponent],
   exports: [OverviewComponent],

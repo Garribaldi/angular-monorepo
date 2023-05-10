@@ -1,11 +1,11 @@
-import { NbaTeam } from "../models/nba-team.model";
-import { Employee } from "../models/employee.model";
-import { Inventory } from "../models/inventory.model";
-import { City } from "../models/city.model";
-import { Country } from "../models/country.model";
+import { NbaTeam } from "./nba-team.model";
+import { Employee } from "./employee.model";
+import { Inventory } from "./inventory.model";
+import { City } from "./city.model";
+import { Country } from "./country.model";
 
 export const employees: Employee[] = [
-  {firstName: 'Employee', lastName: 'One', city: 'Boston'},
+  {firstName: 'Employee', lastName: 'One'},
   {firstName: 'Employee', lastName: 'Two'},
   {firstName: 'Employee', lastName: 'Three'},
   {firstName: 'Employee', lastName: 'Four'},
@@ -54,7 +54,7 @@ export const nbaTeams: NbaTeam[] = [
     teamName: "Atlanta Hawks",
     simpleName: "Hawks",
     location: "Atlanta",
-    date: new Date()
+    date: new Date(2023, 4, 1)
   },
   {
     teamId: 1610612738,
@@ -62,7 +62,7 @@ export const nbaTeams: NbaTeam[] = [
     teamName: "Boston Celtics",
     simpleName: "Celtics",
     location: "Boston",
-    date: new Date()
+    date: new Date(2023, 4, 9)
   },
   {
     teamId: 1610612751,
@@ -70,7 +70,7 @@ export const nbaTeams: NbaTeam[] = [
     teamName: "Brooklyn Nets",
     simpleName: "Nets",
     location: "Brooklyn",
-    date: new Date()
+    date: new Date(2023, 4, 2)
   },
   {
     teamId: 1610612766,
@@ -78,7 +78,7 @@ export const nbaTeams: NbaTeam[] = [
     teamName: "Charlotte Hornets",
     simpleName: "Hornets",
     location: "Charlotte",
-    date: new Date()
+    date: new Date(2023, 4, 3)
   },
   {
     teamId: 1610612741,
@@ -86,7 +86,7 @@ export const nbaTeams: NbaTeam[] = [
     teamName: "Chicago Bulls",
     simpleName: "Bulls",
     location: "Chicago",
-    date: new Date()
+    date: new Date(2023, 4, 1)
   },
   {
     teamId: 1610612739,
@@ -94,7 +94,7 @@ export const nbaTeams: NbaTeam[] = [
     teamName: "Cleveland Cavaliers",
     simpleName: "Cavaliers",
     location: "Cleveland",
-    date: new Date()
+    date: new Date(2023, 4, 3)
   },
   {
     teamId: 1610612742,
@@ -102,7 +102,7 @@ export const nbaTeams: NbaTeam[] = [
     teamName: "Dallas Mavericks",
     simpleName: "Mavericks",
     location: "Dallas",
-    date: new Date()
+    date: new Date(2023, 4, 2)
   },
   {
     teamId: 1610612743,
@@ -110,7 +110,7 @@ export const nbaTeams: NbaTeam[] = [
     teamName: "Denver Nuggets",
     simpleName: "Nuggets",
     location: "Denver",
-    date: new Date()
+    date: new Date(2023, 4, 3)
   },
   {
     teamId: 1610612765,
@@ -118,7 +118,7 @@ export const nbaTeams: NbaTeam[] = [
     teamName: "Detroit Pistons",
     simpleName: "Pistons",
     location: "Detroit",
-    date: new Date()
+    date: new Date(2023, 4, 1)
   },
   {
     teamId: 1610612744,
@@ -126,7 +126,7 @@ export const nbaTeams: NbaTeam[] = [
     teamName: "Golden State Warriors",
     simpleName: "Warriors",
     location: "Golden State",
-    date: new Date()
+    date: new Date(2023, 4, 9)
   },
   {
     teamId: 1610612745,
@@ -134,7 +134,7 @@ export const nbaTeams: NbaTeam[] = [
     teamName: "Houston Rockets",
     simpleName: "Rockets",
     location: "Houston",
-    date: new Date()
+    date: new Date(2023, 4, 1)
   },
   {
     teamId: 1610612754,
@@ -142,7 +142,7 @@ export const nbaTeams: NbaTeam[] = [
     teamName: "Indiana Pacers",
     simpleName: "Pacers",
     location: "Indiana",
-    date: new Date()
+    date: new Date(2023, 4, 1)
   },
   {
     teamId: 1610612746,
@@ -150,7 +150,7 @@ export const nbaTeams: NbaTeam[] = [
     teamName: "Los Angeles Clippers",
     simpleName: "Clippers",
     location: "Los Angeles",
-    date: new Date()
+    date: new Date(2023, 4, 10)
   },
   {
     teamId: 1610612747,
@@ -158,7 +158,7 @@ export const nbaTeams: NbaTeam[] = [
     teamName: "Los Angeles Lakers",
     simpleName: "Lakers",
     location: "Los Angeles",
-    date: new Date()
+    date: new Date(2023, 4, 9)
   },
   {
     teamId: 1610612763,
@@ -166,7 +166,7 @@ export const nbaTeams: NbaTeam[] = [
     teamName: "Memphis Grizzlies",
     simpleName: "Grizzlies",
     location: "Memphis",
-    date: new Date()
+    date: new Date(2023, 4, 5)
   },
   {
     teamId: 1610612748,
@@ -174,7 +174,7 @@ export const nbaTeams: NbaTeam[] = [
     teamName: "Miami Heat",
     simpleName: "Heat",
     location: "Miami",
-    date: new Date()
+    date: new Date(2023, 4, 4)
   },
   {
     teamId: 1610612749,
@@ -182,7 +182,7 @@ export const nbaTeams: NbaTeam[] = [
     teamName: "Milwaukee Bucks",
     simpleName: "Bucks",
     location: "Milwaukee",
-    date: new Date()
+    date: new Date(2023, 4, 6)
   },
   {
     teamId: 1610612750,
@@ -190,7 +190,7 @@ export const nbaTeams: NbaTeam[] = [
     teamName: "Minnesota Timberwolves",
     simpleName: "Timberwolves",
     location: "Minnesota",
-    date: new Date()
+    date: new Date(2023, 4, 4)
   },
   {
     teamId: 1610612740,
@@ -198,7 +198,7 @@ export const nbaTeams: NbaTeam[] = [
     teamName: "New Orleans Pelicans",
     simpleName: "Pelicans",
     location: "New Orleans",
-    date: new Date()
+    date: new Date(2023, 4, 10)
   },
   {
     teamId: 1610612752,
@@ -206,7 +206,7 @@ export const nbaTeams: NbaTeam[] = [
     teamName: "New York Knicks",
     simpleName: "Knicks",
     location: "New York",
-    date: new Date()
+    date: new Date(2023, 4, 8)
   },
   {
     teamId: 1610612760,
@@ -214,7 +214,7 @@ export const nbaTeams: NbaTeam[] = [
     teamName: "Oklahoma City Thunder",
     simpleName: "Thunder",
     location: "Oklahoma City",
-    date: new Date()
+    date: new Date(2023, 4, 10)
   },
   {
     teamId: 1610612753,
@@ -222,7 +222,7 @@ export const nbaTeams: NbaTeam[] = [
     teamName: "Orlando Magic",
     simpleName: "Magic",
     location: "Orlando",
-    date: new Date()
+    date: new Date(2023, 4, 8)
   },
   {
     teamId: 1610612755,
@@ -230,7 +230,7 @@ export const nbaTeams: NbaTeam[] = [
     teamName: "Philadelphia 76ers",
     simpleName: "76ers",
     location: "Philadelphia",
-    date: new Date()
+    date: new Date(2023, 4, 9)
   },
   {
     teamId: 1610612756,
@@ -238,7 +238,7 @@ export const nbaTeams: NbaTeam[] = [
     teamName: "Phoenix Suns",
     simpleName: "Suns",
     location: "Phoenix",
-    date: new Date()
+    date: new Date(2023, 4, 7)
   },
   {
     teamId: 1610612757,
@@ -246,7 +246,7 @@ export const nbaTeams: NbaTeam[] = [
     teamName: "Portland Trail Blazers",
     simpleName: "Trail Blazers",
     location: "Portland",
-    date: new Date()
+    date: new Date(2023, 4, 6)
   },
   {
     teamId: 1610612758,
@@ -254,7 +254,7 @@ export const nbaTeams: NbaTeam[] = [
     teamName: "Sacramento Kings",
     simpleName: "Kings",
     location: "Sacramento",
-    date: new Date()
+    date: new Date(2023, 4, 8)
   },
   {
     teamId: 1610612759,
@@ -262,7 +262,7 @@ export const nbaTeams: NbaTeam[] = [
     teamName: "San Antonio Spurs",
     simpleName: "Spurs",
     location: "San Antonio",
-    date: new Date()
+    date: new Date(2023, 4, 7)
   },
   {
     teamId: 1610612761,
@@ -270,7 +270,7 @@ export const nbaTeams: NbaTeam[] = [
     teamName: "Toronto Raptors",
     simpleName: "Raptors",
     location: "Toronto",
-    date: new Date()
+    date: new Date(2023, 4, 6)
   },
   {
     teamId: 1610612762,
@@ -278,7 +278,7 @@ export const nbaTeams: NbaTeam[] = [
     teamName: "Utah Jazz",
     simpleName: "Jazz",
     location: "Utah",
-    date: new Date()
+    date: new Date(2023, 4, 10)
   },
   {
     teamId: 1610612764,
@@ -286,6 +286,6 @@ export const nbaTeams: NbaTeam[] = [
     teamName: "Washington Wizards",
     simpleName: "Wizards",
     location: "Washington",
-    date: new Date()
+    date: new Date(2023, 4, 9)
   }
 ];

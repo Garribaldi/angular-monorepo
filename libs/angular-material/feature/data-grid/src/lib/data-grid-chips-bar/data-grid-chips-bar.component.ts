@@ -7,7 +7,8 @@ import { Filter } from "../data-grid-filter.model";
   styleUrls: ['./data-grid-chips-bar.component.scss'],
 })
 export class DataGridChipsBarComponent {
-  @Input() chipsList!: Filter[];
+
+  @Input() filters!: Filter[];
 
   @Output() removeFilter = new EventEmitter<Filter>();
   @Output() removelAllFilter = new EventEmitter<void>();

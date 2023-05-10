@@ -40,9 +40,7 @@ import { MAT_DATE_LOCALE } from "@angular/material/core";
   ],
   exports: [
     DataGridComponent,
-    DataGridColumnComponent,
-    DataGridChipsBarComponent,
-    DataGridDateFilterComponent,
+    DataGridColumnComponent
   ],
   providers: [
     {

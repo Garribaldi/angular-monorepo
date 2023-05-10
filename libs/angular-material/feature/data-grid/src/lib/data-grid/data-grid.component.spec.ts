@@ -1,9 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DataGridComponent } from './data-grid.component';
-import { MockModule } from "ng-mocks";
-import { MatCardModule } from "@angular/material/card";
+import { MockComponent, MockProvider } from "ng-mocks";
+import { SelectedFilterStateService } from "../selected-filter-state.service";
+import { DataSourceService } from "../data-source.service";
+import { of } from "rxjs";
+import { DataGridChipsBarComponent } from "@local/angular-material/feature/data-grid";
 
-type TestData = {name: string};
+type TestData = { name: string };
 
 describe('DataGridComponent', () => {
   let component: DataGridComponent<TestData>;
@@ -11,10 +14,14 @@ describe('DataGridComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        MockModule(MatCardModule)
+      declarations: [
+        DataGridComponent,
+        MockComponent(DataGridChipsBarComponent)
       ],
-      declarations: [DataGridComponent],
+      providers: [
+        MockProvider(SelectedFilterStateService, {selectedFilter$: of([])}),
+        MockProvider(DataSourceService)
+      ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(DataGridComponent<TestData>);

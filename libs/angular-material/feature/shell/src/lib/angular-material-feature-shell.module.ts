@@ -47,9 +47,11 @@ import { AngularMaterialFeatureDataGridModule } from "@local/angular-material/fe
     OverviewComponent,
     FilterShellComponent,
     DialogShellComponent,
-    DataGridShellComponent,
+    DataGridShellComponent
   ],
-  exports: [OverviewComponent],
+  exports: [
+    OverviewComponent
+  ],
 })
 export class AngularMaterialFeatureShellModule {
 }

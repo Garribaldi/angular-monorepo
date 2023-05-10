@@ -1,13 +1,16 @@
+@use 'sass:map';
+@use '@angular/material' as mat;
+
 :host::ng-deep table {
   width: 100%;
-  margin: 2rem 0;
+  margin-bottom: 2rem;
   border-collapse: collapse;
   font-family: sans-serif;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 
   thead {
     tr {
-      background-color: #004d00;
+      background-color: map.get(mat.$cyan-palette, 600);
       color: #ffffff;
       text-align: left;
     }

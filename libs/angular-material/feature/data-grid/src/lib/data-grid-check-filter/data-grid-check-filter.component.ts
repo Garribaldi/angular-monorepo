@@ -78,6 +78,12 @@ export class DataGridCheckFilterComponent implements OnInit, OnDestroy {
     return this.filters.find(filter => filter.value === node.value);
   }
 
+  /**
+   * After filterlist has changed, find matching filter for current column in new list
+   * and update _checked_ status.
+   * @param filters updated filter list
+   * @private
+   */
   private updateSelectedFilters(filters: Filter[]) {
     const updatedColumnFilter = filters.filter(filter => this.filters.includes(filter));
 

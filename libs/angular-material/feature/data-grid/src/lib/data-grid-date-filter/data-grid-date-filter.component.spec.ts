@@ -1,17 +1,29 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DataGridDateFilterComponent } from './data-grid-date-filter.component';
+import { Filter } from "../data-grid-filter.model";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MockModule } from "ng-mocks";
+import { MatDatepickerModule } from "@angular/material/datepicker";
 
 describe('DataGridDateFilterComponent', () => {
   let component: DataGridDateFilterComponent;
   let fixture: ComponentFixture<DataGridDateFilterComponent>;
 
+  const testFilter = {label: 'Test'} as Filter;
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [
+        MockModule(MatFormFieldModule),
+        MockModule(MatDatepickerModule)
+      ],
       declarations: [DataGridDateFilterComponent],
     }).compileComponents();
 
     fixture = TestBed.createComponent(DataGridDateFilterComponent);
     component = fixture.componentInstance;
+    component.filter = testFilter;
+
     fixture.detectChanges();
   });
 

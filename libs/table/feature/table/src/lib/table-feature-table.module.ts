@@ -6,19 +6,16 @@ import { TableRowTemplateDirective } from './table/table-row-template.directive'
 import { SharedUtilsModule } from '@local/shared/utils';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    SharedUtilsModule
-  ],
+  imports: [CommonModule, SharedUtilsModule],
   declarations: [
     TableComponent,
     TableHeaderTemplateDirective,
-    TableRowTemplateDirective
+    TableRowTemplateDirective,
   ],
   exports: [
     TableComponent,
     TableHeaderTemplateDirective,
-    TableRowTemplateDirective
+    TableRowTemplateDirective,
   ],
 })
-export class TableUiModule {}
+export class TableFeatureTableModule {}

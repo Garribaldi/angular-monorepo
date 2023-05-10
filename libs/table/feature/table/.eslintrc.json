@@ -1,5 +1,5 @@
 {
-  "extends": ["../../../.eslintrc.json"],
+  "extends": ["../../../../.eslintrc.json"],
   "ignorePatterns": ["!**/*"],
   "overrides": [
     {
@@ -8,16 +8,14 @@
         "@angular-eslint/directive-selector": [
           "error",
           {
-            "type": "attribute",
-            "prefix": "localCharts",
-            "style": "camelCase"
+            "type": "attribute"
           }
         ],
         "@angular-eslint/component-selector": [
           "error",
           {
             "type": "element",
-            "prefix": "local-charts",
+            "prefix": "local-table",
             "style": "kebab-case"
           }
         ]

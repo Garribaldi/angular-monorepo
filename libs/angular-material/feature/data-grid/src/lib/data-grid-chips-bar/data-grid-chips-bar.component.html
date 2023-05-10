@@ -1,16 +1,16 @@
 <mat-chip-listbox aria-label="Selected Filters" selectable="false">
 
-  <mat-chip-option *ngFor="let chip of chipsList"
+  <mat-chip-option *ngFor="let filter of filters"
                    [removable]="true"
-                   (removed)="remove(chip)"
+                   (removed)="remove(filter)"
                    color="primary">
-    <span>{{chip.displayValue}}</span>
+    <span>{{filter.displayValue}}</span>
     <button matChipRemove>
       <mat-icon aria-hidden="false" aria-label="Close" fontIcon="cancel"></mat-icon>
     </button>
   </mat-chip-option>
 
-  <mat-chip-option *ngIf="chipsList.length"
+  <mat-chip-option *ngIf="filters.length"
                    [removable]="true"
                    (removed)="removeAll()"
                    color="primary">

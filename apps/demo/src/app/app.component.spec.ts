@@ -3,7 +3,7 @@ import { AppComponent } from "./app.component";
 import { RouterTestingModule } from "@angular/router/testing";
 import { Title } from "@angular/platform-browser";
 import { MockProvider } from "ng-mocks";
-import { Environment, EnvironmentsService } from "@local/shared/environments";
+import { Environment, EnvironmentsService } from "@local/shared/feature/environments";
 
 const env: Environment = {
   production: false,

@@ -1,9 +1,9 @@
 /* eslint-disable */
 export default {
-  displayName: 'charts-ui',
-  preset: '../../../jest.preset.js',
+  displayName: 'table-feature-table',
+  preset: '../../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
-  coverageDirectory: '../../../coverage/libs/charts/ui',
+  coverageDirectory: '../../../../coverage/libs/table/feature/table',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': [
       'jest-preset-angular',

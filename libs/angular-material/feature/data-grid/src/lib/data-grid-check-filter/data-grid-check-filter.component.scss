@@ -2,7 +2,6 @@
   position: relative;
   display: block;
   min-width: 14rem;
-  margin-right: .1rem;
 }
 
 .check-filter-tree {
@@ -15,7 +14,6 @@
   mat-nested-tree-node {
     display: block;
     overflow: hidden;
-    border: 1px solid #ededed;
   }
 
   &__check {
@@ -38,7 +36,7 @@
   &__nested-node {
     display: flex;
     align-items: center;
-    height: 3.4rem;
+    height: 3.5rem;
 
     background-color: gray;
     color: #fff;

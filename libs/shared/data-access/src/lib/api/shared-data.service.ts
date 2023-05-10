@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { map, Observable, of } from "rxjs";
-import { Employee } from "../models/employee.model";
-import { Inventory } from "../models/inventory.model";
-import { City } from "../models/city.model";
-import { Country } from "../models/country.model";
+import { Employee } from "./employee.model";
+import { Inventory } from "./inventory.model";
+import { City } from "./city.model";
+import { Country } from "./country.model";
 import { cities, countries, employees, inventory, nbaTeams } from "./shared-data-mocks";
-import { NbaTeam } from "../models/nba-team.model";
+import { NbaTeam } from "./nba-team.model";
 
 @Injectable({
   providedIn: 'root'

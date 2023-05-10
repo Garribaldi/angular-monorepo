@@ -12,7 +12,7 @@ export class DataGridComponent<T extends Record<string, any>> implements OnInit 
 
   @Input() dataSource?: T[];
 
-  chipsList: Filter[] = [];
+  filters: Filter[] = [];
 
   @Output() filtered = new EventEmitter<T[]>();
 
@@ -29,7 +29,7 @@ export class DataGridComponent<T extends Record<string, any>> implements OnInit 
       .subscribe(filters => {
         this.dataSourceService.filter(filters);
         this.filtered.next(this.dataSourceService.filteredData);
-        this.chipsList = filters;
+        this.filters = filters;
       });
   }
 
