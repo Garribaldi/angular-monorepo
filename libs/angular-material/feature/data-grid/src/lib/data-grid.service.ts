@@ -1,8 +1,17 @@
 import { Injectable } from '@angular/core';
-import { Filter, FilterCount, FilterDate, FilterType, GroupedFilter } from "./data-grid.model";
+import {
+  Filter,
+  FilterConstraints,
+  FilterCount,
+  FilterDate,
+  FilterType,
+  FilterValue,
+  GroupedFilter
+} from "./data-grid.model";
 import { v4 as uuidv4 } from 'uuid';
 import * as moment from "moment";
 import { assertCannotReach } from "@local/shared/utils";
+import { isFilterDate, isRegExp } from "./data-grid.utils";
 
 @Injectable({
   providedIn: 'root'
@@ -56,73 +65,63 @@ export class DataGridService<T extends Record<string, any>> {
    * @param filters array of selected filter
    */
   filter(filters: Filter[]) {
+
     if (!filters.length) {
       this.reset();
       return;
     }
 
-    const foundData: T[] = [];
-
-    const groupedFilter = this.getGroupedFilter(filters);
-    let constraint = '';
-
     let filtered: T[] = this._dataSource;
 
-    Object.keys(groupedFilter).forEach(column => {
-      const columnFilter = groupedFilter[column];
-      constraint = columnFilter.map(filter => filter.value.toString()).join('|');
+    const groupedFilter = this.getGroupedFilter(filters);
+    const filterColumns = Object.keys(groupedFilter);
 
-      console.log(new RegExp(constraint));
+    filterColumns.forEach(column => {
+      const columnFilters = groupedFilter[column];
+      const filterType = columnFilters[0].type;
+
+      let pattern = '';
+      let constraint: FilterConstraints;
+
+      switch (filterType) {
+        case FilterType.CHECK_FILTER:
+          pattern = columnFilters.map(filter => filter.value.toString()).join('|');
+          constraint = new RegExp(`(${pattern})`, 'ig');
+          break;
+
+        case FilterType.DATE_FILTER:
+          constraint = columnFilters.map(filter => filter.value as FilterDate).reduce((acc, curr) => curr);
+          break;
+
+        default:
+          assertCannotReach(filterType)
+      }
 
       filtered = filtered.filter(data => {
-        const dataColumn = data[column];
+        const columnValue: FilterValue = data[column];
+        let found = false;
 
-        return !!dataColumn.match(new RegExp('(' + constraint + ')', 'ig')) ?? false;
-
-        // if (typeof dataColumn === "string") {
-        //  console.log(dataColumn.match(new RegExp('(' + constraint + ')', 'ig')));
-        // }
-      });
-    });
-
-    console.log(filtered);
-
-
-
-    filters.forEach(filter => {
-      const newValue = this._dataSource.filter(data => {
-        const dataColumn: T = data[filter.column];
-        let matches = false;
-
-        switch (filter.type) {
-          case FilterType.CHECK_FILTER:
-            matches = this.filterByCheck(dataColumn, filter);
-            break;
-          case FilterType.DATE_FILTER:
-            matches = this.filterByDate(dataColumn, filter);
-            break;
-          default:
-            assertCannotReach(filter.type);
+        if (isRegExp(constraint)) {
+          found = this.filterByCheck(columnValue as string, constraint);
         }
 
-        const isDuplicate = foundData.find(data => data[filter.column] === dataColumn);
+        if (isFilterDate(constraint)) {
+          found = this.filterByDate(columnValue as Date, constraint);
+        }
 
-        return matches && !isDuplicate;
+        return found;
       });
-
-      foundData.push(...newValue);
     });
 
-    this._filteredData = foundData;
+    this._filteredData = filtered;
   }
 
-  private filterByCheck(dataColumn: T, filter: Filter): boolean {
-    return !!dataColumn && dataColumn === filter.value
+  private filterByCheck(columnValue: string, constraint: RegExp): boolean {
+    return !!columnValue.match(constraint) ?? false;
   }
 
-  private filterByDate(dataColumn: T, filter: Filter): boolean {
-    const dateRange = filter.value as FilterDate;
-    return moment(dataColumn).isBetween(dateRange.from, dateRange.to, 'days', '[]');
+  private filterByDate(columnValue: Date, dateRange: FilterDate): boolean {
+    return moment(columnValue).isBetween(dateRange.from, dateRange.to, 'days', '[]');
   }
 
   private reset() {
