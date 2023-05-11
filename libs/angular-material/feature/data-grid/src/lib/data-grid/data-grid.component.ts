@@ -6,6 +6,15 @@ import { GroupedFilter } from "../models/grouped-filter.model";
 import { Datasource } from "../models/datasource.model";
 import { Subject, takeUntil } from "rxjs";
 
+/**
+ * This is a wrapper component that organizes all filtering.
+ *
+ * Provide a __dataSource__ as an object array where the objects need to have a flat hierarchy.
+ * Allowed types for filtering data are __string__, __number__ and __Date__.
+ *
+ * Every time the datasource has been touched, the __filtered__ event is triggered and provides
+ * the filter result to display in your component.
+ */
 @Component({
   selector: 'local-angular-material-data-grid',
   templateUrl: './data-grid.component.html',

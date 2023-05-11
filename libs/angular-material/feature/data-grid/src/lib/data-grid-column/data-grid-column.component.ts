@@ -6,6 +6,13 @@ import { Filter } from "../models/filter.model";
 import { assertCannotReach } from "@local/shared/utils";
 import { Datasource } from "../models/datasource.model";
 
+/**
+ * This component is a shell to represent a column that matches a property in your datasource.
+ *
+ * Provide a __column__ that matches the name of this property.
+ * You also need to specify the __FilterType__ (_Check_ and _Date_ are supported at the moment).
+ * The __label__ ist displayed as a filter headline or placeholder.
+ */
 @Component({
   selector: 'local-angular-material-data-grid-column',
   templateUrl: './data-grid-column.component.html',
