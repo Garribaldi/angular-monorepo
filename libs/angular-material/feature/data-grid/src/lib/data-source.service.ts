@@ -1,12 +1,10 @@
 import { Injectable } from '@angular/core';
 import moment from "moment";
-import { assertCannotReach, isDate, isRegExp, isString } from "@local/shared/utils";
-import { isFilterDate } from "./data-grid.utils";
+import { assertCannotReach, isDate, isString } from "@local/shared/utils";
 import { FilterType } from "./models/filter-type.model";
 import { Filter } from "./models/filter.model";
 import { CheckFilter } from "./models/check-filter.model";
 import { FilterDate } from "./models/filter-date.model";
-import { FilterConstraints } from "./models/filter-constraints.model";
 import { GroupedFilter } from "./models/grouped-filter.model";
 import { FilterValueCount } from "./models/filter-value-count.model";
 import { Datasource } from "./models/datasource.model";
@@ -49,16 +47,17 @@ export class DataSourceService<T extends Datasource<T>> {
       const filterType = columnFilters[0]?.type;
 
       let pattern = '';
-      let constraint: FilterConstraints;
+      let regExp: RegExp;
+      let filterDate: FilterDate;
 
       switch (filterType) {
         case FilterType.CHECK_FILTER:
           pattern = columnFilters.map(filter => filter.value?.toString() ?? '').join('|');
-          constraint = new RegExp(`(${pattern})`, 'ig');
+          regExp = new RegExp(`(${pattern})`, 'ig');
           break;
 
         case FilterType.DATE_FILTER:
-          constraint = columnFilters.map(filter => filter.value as FilterDate).reduce((acc, curr) => curr);
+          filterDate = columnFilters.map(filter => filter.value as FilterDate).reduce((acc, curr) => curr);
           break;
 
         default:
@@ -69,12 +68,12 @@ export class DataSourceService<T extends Datasource<T>> {
         const columnValue = data[column as keyof T];
         let found = false;
 
-        if (isRegExp(constraint) && isString(columnValue)) {
-          found = this.filterByCheck(columnValue, constraint);
+        if (regExp && isString(columnValue)) {
+          found = this.filterByCheck(columnValue, regExp);
         }
 
-        if (isFilterDate(constraint) && isDate(columnValue)) {
-          found = this.filterByDate(columnValue, constraint);
+        if (filterDate && isDate(columnValue)) {
+          found = this.filterByDate(columnValue, filterDate);
         }
 
         return found;
@@ -108,8 +107,8 @@ export class DataSourceService<T extends Datasource<T>> {
       );
   }
 
-  private filterByCheck(columnValue: string, constraint: RegExp): boolean {
-    return !!columnValue.match(constraint) ?? false;
+  private filterByCheck(columnValue: string, matcher: RegExp): boolean {
+    return !!columnValue.match(matcher) ?? false;
   }
 
   private filterByDate(columnValue: Date, dateRange: FilterDate): boolean {
