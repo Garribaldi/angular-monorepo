@@ -1,12 +1,15 @@
 .data-grid {
 
   &__chips-bar {
-
+    padding-left: 8px;
+    border: 1px solid #cccccc;
+    background-color: #efefef;
   }
 
   &__columns {
     display: flex;
     flex-direction: row;
+    gap: .2rem;
     height: 5.2rem;
     border: 1px solid #ededed;
     margin-bottom: .5rem;

@@ -1,9 +1,9 @@
-<mat-chip-listbox aria-label="Selected Filters" selectable="false">
+<mat-chip-listbox aria-label="Selected Filters" selectable="false" class="chiplist">
 
   <ng-container *ngFor="let filterList of filters | keyvalue">
 
-    <section>
-      <div>{{filterList.value[0].label}}</div>
+    <section class="chiplist__section">
+      <div class="chiplist__section-headline">{{filterList.value[0].label}}</div>
       <mat-chip-option *ngFor="let filter of filterList.value"
                        [removable]="true"
                        (removed)="remove(filter)"
@@ -17,14 +17,16 @@
 
   </ng-container>
 
-  <mat-chip-option *ngIf="filters?.size"
-                   [removable]="true"
-                   (removed)="removeAll()"
-                   color="primary">
-    <span>Reset all columns</span>
-    <button matChipRemove>
-      <mat-icon aria-hidden="false" aria-label="Close" fontIcon="restart_alt"></mat-icon>
-    </button>
-  </mat-chip-option>
+  <section>
+    <mat-chip-option *ngIf="filters?.size"
+                     [removable]="true"
+                     (removed)="removeAll()"
+                     color="primary">
+      <span class="chiplist__reset">Reset all columns</span>
+      <button matChipRemove>
+        <mat-icon aria-hidden="false" aria-label="Close" fontIcon="restart_alt"></mat-icon>
+      </button>
+    </mat-chip-option>
+  </section>
 
 </mat-chip-listbox>

@@ -1,4 +1,4 @@
-<div class="data-grid__chips-bar">
+<div *ngIf="filters?.size" class="data-grid__chips-bar">
   <local-angular-material-data-grid-chips-bar
     [filters]="filters"
     (removeFilter)="removeFilter($event)"

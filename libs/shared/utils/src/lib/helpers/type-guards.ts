@@ -15,15 +15,19 @@ export const isInEnum = <T extends { [s: string | number]: unknown }>(value: unk
  */
 export const isDefined = <T>(value: T): value is NonNullable<T> => value !== undefined && value !== null;
 
-export const isRegExp = (value: unknown): value is RegExp => {
-  return value instanceof RegExp;
-}
-
 export const isString = (value: unknown): value is string => {
   return (
     value !== undefined
     && value !== null
     && typeof value === "string"
+  );
+}
+
+export const isNumber = (value: unknown): value is string => {
+  return (
+    value !== undefined
+    && value !== null
+    && typeof value === "number"
   );
 }
 

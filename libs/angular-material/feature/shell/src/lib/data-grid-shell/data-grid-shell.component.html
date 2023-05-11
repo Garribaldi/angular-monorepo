@@ -1,5 +1,6 @@
 <div data-cy="data-grid-columns">
   <local-angular-material-data-grid [dataSource]="dataSource" (filtered)="onFilter($event)">
+    <local-angular-material-data-grid-column column="teamId" [type]="filterType.CHECK_FILTER" label="Team Id"></local-angular-material-data-grid-column>
     <local-angular-material-data-grid-column column="teamName" [type]="filterType.CHECK_FILTER" label="Team name"></local-angular-material-data-grid-column>
     <local-angular-material-data-grid-column column="location" [type]="filterType.CHECK_FILTER" label="Location"></local-angular-material-data-grid-column>
     <local-angular-material-data-grid-column column="date" [type]="filterType.DATE_FILTER" label="Last Game"></local-angular-material-data-grid-column>

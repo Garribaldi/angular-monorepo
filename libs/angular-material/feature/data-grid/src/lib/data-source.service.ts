@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import moment from "moment";
-import { assertCannotReach, isDate, isString } from "@local/shared/utils";
+import { assertCannotReach, isDate } from "@local/shared/utils";
 import { FilterType } from "./models/filter-type.model";
 import { Filter } from "./models/filter.model";
 import { CheckFilter } from "./models/check-filter.model";
@@ -68,8 +68,8 @@ export class DataSourceService<T extends Datasource<T>> {
         const columnValue = data[column as keyof T];
         let found = false;
 
-        if (regExp && isString(columnValue)) {
-          found = this.filterByCheck(columnValue, regExp);
+        if (regExp) {
+          found = this.filterByCheck(columnValue.toString(), regExp);
         }
 
         if (filterDate && isDate(columnValue)) {
