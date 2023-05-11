@@ -113,7 +113,21 @@ export class DataSourceService<T extends Datasource<T>> {
   }
 
   private filterByDate(columnValue: Date, dateRange: FilterDate): boolean {
-    return moment(columnValue).isBetween(dateRange.from, dateRange.to, 'days', '[]');
+    const {from, to} = dateRange
+
+    if (from && to) {
+      return moment(columnValue).isBetween(from, to, 'days', '[]');
+    }
+
+    if (!from && to) {
+      return moment(columnValue).isSameOrBefore(to, 'days');
+    }
+
+    if (from && !to) {
+      return moment(columnValue).isSameOrAfter(from, 'days');
+    }
+
+    return false;
   }
 
   private reset() {
