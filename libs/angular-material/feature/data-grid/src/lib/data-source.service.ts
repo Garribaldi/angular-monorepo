@@ -103,7 +103,7 @@ export class DataSourceService<T extends Datasource<T>> {
         return acc;
       }, [] as Array<FilterValueCount>)
       .map(({value, hitCount}): Filter =>
-        new CheckFilter({value: value.toString(), column, label, displayValue: value.toString(), hitCount}
+        new CheckFilter({value: value.toString(), column, label, hitCount}
         )
       );
   }

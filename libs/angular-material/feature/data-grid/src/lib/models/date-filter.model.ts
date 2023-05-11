@@ -3,13 +3,13 @@ import { ValidFilterDate } from "./filter-value.model";
 import { FilterType } from "./filter-type.model";
 import { FilterDate } from "./filter-date.model";
 
-
 type DateFilterArgs = { value: FilterDate, column: string, label?: string };
+
 export class DateFilter implements Filter {
 
   readonly id: string;
   readonly type: FilterType;
-  readonly value: ValidFilterDate | null = null;
+  readonly value: ValidFilterDate | null;
   readonly column: string;
   readonly label: string;
   readonly displayValue: string;

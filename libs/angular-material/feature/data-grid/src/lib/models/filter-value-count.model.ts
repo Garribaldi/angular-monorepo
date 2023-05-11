@@ -1,1 +1,3 @@
-export type FilterValueCount = { value: string | number | Date, hitCount: number };
+import { DatasourceTypes } from "./datasource.model";
+
+export type FilterValueCount = { value: DatasourceTypes, hitCount: number };

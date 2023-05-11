@@ -2,7 +2,7 @@ import { Filter } from "./filter.model";
 import { FilterType } from "./filter-type.model";
 import { ValidFilterString } from "./filter-value.model";
 
-type CheckFilterArgs = { value: string, column: string, label?: string, displayValue?: string, hitCount?: number };
+type CheckFilterArgs = { value: string, column: string, label?: string, hitCount?: number };
 
 export class CheckFilter implements Filter {
 
@@ -19,15 +19,14 @@ export class CheckFilter implements Filter {
    * @param value unique filter value
    * @param column column filter is used in
    * @param label optional - _default_ is ''
-   * @param displayValue optional - _default_ is ''
    * @param hitCount optional - _default_ is 0
    */
-  constructor({value, column, label = '', displayValue = '', hitCount = 0}: CheckFilterArgs) {
+  constructor({value, column, label = '', hitCount = 0}: CheckFilterArgs) {
     this.type = FilterType.CHECK_FILTER;
     this.value = this.isValidFilterString(value) ? value : null;
     this.column = column;
     this.label = label;
-    this.displayValue = displayValue;
+    this.displayValue = value;
     this.hitCount = hitCount;
 
     this.id = `${this.type}_${this.column}_${this.value}`;
