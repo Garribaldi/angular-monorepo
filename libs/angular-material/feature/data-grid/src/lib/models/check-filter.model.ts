@@ -1,5 +1,5 @@
 import { Filter } from "./filter.model";
-import { FilterType } from "./filter-type.models";
+import { FilterType } from "./filter-type.model";
 import { ValidFilterString } from "./filter-value.model";
 
 type CheckFilterArgs = { value: string, column: string, label?: string, displayValue?: string, hitCount?: number };

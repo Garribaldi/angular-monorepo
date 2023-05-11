@@ -1,6 +1,6 @@
 import { Filter } from "./filter.model";
 import { ValidFilterDate } from "./filter-value.model";
-import { FilterType } from "./filter-type.models";
+import { FilterType } from "./filter-type.model";
 import { FilterDate } from "./filter-date.model";
 
 

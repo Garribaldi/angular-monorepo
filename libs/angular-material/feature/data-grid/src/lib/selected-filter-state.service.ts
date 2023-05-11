@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, share, shareReplay, Subject } from "rxjs";
-import { isFilterArray } from "./data-grid.utils";
 import { Filter } from "./models/filter.model";
 import { GroupedFilter } from "./models/grouped-filter.model";
 
@@ -23,18 +22,16 @@ export class SelectedFilterStateService {
    * Add a new filter at the end of the filter list.
    *
    * You can provide a single filter or a filter array.
-   * @param filters single filter or array of filters
+   * @param filter single filter or array of filters
    */
-  addFilter(filters: Filter[]): void
-  addFilter(filters: Filter): void
-  addFilter(filters: Filter[] | Filter): void {
-    let addedFilters = isFilterArray(filters) ? filters : [filters];
 
-    const column = addedFilters[0]?.column ?? '';
+  addFilter(filter: Filter): void {
+    const column = filter.column;
     const columnFilters = this.filterList.get(column) ?? [];
+    const updatedFilters = columnFilters.filter(existing => existing.id !== filter.id);
+    updatedFilters.push(filter)
 
-    addedFilters = addedFilters.filter(added => !columnFilters.some(existing => existing.id === added.id));
-    this.filterList.set(column, [...columnFilters, ...addedFilters]);
+    this.filterList.set(column, updatedFilters);
 
     this.selectedFilters.next(this.filterList);
   }
@@ -42,19 +39,10 @@ export class SelectedFilterStateService {
   /**
    * Replace a filter value by its type.
    *
-   * The filter of the provided type is removed from selected filters.
-   * Then the provided filter is added.
-   *
-   * @param filterType type from **FilterType** enum
    * @param filter array of filter objects
    */
-  updateFiltersByColumn(filter: Filter[]): void
-  updateFiltersByColumn(filter: Filter): void
-  updateFiltersByColumn(filter: Filter | Filter[]): void {
-    const newFilters: Filter[] = Array.isArray(filter) ? filter : [filter];
-    const column = newFilters[0].column;
-
-    this.filterList.set(column, newFilters);
+  updateFiltersByColumn(filter: Filter): void {
+    this.filterList.set(filter.column, [filter]);
 
     this.selectedFilters.next(this.filterList);
   }

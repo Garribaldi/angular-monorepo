@@ -1,19 +1,20 @@
 import { Injectable } from '@angular/core';
 import moment from "moment";
-import { assertCannotReach, isRegExp } from "@local/shared/utils";
+import { assertCannotReach, isDate, isRegExp, isString } from "@local/shared/utils";
 import { isFilterDate } from "./data-grid.utils";
-import { FilterType } from "./models/filter-type.models";
+import { FilterType } from "./models/filter-type.model";
 import { Filter } from "./models/filter.model";
 import { CheckFilter } from "./models/check-filter.model";
 import { FilterDate } from "./models/filter-date.model";
 import { FilterConstraints } from "./models/filter-constraints.model";
 import { GroupedFilter } from "./models/grouped-filter.model";
 import { FilterValueCount } from "./models/filter-value-count.model";
+import { Datasource } from "./models/datasource.model";
 
 @Injectable({
   providedIn: 'root'
 })
-export class DataSourceService<T extends Record<string, any>> {
+export class DataSourceService<T extends Datasource<T>> {
 
   private _dataSource: T[] = [];
   /**
@@ -65,14 +66,14 @@ export class DataSourceService<T extends Record<string, any>> {
       }
 
       filtered = filtered.filter(data => {
-        const columnValue = data[column];
+        const columnValue = data[column as keyof T];
         let found = false;
 
-        if (isRegExp(constraint)) {
+        if (isRegExp(constraint) && isString(columnValue)) {
           found = this.filterByCheck(columnValue, constraint);
         }
 
-        if (isFilterDate(constraint)) {
+        if (isFilterDate(constraint) && isDate(columnValue)) {
           found = this.filterByDate(columnValue, constraint);
         }
 
@@ -91,12 +92,12 @@ export class DataSourceService<T extends Record<string, any>> {
   getCheckFilters(column: string, label?: string): Filter[] {
     return this._dataSource
       .reduce((acc, curr) => {
-        const exists = acc.find(data => data.value === curr[column]);
+        const exists = acc.find(data => data.value === curr[column as keyof T]);
 
         if (exists) {
           exists.hitCount += 1;
         } else {
-          acc.push({value: curr[column], hitCount: 1});
+          acc.push({value: curr[column as keyof T], hitCount: 1});
         }
 
         return acc;

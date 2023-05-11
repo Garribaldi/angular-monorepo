@@ -1,4 +1,4 @@
-import { FilterType } from "./filter-type.models";
+import { FilterType } from "./filter-type.model";
 
 import { FilterValue } from "./filter-value.model";
 

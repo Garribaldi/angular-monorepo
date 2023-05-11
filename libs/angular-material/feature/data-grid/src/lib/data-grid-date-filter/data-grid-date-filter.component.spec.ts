@@ -1,15 +1,15 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DataGridDateFilterComponent } from './data-grid-date-filter.component';
 import { MatFormFieldModule } from "@angular/material/form-field";
-import { MockModule } from "ng-mocks";
+import { MockModule, MockProvider } from "ng-mocks";
 import { MatDatepickerModule } from "@angular/material/datepicker";
-import { Filter } from "../models/filter.model";
+import { SelectedFilterStateService } from "../selected-filter-state.service";
+import { of } from "rxjs";
+import { GroupedFilter } from "../models/grouped-filter.model";
 
 describe('DataGridDateFilterComponent', () => {
   let component: DataGridDateFilterComponent;
   let fixture: ComponentFixture<DataGridDateFilterComponent>;
-
-  const testFilter = {label: 'Test'} as Filter;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -18,11 +18,20 @@ describe('DataGridDateFilterComponent', () => {
         MockModule(MatDatepickerModule)
       ],
       declarations: [DataGridDateFilterComponent],
+      providers: [
+        MockProvider(SelectedFilterStateService, {
+          selectedFilter$: of({} as GroupedFilter),
+          updateFiltersByColumn: jest.fn(),
+          removeFiltersByColumn: jest.fn()
+        })
+      ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(DataGridDateFilterComponent);
     component = fixture.componentInstance;
-    component.filter = testFilter;
+
+    component.label = 'Test Label';
+    component.column = 'name';
 
     fixture.detectChanges();
   });

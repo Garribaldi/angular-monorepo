@@ -1,16 +1,17 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { DataSourceService } from "../data-source.service";
 import { SelectedFilterStateService } from "../selected-filter-state.service";
-import { FilterType } from "../models/filter-type.models";
+import { FilterType } from "../models/filter-type.model";
 import { Filter } from "../models/filter.model";
 import { assertCannotReach } from "@local/shared/utils";
+import { Datasource } from "../models/datasource.model";
 
 @Component({
   selector: 'local-angular-material-data-grid-column',
   templateUrl: './data-grid-column.component.html',
   styleUrls: ['./data-grid-column.component.scss'],
 })
-export class DataGridColumnComponent<T extends Record<string, any>> implements OnInit {
+export class DataGridColumnComponent<T extends Datasource<T>> implements OnInit {
 
   @Input() column!: string;
   @Input() type!: FilterType;
