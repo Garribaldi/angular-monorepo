@@ -1,8 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DataGridChipsBarComponent } from './data-grid-chips-bar.component';
-import { Filter, GroupedFilter } from "../data-grid-filter.model";
 import { MatChipsModule } from "@angular/material/chips";
 import { MockModule } from "ng-mocks";
+import { Filter } from "../models/filter.model";
+import { GroupedFilter } from "../models/grouped-filter.model";
 
 describe('DataGridChipsBarComponent', () => {
   let component: DataGridChipsBarComponent;

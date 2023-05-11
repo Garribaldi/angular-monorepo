@@ -1,25 +1,24 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy } from '@angular/core';
 import moment, { Moment, now } from "moment";
 import { DateRange, ExtractDateTypeFromSelection, MatDatepickerInputEvent } from "@angular/material/datepicker";
-import { Filter, FilterDate } from "../data-grid-filter.model";
-import { isValidFilterDate } from "../data-grid.utils";
 import { SelectedFilterStateService } from "../selected-filter-state.service";
 import { Subject, takeUntil } from "rxjs";
+import { Filter } from "../models/filter.model";
+import { DateFilter } from "../models/date-filter.model";
 
 @Component({
   selector: 'local-angular-material-data-grid-date-filter',
   templateUrl: './data-grid-date-filter.component.html',
   styleUrls: ['./data-grid-date-filter.component.scss'],
 })
-export class DataGridDateFilterComponent implements OnInit, OnDestroy {
+export class DataGridDateFilterComponent implements OnDestroy {
 
-  @Input() filter!: Filter;
+  @Input() label = '';
+  @Input() column = '';
 
   maxDate!: Moment;
   fromDate: Moment | null = moment(now());
   toDate: Moment | null = moment(now());
-
-  label = '';
 
   private readonly unsubscribe = new Subject<void>();
 
@@ -31,13 +30,9 @@ export class DataGridDateFilterComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.unsubscribe))
       .subscribe(
         filters => {
-          this.updateFilter(filters.get(this.filter?.column) ?? []);
+          this.updateFilter(filters.get(this.column) ?? []);
         }
       );
-  }
-
-  ngOnInit() {
-    this.label = this.filter.label;
   }
 
   ngOnDestroy() {
@@ -71,21 +66,16 @@ export class DataGridDateFilterComponent implements OnInit, OnDestroy {
   }
 
   private updateFilterState() {
-    const filterDate = this.mapToFilterDate(this.fromDate, this.toDate);
+    const updatedFilter = new DateFilter({
+      value: {from: this.fromDate, to: this.toDate},
+      label: this.label,
+      column: this.column
+    });
 
-    if (isValidFilterDate(filterDate)) {
-      const updatedFilter: Filter = {
-        ...this.filter,
-        value: filterDate,
-        displayValue: `${filterDate.from?.format('L') ?? ''} - ${filterDate.to?.format('L') ?? ''}`
-      };
-      this.selectedFilterService.unpdateFiltersByColumn(updatedFilter);
+    if (updatedFilter.value) {
+      this.selectedFilterService.updateFiltersByColumn(updatedFilter);
     } else {
-      this.selectedFilterService.removeFiltersByColumn(this.filter.column);
+      this.selectedFilterService.removeFiltersByColumn(this.column);
     }
-  }
-
-  private mapToFilterDate(from: Moment | null, to: Moment | null): FilterDate {
-    return {from, to};
   }
 }

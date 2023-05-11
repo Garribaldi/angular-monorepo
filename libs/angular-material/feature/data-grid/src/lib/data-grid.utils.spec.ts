@@ -1,5 +1,6 @@
-import { Filter, FilterType } from "./data-grid-filter.model";
 import { isFilterArray } from "./data-grid.utils";
+import { FilterType } from "./models/filter-type.models";
+import { Filter } from "./models/filter.model";
 
 describe('Data grid utils', () => {
 

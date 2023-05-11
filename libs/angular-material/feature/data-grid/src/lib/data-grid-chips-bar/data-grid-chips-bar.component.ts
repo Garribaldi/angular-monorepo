@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Filter, GroupedFilter } from "../data-grid-filter.model";
+import { Filter } from "../models/filter.model";
+import { GroupedFilter } from "../models/grouped-filter.model";
 
 @Component({
   selector: 'local-angular-material-data-grid-chips-bar',

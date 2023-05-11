@@ -5,7 +5,7 @@
   </ng-container>
 
   <ng-container *ngSwitchCase="filterType.DATE_FILTER">
-    <local-angular-material-data-grid-date-filter [filter]="filters[0]"></local-angular-material-data-grid-date-filter>
+    <local-angular-material-data-grid-date-filter [label]="label" [column]="column"></local-angular-material-data-grid-date-filter>
   </ng-container>
 
   <ng-container *ngSwitchDefault>

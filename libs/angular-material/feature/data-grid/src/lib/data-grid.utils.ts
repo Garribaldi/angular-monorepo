@@ -1,4 +1,5 @@
-import { Filter, FilterDate, ValidFilterDate, ValidFilterNumber, ValidFilterString } from "./data-grid-filter.model";
+import { Filter } from "./models/filter.model";
+import { FilterDate } from "./models/filter-date.model";
 
 export function isFilterDate(value: unknown): value is FilterDate {
   return (
@@ -7,18 +8,6 @@ export function isFilterDate(value: unknown): value is FilterDate {
     && 'to' in value
     && 'from' in value
   );
-}
-
-export function isValidFilterDate(date: FilterDate): date is ValidFilterDate {
-  return !!date.from || !!date.to;
-}
-
-export function isValidFilterString(value: unknown): value is ValidFilterString {
-  return value !== null && value !== undefined && typeof value === "string";
-}
-
-export function isValidFilterNumber(value: unknown): value is ValidFilterNumber {
-  return value !== null && value !== undefined && typeof value === "number";
 }
 
 /**

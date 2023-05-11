@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, share, shareReplay, Subject } from "rxjs";
-import { Filter, GroupedFilter } from "./data-grid-filter.model";
 import { isFilterArray } from "./data-grid.utils";
+import { Filter } from "./models/filter.model";
+import { GroupedFilter } from "./models/grouped-filter.model";
 
 @Injectable({
   providedIn: 'root'
@@ -47,9 +48,9 @@ export class SelectedFilterStateService {
    * @param filterType type from **FilterType** enum
    * @param filter array of filter objects
    */
-  unpdateFiltersByColumn(filter: Filter[]): void
-  unpdateFiltersByColumn(filter: Filter): void
-  unpdateFiltersByColumn(filter: Filter | Filter[]): void {
+  updateFiltersByColumn(filter: Filter[]): void
+  updateFiltersByColumn(filter: Filter): void
+  updateFiltersByColumn(filter: Filter | Filter[]): void {
     const newFilters: Filter[] = Array.isArray(filter) ? filter : [filter];
     const column = newFilters[0].column;
 

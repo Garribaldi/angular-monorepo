@@ -3,8 +3,8 @@ import { DataGridCheckFilterComponent } from './data-grid-check-filter.component
 import { MockModule, MockProvider } from "ng-mocks";
 import { SelectedFilterStateService } from "../selected-filter-state.service";
 import { of } from "rxjs";
-import { Filter } from "../data-grid-filter.model";
 import { MatTreeModule } from "@angular/material/tree";
+import { Filter } from "../models/filter.model";
 
 describe('DataGridTextFilterComponent', () => {
   let component: DataGridCheckFilterComponent;

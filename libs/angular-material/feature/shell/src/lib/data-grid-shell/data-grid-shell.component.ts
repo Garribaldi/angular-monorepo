@@ -3,12 +3,6 @@ import { take } from "rxjs";
 import { NbaTeam, SharedDataService } from "@local/shared/data-access";
 import { FilterType } from "@local/angular-material/feature/data-grid";
 
-
-// abbreviation: string;
-// teamName: string;
-// simpleName: string;
-// location: string;
-
 @Component({
   selector: 'local-angular-material-data-grid-shell',
   templateUrl: './data-grid-shell.component.html',

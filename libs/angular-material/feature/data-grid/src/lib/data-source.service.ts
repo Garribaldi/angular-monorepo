@@ -1,16 +1,14 @@
 import { Injectable } from '@angular/core';
-import {
-  Filter,
-  FilterConstraints,
-  FilterCount,
-  FilterDate,
-  FilterType,
-  GroupedFilter
-} from "./data-grid-filter.model";
-import { v4 as uuidv4 } from 'uuid';
 import moment from "moment";
 import { assertCannotReach, isRegExp } from "@local/shared/utils";
-import { isFilterDate, isValidFilterDate, isValidFilterString } from "./data-grid.utils";
+import { isFilterDate } from "./data-grid.utils";
+import { FilterType } from "./models/filter-type.models";
+import { Filter } from "./models/filter.model";
+import { CheckFilter } from "./models/check-filter.model";
+import { FilterDate } from "./models/filter-date.model";
+import { FilterConstraints } from "./models/filter-constraints.model";
+import { GroupedFilter } from "./models/grouped-filter.model";
+import { FilterValueCount } from "./models/filter-value-count.model";
 
 @Injectable({
   providedIn: 'root'
@@ -30,30 +28,6 @@ export class DataSourceService<T extends Record<string, any>> {
   private _filteredData: T[] = [];
   get filteredData(): T[] {
     return this._filteredData;
-  }
-
-  /**
-   * Reduce datasource to unique values per column and return a __Filter__ array with each unique value.
-   * @param column object column to take values from
-   * @param type filter type to apply on column
-   * @param label column display value (for chips list)
-   */
-  getFiltersForColumn(column: string, type: FilterType, label?: string): Filter[] {
-
-    let filters: Filter[] = [];
-
-    switch (type) {
-      case FilterType.CHECK_FILTER:
-        filters = this.getCheckFilters(column, label);
-        break;
-      case FilterType.DATE_FILTER:
-        filters = [this.getDateFilter(column, label)];
-        break;
-      default:
-        assertCannotReach(type);
-    }
-
-    return filters;
   }
 
   /**
@@ -109,36 +83,12 @@ export class DataSourceService<T extends Record<string, any>> {
     this._filteredData = filtered;
   }
 
-  private filterByCheck(columnValue: string, constraint: RegExp): boolean {
-    return !!columnValue.match(constraint) ?? false;
-  }
-
-  private filterByDate(columnValue: Date, dateRange: FilterDate): boolean {
-    return moment(columnValue).isBetween(dateRange.from, dateRange.to, 'days', '[]');
-  }
-
-  private reset() {
-    this._filteredData = [...this._dataSource];
-  }
-
-  private getDateFilter(column: string, label?: string): Filter {
-    const filterDate: FilterDate = {
-      from: null,
-      to: null
-    };
-
-    return {
-      id: uuidv4(),
-      type: FilterType.DATE_FILTER,
-      value: isValidFilterDate(filterDate) ? filterDate : null,
-      column,
-      displayValue: '',
-      label: label ?? '',
-      hitCount: this._dataSource.length,
-    }
-  }
-
-  private getCheckFilters(column: string, label?: string): Filter[] {
+  /**
+   * Reduce datasource to unique values per column and return a __Filter__ array with each unique value.
+   * @param column object column to take values from
+   * @param label column display value (for chips list)
+   */
+  getCheckFilters(column: string, label?: string): Filter[] {
     return this._dataSource
       .reduce((acc, curr) => {
         const exists = acc.find(data => data.value === curr[column]);
@@ -150,20 +100,22 @@ export class DataSourceService<T extends Record<string, any>> {
         }
 
         return acc;
-      }, [] as Array<FilterCount>)
-      .map((data): Filter => {
-          const filterValue = isValidFilterString(data.value) ? data.value : null;
-          return (
-            {
-              id: uuidv4(),
-              type: FilterType.CHECK_FILTER,
-              value: filterValue,
-              column,
-              displayValue: filterValue ?? '',
-              label: label ?? '',
-              hitCount: data.hitCount
-            })
-        }
+      }, [] as Array<FilterValueCount>)
+      .map(({value, hitCount}): Filter =>
+        new CheckFilter({value: value.toString(), column, label, displayValue: value.toString(), hitCount}
+        )
       );
+  }
+
+  private filterByCheck(columnValue: string, constraint: RegExp): boolean {
+    return !!columnValue.match(constraint) ?? false;
+  }
+
+  private filterByDate(columnValue: Date, dateRange: FilterDate): boolean {
+    return moment(columnValue).isBetween(dateRange.from, dateRange.to, 'days', '[]');
+  }
+
+  private reset() {
+    this._filteredData = [...this._dataSource];
   }
 }

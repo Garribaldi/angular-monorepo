@@ -1,7 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { DataSourceService } from "../data-source.service";
 import { SelectedFilterStateService } from "../selected-filter-state.service";
-import { Filter, GroupedFilter } from "../data-grid-filter.model";
+import { Filter } from "../models/filter.model";
+import { GroupedFilter } from "../models/grouped-filter.model";
 
 @Component({
   selector: 'local-angular-material-data-grid',

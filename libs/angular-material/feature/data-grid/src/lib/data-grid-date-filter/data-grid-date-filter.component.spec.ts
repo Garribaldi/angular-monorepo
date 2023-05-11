@@ -1,9 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DataGridDateFilterComponent } from './data-grid-date-filter.component';
-import { Filter } from "../data-grid-filter.model";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MockModule } from "ng-mocks";
 import { MatDatepickerModule } from "@angular/material/datepicker";
+import { Filter } from "../models/filter.model";
 
 describe('DataGridDateFilterComponent', () => {
   let component: DataGridDateFilterComponent;

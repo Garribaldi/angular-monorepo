@@ -1,10 +1,10 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { NestedTreeControl } from "@angular/cdk/tree";
-import { Filter, FilterNestedNode } from "../data-grid-filter.model";
+import { FilterNestedNode } from "../models/filter-nested-node.model";
 import { MatTreeNestedDataSource } from "@angular/material/tree";
 import { SelectedFilterStateService } from "../selected-filter-state.service";
 import { Subject, takeUntil } from "rxjs";
-import { isValidFilterString } from "../data-grid.utils";
+import { Filter } from "../models/filter.model";
 
 @Component({
   selector: 'local-angular-material-data-grid-check-filter',
@@ -72,8 +72,8 @@ export class DataGridCheckFilterComponent implements OnInit, OnDestroy {
 
   private mapToFlatNodes(): FilterNestedNode[] {
     return [{
-      value: isValidFilterString(this.filters[0].label) ? this.filters[0].label : null,
-      children: this.filters.map(node => ({value: node.value, hitCount: node.hitCount}))
+      value: this.filters[0].label ?? null,
+      children: this.filters.map(node => ({value: node.displayValue, hitCount: node.hitCount}))
     }];
   }
 
@@ -84,21 +84,19 @@ export class DataGridCheckFilterComponent implements OnInit, OnDestroy {
   /**
    * After filterlist has changed, find matching filter for current column in new list
    * and update _checked_ status.
-   * @param filters updated filter list
+   * @param updatedFilters updated filter list
    * @private
    */
-  private updateSelectedFilters(filters: Filter[]) {
-    const updatedColumnFilter = filters.filter(filter => this.filters.includes(filter));
-
+  private updateSelectedFilters(updatedFilters: Filter[]) {
     this.dataSource.data.forEach(data =>
       data.children?.map(child =>
-        child.checked = !!updatedColumnFilter.find(filter => filter.value === child.value)
+        child.checked = !!updatedFilters.find(filter => filter.value === child.value)
       )
     );
     const data = this.dataSource.data;
     this.dataSource.data = [];
     this.dataSource.data = data;
 
-    this.filtersSelected = updatedColumnFilter.length;
+    this.filtersSelected = updatedFilters.length;
   }
 }

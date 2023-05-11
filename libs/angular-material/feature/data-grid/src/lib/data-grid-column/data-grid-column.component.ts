@@ -1,7 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Filter, FilterType } from "../data-grid-filter.model";
 import { DataSourceService } from "../data-source.service";
 import { SelectedFilterStateService } from "../selected-filter-state.service";
+import { FilterType } from "../models/filter-type.models";
+import { Filter } from "../models/filter.model";
+import { assertCannotReach } from "@local/shared/utils";
 
 @Component({
   selector: 'local-angular-material-data-grid-column',
@@ -25,7 +27,15 @@ export class DataGridColumnComponent<T extends Record<string, any>> implements O
   }
 
   ngOnInit() {
-    this.filters = this.dataSourceService.getFiltersForColumn(this.column, this.type, this.label);
+    switch (this.type) {
+      case FilterType.CHECK_FILTER:
+        this.filters = this.dataSourceService.getCheckFilters(this.column, this.label);
+        break
+      case FilterType.DATE_FILTER:
+        break
+      default:
+        assertCannotReach(this.type);
+    }
   }
 
   resetColumn() {
