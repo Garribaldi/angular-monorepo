@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Filter } from "../data-grid-filter.model";
+import { Filter, GroupedFilter } from "../data-grid-filter.model";
 
 @Component({
   selector: 'local-angular-material-data-grid-chips-bar',
@@ -8,7 +8,7 @@ import { Filter } from "../data-grid-filter.model";
 })
 export class DataGridChipsBarComponent {
 
-  @Input() filters!: Filter[];
+  @Input() filters?: GroupedFilter;
 
   @Output() removeFilter = new EventEmitter<Filter>();
   @Output() removelAllFilter = new EventEmitter<void>();

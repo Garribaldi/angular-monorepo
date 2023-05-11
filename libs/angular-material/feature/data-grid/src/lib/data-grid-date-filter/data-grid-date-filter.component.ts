@@ -31,7 +31,7 @@ export class DataGridDateFilterComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.unsubscribe))
       .subscribe(
         filters => {
-          this.resetFilter(filters);
+          this.updateFilter(filters.get(this.filter?.column) ?? []);
         }
       );
   }
@@ -63,9 +63,8 @@ export class DataGridDateFilterComponent implements OnInit, OnDestroy {
     }
   }
 
-  resetFilter(filters: Filter[]) {
-    const currentFilter = filters.filter(filter => filter.id === this.filter.id);
-    if (!currentFilter.length) {
+  updateFilter(filters: Filter[]) {
+    if (!filters.length) {
       this.fromDate = null;
       this.toDate = null;
     }

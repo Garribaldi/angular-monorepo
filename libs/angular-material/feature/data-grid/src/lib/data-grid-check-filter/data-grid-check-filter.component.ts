@@ -28,7 +28,10 @@ export class DataGridCheckFilterComponent implements OnInit, OnDestroy {
   ) {
     this.selectedFilterService.selectedFilter$
       .pipe(takeUntil(this.unsubscribe))
-      .subscribe(filters => this.updateSelectedFilters(filters));
+      .subscribe(filters => {
+        const column = this.filters?.reduce((acc, curr) => curr.column, '') ?? '';
+        this.updateSelectedFilters(filters.get(column) ?? []);
+      });
 
     this.selectedFilterService.resetAll$
       .pipe(takeUntil(this.unsubscribe))

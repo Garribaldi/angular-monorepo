@@ -29,21 +29,21 @@ export class AppComponent implements OnInit{
       .filter(conf => conf.path)
       .map(conf => ({url: conf.path as string, caption: conf.title as string}));
 
-    console.log(this.mainNav);
-
     this.backendUrl = environmentService.apiBackendUrl ?? '';
     this.integrationUrl = environmentService.externalIntegrationUrl ?? '';
   }
 
+  /**
+   * __Moment__ DE Settings
+   *
+   *  - LT: 'HH:mm',
+   *  - LTS: 'HH:mm:ss',
+   *  - L: 'DD.MM.YYYY',
+   *  - LL: 'D. MMMM YYYY',
+   *  - LLL: 'L LT',
+   *  - LLLL: 'dddd, D. MMMM YYYY HH:mm'
+   */
   ngOnInit() {
-    // moment.updateLocale('de', {
-    //   LT: 'HH:mm',
-    //   LTS: 'HH:mm:ss',
-    //   L: 'DD.MM.YYYY',
-    //   LL: 'D. MMMM YYYY',
-    //   LLL: 'L LT',
-    //   LLLL: 'dddd, D. MMMM YYYY HH:mm'
-    // });
     moment.locale('de');
   }
 }

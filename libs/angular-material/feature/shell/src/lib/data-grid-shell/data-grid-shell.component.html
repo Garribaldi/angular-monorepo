@@ -1,4 +1,4 @@
-<div>
+<div data-cy="data-grid-columns">
   <local-angular-material-data-grid [dataSource]="dataSource" (filtered)="onFilter($event)">
     <local-angular-material-data-grid-column column="teamName" [type]="filterType.CHECK_FILTER" label="Team name"></local-angular-material-data-grid-column>
     <local-angular-material-data-grid-column column="location" [type]="filterType.CHECK_FILTER" label="Location"></local-angular-material-data-grid-column>
@@ -7,7 +7,7 @@
 </div>
 
 <mat-card>
-  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" data-cy="data-grid-table">
 
     <ng-container matColumnDef="teamId">
       <th mat-header-cell *matHeaderCellDef>Team Id</th>

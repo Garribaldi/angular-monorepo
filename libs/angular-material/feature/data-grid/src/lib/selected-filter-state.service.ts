@@ -1,23 +1,22 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, distinctUntilChanged, share, shareReplay, Subject } from "rxjs";
-import { Filter } from "./data-grid-filter.model";
+import { BehaviorSubject, share, shareReplay, Subject } from "rxjs";
+import { Filter, GroupedFilter } from "./data-grid-filter.model";
 import { isFilterArray } from "./data-grid.utils";
-
 
 @Injectable({
   providedIn: 'root'
 })
 export class SelectedFilterStateService {
 
-  private readonly selectedFilters = new BehaviorSubject<Filter[]>([]);
- private readonly resetAll = new Subject<void>();
+  private readonly selectedFilters = new BehaviorSubject<GroupedFilter>(new Map<string, Filter[]>());
+  private readonly resetAll = new Subject<void>();
 
-  readonly selectedFilter$ = this.selectedFilters.asObservable().pipe(
-    distinctUntilChanged((a,b) => JSON.stringify(a) === JSON.stringify(b)),
-    shareReplay(1)
-  );
-
+  readonly selectedFilter$ = this.selectedFilters.asObservable().pipe(shareReplay(1));
   readonly resetAll$ = this.resetAll.asObservable().pipe(share());
+
+  private get filterList(): GroupedFilter {
+    return this.selectedFilters.value;
+  }
 
   /**
    * Add a new filter at the end of the filter list.
@@ -28,11 +27,15 @@ export class SelectedFilterStateService {
   addFilter(filters: Filter[]): void
   addFilter(filters: Filter): void
   addFilter(filters: Filter[] | Filter): void {
-    let newFilters = isFilterArray(filters) ? filters : [filters];
-    newFilters = newFilters.filter(added => !this.selectedFilters.value.some(existing => existing.id === added.id));
+    let addedFilters = isFilterArray(filters) ? filters : [filters];
 
-    const updatedFilters = [...this.selectedFilters.value, ...newFilters];
-    this.selectedFilters.next(updatedFilters);
+    const column = addedFilters[0]?.column ?? '';
+    const columnFilters = this.filterList.get(column) ?? [];
+
+    addedFilters = addedFilters.filter(added => !columnFilters.some(existing => existing.id === added.id));
+    this.filterList.set(column, [...columnFilters, ...addedFilters]);
+
+    this.selectedFilters.next(this.filterList);
   }
 
   /**
@@ -49,25 +52,35 @@ export class SelectedFilterStateService {
   unpdateFiltersByColumn(filter: Filter | Filter[]): void {
     const newFilters: Filter[] = Array.isArray(filter) ? filter : [filter];
     const column = newFilters[0].column;
-    const updatedFilters = this.selectedFilters.value
-      .filter(existingFilter => existingFilter.column !== column)
-      .concat(newFilters.filter(newFilter => newFilter.column === column));
 
-    this.selectedFilters.next(updatedFilters);
+    this.filterList.set(column, newFilters);
+
+    this.selectedFilters.next(this.filterList);
   }
 
   removeFilter(filter: Filter): void {
-    const filters = this.selectedFilters.value.filter(existingFilter => existingFilter.id !== filter.id);
-    this.selectedFilters.next(filters);
+    const column = filter.column;
+    const columnFilters = this.filterList.get(column) ?? [];
+    const updatedColumnFilters = columnFilters.filter(existingFilter => existingFilter.id !== filter.id);
+
+    if (updatedColumnFilters.length) {
+      this.filterList.set(column, updatedColumnFilters)
+    } else {
+      this.filterList.delete(column);
+    }
+
+    this.selectedFilters.next(this.filterList);
   }
 
   removeAllFilters(): void {
-    this.selectedFilters.next([]);
+    this.filterList.clear();
+    this.selectedFilters.next(this.filterList);
     this.resetAll.next();
   }
 
   removeFiltersByColumn(column: string): void {
-    const filters = this.selectedFilters.value.filter(existingFilter => existingFilter.column !== column);
-    this.selectedFilters.next(filters);
+    this.filterList.delete(column);
+
+    this.selectedFilters.next(this.filterList);
   }
 }

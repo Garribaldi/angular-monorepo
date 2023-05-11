@@ -20,7 +20,7 @@ describe('DataGridTextFilterComponent', () => {
       declarations: [DataGridCheckFilterComponent],
       providers: [
         MockProvider(SelectedFilterStateService, {
-          selectedFilter$: of(testFilters),
+          selectedFilter$: of(new Map()),
           resetAll$: of(void '')
         }),
       ]

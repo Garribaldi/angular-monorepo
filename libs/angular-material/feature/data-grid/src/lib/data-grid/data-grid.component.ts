@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { DataSourceService } from "../data-source.service";
 import { SelectedFilterStateService } from "../selected-filter-state.service";
-import { Filter } from "../data-grid-filter.model";
+import { Filter, GroupedFilter } from "../data-grid-filter.model";
 
 @Component({
   selector: 'local-angular-material-data-grid',
@@ -12,7 +12,7 @@ export class DataGridComponent<T extends Record<string, any>> implements OnInit 
 
   @Input() dataSource?: T[];
 
-  filters: Filter[] = [];
+  filters: GroupedFilter | undefined;
 
   @Output() filtered = new EventEmitter<T[]>();
 

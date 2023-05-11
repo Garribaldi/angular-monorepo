@@ -61,23 +61,17 @@ export class DataSourceService<T extends Record<string, any>> {
    *
    * If filter list is empty, the filtered list is reset to default (equals datasource).
    *
-   * @param filters array of selected filter
+   * @param groupedFilter array of selected filter
    */
-  filter(filters: Filter[]) {
-
-    if (!filters.length) {
-      this.reset();
-      return;
-    }
-
+  filter(groupedFilter: GroupedFilter) {
     let filtered: T[] = this._dataSource;
 
-    const groupedFilter = this.getGroupedFilter(filters);
-    const filterColumns = Object.keys(groupedFilter);
+    groupedFilter.forEach((columnFilters, column) => {
+      if (!columnFilters.length) {
+        return;
+      }
 
-    filterColumns.forEach(column => {
-      const columnFilters = groupedFilter[column];
-      const filterType = columnFilters[0].type;
+      const filterType = columnFilters[0]?.type;
 
       let pattern = '';
       let constraint: FilterConstraints;
@@ -171,19 +165,5 @@ export class DataSourceService<T extends Record<string, any>> {
             })
         }
       );
-  }
-
-  private getGroupedFilter(filters: Filter[]): GroupedFilter {
-    const grouped: GroupedFilter = {};
-
-    filters.forEach(filter => {
-      if (!grouped[filter.column]) {
-        grouped[filter.column] = [];
-      }
-
-      grouped[filter.column].push(filter);
-    });
-
-    return grouped;
   }
 }

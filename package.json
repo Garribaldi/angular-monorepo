@@ -4,6 +4,7 @@
   "license": "MIT",
   "scripts": {
     "serve": "nx serve demo",
+    "serve:4400": "npm run serve -- --port 4400",
     "build": "nx build demo",
     "test": "nx run-many --all --target=test --parallel",
     "test:coverage": "nx run-many --all --target=test --coverage",

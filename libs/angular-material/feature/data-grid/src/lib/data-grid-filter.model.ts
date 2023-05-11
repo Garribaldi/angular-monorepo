@@ -34,9 +34,7 @@ export type FilterNestedNode = Partial<FilterCount> & Pick<FilterCount, 'value'>
   children?: FilterNestedNode[]
 }
 
-export type GroupedFilter = {
-  [column: string]: Filter[]
-}
+export type GroupedFilter = Map<string, Filter[]>;
 
 /**
  * Each filter demands a different method to reduce search results.

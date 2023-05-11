@@ -4,7 +4,7 @@ import { MockComponent, MockProvider } from "ng-mocks";
 import { SelectedFilterStateService } from "../selected-filter-state.service";
 import { DataSourceService } from "../data-source.service";
 import { of } from "rxjs";
-import { DataGridChipsBarComponent } from "@local/angular-material/feature/data-grid";
+import { DataGridChipsBarComponent } from "../data-grid-chips-bar/data-grid-chips-bar.component";
 
 type TestData = { name: string };
 
@@ -19,7 +19,7 @@ describe('DataGridComponent', () => {
         MockComponent(DataGridChipsBarComponent)
       ],
       providers: [
-        MockProvider(SelectedFilterStateService, {selectedFilter$: of([])}),
+        MockProvider(SelectedFilterStateService, {selectedFilter$: of(new Map())}),
         MockProvider(DataSourceService)
       ]
     }).compileComponents();
