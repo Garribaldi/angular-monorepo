@@ -16,21 +16,23 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MatMomentDateModule } from "@angular/material-moment-adapter";
 import { MAT_DATE_LOCALE } from "@angular/material/core";
+import { SharedUtilsModule } from "@local/shared/utils";
 
 @NgModule({
-  imports: [
-    CommonModule,
-    MatCardModule,
-    MatTreeModule,
-    CdkTreeModule,
-    MatButtonModule,
-    MatIconModule,
-    MatCheckboxModule,
-    MatChipsModule,
-    MatFormFieldModule,
-    MatDatepickerModule,
-    MatMomentDateModule
-  ],
+    imports: [
+        CommonModule,
+        MatCardModule,
+        MatTreeModule,
+        CdkTreeModule,
+        MatButtonModule,
+        MatIconModule,
+        MatCheckboxModule,
+        MatChipsModule,
+        MatFormFieldModule,
+        MatDatepickerModule,
+        MatMomentDateModule,
+        SharedUtilsModule
+    ],
   declarations: [
     DataGridComponent,
     DataGridColumnComponent,

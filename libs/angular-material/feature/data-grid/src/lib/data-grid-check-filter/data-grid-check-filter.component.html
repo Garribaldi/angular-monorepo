@@ -29,7 +29,7 @@
 
     <div [class.check-filter-tree__nested-node--invisible]="!treeControl.isExpanded(node)" role="group" class="check-filter-tree__nested-node-outlet">
       <div class="check-filter-tree__nested-node-reset">
-        <button mat-flat-button color="primary" (click)="resetFilter()" [disabled]="!filtersSelected ? true : null">
+        <button mat-flat-button color="primary" (click)="resetFilter()" [disabled]="!filtersSelected ? true : null" data-cy="data-grid-mat-check-reset">
           <span>Reset</span>
           <mat-icon aria-hidden="false" aria-label="Reset Filter" fontIcon="restart_alt"></mat-icon>
         </button>

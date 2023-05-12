@@ -1,9 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, HostBinding, Input, OnInit } from '@angular/core';
 import { DataSourceService } from "../data-source.service";
 import { SelectedFilterStateService } from "../selected-filter-state.service";
 import { FilterType } from "../models/filter-type.model";
 import { Filter } from "../models/filter.model";
-import { assertCannotReach } from "@local/shared/utils";
+import { assertCannotReach, convertToSlashCase } from "@local/shared/utils";
 import { Datasource } from "../models/datasource.model";
 
 /**
@@ -20,6 +20,8 @@ import { Datasource } from "../models/datasource.model";
 })
 export class DataGridColumnComponent<T extends Datasource<T>> implements OnInit {
 
+  @HostBinding('attr.data-cy') cypressSelector!: string;
+
   @Input() column!: string;
   @Input() type!: FilterType;
   @Input() label!: string;
@@ -35,6 +37,8 @@ export class DataGridColumnComponent<T extends Datasource<T>> implements OnInit 
   }
 
   ngOnInit() {
+    this.cypressSelector = `data-grid-filter-for-${convertToSlashCase(this.column)}`;
+
     switch (this.type) {
       case FilterType.CHECK_FILTER:
         this.filters = this.dataSourceService.getCheckFilters(this.column, this.label);

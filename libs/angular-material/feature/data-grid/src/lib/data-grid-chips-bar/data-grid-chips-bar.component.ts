@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, HostBinding, Input, Output } from '@angular/core';
 import { Filter } from "../models/filter.model";
 import { GroupedFilter } from "../models/grouped-filter.model";
 
@@ -8,6 +8,8 @@ import { GroupedFilter } from "../models/grouped-filter.model";
   styleUrls: ['./data-grid-chips-bar.component.scss'],
 })
 export class DataGridChipsBarComponent {
+
+  @HostBinding('attr.data-cy') cypressSelector = 'data-grid-chips-bar';
 
   @Input() filters?: GroupedFilter;
 

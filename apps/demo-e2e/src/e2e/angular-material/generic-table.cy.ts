@@ -1,6 +1,6 @@
 import { getTable } from "../../support/app.po";
 
-describe("generic table", () => {
+describe("Generic Table", () => {
 
   let headers: JQuery<HTMLElement>;
 
