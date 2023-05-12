@@ -37,15 +37,20 @@ export class DataGridComponent<T extends Datasource<T>> implements OnInit, OnDes
   }
 
   ngOnInit() {
-    this.dataSourceService.dataSource = this.dataSource ?? [];
-
     this.selectedFilterService.selectedFilter$
       .pipe(takeUntil(this.unsubscribe))
       .subscribe(filters => {
         this.dataSourceService.filter(filters);
-        this.filtered.next(this.dataSourceService.filteredData);
         this.filters = filters;
       });
+
+    this.dataSourceService.filteredData$
+      .pipe(takeUntil(this.unsubscribe))
+      .subscribe(filters => {
+        this.filtered.next(filters);
+      });
+
+    this.dataSourceService.dataSource = this.dataSource ?? [];
   }
 
   ngOnDestroy() {

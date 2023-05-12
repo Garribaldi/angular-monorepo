@@ -9,7 +9,7 @@ describe('DataGridService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(DataSourceService);
+    service = TestBed.inject(DataSourceService<TestData>);
   });
 
   it('should be created', () => {

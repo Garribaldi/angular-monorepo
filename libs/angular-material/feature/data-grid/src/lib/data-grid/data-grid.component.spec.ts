@@ -35,8 +35,9 @@ describe('DataGridComponent', () => {
           removeFilter: jest.fn(),
           removeAllFilters: jest.fn()
         }),
-        MockProvider(DataSourceService, {
-          filter: jest.fn()
+        MockProvider(DataSourceService<TestData>, {
+          filter: jest.fn(),
+          filteredData$: of(testDataSource)
         })
       ]
     }).compileComponents();
@@ -44,7 +45,7 @@ describe('DataGridComponent', () => {
     jest.clearAllMocks();
 
     selectedFilterStateService = TestBed.inject(SelectedFilterStateService);
-    dataSourceService = TestBed.inject(DataSourceService);
+    dataSourceService = TestBed.inject(DataSourceService<TestData>);
 
     fixture = TestBed.createComponent(DataGridComponent<TestData>);
 

@@ -8,7 +8,7 @@
 </div>
 
 <mat-card>
-  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" data-cy="data-grid-table">
+  <table mat-table [dataSource]="filteredDataSource" class="mat-elevation-z8" data-cy="data-grid-table">
 
     <ng-container matColumnDef="teamId">
       <th mat-header-cell *matHeaderCellDef>Team Id</th>

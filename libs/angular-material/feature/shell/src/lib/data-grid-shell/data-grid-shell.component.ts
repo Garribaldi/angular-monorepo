@@ -11,7 +11,10 @@ import { FilterType } from "@local/angular-material/feature/data-grid";
 export class DataGridShellComponent {
 
   displayedColumns: string[] = ['teamId', 'teamName', 'simpleName', 'location', 'abbreviation', 'date'];
+
   dataSource: NbaTeam[] = [];
+  filteredDataSource: NbaTeam[] = [];
+
   filterType = FilterType;
 
   constructor(
@@ -23,6 +26,6 @@ export class DataGridShellComponent {
   }
 
   onFilter(filteredData: NbaTeam[]) {
-    this.dataSource = filteredData;
+    this.filteredDataSource = filteredData;
   }
 }

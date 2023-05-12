@@ -8,6 +8,7 @@ import { FilterDate } from "./models/filter-date.model";
 import { GroupedFilter } from "./models/grouped-filter.model";
 import { FilterValueCount } from "./models/filter-value-count.model";
 import { Datasource } from "./models/datasource.model";
+import { ReplaySubject, shareReplay } from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -17,17 +18,15 @@ export class DataSourceService<T extends Datasource<T>> {
   private _dataSource: T[] = [];
   /**
    * Store filter datsasource for current page
-   * @param data array ob objects
+   * @param data array of objects
    */
   set dataSource(data: T[]) {
     this._dataSource = data;
     this.reset();
   }
 
-  private _filteredData: T[] = [];
-  get filteredData(): T[] {
-    return this._filteredData;
-  }
+  private readonly filteredData = new ReplaySubject<T[]>();
+  readonly filteredData$ = this.filteredData.asObservable().pipe(shareReplay(1));
 
   /**
    * Iterate a provided filter list and search for matching data in datasource.
@@ -80,7 +79,7 @@ export class DataSourceService<T extends Datasource<T>> {
       });
     });
 
-    this._filteredData = filtered;
+    this.filteredData.next(filtered);
   }
 
   /**
@@ -130,6 +129,6 @@ export class DataSourceService<T extends Datasource<T>> {
   }
 
   private reset() {
-    this._filteredData = [...this._dataSource];
+    this.filteredData.next([...this._dataSource]);
   }
 }
