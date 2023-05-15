@@ -20,7 +20,7 @@ describe('DataGridDateFilterComponent', () => {
       providers: [
         MockProvider(SelectedFilterStateService, {
           removedFilter$: of([]),
-          updateFiltersByColumn: jest.fn(),
+          updateFilterByColumn: jest.fn(),
           removeFiltersByColumn: jest.fn()
         })
       ]

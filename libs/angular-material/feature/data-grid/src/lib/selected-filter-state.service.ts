@@ -46,20 +46,20 @@ export class SelectedFilterStateService {
    * @param filter single filter or array of filter objects
    * @param column name of filter column to update
    */
-  updateFiltersByColumn(filter: Filter | Filter[], column: string): void {
-    const newFilters = isArray(filter) ? filter : [filter];
-    this.filterList.set(column, newFilters);
+  updateFilterByColumn(filter: Filter | Filter[], column: string): void {
+    const newFilter = isArray(filter) ? filter : [filter];
+    this.filterList.set(column, newFilter);
 
     this.selectedFilter.next(this.filterList);
   }
 
   removeFilter(filter: Filter): void {
     const column = filter.column;
-    const columnFilters = this.filterList.get(column) ?? [];
-    const updatedColumnFilters = columnFilters.filter(existingFilter => existingFilter.id !== filter.id);
+    const columnFilter = this.filterList.get(column) ?? [];
+    const updatedColumnFilter = columnFilter.filter(existingFilter => existingFilter.id !== filter.id);
 
-    if (updatedColumnFilters.length) {
-      this.filterList.set(column, updatedColumnFilters)
+    if (updatedColumnFilter.length) {
+      this.filterList.set(column, updatedColumnFilter)
     } else {
       this.filterList.delete(column);
     }

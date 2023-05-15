@@ -26,7 +26,7 @@ export class DataGridDateFilterComponent implements OnDestroy {
   ) {
     this.maxDate = moment();
     this.resetFilter();
-    
+
     this.selectedFilterService.removedFilter$
       .pipe(
         takeUntil(this.unsubscribe),
@@ -71,7 +71,7 @@ export class DataGridDateFilterComponent implements OnDestroy {
     });
 
     if (updatedFilter.value) {
-      this.selectedFilterService.updateFiltersByColumn(updatedFilter, this.column);
+      this.selectedFilterService.updateFilterByColumn(updatedFilter, this.column);
     } else {
       this.selectedFilterService.removeFiltersByColumn(this.column);
     }

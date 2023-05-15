@@ -3,7 +3,7 @@ import { NestedTreeControl } from "@angular/cdk/tree";
 import { FilterNestedNode } from "../models/filter-nested-node.model";
 import { MatTreeNestedDataSource } from "@angular/material/tree";
 import { SelectedFilterStateService } from "../selected-filter-state.service";
-import { Subject, takeUntil } from "rxjs";
+import { map, Subject, takeUntil } from "rxjs";
 import { Filter } from "../models/filter.model";
 
 @Component({
@@ -21,17 +21,18 @@ export class DataGridCheckFilterComponent implements OnInit, OnDestroy {
 
   @Output() resetColumn = new EventEmitter<void>();
 
+  private column = '';
   private readonly unsubscribe = new Subject<void>();
 
   constructor(
     private readonly selectedFilterService: SelectedFilterStateService
   ) {
-    this.selectedFilterService.selectedFilter$
-      .pipe(takeUntil(this.unsubscribe))
-      .subscribe(filters => {
-        const column = this.filters?.reduce((acc, curr) => curr.column, '') ?? '';
-        this.updateSelectedFilters(filters.get(column) ?? []);
-      });
+    this.selectedFilterService.removedFilter$
+      .pipe(
+        takeUntil(this.unsubscribe),
+        map(removedFilter => removedFilter.filter(filter => filter.column === this.column))
+      )
+      .subscribe(filter => this.removeSelectedFilters(filter));
 
     this.selectedFilterService.resetAll$
       .pipe(takeUntil(this.unsubscribe))
@@ -39,6 +40,7 @@ export class DataGridCheckFilterComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.column = this.filters?.reduce((acc, curr) => curr.column, '') ?? '';
     this.dataSource.data = this.mapToFlatNodes();
   }
 
@@ -62,6 +64,8 @@ export class DataGridCheckFilterComponent implements OnInit, OnDestroy {
     } else {
       this.selectedFilterService.removeFilter(filter);
     }
+
+    this.updateSelectedFilterAmount();
   }
 
   resetFilter() {
@@ -84,19 +88,22 @@ export class DataGridCheckFilterComponent implements OnInit, OnDestroy {
   /**
    * After filterlist has changed, find matching filter for current column in new list
    * and update _checked_ status.
-   * @param updatedFilters updated filter list
+   * @param removedFilter list of removed filter for this column
    * @private
    */
-  private updateSelectedFilters(updatedFilters: Filter[]) {
-    this.dataSource.data.forEach(data =>
-      data.children?.map(child =>
-        child.checked = !!updatedFilters.find(filter => filter.value === child.value)
-      )
-    );
+  private removeSelectedFilters(removedFilter: Filter[]) {
+    this.dataSource.data[0].children
+      ?.filter(childNode => removedFilter.find(filter => childNode.checked && filter.value === childNode.value))
+      .forEach(childNode => childNode.checked = false)
+
     const data = this.dataSource.data;
     this.dataSource.data = [];
     this.dataSource.data = data;
 
-    this.filtersSelected = updatedFilters.length;
+    this.updateSelectedFilterAmount();
+  }
+
+  private updateSelectedFilterAmount() {
+    this.filtersSelected = this.dataSource.data[0].children?.filter(childNode => childNode.checked).length ?? 0;
   }
 }
