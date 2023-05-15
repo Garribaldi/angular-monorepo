@@ -22,7 +22,9 @@ import { Subject, takeUntil } from "rxjs";
 })
 export class DataGridComponent<T extends Datasource<T>> implements OnInit, OnDestroy {
 
-  @Input() dataSource?: T[];
+  @Input() set dataSource (dataSource: T[]) {
+    this.dataSourceService.dataSource = dataSource ?? [];
+  }
 
   groupedFilter: GroupedFilter | undefined;
 
@@ -49,8 +51,6 @@ export class DataGridComponent<T extends Datasource<T>> implements OnInit, OnDes
       .subscribe(filteredData => {
         this.filtered.next(filteredData);
       });
-
-    this.dataSourceService.dataSource = this.dataSource ?? [];
   }
 
   ngOnDestroy() {

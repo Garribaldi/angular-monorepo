@@ -8,7 +8,7 @@ import { FilterDate } from "./models/filter-date.model";
 import { GroupedFilter } from "./models/grouped-filter.model";
 import { FilterValueHitCount } from "./models/filter-value-count.model";
 import { Datasource } from "./models/datasource.model";
-import { ReplaySubject, shareReplay } from "rxjs";
+import { distinctUntilChanged, ReplaySubject, share, shareReplay, Subject } from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +23,11 @@ export class DataSourceService<T extends Datasource<T>> {
   set dataSource(data: T[]) {
     this._dataSource = data;
     this.reset();
+    this.dataSourceChanged.next();
   }
+
+  private readonly dataSourceChanged = new Subject<void>();
+  readonly dataSourceChanged$ = this.dataSourceChanged.asObservable().pipe(distinctUntilChanged((a, b) => JSON.stringify(a) !== JSON.stringify(b)), share());
 
   private readonly filteredData = new ReplaySubject<T[]>();
   readonly filteredData$ = this.filteredData.asObservable().pipe(shareReplay(1));

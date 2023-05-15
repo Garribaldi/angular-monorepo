@@ -4,19 +4,26 @@ import { Employee } from "./employee.model";
 import { Inventory } from "./inventory.model";
 import { City } from "./city.model";
 import { Country } from "./country.model";
-import { cities, countries, employees, inventory, nbaTeams } from "./shared-data-mocks";
-import { NbaTeam } from "./nba-team.model";
+import { countries, inventory } from "./shared-data-mocks";
+import { NbaTeam, NbaTeamDto } from "./nba-team.model";
+import { HttpClient } from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
 })
 export class SharedDataService {
+
+  constructor(
+    private readonly httpClient: HttpClient
+  ) {
+  }
+
   getEmployees$(): Observable<Employee[]> {
-    return of(employees);
+    return this.httpClient.get<Employee[]>('../assets/employees.json');
   }
 
   getCities$(): Observable<City[]> {
-    return of(cities);
+    return this.httpClient.get<City[]>('../assets/cities.json');
   }
 
   getInventory$(): Observable<Inventory[]> {
@@ -30,6 +37,13 @@ export class SharedDataService {
   }
 
   getNbaTeams$(): Observable<NbaTeam[]> {
-    return of(nbaTeams);
+    return this.httpClient.get<NbaTeamDto[]>('../assets/nba-teams.json')
+      .pipe(
+        map(nbaTeam => nbaTeam.map(team => this.mapToNbaTeam(team)))
+      );
+  }
+
+  private mapToNbaTeam(team: NbaTeamDto): NbaTeam {
+    return {...team, date: new Date(team.date)};
   }
 }

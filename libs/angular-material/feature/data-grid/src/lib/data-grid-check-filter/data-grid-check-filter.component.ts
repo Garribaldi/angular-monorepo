@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy } from '@angular/core';
 import { NestedTreeControl } from "@angular/cdk/tree";
 import { FilterNestedNode } from "../models/filter-nested-node.model";
 import { MatTreeNestedDataSource } from "@angular/material/tree";
@@ -12,9 +12,14 @@ import { MatCheckboxChange } from "@angular/material/checkbox";
   templateUrl: './data-grid-check-filter.component.html',
   styleUrls: ['./data-grid-check-filter.component.scss'],
 })
-export class DataGridCheckFilterComponent implements OnInit, OnDestroy {
+export class DataGridCheckFilterComponent implements OnDestroy {
 
-  @Input() filter!: Filter[];
+  private _filter: Filter[] = [];
+  @Input() set filter (filter: Filter[]) {
+    this._filter = filter;
+    this.column = filter?.reduce((acc, curr) => curr.column, '') ?? '';
+    this.dataSource.data = this.mapToFlatNodes();
+  }
 
   treeControl = new NestedTreeControl<FilterNestedNode>(node => node.children);
   dataSource = new MatTreeNestedDataSource<FilterNestedNode>();
@@ -31,16 +36,13 @@ export class DataGridCheckFilterComponent implements OnInit, OnDestroy {
         takeUntil(this.unsubscribe),
         map(removedFilter => removedFilter.filter(filter => filter.column === this.column))
       )
-      .subscribe(filter => this.removeSelectedFilter(filter));
+      .subscribe(filter => {
+        this.removeSelectedFilter(filter);
+      });
 
     this.selectedFilterService.resetAll$
       .pipe(takeUntil(this.unsubscribe))
       .subscribe(() => this.treeControl.collapseAll());
-  }
-
-  ngOnInit() {
-    this.column = this.filter?.reduce((acc, curr) => curr.column, '') ?? '';
-    this.dataSource.data = this.mapToFlatNodes();
   }
 
   ngOnDestroy() {
@@ -75,13 +77,13 @@ export class DataGridCheckFilterComponent implements OnInit, OnDestroy {
 
   private mapToFlatNodes(): FilterNestedNode[] {
     return [{
-      value: this.filter[0].label ?? null,
-      children: this.filter.map(filter => ({value: filter.displayValue, hitCount: filter.hitCount}))
+      value: this._filter[0]?.label ?? null,
+      children: this._filter.map(filter => ({value: filter.displayValue, hitCount: filter.hitCount}))
     }];
   }
 
   private mapToFilter(node: FilterNestedNode): Filter | undefined {
-    return this.filter.find(filter => filter.value === node.value);
+    return this._filter.find(filter => filter.value === node.value);
   }
 
   /**

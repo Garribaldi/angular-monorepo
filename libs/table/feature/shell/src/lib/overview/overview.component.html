@@ -1,31 +1,33 @@
 <h2>Base Layout</h2>
-<local-table [data]="employees$ | async"></local-table>
+<ng-container *ngIf="(employees$ | async) as employees">
+  <local-table [data]="employees"></local-table>
 
-<h2>Base layout with header configuration</h2>
-<local-table [data]="employees$ | async">
+  <h2>Base layout with header configuration</h2>
+  <local-table [data]="employees">
 
-  <ng-template appTableHeader>
-    <th>First name</th>
-    <th>Last name</th>
-  </ng-template>
+    <ng-template appTableHeader>
+      <th>First name</th>
+      <th>Last name</th>
+    </ng-template>
 
-</local-table>
+  </local-table>
 
-<h2>Base layout with header and row configuration</h2>
-<local-table [data]="inventory$ | async">
+  <h2>Base layout with header and row configuration</h2>
+  <local-table [data]="inventory$ | async">
 
-  <ng-template appTableHeader="">
-    <th>Item</th>
-    <th>Price</th>
-    <th>Purchase</th>
-  </ng-template>
+    <ng-template appTableHeader="">
+      <th>Item</th>
+      <th>Price</th>
+      <th>Purchase</th>
+    </ng-template>
 
-  <ng-template appTableRow let-row>
-    <td>{{row.name}}</td>
-    <td>{{row.price | currency: row.currency}}</td>
-    <td>
-      <button *ngIf="row.inStock > 0" (click)="purchaseItem(row.plu)">Buy now</button>
-    </td>
-  </ng-template>
+    <ng-template appTableRow let-row>
+      <td>{{row.name}}</td>
+      <td>{{row.price | currency: row.currency}}</td>
+      <td>
+        <button *ngIf="row.inStock > 0" (click)="purchaseItem(row.plu)">Buy now</button>
+      </td>
+    </ng-template>
 
-</local-table>
+  </local-table>
+</ng-container>

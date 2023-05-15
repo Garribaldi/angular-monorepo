@@ -8,6 +8,7 @@ import {
   MAT_TOOLTIP_DEFAULT_OPTIONS_FACTORY,
   MatTooltipDefaultOptions
 } from "@angular/material/tooltip";
+import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
   declarations: [AppComponent],
@@ -15,6 +16,7 @@ import {
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    HttpClientModule
   ],
   providers: [
     {
