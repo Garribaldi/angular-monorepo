@@ -6,7 +6,7 @@ import { Filter } from "./models/filter.model";
 import { CheckFilter } from "./models/check-filter.model";
 import { FilterDate } from "./models/filter-date.model";
 import { GroupedFilter } from "./models/grouped-filter.model";
-import { FilterValueCount } from "./models/filter-value-count.model";
+import { FilterValueHitCount } from "./models/filter-value-count.model";
 import { Datasource } from "./models/datasource.model";
 import { ReplaySubject, shareReplay } from "rxjs";
 
@@ -43,7 +43,7 @@ export class DataSourceService<T extends Datasource<T>> {
         return;
       }
 
-      const filterType = columnFilters[0]?.type;
+      const filterType = columnFilters[0].type;
 
       let pattern = '';
       let regExp: RegExp;
@@ -90,16 +90,17 @@ export class DataSourceService<T extends Datasource<T>> {
   getCheckFilters(column: string, label?: string): Filter[] {
     return this._dataSource
       .reduce((acc, curr) => {
-        const exists = acc.find(data => data.value === curr[column as keyof T]);
+        const currentValue = curr[column as keyof T];
+        const exists = acc.find(data => data.value === currentValue);
 
         if (exists) {
           exists.hitCount += 1;
         } else {
-          acc.push({value: curr[column as keyof T], hitCount: 1});
+          acc.push({value: currentValue, hitCount: 1});
         }
 
         return acc;
-      }, [] as Array<FilterValueCount>)
+      }, [] as Array<FilterValueHitCount>)
       .map(({value, hitCount}): Filter =>
         new CheckFilter({value: value.toString(), column, label, hitCount}
         )
