@@ -1,8 +1,8 @@
 import { Component, Input, OnDestroy } from '@angular/core';
-import moment, { Moment, now } from "moment";
+import moment, { Moment } from "moment";
 import { DateRange, ExtractDateTypeFromSelection, MatDatepickerInputEvent } from "@angular/material/datepicker";
 import { SelectedFilterStateService } from "../selected-filter-state.service";
-import { filter, Subject, takeUntil } from "rxjs";
+import { map, Subject, takeUntil } from "rxjs";
 import { DateFilter } from "../models/date-filter.model";
 
 @Component({
@@ -15,9 +15,9 @@ export class DataGridDateFilterComponent implements OnDestroy {
   @Input() label = '';
   @Input() column = '';
 
-  maxDate!: Moment;
-  fromDate: Moment | null = moment(now());
-  toDate: Moment | null = moment(now());
+  maxDate: Moment;
+  fromDate!: Moment | null;
+  toDate!: Moment | null;
 
   private readonly unsubscribe = new Subject<void>();
 
@@ -25,10 +25,12 @@ export class DataGridDateFilterComponent implements OnDestroy {
     private readonly selectedFilterService: SelectedFilterStateService
   ) {
     this.maxDate = moment();
-    this.selectedFilterService.selectedFilter$
+    this.resetFilter();
+    
+    this.selectedFilterService.removedFilter$
       .pipe(
         takeUntil(this.unsubscribe),
-        filter(filters => !filters.get(this.column))
+        map(removedFilter => removedFilter.filter(filter => filter.column === this.column))
       )
       .subscribe(() => this.resetFilter());
   }

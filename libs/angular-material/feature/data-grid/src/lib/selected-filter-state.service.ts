@@ -9,14 +9,16 @@ import { isArray } from "chart.js/helpers";
 })
 export class SelectedFilterStateService {
 
-  private readonly selectedFilters = new BehaviorSubject<GroupedFilter>(new Map<string, Filter[]>());
+  private readonly selectedFilter = new BehaviorSubject<GroupedFilter>(new Map<string, Filter[]>());
+  private readonly removedFilter = new Subject<Filter[]>();
   private readonly resetAll = new Subject<void>();
 
-  readonly selectedFilter$ = this.selectedFilters.asObservable().pipe(shareReplay(1));
+  readonly selectedFilter$ = this.selectedFilter.asObservable().pipe(shareReplay(1));
+  readonly removedFilter$ = this.removedFilter.asObservable().pipe(share());
   readonly resetAll$ = this.resetAll.asObservable().pipe(share());
 
   private get filterList(): GroupedFilter {
-    return this.selectedFilters.value;
+    return this.selectedFilter.value;
   }
 
   /**
@@ -34,7 +36,7 @@ export class SelectedFilterStateService {
 
     this.filterList.set(column, updatedFilters);
 
-    this.selectedFilters.next(this.filterList);
+    this.selectedFilter.next(this.filterList);
   }
 
   /**
@@ -48,7 +50,7 @@ export class SelectedFilterStateService {
     const newFilters = isArray(filter) ? filter : [filter];
     this.filterList.set(column, newFilters);
 
-    this.selectedFilters.next(this.filterList);
+    this.selectedFilter.next(this.filterList);
   }
 
   removeFilter(filter: Filter): void {
@@ -62,18 +64,30 @@ export class SelectedFilterStateService {
       this.filterList.delete(column);
     }
 
-    this.selectedFilters.next(this.filterList);
+    this.selectedFilter.next(this.filterList);
+    this.removedFilter.next([filter]);
+
   }
 
   removeAllFilters(): void {
+    const removedFilter = Array.from(this.filterList.values()).reduce((acc, curr) => {
+      acc.push(...curr);
+      return acc;
+    })
+
     this.filterList.clear();
-    this.selectedFilters.next(this.filterList);
+
+    this.selectedFilter.next(this.filterList);
     this.resetAll.next();
+    this.removedFilter.next(removedFilter);
   }
 
   removeFiltersByColumn(column: string): void {
+    const removedFilter = this.filterList.get(column) ?? [];
+
     this.filterList.delete(column);
 
-    this.selectedFilters.next(this.filterList);
+    this.selectedFilter.next(this.filterList);
+    this.removedFilter.next(removedFilter);
   }
 }

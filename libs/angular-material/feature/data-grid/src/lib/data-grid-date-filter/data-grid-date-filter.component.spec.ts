@@ -5,7 +5,6 @@ import { MockModule, MockProvider } from "ng-mocks";
 import { MatDatepickerModule } from "@angular/material/datepicker";
 import { SelectedFilterStateService } from "../selected-filter-state.service";
 import { of } from "rxjs";
-import { GroupedFilter } from "../models/grouped-filter.model";
 
 describe('DataGridDateFilterComponent', () => {
   let component: DataGridDateFilterComponent;
@@ -20,7 +19,7 @@ describe('DataGridDateFilterComponent', () => {
       declarations: [DataGridDateFilterComponent],
       providers: [
         MockProvider(SelectedFilterStateService, {
-          selectedFilter$: of({} as GroupedFilter),
+          removedFilter$: of([]),
           updateFiltersByColumn: jest.fn(),
           removeFiltersByColumn: jest.fn()
         })
