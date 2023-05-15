@@ -63,6 +63,6 @@ export class DataGridComponent<T extends Datasource<T>> implements OnInit, OnDes
   }
 
   removelAllFilter() {
-    this.selectedFilterService.removeAllFilters();
+    this.selectedFilterService.removeAllFilter();
   }
 }

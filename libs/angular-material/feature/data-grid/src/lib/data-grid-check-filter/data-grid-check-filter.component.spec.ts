@@ -28,7 +28,7 @@ describe('DataGridTextFilterComponent', () => {
           resetAll$: of(void ''),
           addFilter: jest.fn(),
           removeFilter: jest.fn(),
-          removeFiltersByColumn: jest.fn()
+          removeFilterByColumn: jest.fn()
         }),
       ]
     }).compileComponents();
@@ -95,7 +95,7 @@ describe('DataGridTextFilterComponent', () => {
 
     let spyOnRemoveFiltersByColumn: jest.SpyInstance;
 
-    beforeEach(() => spyOnRemoveFiltersByColumn = jest.spyOn(selectedFilterServicec, 'removeFiltersByColumn'));
+    beforeEach(() => spyOnRemoveFiltersByColumn = jest.spyOn(selectedFilterServicec, 'removeFilterByColumn'));
 
     it('should remove all filters from column', () => {
       component.filtersSelected = 1;

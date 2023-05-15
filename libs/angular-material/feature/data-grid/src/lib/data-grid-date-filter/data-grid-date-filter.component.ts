@@ -73,7 +73,7 @@ export class DataGridDateFilterComponent implements OnDestroy {
     if (updatedFilter.value) {
       this.selectedFilterService.updateFilterByColumn(updatedFilter, this.column);
     } else {
-      this.selectedFilterService.removeFiltersByColumn(this.column);
+      this.selectedFilterService.removeFilterByColumn(this.column);
     }
   }
 }

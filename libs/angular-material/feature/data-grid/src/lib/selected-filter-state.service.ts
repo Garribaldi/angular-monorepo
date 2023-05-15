@@ -69,7 +69,7 @@ export class SelectedFilterStateService {
 
   }
 
-  removeAllFilters(): void {
+  removeAllFilter(): void {
     const removedFilter = Array.from(this.filterList.values()).reduce((acc, curr) => {
       acc.push(...curr);
       return acc;
@@ -82,7 +82,7 @@ export class SelectedFilterStateService {
     this.removedFilter.next(removedFilter);
   }
 
-  removeFiltersByColumn(column: string): void {
+  removeFilterByColumn(column: string): void {
     const removedFilter = this.filterList.get(column) ?? [];
 
     this.filterList.delete(column);

@@ -69,7 +69,7 @@ export class DataGridCheckFilterComponent implements OnInit, OnDestroy {
 
   resetFilter() {
     this.filtersSelected = 0;
-    this.selectedFilterService.removeFiltersByColumn(this.column);
+    this.selectedFilterService.removeFilterByColumn(this.column);
     this.treeControl.collapseAll();
   }
 

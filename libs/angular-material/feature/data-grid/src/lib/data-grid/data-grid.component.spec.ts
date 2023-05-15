@@ -33,7 +33,7 @@ describe('DataGridComponent', () => {
         MockProvider(SelectedFilterStateService, {
           selectedFilter$: of(testFilterGroup),
           removeFilter: jest.fn(),
-          removeAllFilters: jest.fn()
+          removeAllFilter: jest.fn()
         }),
         MockProvider(DataSourceService<TestData>, {
           filter: jest.fn(),
@@ -79,7 +79,7 @@ describe('DataGridComponent', () => {
     it('should remove all filter', () => {
       component.removelAllFilter();
 
-      expect(selectedFilterStateService.removeAllFilters).toHaveBeenCalled();
+      expect(selectedFilterStateService.removeAllFilter).toHaveBeenCalled();
     });
   });
 });
