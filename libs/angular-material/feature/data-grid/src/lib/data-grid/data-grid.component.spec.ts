@@ -59,7 +59,7 @@ describe('DataGridComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
-    expect(component.filters).toEqual(testFilterGroup);
+    expect(component.groupedFilter).toEqual(testFilterGroup);
     expect(dataSourceService.filter).toHaveBeenCalledWith(testFilterGroup);
     expect(dataSourceService.dataSource).toEqual(testDataSource);
     expect(spyOnFiltered).toHaveBeenCalled();

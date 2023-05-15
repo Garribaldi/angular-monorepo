@@ -1,8 +1,8 @@
 <mat-chip-listbox aria-label="Selected Filters" selectable="false" class="chiplist">
 
-  <ng-container *ngFor="let filterList of filters | keyvalue">
+  <ng-container *ngFor="let filterList of groupedFilter | keyvalue">
 
-    <section class="chiplist__section" [attr.data-cy]="'data-grid-chiplist-' + filterList.key | toSlashCase">
+    <section class="chiplist__section" [cyGet]="'data-grid-chiplist-' + filterList.key | toSlashCase">
       <div class="chiplist__section-headline">{{filterList.value[0].label}}</div>
       <mat-chip-option *ngFor="let filter of filterList.value"
                        [removable]="true"
@@ -18,7 +18,7 @@
   </ng-container>
 
   <section data-cy="data-grid-chiplist-remove-all">
-    <mat-chip-option *ngIf="filters?.size"
+    <mat-chip-option *ngIf="groupedFilter?.size"
                      [removable]="true"
                      (removed)="removeAll()"
                      color="primary">

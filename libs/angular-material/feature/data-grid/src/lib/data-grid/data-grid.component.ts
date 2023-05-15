@@ -24,7 +24,7 @@ export class DataGridComponent<T extends Datasource<T>> implements OnInit, OnDes
 
   @Input() dataSource?: T[];
 
-  filters: GroupedFilter | undefined;
+  groupedFilter: GroupedFilter | undefined;
 
   @Output() filtered = new EventEmitter<T[]>();
 
@@ -39,15 +39,15 @@ export class DataGridComponent<T extends Datasource<T>> implements OnInit, OnDes
   ngOnInit() {
     this.selectedFilterService.selectedFilter$
       .pipe(takeUntil(this.unsubscribe))
-      .subscribe(filters => {
-        this.dataSourceService.filter(filters);
-        this.filters = filters;
+      .subscribe(selectedFilter => {
+        this.dataSourceService.filter(selectedFilter);
+        this.groupedFilter = selectedFilter;
       });
 
     this.dataSourceService.filteredData$
       .pipe(takeUntil(this.unsubscribe))
-      .subscribe(filters => {
-        this.filtered.next(filters);
+      .subscribe(filteredData => {
+        this.filtered.next(filteredData);
       });
 
     this.dataSourceService.dataSource = this.dataSource ?? [];

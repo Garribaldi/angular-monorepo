@@ -1,6 +1,5 @@
 import { Component, HostBinding, Input, OnInit } from '@angular/core';
 import { DataSourceService } from "../data-source.service";
-import { SelectedFilterStateService } from "../selected-filter-state.service";
 import { FilterType } from "../models/filter-type.model";
 import { Filter } from "../models/filter.model";
 import { assertCannotReach, convertToSlashCase } from "@local/shared/utils";
@@ -31,8 +30,7 @@ export class DataGridColumnComponent<T extends Datasource<T>> implements OnInit 
   filters: Filter[] = [];
 
   constructor(
-    private readonly dataSourceService: DataSourceService<T>,
-    private readonly selectedFilterService: SelectedFilterStateService
+    private readonly dataSourceService: DataSourceService<T>
   ) {
   }
 
@@ -48,9 +46,5 @@ export class DataGridColumnComponent<T extends Datasource<T>> implements OnInit 
       default:
         assertCannotReach(this.type);
     }
-  }
-
-  resetColumn() {
-    this.selectedFilterService.removeFiltersByColumn(this.column);
   }
 }

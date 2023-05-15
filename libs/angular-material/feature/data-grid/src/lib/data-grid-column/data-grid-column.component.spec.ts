@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DataGridColumnComponent } from './data-grid-column.component';
 import { MockComponents, MockProvider } from "ng-mocks";
-import { SelectedFilterStateService } from "../selected-filter-state.service";
 import { DataSourceService } from "../data-source.service";
 import { FilterType } from "../models/filter-type.model";
 import { DataGridCheckFilterComponent } from "../data-grid-check-filter/data-grid-check-filter.component";
@@ -31,8 +30,7 @@ describe('DataGridColumnComponent', () => {
         MockComponents(DataGridCheckFilterComponent, DataGridDateFilterComponent)
       ],
       providers: [
-        MockProvider(DataSourceService, {getCheckFilters: jest.fn().mockReturnValue(testFilter)}),
-        MockProvider(SelectedFilterStateService, {removeFiltersByColumn: jest.fn()})
+        MockProvider(DataSourceService, {getCheckFilters: jest.fn().mockReturnValue(testFilter)})
       ]
     }).compileComponents();
 

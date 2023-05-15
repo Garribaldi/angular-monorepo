@@ -39,7 +39,7 @@ nx g @nrwl/angular:service api/table-data --project=generic-table-data-access
 ## Add Directive
 
 ```
-nx g @schematics/angular:directive table/table-row-template --prefix=local-shared --project=shared-ui --export=true
+nx g @schematics/angular:directive directives/cypress-selector --prefix=local-shared --project=shared-utils --export=true
 ```
 
 ## Add Pipe

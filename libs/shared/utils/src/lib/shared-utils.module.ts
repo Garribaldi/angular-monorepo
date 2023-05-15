@@ -4,6 +4,7 @@ import { NgTemplateNameDirective } from "./directives/ng-template-name.directive
 import { GetTemplateRefPipe } from './pipes/get-template-ref.pipe';
 import { DisableInputAssistanceDirective } from './directives/disable-input-assistance.directive';
 import { ToSlashCasePipe } from './pipes/to-slash-case.pipe';
+import { CypressSelectorDirective } from './directives/cypress-selector.directive';
 
 @NgModule({
   imports: [CommonModule],
@@ -11,13 +12,15 @@ import { ToSlashCasePipe } from './pipes/to-slash-case.pipe';
     NgTemplateNameDirective,
     GetTemplateRefPipe,
     DisableInputAssistanceDirective,
-    ToSlashCasePipe
+    ToSlashCasePipe,
+    CypressSelectorDirective
   ],
   exports: [
     NgTemplateNameDirective,
     GetTemplateRefPipe,
     DisableInputAssistanceDirective,
-    ToSlashCasePipe
+    ToSlashCasePipe,
+    CypressSelectorDirective
   ],
 })
 export class SharedUtilsModule {}
