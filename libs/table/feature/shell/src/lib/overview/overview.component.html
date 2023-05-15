@@ -1,1 +1,31 @@
-<agr-table [data]="employees$ | async"></agr-table>
+<h2>Base Layout</h2>
+<local-table [data]="employees$ | async"></local-table>
+
+<h2>Base layout with header configuration</h2>
+<local-table [data]="employees$ | async">
+
+  <ng-template appTableHeader>
+    <th>First name</th>
+    <th>Last name</th>
+  </ng-template>
+
+</local-table>
+
+<h2>Base layout with header and row configuration</h2>
+<local-table [data]="inventory$ | async">
+
+  <ng-template appTableHeader="">
+    <th>Item</th>
+    <th>Price</th>
+    <th>Purchase</th>
+  </ng-template>
+
+  <ng-template appTableRow let-row>
+    <td>{{row.name}}</td>
+    <td>{{row.price | currency: row.currency}}</td>
+    <td>
+      <button *ngIf="row.inStock > 0" (click)="purchaseItem(row.plu)">Buy now</button>
+    </td>
+  </ng-template>
+
+</local-table>

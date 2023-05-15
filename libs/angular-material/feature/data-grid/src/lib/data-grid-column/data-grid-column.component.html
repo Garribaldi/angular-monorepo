@@ -1,0 +1,15 @@
+<ng-container [ngSwitch]="type">
+
+  <ng-container *ngSwitchCase="filterType.CHECK_FILTER">
+    <local-angular-material-data-grid-check-filter [filter]="filters"></local-angular-material-data-grid-check-filter>
+  </ng-container>
+
+  <ng-container *ngSwitchCase="filterType.DATE_FILTER">
+    <local-angular-material-data-grid-date-filter [label]="label" [column]="column"></local-angular-material-data-grid-date-filter>
+  </ng-container>
+
+  <ng-container *ngSwitchDefault>
+    <div>No Filter available</div>
+  </ng-container>
+
+</ng-container>

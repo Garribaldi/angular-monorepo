@@ -1,0 +1,30 @@
+@use "sass:map";
+@use "@angular/material" as mat;
+
+.main-nav {
+
+  &__container {
+    display: flex;
+    padding: 0;
+    margin: 0 0 1rem 0;
+    border-bottom: 2px solid #ededed;
+    gap: .5rem;
+  }
+
+  &__item {
+    display: flex;
+    list-style: none;
+  }
+
+  &__link {
+    text-decoration: none;
+    font-size: 1.25rem;
+    padding: 1rem;
+    color: #585858;
+
+    &--active {
+      color: #ffffff;
+      background-color: map.get(mat.$blue-gray-palette, 600);
+    }
+  }
+}

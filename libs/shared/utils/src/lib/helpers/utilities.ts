@@ -5,3 +5,7 @@
 export const assertCannotReach = (value: never): never => {
   throw new Error(`Not exhausted all switch cases from ${value}`);
 }
+
+export const convertToSlashCase = (value: string): string => {
+  return value.replace(/[A-Z]/g, letter => `-${letter.toLowerCase()}`);
+}

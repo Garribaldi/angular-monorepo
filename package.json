@@ -4,9 +4,10 @@
   "license": "MIT",
   "scripts": {
     "serve": "nx serve demo",
+    "serve:4400": "npm run serve -- --port 4400",
     "build": "nx build demo",
     "test": "nx run-many --all --target=test --parallel",
-    "test:coverage": "nx run-many --all --target=test --coverage",
+    "test:coverage": "npm run test -- --coverage",
     "e2e": "nx e2e demo-e2e",
     "e2e:prod": "npm run e2e -- --configuration=production",
     "e2e:watch": "npm run e2e -- --watch"
@@ -52,6 +53,7 @@
     "@schematics/angular": "~15.2.0",
     "@types/jest": "^29.4.0",
     "@types/node": "16.11.7",
+    "@types/uuid": "^9.0.1",
     "@typescript-eslint/eslint-plugin": "^5.36.1",
     "@typescript-eslint/parser": "^5.36.1",
     "cypress": "^12.2.0",

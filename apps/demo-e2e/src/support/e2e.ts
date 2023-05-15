@@ -15,4 +15,4 @@
 
 // Import commands.js using ES2015 syntax:
 import "./commands";
-import "@local/shared/cypress-commands"
+import "@local/shared/feature/cypress-commands"

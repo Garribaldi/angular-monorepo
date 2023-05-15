@@ -1,0 +1,47 @@
+<div data-cy="data-grid-columns">
+  <local-angular-material-data-grid [dataSource]="dataSource" (filtered)="onFilter($event)">
+    <local-angular-material-data-grid-column column="teamId" [type]="filterType.CHECK_FILTER" label="Team Id"></local-angular-material-data-grid-column>
+    <local-angular-material-data-grid-column column="teamName" [type]="filterType.CHECK_FILTER" label="Team name"></local-angular-material-data-grid-column>
+    <local-angular-material-data-grid-column column="location" [type]="filterType.CHECK_FILTER" label="Location"></local-angular-material-data-grid-column>
+    <local-angular-material-data-grid-column column="date" [type]="filterType.DATE_FILTER" label="Last Game"></local-angular-material-data-grid-column>
+  </local-angular-material-data-grid>
+</div>
+
+<mat-card>
+  <table mat-table [dataSource]="filteredDataSource" class="mat-elevation-z8" data-cy="data-grid-table">
+
+    <ng-container matColumnDef="teamId">
+      <th mat-header-cell *matHeaderCellDef>Team Id</th>
+      <td mat-cell *matCellDef="let element">{{element.teamId}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="teamName">
+      <th mat-header-cell *matHeaderCellDef>Team</th>
+      <td mat-cell *matCellDef="let element">{{element.teamName}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="simpleName">
+      <th mat-header-cell *matHeaderCellDef>Simple Name</th>
+      <td mat-cell *matCellDef="let element">{{element.simpleName}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="location">
+      <th mat-header-cell *matHeaderCellDef>Location</th>
+      <td mat-cell *matCellDef="let element">{{element.location}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="abbreviation">
+      <th mat-header-cell *matHeaderCellDef>Abbreviation</th>
+      <td mat-cell *matCellDef="let element">{{element.abbreviation}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="date">
+      <th mat-header-cell *matHeaderCellDef>Last Game</th>
+      <td mat-cell *matCellDef="let element">{{element.date | date: 'dd.MM.YYYY'}}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+  </table>
+</mat-card>

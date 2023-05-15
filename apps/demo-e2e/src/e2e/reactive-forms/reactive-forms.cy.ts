@@ -1,6 +1,6 @@
 import { getForm } from "../../support/app.po";
 
-describe("reactive forms", () => {
+describe("Reactive Forms", () => {
 
   beforeEach(() => {
     cy.visit("/form");

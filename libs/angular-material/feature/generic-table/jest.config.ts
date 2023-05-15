@@ -1,10 +1,10 @@
 /* eslint-disable */
 export default {
-  displayName: 'angular-material-feature-genric-table',
+  displayName: 'angular-material-feature-generic-table',
   preset: '../../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   coverageDirectory:
-    '../../../../coverage/libs/angular-material/feature/genric-table',
+    '../../../../coverage/libs/angular-material/feature/generic-table',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': [
       'jest-preset-angular',
