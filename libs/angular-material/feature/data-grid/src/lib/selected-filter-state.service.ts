@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, share, shareReplay, Subject } from "rxjs";
 import { Filter } from "./models/filter.model";
 import { GroupedFilter } from "./models/grouped-filter.model";
+import { isArray } from "chart.js/helpers";
 
 @Injectable({
   providedIn: 'root'
@@ -37,12 +38,15 @@ export class SelectedFilterStateService {
   }
 
   /**
-   * Replace a filter value by its type.
+   * Replace a filter value by its column.
+   * Only provide the filter(s). The column is read via its property.
    *
-   * @param filter array of filter objects
+   * @param filter single filter or array of filter objects
+   * @param column name of filter column to update
    */
-  updateFiltersByColumn(filter: Filter): void {
-    this.filterList.set(filter.column, [filter]);
+  updateFiltersByColumn(filter: Filter | Filter[], column: string): void {
+    const newFilters = isArray(filter) ? filter : [filter];
+    this.filterList.set(column, newFilters);
 
     this.selectedFilters.next(this.filterList);
   }
