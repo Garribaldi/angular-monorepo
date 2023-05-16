@@ -41,7 +41,7 @@ import { AngularMaterialFeatureDataGridModule } from "@local/angular-material/fe
     MatNativeDateModule,
     MatButtonModule,
     MatTabsModule,
-    AngularMaterialFeatureDataGridModule,
+    AngularMaterialFeatureDataGridModule
   ],
   declarations: [
     OverviewComponent,
@@ -51,7 +51,7 @@ import { AngularMaterialFeatureDataGridModule } from "@local/angular-material/fe
   ],
   exports: [
     OverviewComponent
-  ],
+  ]
 })
 export class AngularMaterialFeatureShellModule {
 }
