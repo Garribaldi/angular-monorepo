@@ -40,7 +40,7 @@ import { SelectedFilterStateService } from "./selected-filter-state.service";
     DataGridColumnComponent,
     DataGridCheckFilterComponent,
     DataGridChipsBarComponent,
-    DataGridDateFilterComponent,
+    DataGridDateFilterComponent
   ],
   exports: [
     DataGridComponent,
