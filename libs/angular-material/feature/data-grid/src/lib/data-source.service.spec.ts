@@ -34,7 +34,11 @@ describe('DataGridService', () => {
   });
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      providers: [
+        DataSourceService
+      ]
+    });
     service = TestBed.inject(DataSourceService<TestData>);
     service.dataSource = testDataSource;
   });

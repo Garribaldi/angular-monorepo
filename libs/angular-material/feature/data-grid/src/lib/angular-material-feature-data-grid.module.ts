@@ -17,22 +17,24 @@ import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MatMomentDateModule } from "@angular/material-moment-adapter";
 import { MAT_DATE_LOCALE } from "@angular/material/core";
 import { SharedUtilsModule } from "@local/shared/utils";
+import { DataSourceService } from "./data-source.service";
+import { SelectedFilterStateService } from "./selected-filter-state.service";
 
 @NgModule({
-    imports: [
-        CommonModule,
-        MatCardModule,
-        MatTreeModule,
-        CdkTreeModule,
-        MatButtonModule,
-        MatIconModule,
-        MatCheckboxModule,
-        MatChipsModule,
-        MatFormFieldModule,
-        MatDatepickerModule,
-        MatMomentDateModule,
-        SharedUtilsModule
-    ],
+  imports: [
+    CommonModule,
+    MatCardModule,
+    MatTreeModule,
+    CdkTreeModule,
+    MatButtonModule,
+    MatIconModule,
+    MatCheckboxModule,
+    MatChipsModule,
+    MatFormFieldModule,
+    MatDatepickerModule,
+    MatMomentDateModule,
+    SharedUtilsModule
+  ],
   declarations: [
     DataGridComponent,
     DataGridColumnComponent,
@@ -45,9 +47,12 @@ import { SharedUtilsModule } from "@local/shared/utils";
     DataGridColumnComponent
   ],
   providers: [
+    DataSourceService,
+    SelectedFilterStateService,
     {
       provide: MAT_DATE_LOCALE, useValue: 'de-DE'
     }
   ]
 })
-export class AngularMaterialFeatureDataGridModule {}
+export class AngularMaterialFeatureDataGridModule {
+}

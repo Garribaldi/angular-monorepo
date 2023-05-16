@@ -4,18 +4,14 @@ import { Filter } from "./models/filter.model";
 import { GroupedFilter } from "./models/grouped-filter.model";
 import { isArray } from "chart.js/helpers";
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class SelectedFilterStateService {
 
   private readonly selectedFilter = new BehaviorSubject<GroupedFilter>(new Map<string, Filter[]>());
   private readonly removedFilter = new Subject<Filter[]>();
-  private readonly resetAll = new Subject<void>();
 
   readonly selectedFilter$ = this.selectedFilter.asObservable().pipe(shareReplay(1));
   readonly removedFilter$ = this.removedFilter.asObservable().pipe(share());
-  readonly resetAll$ = this.resetAll.asObservable().pipe(share());
 
   private get filterList(): GroupedFilter {
     return this.selectedFilter.value;
@@ -94,7 +90,6 @@ export class SelectedFilterStateService {
     this.filterList.clear();
 
     this.selectedFilter.next(this.filterList);
-    this.resetAll.next();
     this.removedFilter.next(removedFilter);
   }
 

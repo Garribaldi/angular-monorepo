@@ -13,7 +13,11 @@ describe('DataGridStateService', () => {
   const testCheckFilter = new CheckFilter({value: 'Test Check', column: 'checkColumn', label: 'Check Label', hitCount: 1});
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      providers: [
+        SelectedFilterStateService
+      ]
+    });
     service = TestBed.inject(SelectedFilterStateService);
   });
 

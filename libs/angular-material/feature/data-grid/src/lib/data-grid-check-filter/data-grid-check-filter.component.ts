@@ -39,10 +39,6 @@ export class DataGridCheckFilterComponent implements OnDestroy {
       .subscribe(filter => {
         this.removeSelectedFilter(filter);
       });
-
-    this.selectedFilterService.resetAll$
-      .pipe(takeUntil(this.unsubscribe))
-      .subscribe(() => this.treeControl.collapseAll());
   }
 
   ngOnDestroy() {
@@ -106,5 +102,8 @@ export class DataGridCheckFilterComponent implements OnDestroy {
 
   private updateSelectedFilterAmount() {
     this.filtersSelected = this.dataSource.data[0].children?.filter(childNode => childNode.checked).length ?? 0;
+    if (this.filtersSelected === 0) {
+      this.treeControl.collapseAll();
+    }
   }
 }

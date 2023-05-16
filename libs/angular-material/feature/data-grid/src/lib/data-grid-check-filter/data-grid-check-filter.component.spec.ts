@@ -25,7 +25,6 @@ describe('DataGridTextFilterComponent', () => {
       providers: [
         MockProvider(SelectedFilterStateService, {
           removedFilter$: of([]),
-          resetAll$: of(void ''),
           addFilter: jest.fn(),
           removeFilter: jest.fn(),
           removeFilterByColumn: jest.fn()

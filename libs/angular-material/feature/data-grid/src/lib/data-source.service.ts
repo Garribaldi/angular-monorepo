@@ -10,9 +10,7 @@ import { FilterValueHitCount } from "./models/filter-value-count.model";
 import { Datasource } from "./models/datasource.model";
 import { distinctUntilChanged, ReplaySubject, share, shareReplay, Subject } from "rxjs";
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class DataSourceService<T extends Datasource<T>> {
 
   private _dataSource: T[] = [];
