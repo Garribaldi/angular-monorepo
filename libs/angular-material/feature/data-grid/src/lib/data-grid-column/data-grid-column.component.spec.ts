@@ -6,6 +6,7 @@ import { FilterType } from "../models/filter-type.model";
 import { DataGridCheckFilterComponent } from "../data-grid-check-filter/data-grid-check-filter.component";
 import { DataGridDateFilterComponent } from "../data-grid-date-filter/data-grid-date-filter.component";
 import { Filter } from "../models/filter.model";
+import { of } from "rxjs";
 
 type TestData = { name: string };
 
@@ -30,7 +31,10 @@ describe('DataGridColumnComponent', () => {
         MockComponents(DataGridCheckFilterComponent, DataGridDateFilterComponent)
       ],
       providers: [
-        MockProvider(DataSourceService, {getCheckFilters: jest.fn().mockReturnValue(testFilter)})
+        MockProvider(DataSourceService, {
+          getCheckFilter: jest.fn().mockReturnValue(testFilter),
+          dataSourceChanged$: of(void '')
+        })
       ]
     }).compileComponents();
 

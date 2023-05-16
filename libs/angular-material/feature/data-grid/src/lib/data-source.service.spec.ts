@@ -5,21 +5,21 @@ import { DateFilter } from "./models/date-filter.model";
 import moment from "moment";
 import { FilterDate } from "./models/filter-date.model";
 import { Filter } from "./models/filter.model";
-import { firstValueFrom, skip } from "rxjs";
+import { firstValueFrom, skip, switchMap, take } from "rxjs";
 
 type TestData = { checkColumn: string, dateColumn: Date };
 
 const msDay = 86400000;
 const yesterday = new Date(Date.now() - msDay);
 
-const testDataSource: TestData[] = [
-  {checkColumn: 'test data 1', dateColumn: new Date()},
-  {checkColumn: 'test data 2', dateColumn: new Date()},
-  {checkColumn: 'test data 3', dateColumn: yesterday}
-];
-
 describe('DataGridService', () => {
   let service: DataSourceService<TestData>;
+
+  const testDataSource: TestData[] = [
+    {checkColumn: 'test data 1', dateColumn: new Date()},
+    {checkColumn: 'test data 2', dateColumn: new Date()},
+    {checkColumn: 'test data 3', dateColumn: yesterday}
+  ];
 
   const testCheckFilter = new CheckFilter({
     value: testDataSource[1].checkColumn,
@@ -80,12 +80,31 @@ describe('DataGridService', () => {
   describe('getCheckFilters()', () => {
 
     it('should generate check filter array from datasource', () => {
-      const result = service.getCheckFilters('checkColumn','Check Label' );
+      const result = service.getCheckFilter('checkColumn', 'Check Label');
 
       expect(result.length).toEqual(3);
       expect(result[0].value).toEqual(testDataSource[0].checkColumn);
       expect(result[1].value).toEqual(testDataSource[1].checkColumn);
       expect(result[2].value).toEqual(testDataSource[2].checkColumn);
+    });
+  });
+
+  describe('dataSourceChanged$', () => {
+
+    it('should trigger change', (done) => {
+      const newData = [...testDataSource,     {checkColumn: 'test data 4', dateColumn: new Date()}];
+
+      service.dataSourceChanged$
+        .pipe(
+          take(1),
+          switchMap(() => service.filteredData$.pipe(skip(1)))
+        )
+        .subscribe(filteredData => {
+            expect(filteredData).toEqual(newData);
+            done();
+        });
+
+      service.dataSource = newData;
     });
   });
 });

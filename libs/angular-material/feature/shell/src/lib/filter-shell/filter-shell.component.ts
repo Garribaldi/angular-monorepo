@@ -17,7 +17,7 @@ export class FilterShellComponent {
   filterColumn = 'location';
 
   constructor(
-    sharedDataService: SharedDataService
+    private readonly sharedDataService: SharedDataService
   ) {
     this.unfilteredData$ = sharedDataService.getNbaTeams$();
   }

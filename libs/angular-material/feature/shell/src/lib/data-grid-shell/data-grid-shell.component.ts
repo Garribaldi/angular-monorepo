@@ -18,7 +18,7 @@ export class DataGridShellComponent {
   filterType = FilterType;
 
   constructor(
-    sharedDataService: SharedDataService
+    private readonly sharedDataService: SharedDataService
   ) {
     sharedDataService.getNbaTeams$()
       .pipe(take(1))

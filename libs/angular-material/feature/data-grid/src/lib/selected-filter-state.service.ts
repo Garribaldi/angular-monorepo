@@ -23,52 +23,68 @@ export class SelectedFilterStateService {
 
   /**
    * Add a new filter at the end of the filter list.
+   * If the added filter is already in the list, it is ignored.
    *
    * You can provide a single filter or a filter array.
-   * @param filter single filter or array of filters
+   * @param filter single filter or array of filter
    */
 
-  addFilter(filter: Filter): void {
-    const column = filter.column;
-    const columnFilters = this.filterList.get(column) ?? [];
-    const updatedFilters = columnFilters.filter(existing => existing.id !== filter.id);
-    updatedFilters.push(filter)
+  addFilter(filter: Filter | Filter[]): void {
+    let addedFilter = Array.isArray(filter) ? filter : [filter];
 
-    this.filterList.set(column, updatedFilters);
+    const column = addedFilter[0].column;
+    const columnFilter = this.filterList.get(column) ?? [];
 
+    addedFilter = addedFilter.filter(added => !columnFilter.some(existing => existing.id === added.id));
+    columnFilter.push(...addedFilter)
+
+    this.filterList.set(column, columnFilter);
     this.selectedFilter.next(this.filterList);
   }
 
   /**
-   * Replace a filter value by its column.
-   * Only provide the filter(s). The column is read via its property.
+   * Replace a filter list by its column.
+   * Provide a single filter or filter array and the column name.
    *
-   * @param filter single filter or array of filter objects
+   * It is checked if the column and filter column properties match.
+   *
+   * @param filter single filter or array of filter
    * @param column name of filter column to update
    */
   updateFilterByColumn(filter: Filter | Filter[], column: string): void {
-    const newFilter = isArray(filter) ? filter : [filter];
-    this.filterList.set(column, newFilter);
+    let updatedFilter = isArray(filter) ? filter : [filter];
+    updatedFilter = updatedFilter.filter(updated => updated.column === column);
 
+    this.filterList.set(column, updatedFilter);
     this.selectedFilter.next(this.filterList);
   }
 
-  removeFilter(filter: Filter): void {
-    const column = filter.column;
-    const columnFilter = this.filterList.get(column) ?? [];
-    const updatedColumnFilter = columnFilter.filter(existingFilter => existingFilter.id !== filter.id);
+  /**
+   * Removes a single filter or an array of filter from the filter list.
+   * @param filter single filter or array of filter
+   */
+  removeFilter(filter: Filter | Filter[]): void {
+    const removedFilter = isArray(filter) ? filter : [filter];
 
-    if (updatedColumnFilter.length) {
-      this.filterList.set(column, updatedColumnFilter)
-    } else {
-      this.filterList.delete(column);
-    }
+    removedFilter.forEach(removed => {
+      const column = removed.column;
+      const columnFilter = this.filterList.get(column) ?? [];
+      const updatedColumnFilter = columnFilter.filter(existingFilter => existingFilter.id !== removed.id);
 
+      if (updatedColumnFilter.length) {
+        this.filterList.set(column, updatedColumnFilter)
+      } else {
+        this.filterList.delete(column);
+      }
+    });
+
+    this.removedFilter.next(removedFilter);
     this.selectedFilter.next(this.filterList);
-    this.removedFilter.next([filter]);
-
   }
 
+  /**
+   * Remove all filter from list and clear data
+   */
   removeAllFilter(): void {
     const removedFilter = Array.from(this.filterList.values()).reduce((acc, curr) => {
       acc.push(...curr);
@@ -82,6 +98,12 @@ export class SelectedFilterStateService {
     this.removedFilter.next(removedFilter);
   }
 
+  /**
+   * Remove a filter list by its column.
+   * Provide column name to be deleted from the list.
+   *
+   * @param column name of filter column to update
+   */
   removeFilterByColumn(column: string): void {
     const removedFilter = this.filterList.get(column) ?? [];
 

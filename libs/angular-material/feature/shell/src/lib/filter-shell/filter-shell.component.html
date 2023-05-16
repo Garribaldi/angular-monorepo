@@ -1,5 +1,6 @@
+<ng-container *ngIf="(unfilteredData$ | async) as unfilteredData">
 <local-angular-material-filter
-  [unfilteredData]="unfilteredData$ | async"
+  [unfilteredData]="unfilteredData"
   [filterColumn]="filterColumn"
   (dataFiltered)="setDisplayColumns($event)"></local-angular-material-filter>
 
@@ -21,3 +22,4 @@
 
  </table>
 </mat-card>
+</ng-container>

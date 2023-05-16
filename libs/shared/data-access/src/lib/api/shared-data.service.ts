@@ -39,7 +39,7 @@ export class SharedDataService {
   getNbaTeams$(): Observable<NbaTeam[]> {
     return this.httpClient.get<NbaTeamDto[]>('../assets/nba-teams.json')
       .pipe(
-        map(nbaTeam => nbaTeam.map(team => this.mapToNbaTeam(team)))
+        map(nbaTeamDto => nbaTeamDto.map(team => this.mapToNbaTeam(team)))
       );
   }
 

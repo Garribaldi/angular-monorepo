@@ -27,9 +27,9 @@ export class DataSourceService<T extends Datasource<T>> {
   }
 
   private readonly dataSourceChanged = new Subject<void>();
-  readonly dataSourceChanged$ = this.dataSourceChanged.asObservable().pipe(distinctUntilChanged((a, b) => JSON.stringify(a) !== JSON.stringify(b)), share());
-
   private readonly filteredData = new ReplaySubject<T[]>();
+
+  readonly dataSourceChanged$ = this.dataSourceChanged.asObservable().pipe(distinctUntilChanged((a, b) => JSON.stringify(a) !== JSON.stringify(b)), share());
   readonly filteredData$ = this.filteredData.asObservable().pipe(shareReplay(1));
 
   /**
@@ -40,27 +40,27 @@ export class DataSourceService<T extends Datasource<T>> {
    * @param groupedFilter array of selected filter
    */
   filter(groupedFilter: GroupedFilter) {
-    let filtered: T[] = this._dataSource;
+    let filtered = this._dataSource;
 
-    groupedFilter.forEach((columnFilters, column) => {
-      if (!columnFilters.length) {
+    groupedFilter.forEach((columnFilter, column) => {
+      if (!columnFilter.length) {
         return;
       }
-
-      const filterType = columnFilters[0].type;
 
       let pattern = '';
       let regExp: RegExp;
       let filterDate: FilterDate;
 
+      const filterType = columnFilter[0].type;
+
       switch (filterType) {
         case FilterType.CHECK_FILTER:
-          pattern = columnFilters.map(filter => filter.value?.toString() ?? '').join('|');
+          pattern = columnFilter.map(filter => filter.value?.toString() ?? '').join('|');
           regExp = new RegExp(`(${pattern})`, 'ig');
           break;
 
         case FilterType.DATE_FILTER:
-          filterDate = columnFilters.map(filter => filter.value as FilterDate).reduce((acc, curr) => curr);
+          filterDate = columnFilter.map(filter => filter.value as FilterDate).reduce((acc, curr) => curr);
           break;
 
         default:
@@ -91,7 +91,7 @@ export class DataSourceService<T extends Datasource<T>> {
    * @param column object column to take values from
    * @param label column display value (for chips list)
    */
-  getCheckFilters(column: string, label?: string): Filter[] {
+  getCheckFilter(column: string, label?: string): Filter[] {
     return this._dataSource
       .reduce((acc, curr) => {
         const currentValue = curr[column as keyof T];

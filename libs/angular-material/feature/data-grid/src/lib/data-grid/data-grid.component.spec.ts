@@ -6,8 +6,9 @@ import { DataSourceService } from "../data-source.service";
 import { of } from "rxjs";
 import { DataGridChipsBarComponent } from "../data-grid-chips-bar/data-grid-chips-bar.component";
 import { Filter } from "../models/filter.model";
+import { CypressSelectorDirective } from "../../../../../../shared/utils/src/lib/directives/cypress-selector.directive";
 
-type TestData = { column1: string, columns2: string, column3: string };
+type TestData = { column1: string, column2: string, column3: string };
 
 describe('DataGridComponent', () => {
   let component: DataGridComponent<TestData>;
@@ -18,7 +19,7 @@ describe('DataGridComponent', () => {
 
   let spyOnFiltered: jest.SpyInstance;
 
-  const testDataSource: TestData[] = [{column1: 'test 1', columns2: 'test 2', column3: 'test 3'}];
+  const testDataSource: TestData[] = [{column1: 'test 1', column2: 'test 2', column3: 'test 3'}];
 
   const testFilter = {id: 'test-filter-1'} as Filter;
   const testFilterGroup = new Map<string, Filter[]>().set('column1', [testFilter]);
@@ -27,7 +28,8 @@ describe('DataGridComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [
         DataGridComponent,
-        MockComponent(DataGridChipsBarComponent)
+        MockComponent(DataGridChipsBarComponent),
+        CypressSelectorDirective
       ],
       providers: [
         MockProvider(SelectedFilterStateService, {

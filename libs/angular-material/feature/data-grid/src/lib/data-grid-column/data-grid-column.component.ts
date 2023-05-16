@@ -47,7 +47,7 @@ export class DataGridColumnComponent<T extends Datasource<T>> implements OnInit,
       .subscribe(() => {
         switch (this.type) {
           case FilterType.CHECK_FILTER:
-            this.filter = this.dataSourceService.getCheckFilters(this.column, this.label);
+            this.filter = this.dataSourceService.getCheckFilter(this.column, this.label);
             break
           case FilterType.DATE_FILTER:
             break

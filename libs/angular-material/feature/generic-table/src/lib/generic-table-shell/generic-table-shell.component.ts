@@ -22,7 +22,9 @@ export class GenericTableShellComponent {
     buy: 'Buy',
   };
 
-  constructor(private readonly tableDataService: SharedDataService) {
+  constructor(
+    private readonly tableDataService: SharedDataService
+  ) {
     this.employees$ = tableDataService.getEmployees$();
     this.inventory$ = tableDataService.getInventory$();
   }

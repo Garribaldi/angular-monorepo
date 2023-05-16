@@ -6,6 +6,7 @@ import { Filter } from "../models/filter.model";
 import { GroupedFilter } from "../models/grouped-filter.model";
 import { ToSlashCasePipe } from "@local/shared/utils";
 import { MatIconModule } from "@angular/material/icon";
+import { CypressSelectorDirective } from "../../../../../../shared/utils/src/lib/directives/cypress-selector.directive";
 
 describe('DataGridChipsBarComponent', () => {
   let component: DataGridChipsBarComponent;
@@ -23,7 +24,8 @@ describe('DataGridChipsBarComponent', () => {
       ],
       declarations: [
         DataGridChipsBarComponent,
-        ToSlashCasePipe
+        ToSlashCasePipe,
+        CypressSelectorDirective
       ],
     }).compileComponents();
 
