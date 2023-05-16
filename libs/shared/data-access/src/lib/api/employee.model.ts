@@ -1,4 +1,4 @@
-export interface Employee {
+export interface EmployeeDto {
   firstName: string;
   lastName: string;
   email?: string;
@@ -6,3 +6,5 @@ export interface Employee {
   city?: string;
   country?: string;
 }
+
+export type Employee = EmployeeDto;

@@ -1,4 +1,4 @@
-export interface Inventory {
+export interface InventoryDto {
   plu: number,
   supplier: string,
   name: string,
@@ -6,3 +6,5 @@ export interface Inventory {
   price: number,
   currency: string
 }
+
+export type Inventory = InventoryDto;
