@@ -1,18 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { chartsFeatureShellRoutes } from './lib.routes';
+import { captchaFeatureShellRoutes } from './lib.routes';
 import { OverviewComponent } from './overview/overview.component';
-import { ChartsUtilsModule } from "@local/charts/utils";
 
 @NgModule({
-    imports: [
-        CommonModule,
-        RouterModule.forChild(chartsFeatureShellRoutes),
-        ChartsUtilsModule
-    ],
+  imports: [
+    CommonModule,
+    RouterModule.forChild(captchaFeatureShellRoutes),
+    RouterModule.forChild(captchaFeatureShellRoutes),
+  ],
   declarations: [OverviewComponent],
   exports: [OverviewComponent],
 })
-export class ChartsFeatureShellModule {
-}
+export class CaptchaFeatureShellModule {}

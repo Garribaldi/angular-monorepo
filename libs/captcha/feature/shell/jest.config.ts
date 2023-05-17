@@ -1,9 +1,9 @@
 /* eslint-disable */
 export default {
-  displayName: 'charts-feature-bar',
+  displayName: 'captcha-feature-shell',
   preset: '../../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
-  coverageDirectory: '../../../../coverage/libs/charts/feature/bar',
+  coverageDirectory: '../../../../coverage/libs/captcha/feature/shell',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': [
       'jest-preset-angular',
