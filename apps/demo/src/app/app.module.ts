@@ -8,7 +8,8 @@ import {
   MAT_TOOLTIP_DEFAULT_OPTIONS_FACTORY,
   MatTooltipDefaultOptions
 } from "@angular/material/tooltip";
-import { HttpClientModule } from "@angular/common/http";
+import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
+import { HttpCacheInterceptor } from "@local/shared/utils";
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,6 +26,9 @@ import { HttpClientModule } from "@angular/common/http";
         ...MAT_TOOLTIP_DEFAULT_OPTIONS_FACTORY(),
         disableTooltipInteractivity: true
       })
+    },
+    {
+      provide: HTTP_INTERCEPTORS, useClass: HttpCacheInterceptor, multi: true
     }
   ],
   bootstrap: [AppComponent],

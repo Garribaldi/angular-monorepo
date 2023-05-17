@@ -48,6 +48,11 @@ nx g @schematics/angular:directive directives/cypress-selector --prefix=local-sh
 nx g @schematics/angular:pipe pipes/add-value --project=shared-utils --export=true
 ```
 
+## Add Interceptor
+```
+nx g @schematics/angular:interceptor interceptors/http-cache --project=shared-utils
+```
+
 ## Remote caching
 
 Run `npx nx connect-to-nx-cloud` to enable [remote caching](https://nx.app) and make CI faster.
