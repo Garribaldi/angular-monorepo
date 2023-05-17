@@ -1,0 +1,14 @@
+.captcha {
+  &__select {
+    padding: .5rem;
+  }
+
+  &__output {
+    padding: .5rem;
+    background-color: #ededed;
+  }
+
+  &__confirm {
+    padding: .5rem;
+  }
+}

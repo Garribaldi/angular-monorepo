@@ -2,6 +2,8 @@ export interface Environment {
   production: boolean;
   apiBackendUrl?: string;
   externalIntegrationUrl?: string;
+  captchaV2Key: string;
+  captchaV3Key: string;
 }
 
 type DockerEnvVariables = {

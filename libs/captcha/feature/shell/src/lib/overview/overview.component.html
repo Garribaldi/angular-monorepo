@@ -1,1 +1,17 @@
-<p>overview works!</p>
+<div class="captcha__select">
+  <mat-radio-group [ngModel]="selectedType" (change)="typeSelected($event)">
+    <mat-radio-button [value]="captchaType.V2">V2</mat-radio-button>
+    <mat-radio-button [value]="captchaType.V3">V3</mat-radio-button>
+  </mat-radio-group>
+</div>
+
+<ng-container [ngSwitch]="selectedType">
+  <div class="captcha__output">
+    <local-captcha-captchav2 *ngSwitchCase="captchaType.V2" (captchaResponse)="validResponse($event)"></local-captcha-captchav2>
+<!--    <local-captcha-captchav3 *ngSwitchCase="captchaType.V3" (captchaResponse)="validateResponse($event)"></local-captcha-captchav3>-->
+  </div>
+</ng-container>
+
+<div class="captcha__confirm">
+  <button mat-flat-button [disabled]="!isVerified">Send</button>
+</div>
