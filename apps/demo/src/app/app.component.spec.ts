@@ -5,7 +5,7 @@ import { Title } from "@angular/platform-browser";
 import { MockProvider } from "ng-mocks";
 import { Environment, EnvironmentsService } from "@local/shared/feature/environments";
 
-const env: Environment = {
+const env: Partial<Environment> = {
   production: false,
   apiBackendUrl: 'https://test.com:8080',
   externalIntegrationUrl: 'https://integration.com:8080'

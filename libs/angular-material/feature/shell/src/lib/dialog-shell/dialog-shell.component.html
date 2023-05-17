@@ -3,7 +3,7 @@
 
   <p>Description: {{courseData.description}}</p>
   <p>Category: {{courseData.category}}</p>
-  <p>Date: {{courseData.date | date:'MM/dd/YYYY'}}</p>
+  <p>Date: {{courseData.date | date:'dd.MM.YYYY'}}</p>
 
   <button mat-raised-button (click)="openDialog()">Edit course with component</button>
   <button mat-raised-button (click)="openTemplateDialog()">Edit course with template</button>
@@ -29,7 +29,7 @@
     <mat-form-field>
       <mat-label>Date</mat-label>
       <input matInput [matDatepicker]="picker" formControlName="date">
-      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-hint>DD.MM.YYYY</mat-hint>
       <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>

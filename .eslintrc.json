@@ -29,6 +29,10 @@
                 "onlyDependOnLibsWithTags": ["scope:charts", "scope:shared"]
               },
               {
+                "sourceTag": "scope:captcha",
+                "onlyDependOnLibsWithTags": ["scope:captcha", "scope:shared"]
+              },
+              {
                 "sourceTag": "scope:table",
                 "onlyDependOnLibsWithTags": ["scope:table", "scope:shared"]
               },

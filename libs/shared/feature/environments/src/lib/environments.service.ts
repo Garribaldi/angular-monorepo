@@ -18,4 +18,13 @@ export class EnvironmentsService implements Environment {
   get externalIntegrationUrl(): string | undefined {
     return environment.externalIntegrationUrl;
   }
+
+  get captchaV2Key(): string {
+   return environment.captchaV2Key;
+  }
+
+  get captchaV3Key(): string {
+    return environment.captchaV3Key;
+  }
+
 }
