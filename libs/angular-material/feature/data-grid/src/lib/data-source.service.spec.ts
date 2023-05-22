@@ -5,7 +5,7 @@ import { DateFilter } from "./models/date-filter.model";
 import moment from "moment";
 import { FilterDate } from "./models/filter-date.model";
 import { Filter } from "./models/filter.model";
-import { firstValueFrom, skip, switchMap, take } from "rxjs";
+import { firstValueFrom, switchMap, take } from "rxjs";
 
 type TestData = { checkColumn: string, dateColumn: Date };
 
@@ -57,7 +57,7 @@ describe('DataGridService', () => {
 
       service.filter(testGroupedFilter);
 
-      const result = await firstValueFrom(service.filteredData$.pipe(skip(1)));
+      const result = await firstValueFrom(service.filteredData$);
       expect(result.length).toEqual(1);
       expect(result[0]).toEqual(expect.objectContaining(testDataSource[1]));
     });
@@ -67,7 +67,7 @@ describe('DataGridService', () => {
 
       service.filter(testGroupedFilter);
 
-      const result = await firstValueFrom(service.filteredData$.pipe(skip(1)));
+      const result = await firstValueFrom(service.filteredData$);
       expect(result.length).toEqual(1);
       expect(result[0]).toEqual(expect.objectContaining(testDataSource[2]));
     });
@@ -75,7 +75,7 @@ describe('DataGridService', () => {
     it('should return datasource id grouped filter is empty', async () => {
       service.filter(testGroupedFilter);
 
-      const result = await firstValueFrom(service.filteredData$.pipe(skip(1)));
+      const result = await firstValueFrom(service.filteredData$);
       expect(result.length).toEqual(3);
       expect(result).toEqual(testDataSource);
     });
@@ -101,7 +101,7 @@ describe('DataGridService', () => {
       service.dataSourceChanged$
         .pipe(
           take(1),
-          switchMap(() => service.filteredData$.pipe(skip(1)))
+          switchMap(() => service.filteredData$)
         )
         .subscribe(filteredData => {
             expect(filteredData).toEqual(newData);

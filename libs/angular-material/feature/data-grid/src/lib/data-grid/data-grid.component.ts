@@ -54,6 +54,7 @@ export class DataGridComponent<T extends Datasource<T>> implements OnInit, OnDes
   }
 
   ngOnDestroy() {
+    this.selectedFilterService.removeAllFilter();
     this.unsubscribe.next();
     this.unsubscribe.complete();
   }
