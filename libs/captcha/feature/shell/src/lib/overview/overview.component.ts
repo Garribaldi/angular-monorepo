@@ -25,12 +25,19 @@ export class OverviewComponent {
       )
       .subscribe((element) => {
         element.reset();
-        this.isVerified = false;
       });
   }
 
   typeSelected(changed: MatRadioChange) {
     this.selectedType = changed.value;
+  }
+
+  captchaClicked() {
+    this.isVerified = true;
+  }
+
+  resetCaptcha() {
+    this.isVerified = false;
   }
 
   validResponse(element: RecaptchaComponent) {

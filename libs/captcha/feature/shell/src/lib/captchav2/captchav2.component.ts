@@ -14,6 +14,9 @@ export class Captchav2Component {
   siteKey: string;
 
   @Output() captchaResponse = new EventEmitter<RecaptchaComponent>();
+  @Output() captchaClicked = new EventEmitter<void>();
+  @Output() timedOut = new EventEmitter<void>();
+  @Output() hasError = new EventEmitter<[]>();
 
   constructor(
     private readonly environmentService: EnvironmentsService
@@ -24,6 +27,14 @@ export class Captchav2Component {
   resolved(response: string | null) {
     if (response) {
       this.captchaResponse.emit(this.captchaElement);
+      this.captchaClicked.emit();
+    } else {
+      this.timedOut.emit();
     }
+  }
+
+  errored(error: []) {
+    // console.log(error);
+    this.hasError.emit(error);
   }
 }

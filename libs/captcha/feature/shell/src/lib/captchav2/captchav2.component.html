@@ -1,1 +1,1 @@
-<re-captcha (resolved)="resolved($event)" [siteKey]="siteKey" #captchaElement></re-captcha>
+<re-captcha (resolved)="resolved($event)" (errored)="errored($event)" [siteKey]="siteKey" #captchaElement></re-captcha>
