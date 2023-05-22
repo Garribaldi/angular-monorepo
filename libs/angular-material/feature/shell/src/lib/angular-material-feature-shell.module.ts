@@ -19,8 +19,13 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { DialogShellComponent } from './dialog-shell/dialog-shell.component';
 import { MatButtonModule } from '@angular/material/button';
 import { DataGridShellComponent } from './data-grid-shell/data-grid-shell.component';
-import { MatTabsModule } from "@angular/material/tabs";
-import { AngularMaterialFeatureDataGridModule } from "@local/angular-material/feature/data-grid";
+import { MatTabsModule } from '@angular/material/tabs';
+import { AngularMaterialFeatureDataGridModule } from '@local/angular-material/feature/data-grid';
+import { SliderShellComponent } from './slider-shell/slider-shell.component';
+import { AngularMaterialFeatureSliderModule } from "@local/angular-material/feature/slider";
+import { GenericTableShellComponent } from "./generic-table-shell/generic-table-shell.component";
+import { AngularMaterialFeatureGenericTableModule } from "@local/angular-material/feature/generic-table";
+import { SharedUtilsModule } from "@local/shared/utils";
 
 @NgModule({
   imports: [
@@ -28,6 +33,9 @@ import { AngularMaterialFeatureDataGridModule } from "@local/angular-material/fe
     AngularMaterialFeatureShellRoutingModule,
     AngularMaterialFeatureFilterModule,
     AngularMaterialFeatureDialogModule,
+    AngularMaterialFeatureDataGridModule,
+    AngularMaterialFeatureSliderModule,
+    AngularMaterialFeatureGenericTableModule,
     ReactiveFormsModule,
     MatCardModule,
     MatTableModule,
@@ -41,17 +49,16 @@ import { AngularMaterialFeatureDataGridModule } from "@local/angular-material/fe
     MatNativeDateModule,
     MatButtonModule,
     MatTabsModule,
-    AngularMaterialFeatureDataGridModule
+    SharedUtilsModule
   ],
   declarations: [
     OverviewComponent,
     FilterShellComponent,
     DialogShellComponent,
-    DataGridShellComponent
+    DataGridShellComponent,
+    SliderShellComponent,
+    GenericTableShellComponent
   ],
-  exports: [
-    OverviewComponent
-  ]
+  exports: [OverviewComponent],
 })
-export class AngularMaterialFeatureShellModule {
-}
+export class AngularMaterialFeatureShellModule {}

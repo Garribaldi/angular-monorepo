@@ -85,7 +85,7 @@ export class SelectedFilterStateService {
     const removedFilter = Array.from(this.filterList.values()).reduce((acc, curr) => {
       acc.push(...curr);
       return acc;
-    })
+    }, [])
 
     this.filterList.clear();
 

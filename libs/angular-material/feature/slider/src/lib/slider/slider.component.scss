@@ -1,10 +1,9 @@
-.slider {
+label {
+  display: block;
+  font-weight: 500;
+}
 
-  label {
-    display: block;
-  }
-
-  mat-slider {
-    width: 20rem;
-  }
+mat-slider {
+  width: 20rem;
+  margin-bottom: 1rem;
 }

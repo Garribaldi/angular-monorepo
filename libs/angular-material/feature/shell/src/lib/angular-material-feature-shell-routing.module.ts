@@ -1,12 +1,13 @@
 import { Route, RouterModule } from "@angular/router";
 import { NgModule } from "@angular/core";
 import { OverviewComponent } from "./overview/overview.component";
-import { GenericTableShellComponent } from "@local/angular-material/feature/generic-table"
 import { TableComponent } from "@local/angular-material/feature/table";
-import { SliderComponent } from "@local/angular-material/feature/slider";
 import { FilterShellComponent } from "./filter-shell/filter-shell.component";
 import { DialogShellComponent } from "./dialog-shell/dialog-shell.component";
 import { DataGridShellComponent } from "./data-grid-shell/data-grid-shell.component";
+import { SliderShellComponent } from "./slider-shell/slider-shell.component";
+import { GenericTableShellComponent } from "./generic-table-shell/generic-table-shell.component";
+
 
 const routes: Route[] = [
   {
@@ -29,7 +30,7 @@ const routes: Route[] = [
       },
       {
         path: 'slider',
-        component: SliderComponent
+        component: SliderShellComponent
       },
       {
         path: 'dialog',

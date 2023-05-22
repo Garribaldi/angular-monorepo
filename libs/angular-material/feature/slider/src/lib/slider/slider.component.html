@@ -1,25 +1,13 @@
-<div class="slider">
+<label for="slider-{{headline | toSlashCase}}">{{headline}}</label>
+<mat-slider id="slider-{{headline | toSlashCase}}" [min]="config.min" [max]="config.max" [step]="config.step">
 
-  <label for="basic">Basic Slider</label>
-  <mat-slider id="basic">
-    <input matSliderThumb>
-  </mat-slider>
+  <ng-container *ngIf="type === sliderType.BASIC">
+    <input matSliderThumb [value]="values.value ?? 0" (valueChange)="valueChanged({value: $event})">
+  </ng-container>
 
-  <label for="basic-attr">Basic Slider with attributes</label>
-  <mat-slider discrete id="basic-attr">
-    <input matSliderThumb min="1" max="50" step="0.5" value="4.5">
-  </mat-slider>
+  <ng-container *ngIf="type === sliderType.RANGE">
+    <input matSliderStartThumb [value]="values.minValue" (valueChange)="valueChanged({minValue: $event})">
+    <input matSliderEndThumb [value]="values.maxValue" (valueChange)="valueChanged({maxValue: $event})">
+  </ng-container>
 
-  <label for="range">Range Slider</label>
-  <mat-slider id="range">
-    <input matSliderStartThumb>
-    <input matSliderEndThumb>
-  </mat-slider>
-
-  <label for="range-attr">Range Slider with attributes</label>
-  <mat-slider discrete id="range-attr" min="0" max="300">
-    <input matSliderStartThumb value="100" (valueChange)="minChanged($event)">
-    <input matSliderEndThumb value="200" (valueChange)="maxChanged($event)">
-  </mat-slider>
-
-</div>
+</mat-slider>

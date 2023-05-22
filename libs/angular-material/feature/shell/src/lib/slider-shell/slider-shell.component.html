@@ -1,0 +1,27 @@
+<div class="slider">
+
+  <section>
+    <local-angular-material-slider
+      [type]="sliderBasicType"
+      [headline]="'Basic Slider'"
+      [config]="sliderBasicConfig"
+      [values]="sliderBasicValues"
+      (resultValues)="basicSliderChange($event)">
+    </local-angular-material-slider>
+
+    <div>{{sliderBasicResult | json}}</div>
+  </section>
+
+  <section>
+    <local-angular-material-slider
+      [type]="sliderRangeType"
+      [headline]="'Range Slider'"
+      [config]="sliderRangeConfig"
+      [values]="sliderRangeValues"
+      (resultValues)="rangeSliderChange($event)">
+    </local-angular-material-slider>
+
+    <div>{{sliderRangeResult | json}}</div>
+  </section>
+
+</div>

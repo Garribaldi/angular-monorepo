@@ -1,5 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { SliderComponent } from './slider.component';
+import { MockModule, MockPipe } from "ng-mocks";
+import { ToSlashCasePipe } from "@local/shared/utils";
+import { MatSliderModule } from "@angular/material/slider";
 
 describe('SliderComponent', () => {
   let component: SliderComponent;
@@ -7,7 +10,13 @@ describe('SliderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [SliderComponent],
+      imports: [
+        MockModule(MatSliderModule)
+      ],
+      declarations: [
+        SliderComponent,
+        MockPipe(ToSlashCasePipe)
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(SliderComponent);
