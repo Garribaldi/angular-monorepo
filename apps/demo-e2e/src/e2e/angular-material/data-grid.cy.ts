@@ -12,9 +12,11 @@ describe("Data Grid", () => {
   let dateFilter: JQuery<HTMLElement>;
 
   beforeEach(() => {
-    cy.viewport(1280, 800);
+    cy.intercept('GET', 'nba-teams.json').as('getAllTeams');
 
+    cy.viewport(1920, 1080);
     cy.visit("/material/data-grid");
+    cy.wait('@getAllTeams');
 
     getDataGridColumns().then(columns => {
       filter = columns;
@@ -48,8 +50,6 @@ describe("Data Grid", () => {
   describe('Filter actions', () => {
 
     beforeEach(() => {
-      cy.viewport(1920, 1080);
-
       // Team Id
       cy.clickCheckFilter(teamIdFilter);
       teamIdFilter.find(getFilterSelectorById(3)).click();
