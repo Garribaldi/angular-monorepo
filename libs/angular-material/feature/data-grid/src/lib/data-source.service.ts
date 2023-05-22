@@ -8,7 +8,7 @@ import { FilterDate } from "./models/filter-date.model";
 import { GroupedFilter } from "./models/grouped-filter.model";
 import { FilterValueHitCount } from "./models/filter-value-count.model";
 import { Datasource } from "./models/datasource.model";
-import { distinctUntilChanged, ReplaySubject, share, shareReplay, Subject } from "rxjs";
+import { ReplaySubject, shareReplay } from "rxjs";
 
 @Injectable()
 export class DataSourceService<T extends Datasource<T>> {
@@ -24,11 +24,11 @@ export class DataSourceService<T extends Datasource<T>> {
     this.dataSourceChanged.next();
   }
 
-  private readonly dataSourceChanged = new Subject<void>();
-  private readonly filteredData = new ReplaySubject<T[]>();
+  private readonly dataSourceChanged = new ReplaySubject<void>(1);
+  private readonly filteredData = new ReplaySubject<T[]>(1);
 
-  readonly dataSourceChanged$ = this.dataSourceChanged.asObservable().pipe(distinctUntilChanged((a, b) => JSON.stringify(a) !== JSON.stringify(b)), share());
-  readonly filteredData$ = this.filteredData.asObservable().pipe(shareReplay(1));
+  readonly dataSourceChanged$ = this.dataSourceChanged.asObservable().pipe(shareReplay());
+  readonly filteredData$ = this.filteredData.asObservable().pipe(shareReplay());
 
   /**
    * Iterate a provided filter list and search for matching data in datasource.
