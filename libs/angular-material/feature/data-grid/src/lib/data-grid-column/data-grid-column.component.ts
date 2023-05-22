@@ -1,8 +1,8 @@
-import { Component, HostBinding, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { DataSourceService } from "../data-source.service";
 import { FilterType } from "../models/filter-type.model";
 import { Filter } from "../models/filter.model";
-import { assertCannotReach, convertToSlashCase } from "@local/shared/utils";
+import { assertCannotReach } from "@local/shared/utils";
 import { Datasource } from "../models/datasource.model";
 import { Subject, takeUntil } from "rxjs";
 
@@ -20,8 +20,6 @@ import { Subject, takeUntil } from "rxjs";
 })
 export class DataGridColumnComponent<T extends Datasource<T>> implements OnInit, OnDestroy {
 
-  @HostBinding('attr.data-cy') cypressSelector!: string;
-
   @Input() column!: string;
   @Input() type!: FilterType;
   @Input() label!: string;
@@ -38,8 +36,6 @@ export class DataGridColumnComponent<T extends Datasource<T>> implements OnInit,
   }
 
   ngOnInit() {
-    this.cypressSelector = `data-grid-filter-for-${convertToSlashCase(this.column)}`;
-
     this.dataSourceService.dataSourceChanged$
       .pipe(
         takeUntil(this.unsubscribe)

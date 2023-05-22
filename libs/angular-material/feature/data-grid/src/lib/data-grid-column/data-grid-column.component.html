@@ -1,11 +1,11 @@
 <ng-container [ngSwitch]="type">
 
   <ng-container *ngSwitchCase="filterType.CHECK_FILTER">
-    <local-angular-material-data-grid-check-filter [filter]="filter"></local-angular-material-data-grid-check-filter>
+    <local-angular-material-data-grid-check-filter [filter]="filter" [cyGet]="'data-grid-filter-for-' + (column | toSlashCase)"></local-angular-material-data-grid-check-filter>
   </ng-container>
 
   <ng-container *ngSwitchCase="filterType.DATE_FILTER">
-    <local-angular-material-data-grid-date-filter [label]="label" [column]="column"></local-angular-material-data-grid-date-filter>
+    <local-angular-material-data-grid-date-filter [label]="label" [column]="column" [cyGet]="'data-grid-filter-for-' + (column | toSlashCase)"></local-angular-material-data-grid-date-filter>
   </ng-container>
 
   <ng-container *ngSwitchDefault>

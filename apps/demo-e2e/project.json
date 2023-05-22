@@ -9,7 +9,8 @@
       "options": {
         "cypressConfig": "apps/demo-e2e/cypress.config.ts",
         "devServerTarget": "demo:serve:development",
-        "testingType": "e2e"
+        "testingType": "e2e",
+        "port": 4300
       },
       "configurations": {
         "production": {

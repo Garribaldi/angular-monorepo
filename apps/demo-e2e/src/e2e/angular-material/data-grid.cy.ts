@@ -19,6 +19,8 @@ describe("Data Grid", () => {
     cy.wait('@getAllTeams');
 
     getDataGridColumns().then(columns => {
+      console.log(columns);
+
       filter = columns;
       teamIdFilter = filter.eq(0);
       teamNameFilter = filter.eq(1);
