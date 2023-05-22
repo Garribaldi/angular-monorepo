@@ -10,7 +10,10 @@ export class HttpCacheInterceptor<T> implements HttpInterceptor {
   private readonly cache: Map<string, HttpResponse<T>> = new Map();
 
   intercept(request: HttpRequest<T>, next: HttpHandler): Observable<HttpEvent<T>> {
-    if (request.method !== 'GET') {
+
+    const ignoreCache = request.headers.get('x-ignore-cache') === 'true';
+
+    if (request.method !== 'GET' || ignoreCache) {
       return next.handle(request);
     }
 

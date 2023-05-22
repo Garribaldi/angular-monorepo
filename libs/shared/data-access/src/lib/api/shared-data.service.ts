@@ -5,7 +5,7 @@ import { Inventory, InventoryDto } from "./inventory.model";
 import { City, CityDto } from "./city.model";
 import { Country, CountryDto } from "./country.model";
 import { NbaTeam, NbaTeamDto } from "./nba-team.model";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
@@ -44,7 +44,9 @@ export class SharedDataService {
   }
 
   getNbaTeams$(): Observable<NbaTeam[]> {
-    return this.httpClient.get<NbaTeamDto[]>('../assets/nba-teams.json').pipe(
+    const headers = new HttpHeaders().set('x-ignore-cache', 'false');
+
+    return this.httpClient.get<NbaTeamDto[]>('../assets/nba-teams.json', {headers}).pipe(
       map(nbaTeamDto => nbaTeamDto.map(team => this.mapToNbaTeam(team)))
     );
   }
