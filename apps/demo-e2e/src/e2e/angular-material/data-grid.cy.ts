@@ -94,18 +94,21 @@ describe("Data Grid", () => {
       teamIdFilter.find('[data-cy="data-grid-mat-check-reset"]').click();
 
       expect(getRowCount()).to.eq(3);
+      expect(teamIdFilter.find('[data-cy="data-grid-mat-check-reset"]').prop('disabled')).to.be.true;
     });
 
     it('should reset team name column', () => {
       teamNameFilter.find('[data-cy="data-grid-mat-check-reset"]').click();
 
       expect(getRowCount()).to.eq(2);
+      expect(teamNameFilter.find('[data-cy="data-grid-mat-check-reset"]').prop('disabled')).to.be.true;
     });
 
     it('should reset location column', () => {
       locationFilter.find('[data-cy="data-grid-mat-check-reset"]').click();
 
       expect(getRowCount()).to.eq(2);
+      expect(locationFilter.find('[data-cy="data-grid-mat-check-reset"]').prop('disabled')).to.be.true;
     });
 
     it('should reset date column', () => {
@@ -118,6 +121,9 @@ describe("Data Grid", () => {
       chipsBar.find('[data-cy="data-grid-chiplist-remove-all"]').find('button[matchipremove]').click();
 
       expect(getRowCount()).to.eq(30);
+      expect(teamIdFilter.find('[data-cy="data-grid-mat-check-reset"]').prop('disabled')).to.be.true;
+      expect(teamNameFilter.find('[data-cy="data-grid-mat-check-reset"]').prop('disabled')).to.be.true;
+      expect(locationFilter.find('[data-cy="data-grid-mat-check-reset"]').prop('disabled')).to.be.true;
     });
   });
 });
