@@ -1,6 +1,7 @@
 export * from './lib/shared-utils.module';
 
 export * from './lib/directives/ng-template-name.directive';
+export * from  './lib/directives/cypress-selector.directive';
 
 export * from './lib/pipes/get-template-ref.pipe';
 export * from './lib/pipes/to-slash-case.pipe';

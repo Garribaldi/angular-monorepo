@@ -1,8 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DataGridCheckFilterComponent } from './data-grid-check-filter.component';
-import { MockModule, MockProvider } from "ng-mocks";
-import { SelectedFilterStateService } from "../selected-filter-state.service";
-import { of } from "rxjs";
+import { MockModule } from "ng-mocks";
 import { MatTreeModule } from "@angular/material/tree";
 import { Filter } from "../models/filter.model";
 import { FilterNestedNode } from "../models/filter-nested-node.model";
@@ -11,7 +9,6 @@ import { MatCheckboxChange } from "@angular/material/checkbox";
 describe('DataGridTextFilterComponent', () => {
   let component: DataGridCheckFilterComponent;
   let fixture: ComponentFixture<DataGridCheckFilterComponent>;
-  let selectedFilterServicec: SelectedFilterStateService;
 
   const testColumn = 'testColumn';
   const testFilter = [{label: 'Test', value: 'Test', displayValue: 'Test', hitCount: 1, column: testColumn} as Filter];
@@ -21,18 +18,9 @@ describe('DataGridTextFilterComponent', () => {
       imports: [
         MockModule(MatTreeModule)
       ],
-      declarations: [DataGridCheckFilterComponent],
-      providers: [
-        MockProvider(SelectedFilterStateService, {
-          removedFilter$: of([]),
-          addFilter: jest.fn(),
-          removeFilter: jest.fn(),
-          removeFilterByColumn: jest.fn()
-        }),
-      ]
+      declarations: [DataGridCheckFilterComponent]
     }).compileComponents();
 
-    selectedFilterServicec = TestBed.inject(SelectedFilterStateService);
 
     fixture = TestBed.createComponent(DataGridCheckFilterComponent);
 
@@ -57,8 +45,8 @@ describe('DataGridTextFilterComponent', () => {
       node = component.dataSource.data[0].children?.at(0) ?? {} as FilterNestedNode;
       changeEvent = new MatCheckboxChange();
 
-      spyOnAddFilter = jest.spyOn(selectedFilterServicec, 'addFilter')
-      spyOnRemoveFilter = jest.spyOn(selectedFilterServicec, 'removeFilter');
+      spyOnAddFilter = jest.spyOn(component.addFilter, 'emit')
+      spyOnRemoveFilter = jest.spyOn(component.removeFilter, 'emit');
     });
 
     it('should add filter', () => {
@@ -94,14 +82,14 @@ describe('DataGridTextFilterComponent', () => {
 
     let spyOnRemoveFiltersByColumn: jest.SpyInstance;
 
-    beforeEach(() => spyOnRemoveFiltersByColumn = jest.spyOn(selectedFilterServicec, 'removeFilterByColumn'));
+    beforeEach(() => spyOnRemoveFiltersByColumn = jest.spyOn(component.removeColumn, 'emit'));
 
     it('should remove all filters from column', () => {
       component.filtersSelected = 1;
 
       component.resetFilter();
 
-      expect(spyOnRemoveFiltersByColumn).toHaveBeenCalledWith(testColumn);
+      expect(spyOnRemoveFiltersByColumn).toHaveBeenCalled();
       expect(component.filtersSelected).toEqual(0);
     });
   });

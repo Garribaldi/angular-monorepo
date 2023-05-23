@@ -1,4 +1,4 @@
-<main>
+<div class="content">
   <nav class="main-nav">
     <ul class="main-nav__container">
       <li class="main-nav__item" *ngFor="let nav of mainNav">
@@ -6,6 +6,8 @@
       </li>
     </ul>
   </nav>
-  <router-outlet></router-outlet>
-</main>
+  <main class="main">
+    <router-outlet></router-outlet>
+  </main>
+</div>
 

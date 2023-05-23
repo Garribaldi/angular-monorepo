@@ -12,6 +12,15 @@ Run `nx serve demo` for a dev server. Navigate to http://localhost:4200/. The ap
 
 Run `nx graph` to see a diagram of the dependencies of the projects.
 
+## Setup Project
+
+After cloning from repository, run ``npm install``.
+
+Aditionally, add a __env.js__ file in _apps/demo/src/assets/_.
+
+Use the _env.template.js_ file in the same folder as a reference and provide some test values instead of placeholders.
+
+
 ## Add Library
 
 ```

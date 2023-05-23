@@ -103,10 +103,7 @@ export class DataSourceService<T extends Datasource<T>> {
 
         return acc;
       }, [] as Array<FilterValueHitCount>)
-      .map(({value, hitCount}): Filter =>
-        new CheckFilter({value: value.toString(), column, label, hitCount}
-        )
-      );
+      .map(({value, hitCount}): Filter => new CheckFilter({value: value.toString(), column, label, hitCount}));
   }
 
   private filterByCheck(columnValue: string, matcher: RegExp): boolean {

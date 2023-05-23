@@ -1,20 +1,14 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DataGridDateFilterComponent } from './data-grid-date-filter.component';
 import { MatFormFieldModule } from "@angular/material/form-field";
-import { MockModule, MockProvider } from "ng-mocks";
+import { MockModule } from "ng-mocks";
 import { MatDatepickerModule } from "@angular/material/datepicker";
-import { SelectedFilterStateService } from "../selected-filter-state.service";
-import { of } from "rxjs";
 import moment from "moment";
 import { DateFilter } from "../models/date-filter.model";
 
 describe('DataGridDateFilterComponent', () => {
   let component: DataGridDateFilterComponent;
   let fixture: ComponentFixture<DataGridDateFilterComponent>;
-  let selectFilterService: SelectedFilterStateService;
-
-  const testLabel = 'Test Label';
-  const testColumn = 'test-column';
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -22,23 +16,12 @@ describe('DataGridDateFilterComponent', () => {
         MockModule(MatFormFieldModule),
         MockModule(MatDatepickerModule)
       ],
-      declarations: [DataGridDateFilterComponent],
-      providers: [
-        MockProvider(SelectedFilterStateService, {
-          removedFilter$: of([]),
-          updateFilterByColumn: jest.fn(),
-          removeFilterByColumn: jest.fn()
-        })
-      ]
+      declarations: [DataGridDateFilterComponent]
     }).compileComponents();
 
-    selectFilterService = TestBed.inject(SelectedFilterStateService);
 
     fixture = TestBed.createComponent(DataGridDateFilterComponent);
     component = fixture.componentInstance;
-
-    component.label = testLabel;
-    component.column = testColumn;
 
     fixture.detectChanges();
   });
@@ -52,9 +35,8 @@ describe('DataGridDateFilterComponent', () => {
     let spyOnRemoveFilter: jest.SpyInstance;
 
     beforeEach(() => {
-      spyOnUpdateFilter = jest.spyOn(selectFilterService, 'updateFilterByColumn');
-      spyOnRemoveFilter = jest.spyOn(selectFilterService, 'removeFilterByColumn');
-
+      spyOnUpdateFilter = jest.spyOn(component.updateColumn, 'emit');
+      spyOnRemoveFilter = jest.spyOn(component.removeColumn, 'emit');
     });
 
     it('should update date filter', () => {
@@ -63,7 +45,7 @@ describe('DataGridDateFilterComponent', () => {
 
       component.datePickerClosed();
 
-      expect(spyOnUpdateFilter).toHaveBeenCalledWith(expect.any(DateFilter), testColumn);
+      expect(spyOnUpdateFilter).toHaveBeenCalledWith(expect.any(DateFilter));
     });
 
     it('should remove date filter', () => {
@@ -72,7 +54,7 @@ describe('DataGridDateFilterComponent', () => {
 
       component.datePickerClosed();
 
-      expect(spyOnRemoveFilter).toHaveBeenCalledWith(testColumn);
+      expect(spyOnRemoveFilter).toHaveBeenCalled();
     });
   });
 
@@ -81,9 +63,8 @@ describe('DataGridDateFilterComponent', () => {
     let spyOnRemoveFilter: jest.SpyInstance;
 
     beforeEach(() => {
-      spyOnUpdateFilter = jest.spyOn(selectFilterService, 'updateFilterByColumn');
-      spyOnRemoveFilter = jest.spyOn(selectFilterService, 'removeFilterByColumn');
-
+      spyOnUpdateFilter = jest.spyOn(component.updateColumn, 'emit');
+      spyOnRemoveFilter = jest.spyOn(component.removeColumn, 'emit');
     });
 
     it('should update date filter on "Enter"', () => {
@@ -93,7 +74,7 @@ describe('DataGridDateFilterComponent', () => {
 
       component.onKeyUp(event);
 
-      expect(spyOnUpdateFilter).toHaveBeenCalledWith(expect.any(DateFilter), testColumn);
+      expect(spyOnUpdateFilter).toHaveBeenCalledWith(expect.any(DateFilter));
     });
 
     it('should remove date filter on "Enter"', () => {
@@ -103,7 +84,7 @@ describe('DataGridDateFilterComponent', () => {
 
       component.onKeyUp(event);
 
-      expect(spyOnRemoveFilter).toHaveBeenCalledWith(testColumn);
+      expect(spyOnRemoveFilter).toHaveBeenCalled();
     });
 
     it('should not do anything on "Tab"', () => {

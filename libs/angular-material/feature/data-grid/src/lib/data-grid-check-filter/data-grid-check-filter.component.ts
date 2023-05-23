@@ -1,9 +1,8 @@
-import { Component, Input, OnDestroy } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, Output } from '@angular/core';
 import { NestedTreeControl } from "@angular/cdk/tree";
 import { FilterNestedNode } from "../models/filter-nested-node.model";
 import { MatTreeNestedDataSource } from "@angular/material/tree";
-import { SelectedFilterStateService } from "../selected-filter-state.service";
-import { map, Subject, takeUntil } from "rxjs";
+import { Subject } from "rxjs";
 import { Filter } from "../models/filter.model";
 import { MatCheckboxChange } from "@angular/material/checkbox";
 
@@ -15,31 +14,24 @@ import { MatCheckboxChange } from "@angular/material/checkbox";
 export class DataGridCheckFilterComponent implements OnDestroy {
 
   private _filter: Filter[] = [];
-  @Input() set filter (filter: Filter[]) {
+  @Input() set filter(filter: Filter[]) {
     this._filter = filter;
-    this.column = filter?.reduce((acc, curr) => curr.column, '') ?? '';
     this.dataSource.data = this.mapToFlatNodes();
+  }
+
+  @Input() set removedFilter(filter: Filter[]) {
+    this.removeSelectedFilter(filter);
   }
 
   treeControl = new NestedTreeControl<FilterNestedNode>(node => node.children);
   dataSource = new MatTreeNestedDataSource<FilterNestedNode>();
   filtersSelected = 0;
 
-  private column = '';
   private readonly unsubscribe = new Subject<void>();
 
-  constructor(
-    private readonly selectedFilterService: SelectedFilterStateService
-  ) {
-    this.selectedFilterService.removedFilter$
-      .pipe(
-        takeUntil(this.unsubscribe),
-        map(removedFilter => removedFilter.filter(filter => filter.column === this.column))
-      )
-      .subscribe(filter => {
-        this.removeSelectedFilter(filter);
-      });
-  }
+  @Output() removeColumn = new EventEmitter<void>();
+  @Output() addFilter = new EventEmitter<Filter>();
+  @Output() removeFilter = new EventEmitter<Filter>();
 
   ngOnDestroy() {
     this.unsubscribe.next();
@@ -57,9 +49,9 @@ export class DataGridCheckFilterComponent implements OnDestroy {
     }
 
     if (node.checked) {
-      this.selectedFilterService.addFilter(filter);
+      this.addFilter.emit(filter);
     } else {
-      this.selectedFilterService.removeFilter(filter);
+      this.removeFilter.emit(filter);
     }
 
     this.updateSelectedFilterAmount();
@@ -67,8 +59,8 @@ export class DataGridCheckFilterComponent implements OnDestroy {
 
   resetFilter() {
     this.filtersSelected = 0;
-    this.selectedFilterService.removeFilterByColumn(this.column);
     this.treeControl.collapseAll();
+    this.removeColumn.emit();
   }
 
   private mapToFlatNodes(): FilterNestedNode[] {
