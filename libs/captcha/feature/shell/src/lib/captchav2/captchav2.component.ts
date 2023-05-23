@@ -13,7 +13,6 @@ export class Captchav2Component {
 
   siteKey: string;
 
-  @Output() captchaResponse = new EventEmitter<RecaptchaComponent>();
   @Output() captchaClicked = new EventEmitter<void>();
   @Output() timedOut = new EventEmitter<void>();
   @Output() hasError = new EventEmitter<[]>();
@@ -22,12 +21,10 @@ export class Captchav2Component {
     private readonly environmentService: EnvironmentsService
   ) {
     this.siteKey = this.environmentService.captchaV2Key;
-    console.log(this.environmentService.apiBackendUrl);
   }
 
   resolved(response: string | null) {
     if (response) {
-      this.captchaResponse.emit(this.captchaElement);
       this.captchaClicked.emit();
     } else {
       this.timedOut.emit();
@@ -35,7 +32,6 @@ export class Captchav2Component {
   }
 
   errored(error: []) {
-    // console.log(error);
     this.hasError.emit(error);
   }
 }

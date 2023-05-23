@@ -8,6 +8,9 @@ tmp
 # dependencies
 node_modules
 
+#assets
+apps/demo/src/assets/env.js
+
 # IDEs and editors
 /.idea
 .project
