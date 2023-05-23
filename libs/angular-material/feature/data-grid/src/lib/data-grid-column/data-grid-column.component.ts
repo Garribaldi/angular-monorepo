@@ -6,6 +6,7 @@ import { assertCannotReach } from "@local/shared/utils";
 import { Datasource } from "../models/datasource.model";
 import { map, Subject, takeUntil } from "rxjs";
 import { SelectedFilterStateService } from "../selected-filter-state.service";
+import { DateFilter } from "../models/date-filter.model";
 
 /**
  * This component is a shell to represent a column that matches a property in your datasource.
@@ -27,7 +28,9 @@ export class DataGridColumnComponent<T extends Datasource<T>> implements OnInit,
 
   readonly filterType = FilterType;
 
-  filter: Filter[] = [];
+  checkFilter: Filter[] = [];
+  dateFilter: Filter | undefined;
+
   removedFilter: Filter[] = [];
 
   private readonly unsubscribe = new Subject<void>();
@@ -54,9 +57,14 @@ export class DataGridColumnComponent<T extends Datasource<T>> implements OnInit,
       .subscribe(() => {
         switch (this.type) {
           case FilterType.CHECK_FILTER:
-            this.filter = this.dataSourceService.getCheckFilter(this.column, this.label);
+            this.checkFilter = this.dataSourceService.getCheckFilter(this.column, this.label);
             break
           case FilterType.DATE_FILTER:
+            this.dateFilter = new DateFilter({
+              value: {from: null, to: null},
+              label: this.label,
+              column: this.column
+            })
             break
           default:
             assertCannotReach(this.type);

@@ -2,7 +2,7 @@
 
   <ng-container *ngSwitchCase="filterType.CHECK_FILTER">
     <local-angular-material-data-grid-check-filter
-      [filter]="filter"
+      [filter]="checkFilter"
       [removedFilter]="removedFilter"
       (removeColumn)="removeFilterByColumn()"
       (addFilter)="addFilter($event)"
@@ -13,8 +13,7 @@
 
   <ng-container *ngSwitchCase="filterType.DATE_FILTER">
     <local-angular-material-data-grid-date-filter
-      [label]="label"
-      [column]="column"
+      [filter]="dateFilter"
       [removedFilter]="removedFilter"
       (updateColumn)="updateFilterByColumn($event)"
       (removeColumn)="removeFilterByColumn()"

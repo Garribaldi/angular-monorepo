@@ -10,9 +10,6 @@ describe('DataGridDateFilterComponent', () => {
   let component: DataGridDateFilterComponent;
   let fixture: ComponentFixture<DataGridDateFilterComponent>;
 
-  const testLabel = 'Test Label';
-  const testColumn = 'test-column';
-
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
@@ -25,9 +22,6 @@ describe('DataGridDateFilterComponent', () => {
 
     fixture = TestBed.createComponent(DataGridDateFilterComponent);
     component = fixture.componentInstance;
-
-    component.label = testLabel;
-    component.column = testColumn;
 
     fixture.detectChanges();
   });

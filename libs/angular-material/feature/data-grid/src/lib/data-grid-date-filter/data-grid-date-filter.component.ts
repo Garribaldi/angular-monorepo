@@ -12,8 +12,7 @@ import { Filter } from "../models/filter.model";
 })
 export class DataGridDateFilterComponent implements OnDestroy {
 
-  @Input() label = '';
-  @Input() column = '';
+  @Input() filter?: Filter;
   @Input() set removedFilter(filter: Filter[]) {
     this.resetFilter();
   }
@@ -27,8 +26,7 @@ export class DataGridDateFilterComponent implements OnDestroy {
   @Output() updateColumn = new EventEmitter<Filter>();
   @Output() removeColumn = new EventEmitter<void>();
 
-  constructor(
-  ) {
+  constructor() {
     this.maxDate = moment();
     this.resetFilter();
   }
@@ -64,8 +62,8 @@ export class DataGridDateFilterComponent implements OnDestroy {
   private updateFilterState() {
     const updatedFilter = new DateFilter({
       value: {from: this.fromDate, to: this.toDate},
-      label: this.label,
-      column: this.column
+      label: this.filter?.label,
+      column: this.filter?.column ?? ''
     });
 
     if (updatedFilter.value) {
