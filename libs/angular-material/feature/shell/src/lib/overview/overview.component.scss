@@ -5,10 +5,11 @@
 
   &__container {
     display: flex;
-    border-bottom: 2px solid #ededed;
     justify-content: space-between;
+
     padding: 0;
     margin-bottom: .5rem;
+    border-bottom: 2px solid #cccccc;
   }
 
   &__item {

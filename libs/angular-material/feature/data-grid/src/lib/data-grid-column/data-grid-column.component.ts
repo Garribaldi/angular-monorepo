@@ -5,6 +5,7 @@ import { Filter } from "../models/filter.model";
 import { assertCannotReach } from "@local/shared/utils";
 import { Datasource } from "../models/datasource.model";
 import { Subject, takeUntil } from "rxjs";
+import { SelectedFilterStateService } from "../selected-filter-state.service";
 
 /**
  * This component is a shell to represent a column that matches a property in your datasource.
@@ -31,7 +32,8 @@ export class DataGridColumnComponent<T extends Datasource<T>> implements OnInit,
   private readonly unsubscribe = new Subject<void>();
 
   constructor(
-    private readonly dataSourceService: DataSourceService<T>
+    private readonly dataSourceService: DataSourceService<T>,
+    private readonly selectedFilterService: SelectedFilterStateService
   ) {
   }
 
