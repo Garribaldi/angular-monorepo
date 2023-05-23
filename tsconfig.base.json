@@ -38,6 +38,7 @@
       "@local/angular-material/feature/table": [
         "libs/angular-material/feature/table/src/index.ts"
       ],
+      "@local/captcha/data-access": ["libs/captcha/data-access/src/index.ts"],
       "@local/captcha/feature/shell": [
         "libs/captcha/feature/shell/src/index.ts"
       ],

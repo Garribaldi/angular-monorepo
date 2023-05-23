@@ -1,1 +1,9 @@
-<re-captcha (resolved)="resolved($event)" (errored)="errored($event)" [siteKey]="siteKey" #captchaElement></re-captcha>
+<div class="captcha" cyGet="captcha-v2-container">
+  <ng-container *ngIf="siteKey; else keyError">
+    <re-captcha (resolved)="resolved($event)" (errored)="errored($event)" [siteKey]="siteKey" #captchaElement></re-captcha>
+  </ng-container>
+</div>
+
+<ng-template #keyError>
+  <div>No Site Key for Google Recaptcha provided!</div>
+</ng-template>
