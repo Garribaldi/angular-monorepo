@@ -7,14 +7,16 @@ import { DataGridCheckFilterComponent } from "../data-grid-check-filter/data-gri
 import { DataGridDateFilterComponent } from "../data-grid-date-filter/data-grid-date-filter.component";
 import { Filter } from "../models/filter.model";
 import { of } from "rxjs";
-import { ToSlashCasePipe } from "@local/shared/utils";
-import { CypressSelectorDirective } from "../../../../../../shared/utils/src/lib/directives/cypress-selector.directive";
+import { CypressSelectorDirective, ToSlashCasePipe } from "@local/shared/utils";
+import { SelectedFilterStateService } from "../selected-filter-state.service";
 
 type TestData = { name: string };
 
 describe('DataGridColumnComponent', () => {
   let component: DataGridColumnComponent<TestData>;
   let fixture: ComponentFixture<DataGridColumnComponent<TestData>>;
+
+  let selectedFilterServicec: SelectedFilterStateService;
 
   const testFilter: Filter[] = [{
     id: '12345',
@@ -38,9 +40,17 @@ describe('DataGridColumnComponent', () => {
         MockProvider(DataSourceService, {
           getCheckFilter: jest.fn().mockReturnValue(testFilter),
           dataSourceChanged$: of(void '')
+        }),
+        MockProvider(SelectedFilterStateService, {
+          removedFilter$: of([]),
+          addFilter: jest.fn(),
+          removeFilter: jest.fn(),
+          removeFilterByColumn: jest.fn()
         })
       ]
     }).compileComponents();
+
+    selectedFilterServicec = TestBed.inject(SelectedFilterStateService);
 
     fixture = TestBed.createComponent(DataGridColumnComponent<TestData>);
     component = fixture.componentInstance;
@@ -54,5 +64,25 @@ describe('DataGridColumnComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  describe('addFilter()', () => {
+
+    it('', () => {});
+  });
+
+  describe('removeFilter()', () => {
+
+    it('', () => {});
+  });
+
+  describe('removeFilterByColumn()', () => {
+
+    it('', () => {});
+  });
+
+  describe('updateFilterByColumn()', () => {
+
+    it('', () => {});
   });
 });

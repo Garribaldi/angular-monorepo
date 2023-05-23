@@ -1,11 +1,24 @@
 <ng-container [ngSwitch]="type">
 
   <ng-container *ngSwitchCase="filterType.CHECK_FILTER">
-    <local-angular-material-data-grid-check-filter [filter]="filter" [cyGet]="'data-grid-filter-for-' + (column | toSlashCase)"></local-angular-material-data-grid-check-filter>
+    <local-angular-material-data-grid-check-filter
+      [filter]="filter"
+      [removedFilter]="removedFilter"
+      (removeColumn)="removeFilterByColumn()"
+      (addFilter)="addFilter($event)"
+      (removeFilter)="removeFilter($event)"
+      [cyGet]="'data-grid-filter-for-' + (column | toSlashCase)">
+    </local-angular-material-data-grid-check-filter>
   </ng-container>
 
   <ng-container *ngSwitchCase="filterType.DATE_FILTER">
-    <local-angular-material-data-grid-date-filter [label]="label" [column]="column" [cyGet]="'data-grid-filter-for-' + (column | toSlashCase)"></local-angular-material-data-grid-date-filter>
+    <local-angular-material-data-grid-date-filter
+      [label]="label"
+      [column]="column"
+      [removedFilter]="removedFilter"
+      (updateColumn)="updateFilterByColumn($event)"
+      (removeColumn)="removeFilterByColumn()"
+      [cyGet]="'data-grid-filter-for-' + (column | toSlashCase)"></local-angular-material-data-grid-date-filter>
   </ng-container>
 
   <ng-container *ngSwitchDefault>
