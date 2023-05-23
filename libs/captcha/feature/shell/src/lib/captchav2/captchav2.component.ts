@@ -22,6 +22,7 @@ export class Captchav2Component {
     private readonly environmentService: EnvironmentsService
   ) {
     this.siteKey = this.environmentService.captchaV2Key;
+    console.log(this.environmentService.apiBackendUrl);
   }
 
   resolved(response: string | null) {

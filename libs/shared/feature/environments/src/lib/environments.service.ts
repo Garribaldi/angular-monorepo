@@ -11,11 +11,11 @@ export class EnvironmentsService implements Environment {
     return environment.production;
   }
 
-  get apiBackendUrl(): string | undefined {
+  get apiBackendUrl(): string {
     return environment.apiBackendUrl;
   }
 
-  get externalIntegrationUrl(): string | undefined {
+  get externalIntegrationUrl(): string {
     return environment.externalIntegrationUrl;
   }
 
@@ -26,5 +26,4 @@ export class EnvironmentsService implements Environment {
   get captchaV3Key(): string {
     return environment.captchaV3Key;
   }
-
 }

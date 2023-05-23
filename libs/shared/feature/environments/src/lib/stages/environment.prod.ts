@@ -3,7 +3,7 @@ import { commonEnvironment } from "../environments.common";
 
 const env: Partial<Environment> = {
   production: true,
-  apiBackendUrl: 'http://test.dev.prod:8080',
+  apiBackendUrl: 'http://test.prod.api:8080',
   externalIntegrationUrl: 'http://integration.prod.api:8080'
 };
 

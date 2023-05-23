@@ -1,15 +1,20 @@
 export interface Environment {
   production: boolean;
-  apiBackendUrl?: string;
-  externalIntegrationUrl?: string;
+  apiBackendUrl: string;
+  externalIntegrationUrl: string;
   captchaV2Key: string;
   captchaV3Key: string;
 }
 
-type DockerEnvVariables = {
+export type DockerEnvVariables = {
   API_BACKEND_URL?: string,
-  EXTERNAL_INTEGRATION_URL?: string
+  EXTERNAL_INTEGRATION_URL?: string,
+  CAPTCHA_V2_KEY?: string;
+  CAPTCHA_V3_KEY?: string;
 };
 
-export type WindowEnv = Window & DockerEnvVariables;
-
+declare global {
+  interface Window {
+    env: DockerEnvVariables
+  }
+}
