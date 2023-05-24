@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { map, Observable } from "rxjs";
+import { catchError, map, Observable, of } from "rxjs";
 import { Employee, EmployeeDto } from "./employee.model";
 import { Inventory, InventoryDto } from "./inventory.model";
 import { City, CityDto } from "./city.model";
@@ -25,7 +25,8 @@ export class SharedDataService {
 
   getCities$(): Observable<City[]> {
     return this.httpClient.get<CityDto[]>('../assets/cities.json').pipe(
-      map(cities => cities.map(city => ({...city} as City)))
+      map(cities => cities.map(city => ({...city} as City))),
+      catchError(() => of([]))
     );
   }
 
@@ -39,7 +40,9 @@ export class SharedDataService {
     return this.httpClient.get<CountryDto[]>('../assets/countries.json').pipe(
       map(countrylist => countrylist
         .map(country => ({...country} as Country))
-        .sort((a, b) => a.name > b.name ? 1 : -1))
+        .sort((a, b) => a.name > b.name ? 1 : -1)
+      ),
+      catchError(() => of([]))
     );
   }
 

@@ -36,7 +36,7 @@
     <mat-form-field appearance="fill">
       <mat-label>City</mat-label>
       <mat-select formControlName="city">
-        <mat-option *ngFor="let city of cities$ | async" [value]="city.name">{{city.name}}</mat-option>
+        <mat-option *ngFor="let city of (cities$ | async)" [value]="city.name">{{city.name}}</mat-option>
       </mat-select>
       <mat-error>Please choose a city.</mat-error>
     </mat-form-field>
@@ -44,7 +44,7 @@
     <mat-form-field appearance="fill">
       <mat-label>Country</mat-label>
       <mat-select formControlName="country">
-        <mat-option *ngFor="let country of countries$ | async" [value]="country.iso">{{country.name}}</mat-option>
+        <mat-option *ngFor="let country of (countries$ | async)" [value]="country.iso">{{country.name}}</mat-option>
       </mat-select>
       <mat-error>Please choose a country.</mat-error>
     </mat-form-field>
