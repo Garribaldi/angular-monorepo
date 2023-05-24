@@ -11,11 +11,18 @@ import { take } from "rxjs";
 })
 export class Captchav2Component {
 
-  @ViewChild('captchaElement', {static: true}) captchaElement!: RecaptchaComponent;
+  private _captchaElement?: RecaptchaComponent;
+  @ViewChild('captchaElement') set captchaElement(captchaElement: RecaptchaComponent | undefined) {
+    this._captchaElement = captchaElement;
+  }
+
+  get captchaElement(): RecaptchaComponent | undefined {
+    return this._captchaElement;
+  }
 
   siteKey: string;
 
-  @Output() captchaClicked = new EventEmitter<void>();
+  @Output() captchaClicked = new EventEmitter<RecaptchaComponent>();
   @Output() timedOut = new EventEmitter<void>();
   @Output() hasError = new EventEmitter<[]>();
 
@@ -29,16 +36,24 @@ export class Captchav2Component {
 
   resolved(response: string | null) {
 
-    if (response) {
-      this.googleValidateService.validateResponse$(response, this.siteKey)
-        .pipe(take(1))
-        .subscribe(result => {
-          console.log(result);
-          this.captchaClicked.emit();
-        });
-    } else {
+    if (!response) {
       this.timedOut.emit();
+      return;
     }
+
+    this.googleValidateService.validateResponse$(response, this.siteKey)
+      .pipe(take(1))
+      .subscribe(result => {
+        console.log(result);
+
+        // Evaluate result from Google
+        if (!result.valid) {
+          this.captchaElement?.reset();
+          return;
+        }
+
+        this.captchaClicked.emit(this.captchaElement);
+      });
   }
 
   errored(error: []) {

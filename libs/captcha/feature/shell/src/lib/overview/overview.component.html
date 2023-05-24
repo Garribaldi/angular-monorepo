@@ -8,7 +8,7 @@
 <ng-container [ngSwitch]="selectedType">
   <div class="captcha__output">
     <local-captcha-captchav2 *ngSwitchCase="captchaType.V2"
-                             (captchaClicked)="captchaClicked()"
+                             (captchaClicked)="captchaClicked($event)"
                              (hasError)="resetCaptcha()"
                              (timedOut)="resetCaptcha()">
     </local-captcha-captchav2>
@@ -17,5 +17,5 @@
 </ng-container>
 
 <div class="captcha__confirm">
-  <button mat-flat-button [disabled]="!isVerified">Send</button>
+  <button mat-flat-button [disabled]="!isVerified" (click)="send()">Send</button>
 </div>

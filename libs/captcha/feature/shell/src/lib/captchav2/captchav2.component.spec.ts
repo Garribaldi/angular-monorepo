@@ -3,9 +3,8 @@ import { Captchav2Component } from './captchav2.component';
 import { MockComponent, MockProvider } from "ng-mocks";
 import { RecaptchaComponent } from "ng-recaptcha";
 import { EnvironmentsService } from "@local/shared/feature/environments";
-import { GoogleValidateService } from "@local/captcha/data-access";
+import { GoogleEvaluateCaptchaResponse, GoogleValidateService } from "@local/captcha/data-access";
 import { of } from "rxjs";
-import { GoogleEvaluateCaptchaResponseDto } from "../../../../../data-access/src/lib/google-api.model";
 
 describe('Captchav2Component', () => {
   let component: Captchav2Component;
@@ -30,7 +29,7 @@ describe('Captchav2Component', () => {
           }
         }),
         MockProvider(GoogleValidateService, {
-          validateResponse$: () => of({} as GoogleEvaluateCaptchaResponseDto)
+          validateResponse$: () => of({valid: true} as GoogleEvaluateCaptchaResponse)
         })
       ]
     }).compileComponents();

@@ -1,5 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { OverviewComponent } from './overview.component';
+import { ChartsUtilsModule } from "@local/charts/utils";
+import { MockModule } from "ng-mocks";
 
 describe('OverviewComponent', () => {
   let component: OverviewComponent;
@@ -7,6 +9,7 @@ describe('OverviewComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [MockModule(ChartsUtilsModule)],
       declarations: [OverviewComponent],
     }).compileComponents();
 
