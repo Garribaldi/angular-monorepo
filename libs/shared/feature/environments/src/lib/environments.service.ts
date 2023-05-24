@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Environment } from "./environments.model";
+import { Environment, GoogleCaptcha } from "./environments.model";
 import { environment } from "./stages/environment";
 
 @Injectable({
@@ -19,11 +19,7 @@ export class EnvironmentsService implements Environment {
     return environment.externalIntegrationUrl;
   }
 
-  get captchaV2Key(): string {
-   return environment.captchaV2Key;
-  }
-
-  get captchaV3Key(): string {
-    return environment.captchaV3Key;
+  get googleCaptcha(): GoogleCaptcha {
+    return {...environment.googleCaptcha};
   }
 }
