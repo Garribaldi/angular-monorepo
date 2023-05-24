@@ -5,7 +5,7 @@ import { RecaptchaComponent } from "ng-recaptcha";
 import { EnvironmentsService } from "@local/shared/feature/environments";
 import { GoogleValidateService } from "@local/captcha/data-access";
 import { of } from "rxjs";
-import { GoogleEvaluateCaptchaResponse } from "../../../../../data-access/src/lib/google-api.model";
+import { GoogleEvaluateCaptchaResponseDto } from "../../../../../data-access/src/lib/google-api.model";
 
 describe('Captchav2Component', () => {
   let component: Captchav2Component;
@@ -30,7 +30,7 @@ describe('Captchav2Component', () => {
           }
         }),
         MockProvider(GoogleValidateService, {
-          validateResponse$: () => of({} as GoogleEvaluateCaptchaResponse)
+          validateResponse$: () => of({} as GoogleEvaluateCaptchaResponseDto)
         })
       ]
     }).compileComponents();

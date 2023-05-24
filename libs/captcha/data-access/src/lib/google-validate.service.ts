@@ -1,8 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
+import { map, Observable } from "rxjs";
 import { EnvironmentsService } from "@local/shared/feature/environments";
-import { GoogleEvaluateCaptchaRequestBody, GoogleEvaluateCaptchaResponse } from "./google-api.model";
+import {
+  GoogleEvaluateCaptchaRequestBody,
+  GoogleEvaluateCaptchaResponse,
+  GoogleEvaluateCaptchaResponseDto
+} from "./google-api.model";
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +32,20 @@ export class GoogleValidateService {
       }
     };
 
-    return this.httpClient.post<GoogleEvaluateCaptchaResponse>(this.googleApi, eventBody);
+    return this.httpClient.post<GoogleEvaluateCaptchaResponseDto>(this.googleApi, eventBody).pipe(
+      map(response => this.mapToEvaluationResponse(response))
+    );
+  }
+
+  private mapToEvaluationResponse(responseDto: GoogleEvaluateCaptchaResponseDto): GoogleEvaluateCaptchaResponse {
+    return {
+      name: responseDto.name,
+      valid: responseDto.tokenProperties.valid,
+      score: responseDto.riskAnalysis.score,
+      siteKey: responseDto.event.siteKey,
+      token: responseDto.event.token,
+      createTime: new Date(responseDto.tokenProperties.createTime),
+      invalidReason: responseDto.tokenProperties.invalidReason
+    }
   }
 }
