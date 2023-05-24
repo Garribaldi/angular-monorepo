@@ -53,20 +53,20 @@ describe("Data Grid", () => {
 
     beforeEach(() => {
       // Team Id
-      cy.clickCheckFilter(teamIdFilter);
+      cy.toggleFilter(teamIdFilter);
       teamIdFilter.find(getFilterSelectorById(3)).click();
       teamIdFilter.find(getFilterSelectorById(4)).click();
       teamIdFilter.find(getFilterSelectorById(5)).click();
 
       // Team Name
-      cy.clickCheckFilter(teamNameFilter);
+      cy.toggleFilter(teamNameFilter);
       teamNameFilter.find(getFilterSelectorById(3)).click();
       teamNameFilter.find(getFilterSelectorById(4)).click();
       teamNameFilter.find(getFilterSelectorById(5)).click();
       teamNameFilter.find(getFilterSelectorById(6)).click();
 
       // Location
-      cy.clickCheckFilter(locationFilter);
+      cy.toggleFilter(locationFilter);
       locationFilter.find(getFilterSelectorById(3)).click();
       locationFilter.find(getFilterSelectorById(4)).click();
       locationFilter.find(getFilterSelectorById(5)).click();

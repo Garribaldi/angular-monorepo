@@ -12,15 +12,10 @@
 declare namespace Cypress {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   interface Chainable<Subject> {
-    clickCheckFilter(subject: JQuery<HTMLElement>): void;
-    clickDateFilter(subject: JQuery<HTMLElement>): void;
+    toggleFilter(subject: JQuery<HTMLElement>): void;
   }
 }
 
-Cypress.Commands.add("clickCheckFilter", (subject: JQuery<HTMLElement>) => {
-  subject.find('button[mattreenodetoggle]').click();
-});
-
-Cypress.Commands.add("clickDateFilter", (subject: JQuery<HTMLElement>) => {
+Cypress.Commands.add("toggleFilter", (subject: JQuery<HTMLElement>) => {
   subject.find('button[mattreenodetoggle]').click();
 });
