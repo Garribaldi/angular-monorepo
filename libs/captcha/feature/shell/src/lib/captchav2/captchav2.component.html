@@ -1,6 +1,10 @@
 <div class="captcha" cyGet="captcha-v2-container">
   <ng-container *ngIf="siteKey; else keyError">
-    <re-captcha (resolved)="resolved($event)" (errored)="errored($event)" [siteKey]="siteKey" #captchaElement></re-captcha>
+    <re-captcha #captchaElement
+      [siteKey]="siteKey"
+      (resolved)="resolved($event)"
+      (errored)="errored($event)">
+    </re-captcha>
   </ng-container>
 </div>
 

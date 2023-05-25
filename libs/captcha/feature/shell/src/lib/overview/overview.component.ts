@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CaptchaType } from "../models/capture-type";
+import { CaptchaType } from "../capture-type.model";
 import { MatRadioChange } from "@angular/material/radio";
 import { RecaptchaComponent } from "ng-recaptcha";
 
