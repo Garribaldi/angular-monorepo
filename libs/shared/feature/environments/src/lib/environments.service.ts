@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Environment, GoogleCaptcha } from "./environments.model";
+import { Environment, GoogleCaptcha } from "./environment.model";
 import { environment } from "./stages/environment";
 
 @Injectable({

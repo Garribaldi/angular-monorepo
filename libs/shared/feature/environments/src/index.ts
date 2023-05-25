@@ -1,3 +1,3 @@
 export * from './lib/shared-environments.module';
 export * from './lib/environments.service';
-export * from './lib/environments.model';
+export * from './lib/environment.model';

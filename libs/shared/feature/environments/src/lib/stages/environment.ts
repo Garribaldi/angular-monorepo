@@ -1,4 +1,4 @@
-import { Environment } from "../environments.model";
-import { commonEnvironment } from "../environments.common";
+import { Environment } from "../environment.model";
+import { commonEnvironment } from "../environment.common";
 
 export const environment: Environment = {...commonEnvironment};

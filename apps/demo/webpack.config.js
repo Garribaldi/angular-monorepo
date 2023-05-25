@@ -2,12 +2,12 @@ const webpack = require('webpack');
 const NodePolyfillPlugin = require('node-polyfill-webpack-plugin');
 
 function getClientEnvironment() {
-  // Grab NX_* environment variables and prepare them to be injected
+  // Grab NX_* or APP_* environment variables and prepare them to be injected
   // into the application via DefinePlugin in webpack configuration.
-  const NX_APP = /^NX_/i;
+  const ENV_PREFIX = /^(NX_|APP_)/i;
 
   const raw = Object.keys(process.env)
-    .filter((key) => NX_APP.test(key))
+    .filter((key) => ENV_PREFIX.test(key))
     .reduce((env, key) => {
       env[key] = process.env[key];
       return env;

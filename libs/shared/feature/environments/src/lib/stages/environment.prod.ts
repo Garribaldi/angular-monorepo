@@ -1,5 +1,5 @@
-import { Environment } from "../environments.model";
-import { commonEnvironment } from "../environments.common";
+import { Environment } from "../environment.model";
+import { commonEnvironment } from "../environment.common";
 
 const env: Partial<Environment> = {
   production: true,

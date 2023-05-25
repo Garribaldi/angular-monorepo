@@ -23,6 +23,16 @@ export type DockerEnvVariables = {
   GOOGLE_CAPTCHA_REST_API?: string;
 };
 
+export type NodeEnvVariables = {
+  APP_API_BACKEND_URL?: string,
+  APP_EXTERNAL_INTEGRATION_URL?: string,
+  APP_GOOGLE_CAPTCHA_V2_KEY?: string;
+  APP_GOOGLE_CAPTCHA_V3_KEY?: string;
+  APP_GOOGLE_API_KEY?: string;
+  APP_GOOGLE_PROJECT_ID?: string
+  APP_GOOGLE_CAPTCHA_REST_API?: string;
+};
+
 declare global {
   interface Window {
     env: DockerEnvVariables

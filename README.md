@@ -20,6 +20,10 @@ Aditionally, add a __env.js__ file in _apps/demo/src/assets/_.
 
 Use the _env.template.js_ file in the same folder as a reference and provide some test values instead of placeholders.
 
+An [environment.common.ts](libs/shared/feature/environments/src/lib/environment.common.ts) is used to provide a base configuration.
+In this file, the value are read from Node environment variables. This is achieved by a custom webpack configuration.
+
+
 
 ## Add Library
 

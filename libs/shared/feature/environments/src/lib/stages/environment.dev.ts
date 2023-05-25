@@ -1,5 +1,5 @@
-import { commonEnvironment } from "../environments.common";
-import { Environment } from "../environments.model";
+import { commonEnvironment } from "../environment.common";
+import { Environment } from "../environment.model";
 
 const env: Partial<Environment> = {
   apiBackendUrl: 'http://test.dev.api:8080',
