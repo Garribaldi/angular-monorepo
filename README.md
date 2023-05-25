@@ -16,14 +16,19 @@ Run `nx graph` to see a diagram of the dependencies of the projects.
 
 After cloning from repository, run ``npm install``.
 
-Aditionally, add a __env.js__ file in _apps/demo/src/assets/_.
+To use all examples properly, it is necessary to provide some environment data.
 
-Use the _env.template.js_ file in the same folder as a reference and provide some test values instead of placeholders.
+To achieve this, add an __.env__ file in your app base directory (under `apps/demo/`).
 
-An [environment.common.ts](libs/shared/feature/environments/src/lib/environment.common.ts) is used to provide a base configuration.
-In this file, the value are read from Node environment variables. This is achieved by a custom webpack configuration.
+Add the following keys to this file and provide your individual values:
 
-
+```
+  APP_GOOGLE_CAPTCHA_V2_KEY=
+  APP_GOOGLE_CAPTCHA_V3_KEY=
+  APP_GOOGLE_API_KEY=
+  APP_GOOGLE_PROJECT_ID=
+  APP_GOOGLE_CAPTCHA_REST_API=https://recaptchaenterprise.googleapis.com/v1/projects/PROJECT_ID/assessments?key=API_KEY
+```
 
 ## Add Library
 

@@ -9,8 +9,6 @@ const nodeEnv: NodeEnvVariables = Object.entries(process.env)
 
 export const commonEnvironment: Environment = {
   production: false,
-  apiBackendUrl: nodeEnv.APP_API_BACKEND_URL ?? '',
-  externalIntegrationUrl: nodeEnv.APP_EXTERNAL_INTEGRATION_URL ?? '',
   googleCaptcha: {
     captchaV2Key: nodeEnv.APP_GOOGLE_CAPTCHA_V2_KEY ?? '',
     captchaV3Key: nodeEnv.APP_GOOGLE_CAPTCHA_V3_KEY ?? '',

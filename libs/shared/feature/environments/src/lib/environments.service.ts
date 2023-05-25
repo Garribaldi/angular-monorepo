@@ -11,14 +11,6 @@ export class EnvironmentsService implements Environment {
     return environment.production;
   }
 
-  get apiBackendUrl(): string {
-    return environment.apiBackendUrl;
-  }
-
-  get externalIntegrationUrl(): string {
-    return environment.externalIntegrationUrl;
-  }
-
   get googleCaptcha(): GoogleCaptcha {
     return {...environment.googleCaptcha};
   }

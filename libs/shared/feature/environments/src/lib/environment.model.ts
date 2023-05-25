@@ -8,14 +8,10 @@ export interface GoogleCaptcha {
 
 export interface Environment {
   production: boolean;
-  apiBackendUrl: string;
-  externalIntegrationUrl: string;
   googleCaptcha: GoogleCaptcha
 }
 
 export type DockerEnvVariables = {
-  API_BACKEND_URL?: string,
-  EXTERNAL_INTEGRATION_URL?: string,
   GOOGLE_CAPTCHA_V2_KEY?: string;
   GOOGLE_CAPTCHA_V3_KEY?: string;
   GOOGLE_API_KEY?: string;
@@ -24,8 +20,6 @@ export type DockerEnvVariables = {
 };
 
 export type NodeEnvVariables = {
-  APP_API_BACKEND_URL?: string,
-  APP_EXTERNAL_INTEGRATION_URL?: string,
   APP_GOOGLE_CAPTCHA_V2_KEY?: string;
   APP_GOOGLE_CAPTCHA_V3_KEY?: string;
   APP_GOOGLE_API_KEY?: string;

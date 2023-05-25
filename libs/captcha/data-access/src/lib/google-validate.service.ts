@@ -19,7 +19,6 @@ export class GoogleValidateService {
     private readonly httpClient: HttpClient,
     private readonly environmentService: EnvironmentsService
   ) {
-    console.log(environmentService.apiBackendUrl);
     const {restApi, projectId, apiKey} = environmentService.googleCaptcha;
     this.googleApi = restApi.replace('PROJECT_ID', projectId).replace('API_KEY', apiKey);
   }

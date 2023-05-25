@@ -1,5 +1,4 @@
 import { Component, OnInit } from "@angular/core";
-import { EnvironmentsService } from "@local/shared/feature/environments";
 import { Title } from "@angular/platform-browser";
 import moment from "moment";
 import { Router } from "@angular/router";
@@ -13,13 +12,9 @@ export class AppComponent implements OnInit{
 
   mainNav:Array<{url: string, caption: string}> = []
 
-  backendUrl: string;
-  integrationUrl: string;
-
   private title = "Local demo app";
 
   constructor(
-    private readonly environmentService: EnvironmentsService,
     private readonly titleService: Title,
     private readonly router: Router
   ) {
@@ -28,9 +23,6 @@ export class AppComponent implements OnInit{
     this.mainNav = this.router.config
       .filter(conf => conf.path)
       .map(conf => ({url: conf.path as string, caption: conf.title as string}));
-
-    this.backendUrl = environmentService.apiBackendUrl ?? '';
-    this.integrationUrl = environmentService.externalIntegrationUrl ?? '';
   }
 
   /**
