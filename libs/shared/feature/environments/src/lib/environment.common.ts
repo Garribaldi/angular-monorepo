@@ -11,6 +11,7 @@ const nodeEnv: NodeEnvVariables = Object.entries(process.env)
 
 export const commonEnvironment: Environment = {
   production: false,
+  backendUrl: 'http://localhost:8080/api/v1',
   googleCaptcha: {
     captchaV2Key: nodeEnv.APP_GOOGLE_CAPTCHA_V2_KEY ?? googleCaptchaV2TestKey,
     captchaV3Key: nodeEnv.APP_GOOGLE_CAPTCHA_V3_KEY ?? '',

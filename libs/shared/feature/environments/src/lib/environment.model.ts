@@ -8,6 +8,7 @@ export interface GoogleCaptcha {
 
 export interface Environment {
   production: boolean;
+  backendUrl: string;
   googleCaptcha: GoogleCaptcha
 }
 
