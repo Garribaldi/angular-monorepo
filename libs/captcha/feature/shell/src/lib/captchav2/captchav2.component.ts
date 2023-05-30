@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
 import { EnvironmentsService } from "@local/shared/feature/environments";
 import { RecaptchaComponent } from "ng-recaptcha";
-import { GoogleValidateService } from "@local/captcha/data-access";
+import { EvaluateGoogleCaptchaService } from "@local/captcha/data-access";
 import { take } from "rxjs";
 
 @Component({
@@ -28,7 +28,7 @@ export class Captchav2Component {
 
   constructor(
     private readonly environmentService: EnvironmentsService,
-    private readonly googleValidateService: GoogleValidateService
+    private readonly googleValidateService: EvaluateGoogleCaptchaService
   ) {
     const {captchaV2Key} = this.environmentService.googleCaptcha;
     this.siteKey = captchaV2Key;
@@ -43,14 +43,14 @@ export class Captchav2Component {
 
     this.googleValidateService.validateResponse$(response, this.siteKey)
       .pipe(take(1))
-      .subscribe(result => {
-        console.log(result);
+      .subscribe(() => {
+        console.log('OK');
 
         // Evaluate result from Google
-        if (!result.valid) {
-          this.captchaElement?.reset();
-          return;
-        }
+        // if (!result.valid) {
+        //   this.captchaElement?.reset();
+        //   return;
+        // }
 
         this.captchaClicked.emit(this.captchaElement);
       });

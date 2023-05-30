@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { GoogleValidateService } from './google-validate.service';
+import { EvaluateGoogleCaptchaService } from './evaluate-google-captcha.service';
 import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { MockProvider } from "ng-mocks";
 import { EnvironmentsService } from "@local/shared/feature/environments";
 
 describe('GoogleValidateService', () => {
-  let service: GoogleValidateService;
+  let service: EvaluateGoogleCaptchaService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -25,7 +25,7 @@ describe('GoogleValidateService', () => {
         })
       ]
     });
-    service = TestBed.inject(GoogleValidateService);
+    service = TestBed.inject(EvaluateGoogleCaptchaService);
   });
 
   it('should be created', () => {

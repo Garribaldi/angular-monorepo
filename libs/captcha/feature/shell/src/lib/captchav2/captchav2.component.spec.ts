@@ -3,7 +3,7 @@ import { Captchav2Component } from './captchav2.component';
 import { MockComponent, MockProvider } from "ng-mocks";
 import { RecaptchaComponent } from "ng-recaptcha";
 import { EnvironmentsService } from "@local/shared/feature/environments";
-import { GoogleEvaluateCaptchaResponse, GoogleValidateService } from "@local/captcha/data-access";
+import { EvaluateGoogleCaptchaService, GoogleEvaluateCaptchaResponse } from "@local/captcha/data-access";
 import { of } from "rxjs";
 
 describe('Captchav2Component', () => {
@@ -28,7 +28,7 @@ describe('Captchav2Component', () => {
             captchaV3Key: ''
           }
         }),
-        MockProvider(GoogleValidateService, {
+        MockProvider(EvaluateGoogleCaptchaService, {
           validateResponse$: () => of({valid: true} as GoogleEvaluateCaptchaResponse)
         })
       ]
