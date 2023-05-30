@@ -43,16 +43,9 @@ export class Captchav2Component {
 
     this.googleValidateService.validateResponse$(response, this.siteKey)
       .pipe(take(1))
-      .subscribe(() => {
-        console.log('OK');
-
-        // Evaluate result from Google
-        // if (!result.valid) {
-        //   this.captchaElement?.reset();
-        //   return;
-        // }
-
-        this.captchaClicked.emit(this.captchaElement);
+      .subscribe({
+        next: () => this.captchaClicked.emit(this.captchaElement),
+        error: () => this.hasError.emit([])
       });
   }
 

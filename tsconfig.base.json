@@ -49,6 +49,9 @@
         "libs/reactive-forms/feature/shell/src/index.ts"
       ],
       "@local/shared/data-access": ["libs/shared/data-access/src/index.ts"],
+      "@local/shared/feature/config": [
+        "libs/shared/feature/config/src/index.ts"
+      ],
       "@local/shared/feature/cypress-commands": [
         "libs/shared/feature/cypress-commands/src/index.ts"
       ],
