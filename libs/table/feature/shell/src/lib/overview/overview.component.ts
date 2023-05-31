@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Observable } from "rxjs";
+import { map, Observable } from "rxjs";
 import { Employee, Inventory, SharedDataService } from "@local/shared/data-access";
 
 @Component({
@@ -14,7 +14,7 @@ export class OverviewComponent {
   constructor(
     private readonly sharedDataService: SharedDataService
   ) {
-    this.employees$ = sharedDataService.getEmployees$();
+    this.employees$ = sharedDataService.getEmployees$().pipe(map(employees => employees.map(employee => ({firstName: employee.firstName, lastName: employee.lastName}))));
     this.inventory$ = sharedDataService.getInventory$();
   }
 

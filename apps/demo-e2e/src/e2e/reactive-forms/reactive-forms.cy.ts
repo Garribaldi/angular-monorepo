@@ -3,8 +3,11 @@ import { getForm } from "../../support/app.po";
 describe("Reactive Forms", () => {
 
   beforeEach(() => {
-    cy.visit("/form");
+    cy.intercept('GET', 'employees', {fixture: 'employees.json'}).as('getAllEmployees');
+
     cy.viewport(1920, 1080);
+    cy.visit("/form");
+    cy.wait('@getAllEmployees');
   });
 
   describe('default form', () => {

@@ -6,20 +6,26 @@ import { City, CityDto } from "./city.model";
 import { Country, CountryDto } from "./country.model";
 import { NbaTeam, NbaTeamDto } from "./nba-team.model";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { EnvironmentsService } from "@local/shared/feature/environments";
 
 @Injectable({
   providedIn: 'root'
 })
 export class SharedDataService {
 
+  private readonly backendUrl: string;
+
   constructor(
-    private readonly httpClient: HttpClient
+    private readonly httpClient: HttpClient,
+    private readonly environment: EnvironmentsService
   ) {
+    this.backendUrl = environment.backendUrl;
   }
 
   getEmployees$(): Observable<Employee[]> {
-    return this.httpClient.get<EmployeeDto[]>('../assets/employees.json').pipe(
-      map(employees => employees.map(employee => ({...employee} as Employee)))
+    const url = `${this.backendUrl}/employees`;
+    return this.httpClient.get<EmployeeDto[]>(url).pipe(
+      map(employees => employees.map(employee => this.mapToEmployee(employee)))
     );
   }
 
@@ -52,6 +58,17 @@ export class SharedDataService {
     return this.httpClient.get<NbaTeamDto[]>('../assets/nba-teams.json', {headers}).pipe(
       map(nbaTeamDto => nbaTeamDto.map(team => this.mapToNbaTeam(team)))
     );
+  }
+
+  private mapToEmployee(employeeDto: EmployeeDto): Employee {
+    return {
+      firstName: employeeDto.firstName,
+      lastName: employeeDto.lastName,
+      email: employeeDto.email ?? undefined,
+      password: employeeDto.password ?? undefined,
+      city: employeeDto.city ?? undefined,
+      country: employeeDto.country ?? undefined
+    }
   }
 
   private mapToNbaTeam(team: NbaTeamDto): NbaTeam {
