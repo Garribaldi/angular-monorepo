@@ -12,7 +12,7 @@ describe("Data Grid", () => {
   let dateFilter: JQuery<HTMLElement>;
 
   beforeEach(() => {
-    cy.intercept('GET', 'nba-teams.json').as('getAllTeams');
+    cy.intercept('GET', 'nba-teams', {fixture: 'nba-teams.json'}).as('getAllTeams');
 
     cy.viewport(1920, 1080);
     cy.visit("/material/data-grid");

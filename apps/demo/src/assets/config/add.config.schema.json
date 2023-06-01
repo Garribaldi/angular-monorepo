@@ -1,0 +1,50 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "config/app.config.schema.json",
+  "title": "Local base configuration",
+  "type": "object",
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "version": {
+      "type": "integer",
+      "description": "File version",
+      "minimum": 1
+    },
+    "google": {
+      "$ref": "#/definitions/googleOptions"
+    }
+  },
+  "required": [
+    "version",
+    "google"
+  ],
+  "definitions": {
+    "googleOptions": {
+      "type": "object",
+      "properties": {
+        "captchaV2Key": {
+          "description": "Site key for Google Captcha Version 2",
+          "type": "string"
+        },
+        "captchaV3Key": {
+          "description": "Site key for Google Captcha Version 3",
+          "type": "string"
+        },
+        "apiKey": {
+          "description": "API key assigned to current project",
+          "type": "string"
+        },
+        "projectId": {
+          "description": "Google project id",
+          "type": "string"
+        },
+        "restApi": {
+          "description": "Google Rest Endpoint for assessment",
+          "type": "string"
+        }
+      }
+    }
+  }
+}

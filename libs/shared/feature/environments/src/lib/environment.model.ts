@@ -1,17 +1,3 @@
-export interface GoogleCaptcha {
-  restApi: string;
-  projectId: string;
-  apiKey: string;
-  captchaV2Key: string;
-  captchaV3Key: string;
-}
-
-export interface Environment {
-  production: boolean;
-  backendUrl: string;
-  googleCaptcha: GoogleCaptcha
-}
-
 export type DockerEnvVariables = {
   GOOGLE_CAPTCHA_V2_KEY?: string;
   GOOGLE_CAPTCHA_V3_KEY?: string;
@@ -33,3 +19,23 @@ declare global {
     env: DockerEnvVariables
   }
 }
+
+export type GoogleCaptcha = {
+  restApi: string;
+  projectId: string;
+  apiKey: string;
+  captchaV2Key: string;
+  captchaV3Key: string;
+}
+
+type EnvironmentCommon = {
+  production: boolean;
+  backendUrl: string;
+  googleCaptcha: GoogleCaptcha
+}
+
+type EnvironmentEnhanced = {
+  googleCaptcha: GoogleCaptcha
+}
+
+export type Environment = EnvironmentCommon & EnvironmentEnhanced;
