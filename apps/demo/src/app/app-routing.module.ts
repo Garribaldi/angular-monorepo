@@ -43,6 +43,14 @@ export const appRoutes: Route[] = [
       )
   },
   {
+    path: 'upload',
+    title: 'File Upload',
+    loadChildren: () =>
+      import('@local/file-upload/feature/shell').then(
+        (m) => m.FileUploadFeatureShellRoutingModule
+      )
+  },
+  {
     path: '',
     pathMatch: 'full',
     redirectTo: 'table',

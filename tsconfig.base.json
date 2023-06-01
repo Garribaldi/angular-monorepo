@@ -45,6 +45,12 @@
       "@local/charts/data-access": ["libs/charts/data-access/src/index.ts"],
       "@local/charts/feature/shell": ["libs/charts/feature/shell/src/index.ts"],
       "@local/charts/utils": ["libs/charts/utils/src/index.ts"],
+      "@local/file-upload/feature/shell": [
+        "libs/file-upload/feature/shell/src/index.ts"
+      ],
+      "@local/file-upload/feature/upload": [
+        "libs/file-upload/feature/upload/src/index.ts"
+      ],
       "@local/reactive-forms/feature/shell": [
         "libs/reactive-forms/feature/shell/src/index.ts"
       ],
