@@ -1,7 +1,7 @@
 <nav class="subnav">
   <ul class="subnav__container">
     <li *ngFor="let link of routerLinks" class="subnav__item">
-      <a [routerLink]="link.url" class="subnav__link" routerLinkActive="subnav__link--active">{{link.caption}}</a>
+      <a [routerLink]="link.path" class="subnav__link" routerLinkActive="subnav__link--active">{{link.title}}</a>
     </li>
   </ul>
 </nav>

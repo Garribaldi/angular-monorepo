@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { OverviewRouterModel } from "./overview.router.model";
+import { ActivatedRoute, Route } from "@angular/router";
 
 @Component({
   selector: 'local-angular-material-overview',
@@ -8,12 +8,11 @@ import { OverviewRouterModel } from "./overview.router.model";
 })
 export class OverviewComponent {
 
-  routerLinks: OverviewRouterModel[] = [
-    {url: 'table', caption: 'Table'},
-    {url: 'generic-table', caption: 'Generic Table'},
-    {url: 'slider', caption: 'Slider'},
-    {url: 'dialog', caption: 'Dialog'},
-    {url: 'filter', caption: 'Filter'},
-    {url: 'data-grid', caption: 'Data Grid'}
-  ];
+  routerLinks: Route[] = [];
+
+  constructor(
+    private readonly activatedRoute: ActivatedRoute
+  ) {
+    this.routerLinks = activatedRoute.routeConfig?.children?.filter(config => !!config.title) ?? [];
+  }
 }
