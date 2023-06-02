@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { take } from "rxjs";
 import { NbaTeam, SharedDataService } from "@local/shared/data-access";
-import { FilterType } from "@local/angular-material/feature/data-grid";
+import { FilterType } from "@local/angular-material/data-grid/data-access";
 
 @Component({
   selector: 'local-angular-material-data-grid-shell',

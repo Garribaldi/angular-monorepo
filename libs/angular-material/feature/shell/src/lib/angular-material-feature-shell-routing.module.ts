@@ -22,32 +22,26 @@ const routes: Route[] = [
       },
       {
         path: 'table',
-        title: 'Table',
         component: TableComponent
       },
       {
         path: 'generic-table',
-        title: 'Generic Table',
         component: GenericTableShellComponent
       },
       {
         path: 'slider',
-        title: 'Slider',
         component: SliderShellComponent
       },
       {
         path: 'dialog',
-        title: 'Dialog',
         component: DialogShellComponent
       },
       {
         path: 'filter',
-        title: 'Filter',
         component: FilterShellComponent
       },
       {
         path: 'data-grid',
-        title: 'Data Grid',
         component: DataGridShellComponent
       }
     ]

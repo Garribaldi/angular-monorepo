@@ -9,31 +9,31 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { FilterShellComponent } from './filter-shell/filter-shell.component';
-import { AngularMaterialFeatureFilterModule } from '@local/angular-material/feature/filter';
 import { MatCardModule } from '@angular/material/card';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
-import { AngularMaterialDialogModule } from '@local/angular-material/dialog/feature';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { DialogShellComponent } from './dialog-shell/dialog-shell.component';
 import { MatButtonModule } from '@angular/material/button';
 import { DataGridShellComponent } from './data-grid-shell/data-grid-shell.component';
 import { MatTabsModule } from '@angular/material/tabs';
-import { AngularMaterialFeatureDataGridModule } from '@local/angular-material/feature/data-grid';
 import { SliderShellComponent } from './slider-shell/slider-shell.component';
-import { AngularMaterialFeatureSliderModule } from '@local/angular-material/feature/slider';
-import { GenericTableShellComponent } from './generic-table-shell/generic-table-shell.component';
-import { AngularMaterialFeatureGenericTableModule } from '@local/angular-material/feature/generic-table';
-import { SharedUtilsModule } from '@local/shared/utils';
+import { AngularMaterialFeatureSliderModule } from "@local/angular-material/feature/slider";
+import { GenericTableShellComponent } from "./generic-table-shell/generic-table-shell.component";
+import { AngularMaterialFeatureGenericTableModule } from "@local/angular-material/feature/generic-table";
+import { SharedUtilsModule } from "@local/shared/utils";
+import { AngularMaterialDialogModule } from "@local/angular-material/dialog/feature";
+import { AngularMaterialFilterModule } from "@local/angular-material/filter/feature";
+import { AngularMaterialDataGridModule } from "@local/angular-material/data-grid/feature";
 
 @NgModule({
   imports: [
     CommonModule,
     AngularMaterialFeatureShellRoutingModule,
-    AngularMaterialFeatureFilterModule,
     AngularMaterialDialogModule,
-    AngularMaterialFeatureDataGridModule,
+    AngularMaterialFilterModule,
+    AngularMaterialDataGridModule,
     AngularMaterialFeatureSliderModule,
     AngularMaterialFeatureGenericTableModule,
     ReactiveFormsModule,
@@ -49,7 +49,7 @@ import { SharedUtilsModule } from '@local/shared/utils';
     MatNativeDateModule,
     MatButtonModule,
     MatTabsModule,
-    SharedUtilsModule,
+    SharedUtilsModule
   ],
   declarations: [
     OverviewComponent,
@@ -57,7 +57,7 @@ import { SharedUtilsModule } from '@local/shared/utils';
     DialogShellComponent,
     DataGridShellComponent,
     SliderShellComponent,
-    GenericTableShellComponent,
+    GenericTableShellComponent
   ],
   exports: [OverviewComponent],
 })

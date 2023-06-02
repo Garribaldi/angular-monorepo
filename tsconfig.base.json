@@ -17,42 +17,87 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@local/angular-material/dialog/data-access": ["libs/angular-material/dialog/data-access/src/index.ts"],
-      "@local/angular-material/dialog/feature": ["libs/angular-material/dialog/feature/src/index.ts"],
-      "@local/angular-material/feature/data-grid": ["libs/angular-material/feature/data-grid/src/index.ts"],
-      "@local/angular-material/feature/filter": ["libs/angular-material/feature/filter/src/index.ts"],
-      "@local/angular-material/feature/generic-table": ["libs/angular-material/feature/generic-table/src/index.ts"],
-      "@local/angular-material/feature/shell": ["libs/angular-material/feature/shell/src/index.ts"],
-      "@local/angular-material/feature/slider": ["libs/angular-material/feature/slider/src/index.ts"],
-      "@local/angular-material/feature/table": ["libs/angular-material/feature/table/src/index.ts"],
-
-      "@local/captcha/data-access": ["libs/captcha/data-access/src/index.ts"],
-      "@local/captcha/feature/shell": ["libs/captcha/feature/shell/src/index.ts"],
+      "@local/angular-material/data-grid/data-access": [
+        "libs/angular-material/data-grid/data-access/src/index.ts"
+      ],
+      "@local/angular-material/data-grid/feature": [
+        "libs/angular-material/data-grid/feature/src/index.ts"
+      ],
+      "@local/angular-material/data-grid/ui": [
+        "libs/angular-material/data-grid/ui/src/index.ts"
+      ],
+      "@local/angular-material/dialog/data-access": [
+        "libs/angular-material/dialog/data-access/src/index.ts"
+      ],
+      "@local/angular-material/dialog/feature": [
+        "libs/angular-material/dialog/feature/src/index.ts"
+      ],
+      "@local/angular-material/feature/generic-table": [
+        "libs/angular-material/feature/generic-table/src/index.ts"
+      ],
+      "@local/angular-material/feature/shell": [
+        "libs/angular-material/feature/shell/src/index.ts"
+      ],
+      "@local/angular-material/feature/slider": [
+        "libs/angular-material/feature/slider/src/index.ts"
+      ],
+      "@local/angular-material/feature/table": [
+        "libs/angular-material/feature/table/src/index.ts"
+      ],
+      "@local/angular-material/filter/feature": [
+        "libs/angular-material/filter/feature/src/index.ts"
+      ],
 
       "@local/charts/data-access": ["libs/charts/data-access/src/index.ts"],
       "@local/charts/feature/shell": ["libs/charts/feature/shell/src/index.ts"],
       "@local/charts/utils": ["libs/charts/utils/src/index.ts"],
 
-      "@local/demo/file-upload/feature": ["libs/demo/file-upload/feature/src/index.ts"],
+      "@local/demo/angular-material/feature": [
+        "libs/demo/angular-material/feature/src/index.ts"
+      ],
+      "@local/demo/file-upload/feature": [
+        "libs/demo/file-upload/feature/src/index.ts"
+      ],
+      "@local/demo/google-captcha/feature": [
+        "libs/demo/google-captcha/feature/src/index.ts"
+      ],
 
       "@local/file-upload/feature": ["libs/file-upload/feature/src/index.ts"],
-      "@local/file-upload/feature/feature": ["libs/file-upload/feature/feature/src/index.ts"],
-      "@local/file-upload/feature/shell": ["libs/file-upload/feature/shell/src/index.ts"],
-      "@local/file-upload/feature/upload": ["libs/file-upload/feature/upload/src/index.ts"],
-
-      "@local/reactive-forms/feature/shell": ["libs/reactive-forms/feature/shell/src/index.ts"],
-
+      "@local/file-upload/feature/feature": [
+        "libs/file-upload/feature/feature/src/index.ts"
+      ],
+      "@local/file-upload/feature/shell": [
+        "libs/file-upload/feature/shell/src/index.ts"
+      ],
+      "@local/file-upload/feature/upload": [
+        "libs/file-upload/feature/upload/src/index.ts"
+      ],
+      "@local/google-captcha/data-access": [
+        "libs/google-captcha/data-access/src/index.ts"
+      ],
+      "@local/google-captcha/feature": [
+        "libs/google-captcha/feature/src/index.ts"
+      ],
+      "@local/reactive-forms/feature/shell": [
+        "libs/reactive-forms/feature/shell/src/index.ts"
+      ],
       "@local/shared/data-access": ["libs/shared/data-access/src/index.ts"],
-      "@local/shared/feature/config": ["libs/shared/feature/config/src/index.ts"],
-      "@local/shared/feature/cypress-commands": ["libs/shared/feature/cypress-commands/src/index.ts"],
-      "@local/shared/feature/environments": ["libs/shared/feature/environments/src/index.ts"],
+      "@local/shared/feature/config": [
+        "libs/shared/feature/config/src/index.ts"
+      ],
+      "@local/shared/feature/cypress-commands": [
+        "libs/shared/feature/cypress-commands/src/index.ts"
+      ],
+      "@local/shared/feature/environments": [
+        "libs/shared/feature/environments/src/index.ts"
+      ],
       "@local/shared/ui": ["libs/shared/ui/src/index.ts"],
       "@local/shared/utils": ["libs/shared/utils/src/index.ts"],
-
       "@local/shell/feature": ["libs/shell/feature/src/index.ts"],
-      "@local/shell/feature/file-upload": ["libs/shell/feature/file-upload/src/index.ts"],
+      "@local/shell/feature/file-upload": [
+        "libs/shell/feature/file-upload/src/index.ts"
+      ],
       "@local/shell/feature/home": ["libs/shell/feature/home/src/index.ts"],
-
       "@local/table/feature/shell": ["libs/table/feature/shell/src/index.ts"],
       "@local/table/feature/table": ["libs/table/feature/table/src/index.ts"]
     }

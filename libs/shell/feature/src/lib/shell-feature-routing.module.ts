@@ -30,16 +30,16 @@ export const appRoutes: Route[] = [
     path: 'captcha',
     title: 'Captcha',
     loadChildren: () =>
-      import('@local/captcha/feature/shell').then(
-        (m) => m.CaptchaFeatureShellModule
+      import('@local/demo/google-captcha/feature').then(
+        (m) => m.DemoGoogleCaptchaModule
       )
   },
   {
     path: 'material',
     title: 'Angular Material',
     loadChildren: () =>
-      import('@local/angular-material/feature/shell').then(
-        (m) => m.AngularMaterialFeatureShellModule
+      import('@local/demo/angular-material/feature').then(
+        (m) => m.DemoAngularMaterialModule
       )
   },
   {

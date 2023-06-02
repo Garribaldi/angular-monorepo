@@ -1,0 +1,19 @@
+<form [formGroup]="formGroup">
+  <mat-form-field class="col-sm-4">
+    <mat-label>Select</mat-label>
+    <mat-select [formControlName]="'selectedFilter'">
+      <mat-option>
+        <ngx-mat-select-search
+          [formControlName]="'filterSearch'"
+          noEntriesFoundLabel="No results found"
+        ></ngx-mat-select-search>
+      </mat-option>
+      <mat-option
+        *ngFor="let data of filteredFilterValues"
+        [value]="data.filterValue"
+        [disabled]="data.toString().indexOf('Error') > -1"
+        >{{ data.filterLabel }}</mat-option
+      >
+    </mat-select>
+  </mat-form-field>
+</form>
