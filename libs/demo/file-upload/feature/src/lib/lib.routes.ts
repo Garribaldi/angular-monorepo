@@ -1,6 +1,6 @@
 import { Route } from '@angular/router';
-import { FileUploadComponent } from "./file-upload.component";
+import { DemoFileUploadComponent } from "./demo-file-upload.component";
 
 export const routes: Route[] = [
-  {path: '', pathMatch: 'full', component: FileUploadComponent}
+  {path: '', pathMatch: 'full', component: DemoFileUploadComponent}
 ];

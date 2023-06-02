@@ -32,26 +32,18 @@
       "@local/angular-material/dialog/feature": [
         "libs/angular-material/dialog/feature/src/index.ts"
       ],
-      "@local/angular-material/feature/generic-table": [
-        "libs/angular-material/feature/generic-table/src/index.ts"
-      ],
-      "@local/angular-material/feature/shell": [
-        "libs/angular-material/feature/shell/src/index.ts"
-      ],
-      "@local/angular-material/feature/slider": [
-        "libs/angular-material/feature/slider/src/index.ts"
-      ],
-      "@local/angular-material/feature/table": [
-        "libs/angular-material/feature/table/src/index.ts"
-      ],
       "@local/angular-material/filter/feature": [
         "libs/angular-material/filter/feature/src/index.ts"
       ],
-
+      "@local/angular-material/generic-table/feature": [
+        "libs/angular-material/generic-table/feature/src/index.ts"
+      ],
+      "@local/angular-material/slider/feature": [
+        "libs/angular-material/slider/feature/src/index.ts"
+      ],
       "@local/charts/data-access": ["libs/charts/data-access/src/index.ts"],
       "@local/charts/feature/shell": ["libs/charts/feature/shell/src/index.ts"],
       "@local/charts/utils": ["libs/charts/utils/src/index.ts"],
-
       "@local/demo/angular-material/feature": [
         "libs/demo/angular-material/feature/src/index.ts"
       ],
@@ -61,7 +53,6 @@
       "@local/demo/google-captcha/feature": [
         "libs/demo/google-captcha/feature/src/index.ts"
       ],
-
       "@local/file-upload/feature": ["libs/file-upload/feature/src/index.ts"],
       "@local/file-upload/feature/feature": [
         "libs/file-upload/feature/feature/src/index.ts"

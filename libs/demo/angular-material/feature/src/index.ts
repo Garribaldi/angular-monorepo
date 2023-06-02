@@ -1,1 +1,1 @@
-export * from './lib/demo-angular-material-feature.module';
+export * from './lib/demo-angular-material.module';

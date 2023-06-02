@@ -1,16 +1,16 @@
 {
-  "name": "demo-angular-material",
+  "name": "angular-material-slider",
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/demo/angular-material/feature/src",
-  "prefix": "local-demo",
-  "tags": ["scope:demo", "type:feature"],
+  "sourceRoot": "libs/angular-material/slider/feature/src",
+  "prefix": "local-angular-material",
+  "tags": ["scope:angular-material", "type:feature"],
   "projectType": "library",
   "targets": {
     "test": {
       "executor": "@nrwl/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "libs/demo/angular-material/feature/jest.config.ts",
+        "jestConfig": "libs/angular-material/slider/feature/jest.config.ts",
         "passWithNoTests": true
       },
       "configurations": {
@@ -25,8 +25,8 @@
       "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": [
-          "libs/demo/angular-material/feature/**/*.ts",
-          "libs/demo/angular-material/feature/**/*.html"
+          "libs/angular-material/slider/feature/**/*.ts",
+          "libs/angular-material/slider/feature/**/*.html"
         ]
       }
     }

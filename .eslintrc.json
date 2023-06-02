@@ -22,16 +22,16 @@
             "allow": [],
             "depConstraints": [
               {"sourceTag": "type:app", "onlyDependOnLibsWithTags": ["type:shell"]},
-              {"sourceTag": "type:shell", "onlyDependOnLibsWithTags": ["type:lazy"]},
-              {"sourceTag": "type:lazy", "onlyDependOnLibsWithTags": ["type:feature", "type:data-access"]},
-              {"sourceTag": "type:feature", "onlyDependOnLibsWithTags": ["type:ui", "type:data-access", "type:util"]},
+              {"sourceTag": "type:shell", "onlyDependOnLibsWithTags": ["type:feature", "type:util"]},
+
+              {"sourceTag": "type:feature", "onlyDependOnLibsWithTags": ["type:feature", "type:ui", "type:data-access", "type:util"]},
               {"sourceTag": "type:ui", "onlyDependOnLibsWithTags": ["type:ui", "type:data-access", "type:util"]},
               {"sourceTag": "type:data-access", "onlyDependOnLibsWithTags": ["type:data-access", "type:util"]},
               {"sourceTag": "type:util", "onlyDependOnLibsWithTags": ["type:util"]},
 
               {"sourceTag": "scope:app", "onlyDependOnLibsWithTags": ["scope:shell", "scope:shared"]},
               {"sourceTag": "scope:shell", "onlyDependOnLibsWithTags": ["*"]},
-              {"sourceTag": "scope:demo", "onlyDependOnLibsWithTags": ["scope:file-upload", "scope:google-captcha"]},
+              {"sourceTag": "scope:demo", "onlyDependOnLibsWithTags": ["scope:file-upload", "scope:google-captcha", "scope:angular-material", "scope:shared"]},
               {"sourceTag": "scope:shared", "onlyDependOnLibsWithTags": ["scope:shared"]},
               {"sourceTag": "scope:angular-material", "onlyDependOnLibsWithTags": ["scope:angular-material", "scope:shared"]},
               {"sourceTag": "scope:charts", "onlyDependOnLibsWithTags": ["scope:charts", "scope:shared"]},

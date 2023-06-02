@@ -3,7 +3,7 @@
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "feature/src",
   "prefix": "local-demo",
-  "tags": ["scope:demo", "type:lazy"],
+  "tags": ["scope:demo", "type:feature"],
   "projectType": "library",
   "targets": {
     "test": {

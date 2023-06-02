@@ -11,6 +11,7 @@ import {
 import { HttpCacheInterceptor } from '@local/shared/utils';
 import { ShellFeatureRoutingModule } from './shell-feature-routing.module';
 import { HomeComponent } from './home.component';
+import { MatMomentDateModule } from "@angular/material-moment-adapter";
 
 @NgModule({
   imports: [
@@ -19,6 +20,7 @@ import { HomeComponent } from './home.component';
     ShellFeatureRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    MatMomentDateModule
   ],
   providers: [
     {

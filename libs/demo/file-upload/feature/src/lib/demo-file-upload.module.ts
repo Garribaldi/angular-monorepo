@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { routes } from './lib.routes';
-import { FileUploadComponent } from './file-upload.component';
+import { DemoFileUploadComponent } from './demo-file-upload.component';
 import { FileUploadModule } from "@local/file-upload/feature";
 
 @NgModule({
@@ -11,6 +11,6 @@ import { FileUploadModule } from "@local/file-upload/feature";
     RouterModule.forChild(routes),
     FileUploadModule
   ],
-  declarations: [FileUploadComponent]
+  declarations: [DemoFileUploadComponent]
 })
 export class DemoFileUploadModule {}

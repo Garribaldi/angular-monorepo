@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { GoogleCaptchaComponent } from './google-captcha.component';
+import { DemoGoogleCaptchaComponent } from './demo-google-captcha.component';
 import { RouterModule } from "@angular/router";
 import { routes } from "./lib.routes";
 import { MatButtonModule } from "@angular/material/button";
@@ -17,6 +17,6 @@ import { FormsModule } from "@angular/forms";
     MatRadioModule,
     FormsModule,
   ],
-  declarations: [GoogleCaptchaComponent],
+  declarations: [DemoGoogleCaptchaComponent],
 })
 export class DemoGoogleCaptchaModule {}
