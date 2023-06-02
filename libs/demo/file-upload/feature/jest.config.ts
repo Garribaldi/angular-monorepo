@@ -3,7 +3,7 @@ export default {
   displayName: 'demo-file-upload-feature',
   preset: '../../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
-  coverageDirectory: '../../../../coverage/libs/demo/file-upload/feature',
+  coverageDirectory: '../../../../coverage/libs/demo/file-upload',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': [
       'jest-preset-angular',

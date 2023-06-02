@@ -2,8 +2,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DemoGoogleCaptchaComponent } from './demo-google-captcha.component';
 import { MatRadioModule } from "@angular/material/radio";
 import { FormsModule } from "@angular/forms";
-import { MockComponent } from "ng-mocks";
-import { Captchav2Component, Captchav3Component } from "@local/google-captcha/feature";
+import { MockModule } from "ng-mocks";
+import { GoogleCaptchaModule } from "@local/google-captcha/feature";
 
 describe('GoogleCaptchaComponent', () => {
   let component: DemoGoogleCaptchaComponent;
@@ -13,12 +13,11 @@ describe('GoogleCaptchaComponent', () => {
     await TestBed.configureTestingModule({
       imports: [
         MatRadioModule,
+        MockModule(GoogleCaptchaModule),
         FormsModule
       ],
       declarations: [
-        DemoGoogleCaptchaComponent,
-        MockComponent(Captchav2Component),
-        MockComponent(Captchav3Component)
+        DemoGoogleCaptchaComponent
       ],
     }).compileComponents();
 

@@ -3,8 +3,8 @@ import { Captchav2Component } from './captchav2.component';
 import { MockComponent, MockProvider } from "ng-mocks";
 import { RecaptchaComponent } from "ng-recaptcha";
 import { EnvironmentsService } from "@local/shared/feature/environments";
-import { EvaluateGoogleCaptchaService } from "@local/captcha/data-access";
 import { of } from "rxjs";
+import { EvaluateGoogleCaptchaService } from "@local/google-captcha/data-access";
 
 describe('Captchav2Component', () => {
   let component: Captchav2Component;

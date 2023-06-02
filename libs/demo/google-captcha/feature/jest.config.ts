@@ -1,9 +1,9 @@
 /* eslint-disable */
 export default {
   displayName: 'demo-google-captcha',
-  preset: '../../../jest.preset.js',
+  preset: '../../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
-  coverageDirectory: '../../../coverage/libs/demo/google-captcha',
+  coverageDirectory: '../../../../coverage/libs/demo/google-captcha',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': [
       'jest-preset-angular',
