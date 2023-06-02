@@ -3,7 +3,7 @@
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/angular-material/feature/filter/src",
   "prefix": "local-angular-material",
-  "tags": ["scope:angular-material"],
+  "tags": ["scope:angular-material", "type:feature"],
   "projectType": "library",
   "targets": {
     "test": {

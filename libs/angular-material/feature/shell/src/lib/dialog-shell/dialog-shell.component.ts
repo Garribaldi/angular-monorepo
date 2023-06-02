@@ -1,10 +1,10 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogRef } from "@angular/material/dialog";
-import { DialogData } from "../../../../dialog/src/lib/dialog-data.model";
 import { take } from "rxjs";
-import { DialogComponent } from "../../../../dialog/src/lib/dialog/dialog.component";
 import { FormGroup } from "@angular/forms";
-import { DialogFormService } from "../../../../dialog/src/lib/dialog-form.service";
+import { DialogData, DialogFormService } from "@local/angular-material/dialog/data-access";
+import { DialogComponent } from "@local/angular-material/dialog/feature";
+
 
 @Component({
   selector: 'local-angular-material-dialog-shell',
@@ -58,5 +58,5 @@ export class DialogShellComponent implements OnInit {
           this.courseData = result;
         }
       });
-  }
+  }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
 }

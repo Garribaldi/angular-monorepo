@@ -13,7 +13,7 @@ import { AngularMaterialFeatureFilterModule } from '@local/angular-material/feat
 import { MatCardModule } from '@angular/material/card';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
-import { AngularMaterialFeatureDialogModule } from '@local/angular-material/feature/dialog';
+import { AngularMaterialDialogModule } from '@local/angular-material/dialog/feature';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { DialogShellComponent } from './dialog-shell/dialog-shell.component';
@@ -22,17 +22,17 @@ import { DataGridShellComponent } from './data-grid-shell/data-grid-shell.compon
 import { MatTabsModule } from '@angular/material/tabs';
 import { AngularMaterialFeatureDataGridModule } from '@local/angular-material/feature/data-grid';
 import { SliderShellComponent } from './slider-shell/slider-shell.component';
-import { AngularMaterialFeatureSliderModule } from "@local/angular-material/feature/slider";
-import { GenericTableShellComponent } from "./generic-table-shell/generic-table-shell.component";
-import { AngularMaterialFeatureGenericTableModule } from "@local/angular-material/feature/generic-table";
-import { SharedUtilsModule } from "@local/shared/utils";
+import { AngularMaterialFeatureSliderModule } from '@local/angular-material/feature/slider';
+import { GenericTableShellComponent } from './generic-table-shell/generic-table-shell.component';
+import { AngularMaterialFeatureGenericTableModule } from '@local/angular-material/feature/generic-table';
+import { SharedUtilsModule } from '@local/shared/utils';
 
 @NgModule({
   imports: [
     CommonModule,
     AngularMaterialFeatureShellRoutingModule,
     AngularMaterialFeatureFilterModule,
-    AngularMaterialFeatureDialogModule,
+    AngularMaterialDialogModule,
     AngularMaterialFeatureDataGridModule,
     AngularMaterialFeatureSliderModule,
     AngularMaterialFeatureGenericTableModule,
@@ -49,7 +49,7 @@ import { SharedUtilsModule } from "@local/shared/utils";
     MatNativeDateModule,
     MatButtonModule,
     MatTabsModule,
-    SharedUtilsModule
+    SharedUtilsModule,
   ],
   declarations: [
     OverviewComponent,
@@ -57,7 +57,7 @@ import { SharedUtilsModule } from "@local/shared/utils";
     DialogShellComponent,
     DataGridShellComponent,
     SliderShellComponent,
-    GenericTableShellComponent
+    GenericTableShellComponent,
   ],
   exports: [OverviewComponent],
 })

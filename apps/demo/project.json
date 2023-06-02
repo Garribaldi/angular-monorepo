@@ -4,7 +4,7 @@
   "projectType": "application",
   "prefix": "local-app",
   "sourceRoot": "apps/demo/src",
-  "tags": ["scope:app"],
+  "tags": ["scope:app", "type:app"],
   "targets": {
     "build": {
       "executor": "@nrwl/angular:webpack-browser",

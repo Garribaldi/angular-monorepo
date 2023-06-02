@@ -3,7 +3,7 @@
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/shared/feature/config/src",
   "prefix": "local-shared",
-  "tags": ["scope:shared"],
+  "tags": ["scope:shared", "type:feature"],
   "projectType": "library",
   "targets": {
     "test": {

@@ -21,60 +21,23 @@
             "enforceBuildableLibDependency": true,
             "allow": [],
             "depConstraints": [
-              {
-                "sourceTag": "scope:app",
-                "onlyDependOnLibsWithTags": [
-                  "*"
-                ]
-              },
-              {
-                "sourceTag": "scope:shared",
-                "onlyDependOnLibsWithTags": [
-                  "scope:shared"
-                ]
-              },
-              {
-                "sourceTag": "scope:angular-material",
-                "onlyDependOnLibsWithTags": [
-                  "scope:angular-material",
-                  "scope:shared"
-                ]
-              },
-              {
-                "sourceTag": "scope:charts",
-                "onlyDependOnLibsWithTags": [
-                  "scope:charts",
-                  "scope:shared"
-                ]
-              },
-              {
-                "sourceTag": "scope:captcha",
-                "onlyDependOnLibsWithTags": [
-                  "scope:captcha",
-                  "scope:shared"
-                ]
-              },
-              {
-                "sourceTag": "scope:table",
-                "onlyDependOnLibsWithTags": [
-                  "scope:table",
-                  "scope:shared"
-                ]
-              },
-              {
-                "sourceTag": "scope:reactive-forms",
-                "onlyDependOnLibsWithTags": [
-                  "scope:reactive-forms",
-                  "scope:shared"
-                ]
-              },
-              {
-                "sourceTag": "scope:file-upload",
-                "onlyDependOnLibsWithTags": [
-                  "scope:file-upload",
-                  "scope:shared"
-                ]
-              }
+              {"sourceTag": "type:app", "onlyDependOnLibsWithTags": ["type:feature"]},
+              {"sourceTag": "type:shell", "onlyDependOnLibsWithTags": ["type:feature", "type:ui", "type:data-access", "type:util"]},
+              {"sourceTag": "type:feature", "onlyDependOnLibsWithTags": ["type:ui", "type:data-access", "type:util"]},
+              {"sourceTag": "type:ui", "onlyDependOnLibsWithTags": ["type:ui", "type:util"]},
+              {"sourceTag": "type:data-access", "onlyDependOnLibsWithTags": ["type:data-access", "type:util"]},
+              {"sourceTag": "type:util", "onlyDependOnLibsWithTags": ["type:util"]},
+
+              {"sourceTag": "scope:app", "onlyDependOnLibsWithTags": ["scope:shell", "scope:shared"]},
+              {"sourceTag": "scope:shell", "onlyDependOnLibsWithTags": ["*"]},
+              {"sourceTag": "scope:demo", "onlyDependOnLibsWithTags": ["scope:file-upload"]},
+              {"sourceTag": "scope:shared", "onlyDependOnLibsWithTags": ["scope:shared"]},
+              {"sourceTag": "scope:angular-material", "onlyDependOnLibsWithTags": ["scope:angular-material", "scope:shared"]},
+              {"sourceTag": "scope:charts", "onlyDependOnLibsWithTags": ["scope:charts", "scope:shared"]},
+              {"sourceTag": "scope:captcha", "onlyDependOnLibsWithTags": ["scope:captcha", "scope:shared"]},
+              {"sourceTag": "scope:table", "onlyDependOnLibsWithTags": ["scope:table", "scope:shared"]},
+              {"sourceTag": "scope:reactive-forms", "onlyDependOnLibsWithTags": ["scope:reactive-forms", "scope:shared"]},
+              {"sourceTag": "scope:file-upload", "onlyDependOnLibsWithTags": ["scope:file-upload", "scope:shared"]}
             ]
           }
         ]
