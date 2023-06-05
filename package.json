@@ -8,6 +8,7 @@
     "build": "nx build demo",
     "test": "nx run-many --all --target=test --parallel",
     "test:coverage": "npm run test -- --coverage",
+    "test:merge": "jrm ./coverage/jest-junit.xml ./coverage/apps/**/junit.xml ./coverage/libs/**/junit.xml",
     "e2e": "nx e2e demo-e2e",
     "e2e:prod": "npm run e2e -- --configuration=production",
     "e2e:watch": "npm run e2e -- --watch"
@@ -63,7 +64,9 @@
     "eslint-plugin-cypress": "^2.10.3",
     "jest": "^29.4.1",
     "jest-environment-jsdom": "^29.4.1",
+    "jest-junit": "^16.0.0",
     "jest-preset-angular": "~13.0.0",
+    "junit-report-merger": "^6.0.2",
     "ng-mocks": "^14.8.0",
     "node-polyfill-webpack-plugin": "^2.0.1",
     "nx": "15.9.2",
