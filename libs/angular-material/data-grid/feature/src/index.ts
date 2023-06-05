@@ -1,3 +1,3 @@
 export * from './lib/angular-material-data-grid.module';
-
-export { FilterType } from '../../data-access/src/lib/models/filter-type.model';
+export * from './lib/data-grid/data-grid.component';
+export * from './lib/data-grid-column/data-grid-column.component';

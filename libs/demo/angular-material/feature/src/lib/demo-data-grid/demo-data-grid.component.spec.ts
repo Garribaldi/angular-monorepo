@@ -2,13 +2,13 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DemoDataGridComponent } from './demo-data-grid.component';
 import { MockComponent, MockModule, MockProvider } from "ng-mocks";
 import { MatCardModule } from "@angular/material/card";
-import { MatTableModule } from "@angular/material/table";
 import { SharedDataService } from "@local/shared/data-access";
 import { of } from "rxjs";
-import { DataGridComponent } from "../../../../data-grid/src/lib/data-grid/data-grid.component";
-import { DataGridColumnComponent } from "../../../../data-grid/src/lib/data-grid-column/data-grid-column.component";
+import { DataGridColumnComponent, DataGridComponent } from "@local/angular-material/data-grid/feature";
+import { MatTableModule } from "@angular/material/table";
 
-describe('DataGridShellComponent', () => {
+
+describe('DemoDataGridComponent', () => {
   let component: DemoDataGridComponent;
   let fixture: ComponentFixture<DemoDataGridComponent>;
 
@@ -19,7 +19,7 @@ describe('DataGridShellComponent', () => {
         MockModule(MatTableModule)
       ],
       declarations: [
-        DataGridComponent,
+        DemoDataGridComponent,
         MockComponent(DataGridComponent),
         MockComponent(DataGridColumnComponent)
       ],
@@ -30,7 +30,7 @@ describe('DataGridShellComponent', () => {
       ]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(DataGridComponent);
+    fixture = TestBed.createComponent(DemoDataGridComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -3,9 +3,9 @@ import { DemoFilterComponent } from './demo-filter.component';
 import { MockComponent, MockModule, MockProvider } from "ng-mocks";
 import { SharedDataService } from "@local/shared/data-access";
 import { of } from "rxjs";
-import { FilterComponent } from "@local/angular-material/feature/filter";
 import { MatCardModule } from "@angular/material/card";
 import { MatTableModule } from "@angular/material/table";
+import { FilterComponent } from "@local/angular-material/filter/feature";
 
 describe('FilterShellComponent', () => {
   let component: DemoFilterComponent;

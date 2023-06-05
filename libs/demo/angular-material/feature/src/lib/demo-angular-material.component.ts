@@ -16,14 +16,4 @@ export class DemoAngularMaterialComponent {
     const childRoutes = activatedRoute?.routeConfig?.children ?? []
     this.routerLinks = childRoutes.filter(route => !!route.title);
   }
-
-
-  // routerLinks: OverviewRouterModel[] = [
-  //   {url: 'table', caption: 'Table'},
-  //   {url: 'generic-table', caption: 'Generic Table'},
-  //   {url: 'slider', caption: 'Slider'},
-  //   {url: 'dialog', caption: 'Dialog'},
-  //   {url: 'filter', caption: 'Filter'},
-  //   {url: 'data-grid', caption: 'Data Grid'}
-  // ];
 }
