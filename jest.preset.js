@@ -1,12 +1,16 @@
 const {readCachedProjectConfiguration } = require('nx/src/project-graph/project-graph');
 const nxPreset = require("@nrwl/jest/preset").default;
 
+let junitOutputDirectory = 'coverage';
+
 const currentModuleName = process.env.NX_TASK_TARGET_PROJECT;
 const workspaceRoot = process.env.NX_WORKSPACE_ROOT;
 
-const configuration = readCachedProjectConfiguration(currentModuleName);
-const moduleFolder = configuration.sourceRoot.replace('/src', '');
-const junitOutputDirectory = `${workspaceRoot}/coverage/${moduleFolder}`;
+if (currentModuleName && workspaceRoot) {
+  const configuration = readCachedProjectConfiguration(currentModuleName);
+  const moduleFolder = configuration.sourceRoot.replace('/src', '');
+  junitOutputDirectory = `${workspaceRoot}/coverage/${moduleFolder}`;
+}
 
 module.exports = {
   ...nxPreset,
