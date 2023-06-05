@@ -12,6 +12,7 @@ import { HttpCacheInterceptor } from '@local/shared/utils';
 import { ShellFeatureRoutingModule } from './shell-feature-routing.module';
 import { HomeComponent } from './home.component';
 import { MatMomentDateModule } from "@angular/material-moment-adapter";
+import { MAT_DATE_LOCALE } from "@angular/material/core";
 
 @NgModule({
   imports: [
@@ -29,6 +30,10 @@ import { MatMomentDateModule } from "@angular/material-moment-adapter";
         ...MAT_TOOLTIP_DEFAULT_OPTIONS_FACTORY(),
         disableTooltipInteractivity: true,
       }),
+    },
+    {
+      provide: MAT_DATE_LOCALE,
+      useValue: 'de-DE',
     },
     {
       provide: HTTP_INTERCEPTORS,

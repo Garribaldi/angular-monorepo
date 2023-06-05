@@ -22,8 +22,8 @@ export const appRoutes: Route[] = [
     path: 'charts',
     title: 'Charts',
     loadChildren: () =>
-      import('@local/charts/feature/shell').then(
-        (m) => m.ChartsFeatureShellModule
+      import('@local/demo/charts/feature').then(
+        (m) => m.DemoChartsModule
       )
   },
   {

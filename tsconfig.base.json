@@ -41,12 +41,11 @@
       "@local/angular-material/slider/feature": [
         "libs/angular-material/slider/feature/src/index.ts"
       ],
-      "@local/charts/data-access": ["libs/charts/data-access/src/index.ts"],
-      "@local/charts/feature/shell": ["libs/charts/feature/shell/src/index.ts"],
-      "@local/charts/utils": ["libs/charts/utils/src/index.ts"],
+      "@local/charts/feature": ["libs/charts/feature/src/index.ts"],
       "@local/demo/angular-material/feature": [
         "libs/demo/angular-material/feature/src/index.ts"
       ],
+      "@local/demo/charts/feature": ["libs/demo/charts/feature/src/index.ts"],
       "@local/demo/file-upload/feature": [
         "libs/demo/file-upload/feature/src/index.ts"
       ],
