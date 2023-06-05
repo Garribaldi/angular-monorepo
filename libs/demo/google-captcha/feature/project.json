@@ -1,0 +1,34 @@
+{
+  "name": "demo-google-captcha",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/demo/google-captcha/feature/src",
+  "prefix": "local-demo",
+  "tags": ["scope:demo", "type:feature"],
+  "projectType": "library",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/demo/google-captcha/feature/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "libs/demo/google-captcha/feature/**/*.ts",
+          "libs/demo/google-captcha/feature/**/*.html"
+        ]
+      }
+    }
+  }
+}

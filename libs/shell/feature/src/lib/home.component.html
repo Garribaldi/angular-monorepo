@@ -1,0 +1,12 @@
+<div class="content">
+  <nav class="main-nav">
+    <ul class="main-nav__container">
+      <li class="main-nav__item" *ngFor="let nav of mainNav">
+        <a class="main-nav__link" [routerLink]="nav.url" routerLinkActive="main-nav__link--active">{{nav.caption}}</a>
+      </li>
+    </ul>
+  </nav>
+  <main class="main">
+    <router-outlet></router-outlet>
+  </main>
+</div>

@@ -1,7 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import moment from "moment";
-import { Router } from "@angular/router";
 
 @Component({
   selector: "local-app",
@@ -10,19 +9,14 @@ import { Router } from "@angular/router";
 })
 export class AppComponent implements OnInit {
 
-  mainNav: Array<{ url: string, caption: string }> = []
+
 
   private title = "Local demo app";
 
   constructor(
     private readonly titleService: Title,
-    private readonly router: Router
   ) {
     titleService.setTitle(this.title);
-
-    this.mainNav = this.router.config
-      .filter(conf => conf.path)
-      .map(conf => ({url: conf.path as string, caption: conf.title as string}));
   }
 
   /**

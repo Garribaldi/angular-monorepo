@@ -1,10 +1,19 @@
 {
   "root": true,
-  "ignorePatterns": ["**/*"],
-  "plugins": ["@nrwl/nx"],
+  "ignorePatterns": [
+    "**/*"
+  ],
+  "plugins": [
+    "@nrwl/nx"
+  ],
   "overrides": [
     {
-      "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+      "files": [
+        "*.ts",
+        "*.tsx",
+        "*.js",
+        "*.jsx"
+      ],
       "rules": {
         "@nrwl/nx/enforce-module-boundaries": [
           "error",
@@ -12,51 +21,56 @@
             "enforceBuildableLibDependency": true,
             "allow": [],
             "depConstraints": [
-              {
-                "sourceTag": "scope:app",
-                "onlyDependOnLibsWithTags": ["*"]
-              },
-              {
-                "sourceTag": "scope:shared",
-                "onlyDependOnLibsWithTags": ["scope:shared"]
-              },
-              {
-                "sourceTag": "scope:angular-material",
-                "onlyDependOnLibsWithTags": ["scope:angular-material", "scope:shared"]
-              },
-              {
-                "sourceTag": "scope:charts",
-                "onlyDependOnLibsWithTags": ["scope:charts", "scope:shared"]
-              },
-              {
-                "sourceTag": "scope:captcha",
-                "onlyDependOnLibsWithTags": ["scope:captcha", "scope:shared"]
-              },
-              {
-                "sourceTag": "scope:table",
-                "onlyDependOnLibsWithTags": ["scope:table", "scope:shared"]
-              },
-              {
-                "sourceTag": "scope:reactive-forms",
-                "onlyDependOnLibsWithTags": ["scope:reactive-forms", "scope:shared"]
-              }
+              {"sourceTag": "type:app", "onlyDependOnLibsWithTags": ["type:shell"]},
+              {"sourceTag": "type:shell", "onlyDependOnLibsWithTags": ["type:feature", "type:util"]},
+
+              {"sourceTag": "type:feature", "onlyDependOnLibsWithTags": ["type:feature", "type:ui", "type:data-access", "type:util"]},
+              {"sourceTag": "type:ui", "onlyDependOnLibsWithTags": ["type:ui", "type:data-access", "type:util"]},
+              {"sourceTag": "type:data-access", "onlyDependOnLibsWithTags": ["type:data-access", "type:util"]},
+              {"sourceTag": "type:util", "onlyDependOnLibsWithTags": ["type:util"]},
+
+              {"sourceTag": "scope:app", "onlyDependOnLibsWithTags": ["scope:shell", "scope:shared"]},
+              {"sourceTag": "scope:shell", "onlyDependOnLibsWithTags": ["*"]},
+              {"sourceTag": "scope:demo", "onlyDependOnLibsWithTags": ["scope:file-upload", "scope:google-captcha", "scope:angular-material", "scope:shared"]},
+              {"sourceTag": "scope:shared", "onlyDependOnLibsWithTags": ["scope:shared"]},
+              {"sourceTag": "scope:angular-material", "onlyDependOnLibsWithTags": ["scope:angular-material", "scope:shared"]},
+              {"sourceTag": "scope:charts", "onlyDependOnLibsWithTags": ["scope:charts", "scope:shared"]},
+              {"sourceTag": "scope:captcha", "onlyDependOnLibsWithTags": ["scope:captcha", "scope:shared"]},
+              {"sourceTag": "scope:table", "onlyDependOnLibsWithTags": ["scope:table", "scope:shared"]},
+              {"sourceTag": "scope:reactive-forms", "onlyDependOnLibsWithTags": ["scope:reactive-forms", "scope:shared"]},
+              {"sourceTag": "scope:file-upload", "onlyDependOnLibsWithTags": ["scope:file-upload", "scope:shared"]}
             ]
           }
         ]
       }
     },
     {
-      "files": ["*.ts", "*.tsx"],
-      "extends": ["plugin:@nrwl/nx/typescript"],
+      "files": [
+        "*.ts",
+        "*.tsx"
+      ],
+      "extends": [
+        "plugin:@nrwl/nx/typescript"
+      ],
       "rules": {}
     },
     {
-      "files": ["*.js", "*.jsx"],
-      "extends": ["plugin:@nrwl/nx/javascript"],
+      "files": [
+        "*.js",
+        "*.jsx"
+      ],
+      "extends": [
+        "plugin:@nrwl/nx/javascript"
+      ],
       "rules": {}
     },
     {
-      "files": ["*.spec.ts", "*.spec.tsx", "*.spec.js", "*.spec.jsx"],
+      "files": [
+        "*.spec.ts",
+        "*.spec.tsx",
+        "*.spec.js",
+        "*.spec.jsx"
+      ],
       "env": {
         "jest": true
       },

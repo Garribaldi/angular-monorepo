@@ -51,6 +51,12 @@ nx g @nrwl/angular:move --project shared-ui --destination generic-table/ui
 nx g @nrwl/angular:component table --prefix=local-shared --project=shared-ui --export=true
 ```
 
+## Add Component without folder
+
+```
+nx g @nrwl/angular:component table --prefix=local-shared --project=shared-ui --export=true --flat
+```
+
 ## Add Service
 
 ```
