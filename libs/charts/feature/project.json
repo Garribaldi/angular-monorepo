@@ -1,7 +1,7 @@
 {
   "name": "charts",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "../src",
+  "sourceRoot": "libs/charts/feature/src",
   "prefix": "local-charts",
   "tags": ["scope:charts", "type:feature"],
   "projectType": "library",
