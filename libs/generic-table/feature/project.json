@@ -1,16 +1,16 @@
 {
-  "name": "table-feature-shell",
-  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/table/feature/shell/src",
-  "prefix": "local-table",
-  "tags": ["scope:table"],
+  "name": "generic-table",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/generic-table/feature/src",
+  "prefix": "local-generic-table",
+  "tags": ["scope:generic-table", "type:feature"],
   "projectType": "library",
   "targets": {
     "test": {
       "executor": "@nrwl/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "libs/table/feature/shell/jest.config.ts",
+        "jestConfig": "libs/generic-table/feature/jest.config.ts",
         "passWithNoTests": true
       },
       "configurations": {
@@ -25,8 +25,8 @@
       "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": [
-          "libs/table/feature/shell/**/*.ts",
-          "libs/table/feature/shell/**/*.html"
+          "libs/generic-table/feature/**/*.ts",
+          "libs/generic-table/feature/**/*.html"
         ]
       }
     }

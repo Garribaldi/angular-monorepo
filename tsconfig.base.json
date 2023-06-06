@@ -26,54 +26,47 @@
       "@local/angular-material/data-grid/ui": [
         "libs/angular-material/data-grid/ui/src/index.ts"
       ],
-
       "@local/angular-material/dialog/data-access": [
         "libs/angular-material/dialog/data-access/src/index.ts"
       ],
       "@local/angular-material/dialog/feature": [
         "libs/angular-material/dialog/feature/src/index.ts"
       ],
-
       "@local/angular-material/filter/feature": [
         "libs/angular-material/filter/feature/src/index.ts"
       ],
-
       "@local/angular-material/generic-table/feature": [
         "libs/angular-material/generic-table/feature/src/index.ts"
       ],
-
       "@local/angular-material/slider/feature": [
         "libs/angular-material/slider/feature/src/index.ts"
       ],
-
       "@local/charts/feature": ["libs/charts/feature/src/index.ts"],
-
       "@local/demo/angular-material/feature": [
         "libs/demo/angular-material/feature/src/index.ts"
       ],
       "@local/demo/charts/feature": ["libs/demo/charts/feature/src/index.ts"],
-
       "@local/demo/file-upload/feature": [
         "libs/demo/file-upload/feature/src/index.ts"
+      ],
+      "@local/demo/generic-table/feature": [
+        "libs/demo/generic-table/feature/src/index.ts"
       ],
       "@local/demo/google-captcha/feature": [
         "libs/demo/google-captcha/feature/src/index.ts"
       ],
       "@local/demo/shell/feature": ["libs/demo/shell/feature/src/index.ts"],
-
       "@local/file-upload/feature": ["libs/file-upload/feature/src/index.ts"],
-
+      "@local/generic-table/feature": ["libs/generic-table/feature/src/index.ts"],
       "@local/google-captcha/data-access": [
         "libs/google-captcha/data-access/src/index.ts"
       ],
       "@local/google-captcha/feature": [
         "libs/google-captcha/feature/src/index.ts"
       ],
-
       "@local/reactive-forms/feature/shell": [
         "libs/reactive-forms/feature/shell/src/index.ts"
       ],
-
       "@local/shared/data-access": ["libs/shared/data-access/src/index.ts"],
       "@local/shared/feature/config": [
         "libs/shared/feature/config/src/index.ts"
@@ -86,9 +79,6 @@
       ],
       "@local/shared/ui": ["libs/shared/ui/src/index.ts"],
       "@local/shared/utils": ["libs/shared/utils/src/index.ts"],
-
-      "@local/table/feature/shell": ["libs/table/feature/shell/src/index.ts"],
-      "@local/table/feature/table": ["libs/table/feature/table/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

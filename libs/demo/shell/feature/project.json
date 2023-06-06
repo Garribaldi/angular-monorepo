@@ -1,7 +1,7 @@
 {
-  "name": "shell-feature",
+  "name": "demo-shell",
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "src",
+  "sourceRoot": "libs/demo/shell/feature/src",
   "prefix": "local-shell",
   "tags": ["scope:shell", "type:shell"],
   "projectType": "library",
@@ -10,7 +10,7 @@
       "executor": "@nrwl/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "libs/shell/feature/jest.config.ts",
+        "jestConfig": "libs/demo/shell/feature/jest.config.ts",
         "passWithNoTests": true
       },
       "configurations": {
@@ -25,8 +25,8 @@
       "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": [
-          "libs/shell/feature/**/*.ts",
-          "libs/shell/feature/**/*.html"
+          "libs/demo/shell/feature/**/*.ts",
+          "libs/demo/shell/feature/**/*.html"
         ]
       }
     }

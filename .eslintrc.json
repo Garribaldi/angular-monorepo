@@ -31,7 +31,7 @@
 
               {"sourceTag": "scope:app", "onlyDependOnLibsWithTags": ["scope:shell", "scope:shared"]},
               {"sourceTag": "scope:shell", "onlyDependOnLibsWithTags": ["*"]},
-              {"sourceTag": "scope:demo", "onlyDependOnLibsWithTags": ["scope:file-upload", "scope:google-captcha", "scope:angular-material", "scope:charts", "scope:shared"]},
+              {"sourceTag": "scope:demo", "onlyDependOnLibsWithTags": ["scope:file-upload", "scope:google-captcha", "scope:angular-material", "scope:charts", "scope:generic-table", "scope:shared"]},
               {"sourceTag": "scope:shared", "onlyDependOnLibsWithTags": ["scope:shared"]},
               {"sourceTag": "scope:angular-material", "onlyDependOnLibsWithTags": ["scope:angular-material", "scope:shared"]},
               {"sourceTag": "scope:charts", "onlyDependOnLibsWithTags": ["scope:charts", "scope:shared"]},

@@ -4,10 +4,10 @@ import { TableRowTemplateDirective } from './table-row-template.directive';
 
 @Component({
   selector: 'local-table',
-  templateUrl: './table.component.html',
-  styleUrls: ['./table.component.scss'],
+  templateUrl: './generic-table.component.html',
+  styleUrls: ['./generic-table.component.scss'],
 })
-export class TableComponent<TItem extends object> {
+export class GenericTableComponent<TItem extends object> {
   @Input() data!: TItem[] | null;
 
   @ContentChild(TableHeaderTemplateDirective, { read: TemplateRef })

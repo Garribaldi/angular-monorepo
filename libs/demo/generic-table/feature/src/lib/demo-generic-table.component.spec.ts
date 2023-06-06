@@ -1,22 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { DemoTableComponent } from './demo-table.component';
-import { MockProvider } from "ng-mocks";
+import { DemoGenericTableComponent } from './demo-generic-table.component';
+import { MockModule, MockProvider } from "ng-mocks";
 import { SharedDataService } from "@local/shared/data-access";
 import { of } from "rxjs";
-import { MatTableModule } from "@angular/material/table";
+import { GenericTableModule } from "@local/generic-table/feature";
 
 describe('GenericTableComponent', () => {
-  let component: DemoTableComponent;
-  let fixture: ComponentFixture<DemoTableComponent>;
+  let component: DemoGenericTableComponent;
+  let fixture: ComponentFixture<DemoGenericTableComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
-        MatTableModule
+        MockModule(GenericTableModule)
       ],
-      declarations: [
-        DemoTableComponent
-      ],
+      declarations: [DemoGenericTableComponent],
       providers: [
         MockProvider(SharedDataService, {
           getEmployees$: () => of([])
@@ -24,7 +22,7 @@ describe('GenericTableComponent', () => {
       ]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(DemoTableComponent);
+    fixture = TestBed.createComponent(DemoGenericTableComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

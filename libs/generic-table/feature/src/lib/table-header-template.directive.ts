@@ -7,6 +7,7 @@ interface TableHeaderTemplateContext<TItem extends object> {
   selector: 'ng-template[appTableHeader]',
 })
 export class TableHeaderTemplateDirective<TItem extends object> {
+  
   @Input('appTableHeader') data!: TItem[] | '';
 
   static ngTemplateContextGuard<TContextItem extends object>(

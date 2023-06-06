@@ -1,16 +1,16 @@
 {
-  "name": "table-feature-table",
+  "name": "demo-generic-table",
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/table/feature/table/src",
-  "prefix": "local-table",
-  "tags": ["scope:table"],
+  "sourceRoot": "libs/demo/generic-table/feature/src",
+  "prefix": "local-demo",
+  "tags": ["scope:demo", "type:feature"],
   "projectType": "library",
   "targets": {
     "test": {
       "executor": "@nrwl/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "libs/table/feature/table/jest.config.ts",
+        "jestConfig": "libs/demo/generic-table/feature/jest.config.ts",
         "passWithNoTests": true
       },
       "configurations": {
@@ -25,8 +25,8 @@
       "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": [
-          "libs/table/feature/table/**/*.ts",
-          "libs/table/feature/table/**/*.html"
+          "libs/demo/generic-table/feature/**/*.ts",
+          "libs/demo/generic-table/feature/**/*.html"
         ]
       }
     }

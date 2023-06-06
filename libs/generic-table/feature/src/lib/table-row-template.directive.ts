@@ -7,6 +7,7 @@ interface TableRowTemplateContext<TItem extends object> {
   selector: 'ng-template[appTableRow]',
 })
 export class TableRowTemplateDirective<TItem extends object> {
+
   @Input('appTableRow') data!: TItem[] | '';
 
   static ngTemplateContextGuard<TContextItem extends object>(

@@ -1,5 +1,5 @@
-<h2>Base Layout</h2>
 <ng-container *ngIf="(employees$ | async) as employees">
+  <h2>Base Layout</h2>
   <local-table [data]="employees"></local-table>
 
   <h2>Base layout with header configuration</h2>
@@ -11,11 +11,13 @@
     </ng-template>
 
   </local-table>
+</ng-container>
 
+<ng-container *ngIf="(inventory$ | async) as inventory">
   <h2>Base layout with header and row configuration</h2>
-  <local-table [data]="inventory$ | async">
+  <local-table [data]="inventory">
 
-    <ng-template appTableHeader="">
+    <ng-template appTableHeader>
       <th>Item</th>
       <th>Price</th>
       <th>Purchase</th>

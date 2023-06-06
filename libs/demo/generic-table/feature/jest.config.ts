@@ -1,9 +1,9 @@
 /* eslint-disable */
 export default {
-  displayName: 'table-feature-table',
+  displayName: 'demo-generic-table',
   preset: '../../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
-  coverageDirectory: '../../../../coverage/libs/table/feature/table',
+  coverageDirectory: '../../../../coverage/libs/demo/generic-table/feature',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': [
       'jest-preset-angular',

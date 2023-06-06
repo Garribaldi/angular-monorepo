@@ -23,6 +23,8 @@ An update to a newer Angular version in the near future should also fix this err
 
 ## ToDos
 - migrate from moment.js to **Day.js** (https://www.npmjs.com/package/dayjs)
+- update to Angular 16
+- update to Nx 16
 
 ## Development server
 

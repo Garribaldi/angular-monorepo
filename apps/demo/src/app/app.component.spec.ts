@@ -1,10 +1,9 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { AppComponent } from "./app.component";
-import { RouterTestingModule } from "@angular/router/testing";
 import { Title } from "@angular/platform-browser";
 import { DateAdapter } from "@angular/material/core";
 import { MockModule, MockProvider } from "ng-mocks";
-import { ShellFeatureModule } from "@local/shell/feature";
+import { ShellFeatureModule } from "@local/demo/shell/feature";
 import moment from "moment";
 
 describe("AppComponent", () => {
@@ -19,7 +18,6 @@ describe("AppComponent", () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule,
         MockModule(ShellFeatureModule)
       ],
       declarations: [
@@ -40,7 +38,7 @@ describe("AppComponent", () => {
 
     fixture = TestBed.createComponent(AppComponent);
     app = fixture.componentInstance;
-    
+
     fixture.detectChanges();
   });
 

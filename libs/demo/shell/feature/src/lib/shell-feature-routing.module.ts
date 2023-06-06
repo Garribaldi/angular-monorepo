@@ -6,8 +6,8 @@ export const appRoutes: Route[] = [
     path: 'table',
     title: 'Generic Table',
     loadChildren: () =>
-      import('libs/table/feature/shell/src').then(
-        (m) => m.TableFeatureShellModule
+      import('libs/demo/generic-table/feature/src').then(
+        (m) => m.DemoGenericTableModule
       )
   },
   {

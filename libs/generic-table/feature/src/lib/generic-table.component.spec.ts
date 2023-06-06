@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { TableComponent } from './table.component';
+import { GenericTableComponent } from './generic-table.component';
 import { Employee } from '@local/shared/data-access';
 
-describe('TableComponent', () => {
+describe('GenericTableComponent', () => {
   const employee: Employee[] = [
     {
       firstName: 'Employee',
@@ -10,15 +10,15 @@ describe('TableComponent', () => {
     },
   ];
 
-  let component: TableComponent<Employee>;
-  let fixture: ComponentFixture<TableComponent<Employee>>;
+  let component: GenericTableComponent<Employee>;
+  let fixture: ComponentFixture<GenericTableComponent<Employee>>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [TableComponent],
+      declarations: [GenericTableComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent<TableComponent<Employee>>(TableComponent);
+    fixture = TestBed.createComponent<GenericTableComponent<Employee>>(GenericTableComponent);
     component = fixture.componentInstance;
     component.data = employee;
 
