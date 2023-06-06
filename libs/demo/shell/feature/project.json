@@ -1,7 +1,7 @@
 {
   "name": "shell-feature",
-  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/shell/feature/src",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "src",
   "prefix": "local-shell",
   "tags": ["scope:shell", "type:shell"],
   "projectType": "library",

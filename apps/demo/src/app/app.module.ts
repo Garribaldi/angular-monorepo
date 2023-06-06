@@ -1,7 +1,8 @@
 import { NgModule } from "@angular/core";
 import { AppComponent } from "./app.component";
-import { ShellFeatureModule } from "@local/shell/feature";
+
 import { CommonModule } from "@angular/common";
+import { ShellFeatureModule } from "@local/demo/shell/feature";
 
 
 @NgModule({

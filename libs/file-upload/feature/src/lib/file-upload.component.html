@@ -1,7 +1,7 @@
 <div class="file-upload">
   <input type="file" class="cdk-visually-hidden" multiple #fileUpload (change)="onFileSelected($event)" [accept]="acceptTypes">
 
-  <button mat-button (click)="fileUpload.click()">
+  <button mat-flat-button color="primary" (click)="fileUpload.click()">
     <span>Upload Files</span>
   </button>
 </div>

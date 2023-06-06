@@ -8,7 +8,7 @@ import {
   MAT_TOOLTIP_DEFAULT_OPTIONS_FACTORY,
   MatTooltipDefaultOptions,
 } from '@angular/material/tooltip';
-import { HttpCacheInterceptor } from '@local/shared/utils';
+import { HttpCacheInterceptor } from 'libs/shared/utils/src';
 import { ShellFeatureRoutingModule } from './shell-feature-routing.module';
 import { HomeComponent } from './home.component';
 import { MatMomentDateModule } from "@angular/material-moment-adapter";

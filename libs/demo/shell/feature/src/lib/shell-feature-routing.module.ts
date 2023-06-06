@@ -6,7 +6,7 @@ export const appRoutes: Route[] = [
     path: 'table',
     title: 'Generic Table',
     loadChildren: () =>
-      import('@local/table/feature/shell').then(
+      import('libs/table/feature/shell/src').then(
         (m) => m.TableFeatureShellModule
       )
   },
@@ -14,7 +14,7 @@ export const appRoutes: Route[] = [
     path: 'form',
     title: 'Reactive Form',
     loadChildren: () =>
-      import('@local/reactive-forms/feature/shell').then(
+      import('libs/reactive-forms/feature/shell/src').then(
         (m) => m.ReactiveFormsFeatureShellModule
       )
   },
@@ -22,7 +22,7 @@ export const appRoutes: Route[] = [
     path: 'charts',
     title: 'Charts',
     loadChildren: () =>
-      import('@local/demo/charts/feature').then(
+      import('libs/demo/charts/feature/src').then(
         (m) => m.DemoChartsModule
       )
   },
@@ -30,7 +30,7 @@ export const appRoutes: Route[] = [
     path: 'captcha',
     title: 'Captcha',
     loadChildren: () =>
-      import('@local/demo/google-captcha/feature').then(
+      import('libs/demo/google-captcha/feature/src').then(
         (m) => m.DemoGoogleCaptchaModule
       )
   },
@@ -38,7 +38,7 @@ export const appRoutes: Route[] = [
     path: 'material',
     title: 'Angular Material',
     loadChildren: () =>
-      import('@local/demo/angular-material/feature').then(
+      import('libs/demo/angular-material/feature/src').then(
         (m) => m.DemoAngularMaterialModule
       )
   },
@@ -46,7 +46,7 @@ export const appRoutes: Route[] = [
     path: 'upload',
     title: 'File Upload',
     loadChildren: () =>
-      import('@local/demo/file-upload/feature').then(
+      import('libs/demo/file-upload/feature/src').then(
         (m) => m.DemoFileUploadModule
       )
   },
