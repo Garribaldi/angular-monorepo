@@ -13,15 +13,13 @@ export class HttpCacheInterceptor<T> implements HttpInterceptor {
 
     const ignoreCache = request.headers.get('x-ignore-cache') === 'true';
 
-    console.log(ignoreCache);
-
     if (request.method !== 'GET' || ignoreCache) {
       return next.handle(request);
     }
 
     const id = `url:${request.url}`;
-
     const cachedResponse = this.cache.get(id);
+
     if (cachedResponse) {
       return of(cachedResponse.clone());
     }

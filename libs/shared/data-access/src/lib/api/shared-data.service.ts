@@ -21,7 +21,6 @@ export class SharedDataService {
     private readonly environment: EnvironmentsService
   ) {
     this.backendUrl = environment.backendUrl;
-    console.log(environment);
   }
 
   getEmployees$(): Observable<Employee[]> {
