@@ -1,3 +1,5 @@
+import { InjectionToken } from "@angular/core";
+
 export type DockerEnvVariables = {
   GOOGLE_CAPTCHA_V2_KEY?: string;
   GOOGLE_CAPTCHA_V3_KEY?: string;
@@ -39,3 +41,5 @@ type EnvironmentEnhanced = {
 }
 
 export type Environment = EnvironmentCommon & EnvironmentEnhanced;
+
+export const ENVIRONMENT: InjectionToken<Environment> = new InjectionToken('ENVIRONMENT');

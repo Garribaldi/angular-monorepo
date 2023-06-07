@@ -1,5 +1,4 @@
-import { Environment } from "../environment.model";
-import { commonEnvironment } from "../environment.common";
+import { commonEnvironment, Environment } from "@local/shared/feature/environments";
 
 const env: Partial<Environment> = {
   production: true
