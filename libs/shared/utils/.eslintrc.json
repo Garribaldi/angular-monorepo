@@ -8,8 +8,8 @@
         "@angular-eslint/directive-selector": [
           "error",
           {
-            "type": "attribute",
-            "style": "camelCase"
+            "type": ["element", "attribute"],
+            "prefix": ["localShared", "cyGet", "input[matInput]", "ngx-mat-select-search", "ng-template[name]"]
           }
         ],
         "@angular-eslint/component-selector": [

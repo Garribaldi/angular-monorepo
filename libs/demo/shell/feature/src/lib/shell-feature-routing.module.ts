@@ -38,7 +38,7 @@ export const appRoutes: Route[] = [
     path: 'material',
     title: 'Angular Material',
     loadChildren: () =>
-      import('libs/demo/angular-material/feature/src').then(
+      import('@local/demo/angular-material/feature').then(
         (m) => m.DemoAngularMaterialModule
       )
   },
