@@ -59,7 +59,7 @@ For this purpose, clone [https://github.com/Garribaldi/local-service](https://gi
 ## Add Library
 
 ```
-nx g @nrwl/angular:lib shell --prefix=local-angular-material --tags=scope:angular-material --directory=angular-material/feature --routing=true --lazy=true
+nx g @nrwl/angular:lib feature --prefix=local-angular-material --tags="scope:angular-material, type:feature" --directory=angular-material --routing=true --lazy=true
 ```
 
 ## Move Library
@@ -77,7 +77,7 @@ nx g @nrwl/angular:component table --prefix=local-shared --project=shared-ui --e
 ## Add Component without folder
 
 ```
-nx g @nrwl/angular:component table --prefix=local-shared --project=shared-ui --export=true --flat
+nx g @nrwl/angular:component table --project=shared-ui --export=true --flat
 ```
 
 ## Add Service

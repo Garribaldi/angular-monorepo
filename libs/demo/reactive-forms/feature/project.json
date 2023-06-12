@@ -1,16 +1,16 @@
 {
-  "name": "reactive-forms-feature-shell",
+  "name": "demo-reactive-forms",
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/reactive-forms/feature/shell/src",
-  "prefix": "local-reactive-forms",
-  "tags": ["scope:reactive-forms"],
+  "sourceRoot": "libs/demo/reactive-forms/feature/src",
+  "prefix": "local-demo",
+  "tags": ["scope:demo", "type:feature"],
   "projectType": "library",
   "targets": {
     "test": {
       "executor": "@nrwl/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "libs/reactive-forms/feature/shell/jest.config.ts",
+        "jestConfig": "libs/demo/reactive-forms/feature/jest.config.ts",
         "passWithNoTests": true
       },
       "configurations": {
@@ -25,8 +25,8 @@
       "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": [
-          "libs/reactive-forms/feature/shell/**/*.ts",
-          "libs/reactive-forms/feature/shell/**/*.html"
+          "libs/demo/reactive-forms/feature/**/*.ts",
+          "libs/demo/reactive-forms/feature/**/*.html"
         ]
       }
     }

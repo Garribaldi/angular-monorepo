@@ -55,17 +55,19 @@
       "@local/demo/google-captcha/feature": [
         "libs/demo/google-captcha/feature/src/index.ts"
       ],
+      "@local/demo/reactive-forms/feature": [
+        "libs/demo/reactive-forms/feature/src/index.ts"
+      ],
       "@local/demo/shell/feature": ["libs/demo/shell/feature/src/index.ts"],
       "@local/file-upload/feature": ["libs/file-upload/feature/src/index.ts"],
-      "@local/generic-table/feature": ["libs/generic-table/feature/src/index.ts"],
+      "@local/generic-table/feature": [
+        "libs/generic-table/feature/src/index.ts"
+      ],
       "@local/google-captcha/data-access": [
         "libs/google-captcha/data-access/src/index.ts"
       ],
       "@local/google-captcha/feature": [
         "libs/google-captcha/feature/src/index.ts"
-      ],
-      "@local/reactive-forms/feature/shell": [
-        "libs/reactive-forms/feature/shell/src/index.ts"
       ],
       "@local/shared/data-access": ["libs/shared/data-access/src/index.ts"],
       "@local/shared/feature/config": [
@@ -78,7 +80,7 @@
         "libs/shared/feature/environments/src/index.ts"
       ],
       "@local/shared/ui": ["libs/shared/ui/src/index.ts"],
-      "@local/shared/utils": ["libs/shared/utils/src/index.ts"],
+      "@local/shared/utils": ["libs/shared/utils/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

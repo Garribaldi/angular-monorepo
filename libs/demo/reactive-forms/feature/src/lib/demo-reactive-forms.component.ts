@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
-import { FormBuilder, Validators } from "@angular/forms";
-import { City, Country, Employee, SharedDataService } from "@local/shared/data-access";
 import { map, Observable, tap } from "rxjs";
+import { City, Country, Employee, SharedDataService } from "@local/shared/data-access";
+import { FormBuilder, Validators } from "@angular/forms";
 import { CountryService, validatePasswordStrength } from "@local/shared/utils";
 
 @Component({
-  selector: 'local-reactive-forms-overview',
-  templateUrl: './overview.component.html',
-  styleUrls: ['./overview.component.scss'],
+  selector: 'local-demo-reactive-forms',
+  templateUrl: './demo-reactive-forms.component.html',
+  styleUrls: ['./demo-reactive-forms.component.scss'],
 })
-export class OverviewComponent {
+export class DemoReactiveFormsComponent {
 
   cities$!: Observable<City[]>;
   employee$!: Observable<Employee>;

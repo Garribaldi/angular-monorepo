@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { OverviewComponent } from './overview.component';
+import { DemoReactiveFormsComponent } from './demo-reactive-forms.component';
 import { MockProvider } from "ng-mocks";
 import { SharedDataService } from "@local/shared/data-access";
+import { of } from "rxjs";
 import { CountryService } from "@local/shared/utils";
 import { FormBuilder } from "@angular/forms";
-import { of } from "rxjs";
 
-describe('OverviewComponent', () => {
-  let component: OverviewComponent;
-  let fixture: ComponentFixture<OverviewComponent>;
+describe('DemoReactiveFormsComponent', () => {
+  let component: DemoReactiveFormsComponent;
+  let fixture: ComponentFixture<DemoReactiveFormsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [OverviewComponent],
+      declarations: [DemoReactiveFormsComponent],
       providers: [
         MockProvider(SharedDataService, {
           getCountries$: () => of([]),
@@ -25,7 +25,7 @@ describe('OverviewComponent', () => {
       ]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(OverviewComponent);
+    fixture = TestBed.createComponent(DemoReactiveFormsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

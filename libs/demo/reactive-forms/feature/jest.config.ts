@@ -1,9 +1,9 @@
 /* eslint-disable */
 export default {
-  displayName: 'reactive-forms-feature-shell',
+  displayName: 'demo-reactive-forms-feature',
   preset: '../../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
-  coverageDirectory: '../../../../coverage/libs/reactive-forms/feature/shell',
+  coverageDirectory: '../../../../coverage/libs/demo/reactive-forms/feature',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': [
       'jest-preset-angular',

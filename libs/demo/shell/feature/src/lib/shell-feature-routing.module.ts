@@ -6,7 +6,7 @@ export const appRoutes: Route[] = [
     path: 'table',
     title: 'Generic Table',
     loadChildren: () =>
-      import('libs/demo/generic-table/feature/src').then(
+      import('@local/demo/generic-table/feature').then(
         (m) => m.DemoGenericTableModule
       )
   },
@@ -14,15 +14,15 @@ export const appRoutes: Route[] = [
     path: 'form',
     title: 'Reactive Form',
     loadChildren: () =>
-      import('libs/reactive-forms/feature/shell/src').then(
-        (m) => m.ReactiveFormsFeatureShellModule
+      import('@local/demo/reactive-forms/feature').then(
+        (m) => m.DemoReactiveFormsModule
       )
   },
   {
     path: 'charts',
     title: 'Charts',
     loadChildren: () =>
-      import('libs/demo/charts/feature/src').then(
+      import('@local/demo/charts/feature').then(
         (m) => m.DemoChartsModule
       )
   },
@@ -30,7 +30,7 @@ export const appRoutes: Route[] = [
     path: 'captcha',
     title: 'Captcha',
     loadChildren: () =>
-      import('libs/demo/google-captcha/feature/src').then(
+      import('@local/demo/google-captcha/feature').then(
         (m) => m.DemoGoogleCaptchaModule
       )
   },
@@ -46,7 +46,7 @@ export const appRoutes: Route[] = [
     path: 'upload',
     title: 'File Upload',
     loadChildren: () =>
-      import('libs/demo/file-upload/feature/src').then(
+      import('@local/demo/file-upload/feature').then(
         (m) => m.DemoFileUploadModule
       )
   },
