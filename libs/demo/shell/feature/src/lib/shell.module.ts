@@ -8,18 +8,20 @@ import {
   MAT_TOOLTIP_DEFAULT_OPTIONS_FACTORY,
   MatTooltipDefaultOptions,
 } from '@angular/material/tooltip';
-import { ShellFeatureRoutingModule } from './shell-feature-routing.module';
+import { ShellRoutingModule } from './shell-routing.module';
 import { HomeComponent } from './home.component';
 import { MatMomentDateModule } from "@angular/material-moment-adapter";
 import { MAT_DATE_LOCALE } from "@angular/material/core";
 import { Environment, ENVIRONMENT } from "@local/shared/feature/environments";
 import { HttpCacheInterceptor } from "@local/shared/utils";
+import { TitleStrategy } from "@angular/router";
+import { DemoTitleStrategy } from "./demo-title-strategy";
 
 @NgModule({
   imports: [
     CommonModule,
     BrowserModule,
-    ShellFeatureRoutingModule,
+    ShellRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
     MatMomentDateModule
@@ -41,14 +43,18 @@ import { HttpCacheInterceptor } from "@local/shared/utils";
       useClass: HttpCacheInterceptor,
       multi: true,
     },
+    {
+      provide: TitleStrategy,
+      useClass: DemoTitleStrategy
+    }
   ],
   declarations: [HomeComponent],
   exports: [HomeComponent]
 })
-export class ShellFeatureModule {
-  static forRoot(env: Environment): ModuleWithProviders<ShellFeatureModule> {
+export class ShellModule {
+  static forRoot(env: Environment): ModuleWithProviders<ShellModule> {
     return  {
-      ngModule: ShellFeatureModule,
+      ngModule: ShellModule,
       providers: [
         {provide: ENVIRONMENT, useValue: env}
       ]

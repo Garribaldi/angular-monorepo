@@ -61,5 +61,5 @@ export const appRoutes: Route[] = [
   imports: [RouterModule.forRoot(appRoutes)],
   exports: [RouterModule]
 })
-export class ShellFeatureRoutingModule {
+export class ShellRoutingModule {
 }

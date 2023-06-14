@@ -1,5 +1,4 @@
 import { Component, OnInit } from "@angular/core";
-import { Title } from "@angular/platform-browser";
 import moment from "moment";
 import { DateAdapter } from "@angular/material/core";
 
@@ -10,16 +9,12 @@ import { DateAdapter } from "@angular/material/core";
 })
 export class AppComponent implements OnInit {
 
-    private readonly title = "Local demo app";
-
-    private readonly momentLocale = 'de';
-    private readonly materialLocal = 'de-DE';
+  private readonly momentLocale = 'de';
+  private readonly materialLocal = 'de-DE';
 
   constructor(
-    private readonly titleService: Title,
     private readonly dateAdapter: DateAdapter<never>
   ) {
-    titleService.setTitle(this.title);
     this.dateAdapter.setLocale(this.materialLocal);
   }
 
