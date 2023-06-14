@@ -19,6 +19,14 @@ export const appRoutes: Route[] = [
       )
   },
   {
+    path: 'formly',
+    title: 'Formly',
+    loadChildren: () =>
+      import('@local/demo/formly/feature').then(
+        (m) => m.DemoFormlyModule
+      )
+  },
+  {
     path: 'charts',
     title: 'Charts',
     loadChildren: () =>

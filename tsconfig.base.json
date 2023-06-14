@@ -49,6 +49,7 @@
       "@local/demo/file-upload/feature": [
         "libs/demo/file-upload/feature/src/index.ts"
       ],
+      "@local/demo/formly/feature": ["libs/demo/formly/feature/src/index.ts"],
       "@local/demo/generic-table/feature": [
         "libs/demo/generic-table/feature/src/index.ts"
       ],
@@ -60,6 +61,7 @@
       ],
       "@local/demo/shell/feature": ["libs/demo/shell/feature/src/index.ts"],
       "@local/file-upload/feature": ["libs/file-upload/feature/src/index.ts"],
+      "@local/formly/feature": ["libs/formly/feature/src/index.ts"],
       "@local/generic-table/feature": [
         "libs/generic-table/feature/src/index.ts"
       ],
