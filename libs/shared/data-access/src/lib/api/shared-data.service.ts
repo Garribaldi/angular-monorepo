@@ -31,20 +31,23 @@ export class SharedDataService {
   }
 
   getCities$(): Observable<City[]> {
-    return this.httpClient.get<CityDto[]>('../assets/cities.json').pipe(
+    const url = `${this.backendUrl}/cities`;
+    return this.httpClient.get<CityDto[]>(url).pipe(
       map(cities => cities.map(city => ({...city} as City))),
       catchError(() => of([]))
     );
   }
 
   getInventory$(): Observable<Inventory[]> {
-    return this.httpClient.get<InventoryDto[]>('../assets/inventory.json').pipe(
+    const url = `${this.backendUrl}/inventory`;
+    return this.httpClient.get<InventoryDto[]>(url).pipe(
       map(inventories => inventories.map(inventory => ({...inventory} as Inventory)))
     );
   }
 
   getCountries$(): Observable<Country[]> {
-    return this.httpClient.get<CountryDto[]>('../assets/countries.json').pipe(
+    const url = `${this.backendUrl}/countries`;
+    return this.httpClient.get<CountryDto[]>(url).pipe(
       map(countrylist => countrylist
         .map(country => ({...country} as Country))
         .sort((a, b) => a.name > b.name ? 1 : -1)

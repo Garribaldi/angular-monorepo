@@ -1,12 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DataGridComponent } from './data-grid.component';
-import { MockComponent, MockProvider } from 'ng-mocks';
-import { SelectedFilterStateService } from '../../../../data-access/src/lib/selected-filter-state.service';
-import { DataSourceService } from '../../../../data-access/src/lib/data-source.service';
+import { MockProvider } from 'ng-mocks';
+import { DataSourceService, Filter, SelectedFilterStateService } from '@local/angular-material/data-grid/data-access';
 import { of } from 'rxjs';
-import { DataGridChipsBarComponent } from '../../../../ui/src/lib/data-grid-chips-bar/data-grid-chips-bar.component';
-import { Filter } from '../../../../data-access/src/lib/models/filter.model';
-import { CypressSelectorDirective } from '../../../../../../shared/utils/src/lib/directives/cypress-selector.directive';
+import { CypressSelectorDirective } from '@local/shared/utils';
+import { AngularMaterialDataGridUiModule } from "@local/angular-material/data-grid/ui";
 
 type TestData = { column1: string; column2: string; column3: string };
 
@@ -30,9 +28,11 @@ describe('DataGridComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [
+        AngularMaterialDataGridUiModule
+      ],
       declarations: [
         DataGridComponent,
-        MockComponent(DataGridChipsBarComponent),
         CypressSelectorDirective,
       ],
       providers: [

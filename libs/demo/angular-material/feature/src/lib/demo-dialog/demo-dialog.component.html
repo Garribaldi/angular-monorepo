@@ -5,8 +5,8 @@
   <p>Category: {{courseData.category}}</p>
   <p>Date: {{courseData.date | date:'dd.MM.YYYY'}}</p>
 
-  <button mat-raised-button (click)="openDialog()">Edit course with component</button>
-  <button mat-raised-button (click)="openTemplateDialog()">Edit course with template</button>
+  <button mat-flat-button color="primary" (click)="openDialog()">Edit course with component</button>
+  <button mat-flat-button color="primary" (click)="openTemplateDialog()">Edit course with template</button>
 </div>
 
 <ng-template #secondDialog>

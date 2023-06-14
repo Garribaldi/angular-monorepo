@@ -18,8 +18,8 @@ export class HttpCacheInterceptor<T> implements HttpInterceptor {
     }
 
     const id = `url:${request.url}`;
-
     const cachedResponse = this.cache.get(id);
+
     if (cachedResponse) {
       return of(cachedResponse.clone());
     }
