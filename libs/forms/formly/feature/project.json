@@ -1,7 +1,7 @@
 {
   "name": "forms-formly",
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "feature/src",
+  "sourceRoot": "libs/forms/formly/feature/src",
   "prefix": "local-forms",
   "tags": ["scope:forms", "type:feature"],
   "projectType": "library",
@@ -10,7 +10,7 @@
       "executor": "@nrwl/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "libs/forms/formly/jest.config.ts",
+        "jestConfig": "libs/forms/formly/feature/jest.config.ts",
         "passWithNoTests": true
       },
       "configurations": {
