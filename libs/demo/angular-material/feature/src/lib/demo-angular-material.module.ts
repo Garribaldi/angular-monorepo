@@ -24,10 +24,12 @@ import { DemoFilterComponent } from './demo-filter/demo-filter.component';
 import { AngularMaterialFilterModule } from '@local/angular-material/filter/feature';
 import { DemoSliderComponent } from './demo-slider/demo-slider.component';
 import { AngularMaterialSliderModule } from '@local/angular-material/slider/feature';
+import { SharedSubnavModule } from "@local/shared/feature/subnav";
 
 @NgModule({
   imports: [
     CommonModule,
+    SharedSubnavModule,
     RouterModule.forChild(routes),
     AngularMaterialDataGridModule,
     AngularMaterialGenericTableModule,
@@ -43,7 +45,7 @@ import { AngularMaterialSliderModule } from '@local/angular-material/slider/feat
     MatButtonModule,
     MatSelectModule,
     MatInputModule,
-    SharedUtilsModule,
+    SharedUtilsModule
   ],
   declarations: [
     DemoAngularMaterialComponent,

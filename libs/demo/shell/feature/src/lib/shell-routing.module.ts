@@ -1,5 +1,5 @@
-import { Route, RouterModule } from "@angular/router";
-import { NgModule } from "@angular/core";
+import { Route, RouterModule } from '@angular/router';
+import { NgModule } from '@angular/core';
 
 export const appRoutes: Route[] = [
   {
@@ -8,31 +8,19 @@ export const appRoutes: Route[] = [
     loadChildren: () =>
       import('@local/demo/generic-table/feature').then(
         (m) => m.DemoGenericTableModule
-      )
+      ),
   },
   {
-    path: 'form',
-    title: 'Reactive Form',
+    path: 'forms',
+    title: 'Forms',
     loadChildren: () =>
-      import('@local/demo/reactive-forms/feature').then(
-        (m) => m.DemoReactiveFormsModule
-      )
-  },
-  {
-    path: 'formly',
-    title: 'Formly',
-    loadChildren: () =>
-      import('@local/demo/formly/feature').then(
-        (m) => m.DemoFormlyModule
-      )
+      import('@local/demo/forms/feature').then((m) => m.DemoFormsModule),
   },
   {
     path: 'charts',
     title: 'Charts',
     loadChildren: () =>
-      import('@local/demo/charts/feature').then(
-        (m) => m.DemoChartsModule
-      )
+      import('@local/demo/charts/feature').then((m) => m.DemoChartsModule),
   },
   {
     path: 'captcha',
@@ -40,7 +28,7 @@ export const appRoutes: Route[] = [
     loadChildren: () =>
       import('@local/demo/google-captcha/feature').then(
         (m) => m.DemoGoogleCaptchaModule
-      )
+      ),
   },
   {
     path: 'material',
@@ -48,7 +36,7 @@ export const appRoutes: Route[] = [
     loadChildren: () =>
       import('@local/demo/angular-material/feature').then(
         (m) => m.DemoAngularMaterialModule
-      )
+      ),
   },
   {
     path: 'upload',
@@ -56,18 +44,17 @@ export const appRoutes: Route[] = [
     loadChildren: () =>
       import('@local/demo/file-upload/feature').then(
         (m) => m.DemoFileUploadModule
-      )
+      ),
   },
   {
     path: '',
     pathMatch: 'full',
     redirectTo: 'table',
-  }
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(appRoutes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class ShellRoutingModule {
-}
+export class ShellRoutingModule {}
