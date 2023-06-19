@@ -1,10 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DemoReactiveFormsComponent } from './demo-reactive-forms.component';
 import { MockProvider } from "ng-mocks";
-import { SharedDataService } from "../../../../../../shared/data-access/src";
 import { of } from "rxjs";
-import { CountryService } from "../../../../../../shared/utils/src";
 import { FormBuilder } from "@angular/forms";
+import { SharedDataService } from "@local/shared/data-access";
+import { CountryService } from "@local/shared/utils";
 
 describe('DemoReactiveFormsComponent', () => {
   let component: DemoReactiveFormsComponent;

@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { LocalFormlyComponent } from './local-formly.component';
+import { DemoFormsComponent } from './demo-forms.component';
 
-describe('FormlyComponent', () => {
-  let component: LocalFormlyComponent;
-  let fixture: ComponentFixture<LocalFormlyComponent>;
+describe('DemoFormlyComponent', () => {
+  let component: DemoFormsComponent;
+  let fixture: ComponentFixture<DemoFormsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [LocalFormlyComponent],
+      declarations: [DemoFormsComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(LocalFormlyComponent);
+    fixture = TestBed.createComponent(DemoFormsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
