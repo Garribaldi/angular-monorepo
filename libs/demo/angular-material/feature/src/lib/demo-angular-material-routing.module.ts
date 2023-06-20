@@ -1,11 +1,13 @@
-import { Route } from '@angular/router';
+import { Route, RouterModule } from "@angular/router";
 import { DemoAngularMaterialComponent } from "./demo-angular-material.component";
-import { DemoDataGridComponent } from "./demo-data-grid/demo-data-grid.component";
 import { DemoTableComponent } from "./demo-table/demo-table.component";
-import { DemoDialogComponent } from "./demo-dialog/demo-dialog.component";
 import { DemoGenericTableComponent } from "./demo-generic-table/demo-generic-table.component";
-import { DemoFilterComponent } from "./demo-filter/demo-filter.component";
 import { DemoSliderComponent } from "./demo-slider/demo-slider.component";
+import { DemoDialogComponent } from "./demo-dialog/demo-dialog.component";
+import { DemoFilterComponent } from "./demo-filter/demo-filter.component";
+import { DemoDataGridComponent } from "./demo-data-grid/demo-data-grid.component";
+import { NgModule } from "@angular/core";
+
 
 export const routes: Route[] = [
   {
@@ -51,3 +53,9 @@ export const routes: Route[] = [
     ]
   }
 ];
+
+@NgModule({
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule],
+})
+export class DemoAngularMaterialRoutingModule {}

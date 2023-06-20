@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DemoFormsComponent } from './demo-forms.component';
-import { RouterModule } from '@angular/router';
-import { routes } from './lib.routes';
 import { FormsFormlyModule } from '@local/forms/formly/feature';
 import { DemoFormlyComponent } from './demo-formly/demo-formly.component';
 import { DemoReactiveFormsComponent } from "./demo-reactive-forms/demo-reactive-forms.component";
@@ -13,12 +11,13 @@ import { MatSelectModule } from "@angular/material/select";
 import { MatButtonModule } from "@angular/material/button";
 import { MatInputModule } from "@angular/material/input";
 import { SharedSubnavModule } from "@local/shared/feature/subnav";
+import { DemoFormsRoutingModule } from "./demo-forms-routing.module";
 
 @NgModule({
   imports: [
     CommonModule,
     SharedSubnavModule,
-    RouterModule.forChild(routes),
+    DemoFormsRoutingModule,
     FormsFormlyModule,
     SharedUtilsModule,
     MatFormFieldModule,

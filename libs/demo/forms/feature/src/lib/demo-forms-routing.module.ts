@@ -1,7 +1,8 @@
-import { Route } from "@angular/router";
+import { Route, RouterModule } from "@angular/router";
 import { DemoFormsComponent } from "./demo-forms.component";
 import { DemoFormlyComponent } from "./demo-formly/demo-formly.component";
 import { DemoReactiveFormsComponent } from "./demo-reactive-forms/demo-reactive-forms.component";
+import { NgModule } from "@angular/core";
 
 export const routes: Route[] = [
   {
@@ -27,3 +28,9 @@ export const routes: Route[] = [
     ]
   }
 ];
+
+@NgModule({
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule],
+})
+export class DemoFormsRoutingModule {}
