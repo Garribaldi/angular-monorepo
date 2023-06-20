@@ -1,0 +1,19 @@
+<div class="chart-container">
+  <canvas baseChart
+          [chartType]="'bar'"
+          [datasets]="testDatasets"
+          [labels]="testLabels"
+          [options]="testOptions"
+          (chartClicked)="updateData($event)">
+  </canvas>
+</div>
+
+<div class="chart-container">
+  <canvas baseChart
+          [chartType]="'pie'"
+          [datasets]="testPieDatasets"
+          [labels]="testPieLabels"
+          [options]="testPieOptions"
+          (chartClicked)="updateData($event)">
+  </canvas>
+</div>

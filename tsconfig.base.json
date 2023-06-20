@@ -41,36 +41,32 @@
       "@local/angular-material/slider/feature": [
         "libs/angular-material/slider/feature/src/index.ts"
       ],
-      "@local/charts/data-access": ["libs/charts/data-access/src/index.ts"],
-      "@local/charts/feature/shell": ["libs/charts/feature/shell/src/index.ts"],
-      "@local/charts/utils": ["libs/charts/utils/src/index.ts"],
+      "@local/charts/feature": ["libs/charts/feature/src/index.ts"],
       "@local/demo/angular-material/feature": [
         "libs/demo/angular-material/feature/src/index.ts"
       ],
+      "@local/demo/charts/feature": ["libs/demo/charts/feature/src/index.ts"],
       "@local/demo/file-upload/feature": [
         "libs/demo/file-upload/feature/src/index.ts"
+      ],
+      "@local/demo/forms/feature": ["libs/demo/forms/feature/src/index.ts"],
+      "@local/demo/generic-table/feature": [
+        "libs/demo/generic-table/feature/src/index.ts"
       ],
       "@local/demo/google-captcha/feature": [
         "libs/demo/google-captcha/feature/src/index.ts"
       ],
+      "@local/demo/shell/feature": ["libs/demo/shell/feature/src/index.ts"],
       "@local/file-upload/feature": ["libs/file-upload/feature/src/index.ts"],
-      "@local/file-upload/feature/feature": [
-        "libs/file-upload/feature/feature/src/index.ts"
-      ],
-      "@local/file-upload/feature/shell": [
-        "libs/file-upload/feature/shell/src/index.ts"
-      ],
-      "@local/file-upload/feature/upload": [
-        "libs/file-upload/feature/upload/src/index.ts"
+      "@local/forms/formly/feature": ["libs/forms/formly/feature/src/index.ts"],
+      "@local/generic-table/feature": [
+        "libs/generic-table/feature/src/index.ts"
       ],
       "@local/google-captcha/data-access": [
         "libs/google-captcha/data-access/src/index.ts"
       ],
       "@local/google-captcha/feature": [
         "libs/google-captcha/feature/src/index.ts"
-      ],
-      "@local/reactive-forms/feature/shell": [
-        "libs/reactive-forms/feature/shell/src/index.ts"
       ],
       "@local/shared/data-access": ["libs/shared/data-access/src/index.ts"],
       "@local/shared/feature/config": [
@@ -82,15 +78,11 @@
       "@local/shared/feature/environments": [
         "libs/shared/feature/environments/src/index.ts"
       ],
-      "@local/shared/ui": ["libs/shared/ui/src/index.ts"],
-      "@local/shared/utils": ["libs/shared/utils/src/index.ts"],
-      "@local/shell/feature": ["libs/shell/feature/src/index.ts"],
-      "@local/shell/feature/file-upload": [
-        "libs/shell/feature/file-upload/src/index.ts"
+      "@local/shared/feature/subnav": [
+        "libs/shared/feature/subnav/src/index.ts"
       ],
-      "@local/shell/feature/home": ["libs/shell/feature/home/src/index.ts"],
-      "@local/table/feature/shell": ["libs/table/feature/shell/src/index.ts"],
-      "@local/table/feature/table": ["libs/table/feature/table/src/index.ts"]
+      "@local/shared/ui": ["libs/shared/ui/src/index.ts"],
+      "@local/shared/utils": ["libs/shared/utils/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

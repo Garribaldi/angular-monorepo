@@ -1,19 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DataGridColumnComponent } from './data-grid-column.component';
-import { MockComponents, MockDirective, MockPipe, MockProvider, } from 'ng-mocks';
-import { DataSourceService } from '../../../../data-access/src/lib/data-source.service';
-import { FilterType } from '../../../../data-access/src/lib/models/filter-type.model';
+import { MockDirective, MockModule, MockPipe, MockProvider, } from 'ng-mocks';
 import {
-  DataGridCheckFilterComponent
-} from '../../../../ui/src/lib/data-grid-check-filter/data-grid-check-filter.component';
-import {
-  DataGridDateFilterComponent
-} from '../../../../ui/src/lib/data-grid-date-filter/data-grid-date-filter.component';
-import { Filter } from '../../../../data-access/src/lib/models/filter.model';
+  DataSourceService,
+  DateFilter,
+  Filter,
+  FilterType,
+  SelectedFilterStateService
+} from '@local/angular-material/data-grid/data-access';
 import { Subject } from 'rxjs';
 import { CypressSelectorDirective, ToSlashCasePipe } from '@local/shared/utils';
-import { SelectedFilterStateService } from '../../../../data-access/src/lib/selected-filter-state.service';
-import { DateFilter } from '../../../../data-access/src/lib/models/date-filter.model';
+import { AngularMaterialDataGridUiModule } from "@local/angular-material/data-grid/ui";
 
 type TestData = { name: string };
 
@@ -48,12 +45,11 @@ describe('DataGridColumnComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [
+        MockModule(AngularMaterialDataGridUiModule)
+      ],
       declarations: [
         DataGridColumnComponent,
-        MockComponents(
-          DataGridCheckFilterComponent,
-          DataGridDateFilterComponent
-        ),
         MockPipe(ToSlashCasePipe),
         MockDirective(CypressSelectorDirective),
       ],

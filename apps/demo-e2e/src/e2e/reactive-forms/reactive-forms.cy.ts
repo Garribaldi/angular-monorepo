@@ -3,11 +3,13 @@ import { getForm } from "../../support/app.po";
 describe("Reactive Forms", () => {
 
   beforeEach(() => {
-    cy.intercept('GET', 'employees', {fixture: 'employees.json'}).as('getAllEmployees');
+    cy.intercept('GET', 'employees', {fixture: 'employees.json'}).as('getEmployees');
+    cy.intercept('GET', 'cities', {fixture: 'cities.json'}).as('getCities');
+    cy.intercept('GET', 'countries', {fixture: 'countries.json'}).as('getCountries');
 
     cy.viewport(1920, 1080);
-    cy.visit("/form");
-    cy.wait('@getAllEmployees');
+    cy.visit("/forms/reactive-forms");
+    cy.wait('@getEmployees');
   });
 
   describe('default form', () => {

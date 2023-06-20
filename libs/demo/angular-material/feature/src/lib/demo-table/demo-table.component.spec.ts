@@ -5,7 +5,7 @@ import { SharedDataService } from "@local/shared/data-access";
 import { of } from "rxjs";
 import { MatTableModule } from "@angular/material/table";
 
-describe('TableComponent', () => {
+describe('GenericTableComponent', () => {
   let component: DemoTableComponent;
   let fixture: ComponentFixture<DemoTableComponent>;
 

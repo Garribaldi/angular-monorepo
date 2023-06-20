@@ -9,7 +9,7 @@
     "test": "nx run-many --all --target=test --parallel",
     "test:coverage": "npm run test -- --coverage",
     "test:merge": "jrm ./coverage/jest-junit.xml ./coverage/apps/**/junit.xml ./coverage/libs/**/junit.xml",
-    "e2e": "nx e2e demo-e2e",
+    "e2e": "nx e2e demo-e2e --ignore-cache",
     "e2e:prod": "npm run e2e -- --configuration=production",
     "e2e:watch": "npm run e2e -- --watch"
   },
@@ -26,6 +26,8 @@
     "@angular/platform-browser": "~15.2.0",
     "@angular/platform-browser-dynamic": "~15.2.0",
     "@angular/router": "~15.2.0",
+    "@ngx-formly/core": "^6.1.8",
+    "@ngx-formly/material": "^6.1.8",
     "@nrwl/angular": "15.9.2",
     "chart.js": "^4.2.1",
     "moment": "^2.29.4",

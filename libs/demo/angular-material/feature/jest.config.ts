@@ -1,6 +1,6 @@
 /* eslint-disable */
 export default {
-  displayName: 'demo-angular-material-feature',
+  displayName: 'demo-angular-material',
   preset: '../../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   coverageDirectory: '../../../../coverage/libs/demo/angular-material/feature',

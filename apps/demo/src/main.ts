@@ -1,7 +1,7 @@
 import { platformBrowserDynamic } from "@angular/platform-browser-dynamic";
 import { AppModule } from "./app/app.module";
 import { APP_CONFIG, AppConfig } from "@local/shared/feature/config";
-import { environment } from "@local/shared/feature/environments";
+import { environment } from "./environments/environment";
 import { enableProdMode } from "@angular/core";
 
 fetch('./assets/config/app.config.json')

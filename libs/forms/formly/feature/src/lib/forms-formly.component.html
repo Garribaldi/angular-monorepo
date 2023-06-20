@@ -1,0 +1,11 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit(model)">
+  <formly-form [form]="form" [fields]="fields" [model]="model"></formly-form>
+  <button
+    type="submit"
+    mat-flat-button
+    color="primary"
+    [disabled]="!form.valid"
+  >
+    Submit
+  </button>
+</form>

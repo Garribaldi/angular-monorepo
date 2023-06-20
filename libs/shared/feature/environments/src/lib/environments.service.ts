@@ -1,21 +1,23 @@
-import { Injectable } from '@angular/core';
-import { Environment, GoogleCaptcha } from "./environment.model";
-import { environment } from "./stages/environment";
+import { Inject, Injectable } from '@angular/core';
+import { ENVIRONMENT, Environment, GoogleCaptcha } from "./environment.model";
 
 @Injectable({
   providedIn: 'root'
 })
 export class EnvironmentsService implements Environment {
 
+  constructor(@Inject(ENVIRONMENT) private readonly environment: Environment) {
+  }
+
   get production(): boolean {
-    return environment.production;
+    return this.environment.production;
   }
 
   get backendUrl(): string {
-    return environment.backendUrl;
+    return this.environment.backendUrl;
   }
 
   get googleCaptcha(): GoogleCaptcha {
-    return {...environment.googleCaptcha};
+    return {...this.environment.googleCaptcha};
   }
 }
