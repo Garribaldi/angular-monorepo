@@ -18,7 +18,8 @@ export type NodeEnvVariables = {
 
 declare global {
   interface Window {
-    env: DockerEnvVariables
+    env: DockerEnvVariables;
+    Cypress?: unknown;
   }
 }
 

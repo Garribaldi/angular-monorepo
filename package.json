@@ -9,7 +9,7 @@
     "test": "nx run-many --all --target=test --parallel",
     "test:coverage": "npm run test -- --coverage",
     "test:merge": "jrm ./coverage/jest-junit.xml ./coverage/apps/**/junit.xml ./coverage/libs/**/junit.xml",
-    "e2e": "nx e2e demo-e2e",
+    "e2e": "nx e2e demo-e2e --ignore-cache",
     "e2e:prod": "npm run e2e -- --configuration=production",
     "e2e:watch": "npm run e2e -- --watch"
   },
