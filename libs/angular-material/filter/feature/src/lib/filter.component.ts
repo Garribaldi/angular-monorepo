@@ -14,8 +14,7 @@ export class FilterComponent<
       ? FilterTypes
       : never;
   }
-> implements OnInit, OnChanges, OnDestroy
-{
+> implements OnInit, OnChanges, OnDestroy {
   @Input() unfilteredData: T[] | null = [];
   @Input() filterColumn: FilterColumnProperty = '';
 
@@ -75,19 +74,15 @@ export class FilterComponent<
   }
 
   private listenSelectedFilter(): void {
-    this.formGroup
-      .get('selectedFilter')
-      ?.valueChanges.pipe(takeUntil(this.unsubscribe))
-      .subscribe((filter) => {
+    this.formGroup.get('selectedFilter')?.valueChanges
+      .pipe(takeUntil(this.unsubscribe))
+      .subscribe((filter: string | null) => {
         const unfiltered = this.unfilteredData ?? [];
 
         if (!filter) {
           this.filteredData = unfiltered;
         } else {
-          this.filteredData =
-            unfiltered.filter(
-              (data) => data[this.filterColumn as keyof T] === filter
-            ) ?? [];
+          this.filteredData = unfiltered.filter(data => data[this.filterColumn as keyof T] === filter) ?? [];
         }
 
         this.clearSearchAndEmit();
@@ -95,19 +90,16 @@ export class FilterComponent<
   }
 
   private listenFilterSearch(): void {
-    this.formGroup
-      .get('filterSearch')
-      ?.valueChanges.pipe(
+    this.formGroup.get('filterSearch')?.valueChanges
+      .pipe(
         takeUntil(this.unsubscribe),
         filter((search): search is string => search !== null),
-        map((search) => search.toLowerCase())
+        map(search => search.toLowerCase())
       )
-      .subscribe(
-        (search) =>
-          (this.filteredFilterValues = this.unfilteredFilterValues.filter(
-            (filterDefinition) =>
-              filterDefinition.filterLabel.toLowerCase().indexOf(search) > -1
-          ))
+      .subscribe(search =>
+        this.filteredFilterValues = this.unfilteredFilterValues.filter(
+          filterDefinition => filterDefinition.filterLabel.toLowerCase().indexOf(search) > -1
+        )
       );
   }
 

@@ -30,6 +30,22 @@ export class FormsFormlyComponent {
         required: true,
       },
     },
+    {
+      key: 'select',
+      type: 'select',
+      props: {
+        label: 'Multi Select',
+        multiple: true,
+        required: true,
+        selectAllOption: 'Select All',
+        options: [
+          {value: 1, label: 'Option 1'},
+          {value: 2, label: 'Option 2'},
+          {value: 3, label: 'Option 3'},
+          {value: 4, label: 'Option 4', disabled: true}
+        ]
+      }
+    }
   ];
 
   onSubmit(model: unknown) {
