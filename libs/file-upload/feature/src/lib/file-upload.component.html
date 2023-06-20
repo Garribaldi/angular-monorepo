@@ -5,3 +5,7 @@
     <span>Upload Files</span>
   </button>
 </div>
+
+<div *ngIf="createdFiles.length" class="mt-3 p-1 whitespace-pre border border-gray-300">
+  {{createdFiles | json}}
+</div>
