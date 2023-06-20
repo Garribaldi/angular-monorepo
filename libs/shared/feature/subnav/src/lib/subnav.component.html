@@ -1,7 +1,7 @@
-<nav class="subnav">
-  <ul class="subnav__container">
-    <li *ngFor="let link of routerLinks" class="subnav__item">
-      <a [routerLink]="link.path" class="subnav__link" routerLinkActive="subnav__link--active">{{link.title}}</a>
+<nav class="pb-4">
+  <ul class="flex p-0 mb-2 justify-between border-b-2 border-gray-300">
+    <li *ngFor="let link of routerLinks" class="flex flex-auto list-none">
+      <a [routerLink]="link.path" class="w-full p-3 no-underline text-gray-700 text-center text-base" routerLinkActive="btn--active">{{link.title}}</a>
     </li>
   </ul>
 </nav>

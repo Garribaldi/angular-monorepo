@@ -1,11 +1,13 @@
 <div *ngIf="courseData">
   <h2>Course data</h2>
 
-  <p>Description: {{courseData.description}}</p>
-  <p>Category: {{courseData.category}}</p>
-  <p>Date: {{courseData.date | date:'dd.MM.YYYY'}}</p>
+  <div class="mb-4">
+    <p>Description: {{courseData.description}}</p>
+    <p>Category: {{courseData.category}}</p>
+    <p>Date: {{courseData.date ?? '' | date:'dd.MM.YYYY'}}</p>
+  </div>
 
-  <button mat-flat-button color="primary" (click)="openDialog()">Edit course with component</button>
+  <button mat-flat-button color="primary" (click)="openDialog()" class="mr-1">Edit course with component</button>
   <button mat-flat-button color="primary" (click)="openTemplateDialog()">Edit course with template</button>
 </div>
 

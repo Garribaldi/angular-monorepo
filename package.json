@@ -1,12 +1,12 @@
 {
   "name": "local",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "license": "MIT",
   "scripts": {
     "serve": "nx serve demo",
     "serve:4400": "npm run serve -- --port 4400",
     "build": "nx build demo",
-    "test": "nx run-many --all --target=test --parallel",
+    "test": "nx run-many --all --target=test --parallel --ignore-cache",
     "test:coverage": "npm run test -- --coverage",
     "test:merge": "jrm ./coverage/jest-junit.xml ./coverage/apps/**/junit.xml ./coverage/libs/**/junit.xml",
     "e2e": "nx e2e demo-e2e --ignore-cache",
@@ -60,6 +60,7 @@
     "@types/uuid": "^9.0.1",
     "@typescript-eslint/eslint-plugin": "^5.36.1",
     "@typescript-eslint/parser": "^5.36.1",
+    "autoprefixer": "^10.4.0",
     "cypress": "^12.2.0",
     "eslint": "~8.15.0",
     "eslint-config-prettier": "8.1.0",
@@ -72,7 +73,9 @@
     "ng-mocks": "^14.8.0",
     "node-polyfill-webpack-plugin": "^2.0.1",
     "nx": "15.9.2",
+    "postcss": "^8.4.5",
     "prettier": "^2.6.2",
+    "tailwindcss": "^3.0.2",
     "ts-jest": "^29.0.5",
     "ts-node": "10.9.1",
     "typescript": "~4.9.5"
