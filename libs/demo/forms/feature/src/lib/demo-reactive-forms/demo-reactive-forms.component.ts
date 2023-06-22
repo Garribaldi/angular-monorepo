@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { map, Observable, tap } from "rxjs";
 import { City, Country, Employee, SharedDataService } from "@local/shared/data-access";
 import { FormBuilder, Validators } from "@angular/forms";
-import { CountryService, validatePasswordStrength } from "@local/shared/utils";
+import { CountryService } from "@local/shared/utils";
 
 @Component({
   selector: 'local-demo-reactive-forms',
@@ -26,7 +26,7 @@ export class DemoReactiveFormsComponent {
     firstName: ['', [Validators.required]],
     lastName: ['', [Validators.required]],
     email: ['', [Validators.required, Validators.email]],
-    password: ['', [Validators.required, Validators.minLength(8), validatePasswordStrength()]],
+    password: [''],
     city: ['', [Validators.required]],
     country: ['', [Validators.required]]
   });

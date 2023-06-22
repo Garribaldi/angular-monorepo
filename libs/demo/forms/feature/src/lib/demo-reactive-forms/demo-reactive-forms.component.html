@@ -19,19 +19,21 @@
       <mat-error>Please enter a valid eMail.</mat-error>
     </mat-form-field>
 
-    <mat-form-field appearance="fill">
-      <mat-label>Password</mat-label>
-      <input matInput formControlName="password" type="password">
-      <mat-error>
-        <ng-container *ngIf="testForm.get('password') as form">
-          <ul class="form__error-list">
-            <li *ngIf="form.hasError('required')">Please enter a password.</li>
-            <li *ngIf="form.hasError('minlength')">Your password must be at least 8 characters long.</li>
-            <li *ngIf="form.hasError('passwordStrength')">Your password must have lower case, upper case and numeric or special characters.</li>
-          </ul>
-        </ng-container>
-      </mat-error>
-    </mat-form-field>
+    <local-forms-password-field [formControl]="testForm.controls['password']">Password</local-forms-password-field>
+
+<!--    <mat-form-field appearance="fill">-->
+<!--      <mat-label>Password</mat-label>-->
+<!--      <input matInput formControlName="password" type="password">-->
+<!--      <mat-error>-->
+<!--        <ng-container *ngIf="testForm.get('password') as pwInput">-->
+<!--          <ul class="form__error-list">-->
+<!--            <li *ngIf="pwInput.hasError('required')">Please enter a password.</li>-->
+<!--            <li *ngIf="pwInput.hasError('minlength')">Your password must be at least 8 characters long.</li>-->
+<!--            <li *ngIf="pwInput.hasError('passwordStrength')">Your password must have lower case, upper case and numeric or special characters.</li>-->
+<!--          </ul>-->
+<!--        </ng-container>-->
+<!--      </mat-error>-->
+<!--    </mat-form-field>-->
 
     <mat-form-field appearance="fill">
       <mat-label>City</mat-label>

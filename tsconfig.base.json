@@ -59,6 +59,9 @@
       "@local/demo/shell/feature": ["libs/demo/shell/feature/src/index.ts"],
       "@local/file-upload/feature": ["libs/file-upload/feature/src/index.ts"],
       "@local/forms/formly/feature": ["libs/forms/formly/feature/src/index.ts"],
+      "@local/forms/reactive-forms/feature": [
+        "libs/forms/reactive-forms/feature/src/index.ts"
+      ],
       "@local/generic-table/feature": [
         "libs/generic-table/feature/src/index.ts"
       ],
