@@ -41,6 +41,8 @@ describe('FilterComponent', () => {
       declarations: [SingleSelectComponent],
     }).compileComponents();
 
+    jest.clearAllMocks();
+
     fixture = TestBed.createComponent(SingleSelectComponent);
     component = fixture.componentInstance;
 
@@ -78,6 +80,40 @@ describe('FilterComponent', () => {
       tick();
 
       expect(component.filteredFilterValues).toEqual([]);
+    }));
+  });
+
+  describe('filter list', () => {
+    let selectedFilter: AbstractControl | null;
+    let spyOnSelectedValue: jest.SpyInstance;
+
+    const testValue = 'Boston Celtics';
+
+    beforeEach(() => {
+      selectedFilter = component.formGroup.get('selectedFilter');
+      spyOnSelectedValue = jest.spyOn(component.selectedValue, 'emit');
+    });
+
+    test('filtered list with selected filter', fakeAsync(() => {
+      selectedFilter?.setValue(testValue);
+
+      tick();
+
+      expect(spyOnSelectedValue).toHaveBeenCalledWith(testValue);
+    }));
+
+    test('reset list with empty filter', fakeAsync(() => {
+      selectedFilter?.setValue(testValue);
+
+      tick();
+
+      selectedFilter?.setValue('');
+
+      tick();
+
+      expect(spyOnSelectedValue).toHaveBeenCalledTimes(2);
+      expect(spyOnSelectedValue).toHaveBeenCalledWith(testValue);
+      expect(spyOnSelectedValue).toHaveBeenCalledWith('');
     }));
   });
 });
