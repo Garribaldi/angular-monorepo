@@ -2,10 +2,10 @@
 declare namespace Cypress {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   interface Chainable<Subject> {
-    updateInput: (identifier: string, value: string) => Chainable<JQuery<HTMLElement>>;
+    updateInput: (element: string, value: string) => Chainable<JQuery<HTMLInputElement>>;
   }
 }
 
-Cypress.Commands.add('updateInput', (identifier: string, value: string) => {
-  return cy.get(`input[id=${identifier}]`).type(value);
+Cypress.Commands.add('updateInput', (element: string, value: string) => {
+  return cy.getEl(element).find('input').type(value) ;
 });

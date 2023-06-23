@@ -15,7 +15,6 @@ export class DemoReactiveFormsComponent {
   employee$!: Observable<Employee>;
   countries$!: Observable<Country[]>;
 
-
   /**
    * To benefit from type safety, declare form group outside of constructor / ngOnInit.
    * Otherwise, from group uses _any_ and type safety is lost:

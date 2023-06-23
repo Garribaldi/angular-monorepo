@@ -1,16 +1,28 @@
-import { Component, Input, OnInit, Self } from '@angular/core';
+import { Component, Input, OnInit, Optional, Self } from '@angular/core';
 import { ControlValueAccessor, NgControl, Validators } from "@angular/forms";
 import { validatePasswordStrength } from "@local/shared/utils";
 
 /**
  * You only need to provide a form control with a string value for storing the password.
+ *
+ * The _Label_ for this field can be overwritten by content projection. Default is _Password_.
+ *
  * Validators are added automatically by this component.
  *
  * Password strength validation and min length are always set.
- * You can overwrite the length via Input __minLength__. _A value less than 8 is ignored!_
  *
- * Required is set to true as default. You can overwrite this via Input __required__.
- */
+ * You can overwrite the min length via Input __minLength__. A value less than _8_ is ignored!
+ *
+ * You can overwrite mandatory via Input __required__. Required is set to _true_ as default.
+ *
+ * @example
+ *  // minLength, required and 'Custom Password' password label are optional
+ * <local-forms-password-field
+ *    [formControl]="testForm.controls['password']"
+ *    [minLength]="10"
+ *    [required]="true"
+ * >Custom Password</local-forms-password-field>
+ * */
 @Component({
   selector: 'local-forms-password-field',
   templateUrl: './password-field.component.html',
@@ -24,7 +36,7 @@ export class PasswordFieldComponent implements ControlValueAccessor, OnInit {
   @Input() required = true;
 
   constructor(
-    @Self() public ngControl: NgControl
+    @Optional() @Self() public ngControl: NgControl
   ) {
     this.ngControl.valueAccessor = this;
   }
@@ -54,5 +66,6 @@ export class PasswordFieldComponent implements ControlValueAccessor, OnInit {
 
   setDisabledState(isDisabled: boolean) {
   }
+
   /* eslint-enable @typescript-eslint/no-empty-function, @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any */
 }

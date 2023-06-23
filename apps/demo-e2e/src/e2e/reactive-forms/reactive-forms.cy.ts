@@ -1,4 +1,4 @@
-import { getForm } from "../../support/app.po";
+import { getReactiveForm } from "../../support/app.po";
 
 describe("Reactive Forms", () => {
 
@@ -19,7 +19,7 @@ describe("Reactive Forms", () => {
     let button: JQuery<HTMLElement>;
 
     beforeEach(() => {
-      getForm().then(element => {
+      getReactiveForm().then(element => {
         inputs = element.find('input');
         selects = element.find('mat-select');
         button = element.find('button[type="submit"]');
@@ -42,63 +42,68 @@ describe("Reactive Forms", () => {
       expect(button.length).to.eq(1);
       expect(button).not.to.be.undefined;
     });
-
-    it('should disable submit button', () => {
-      expect((button[0] as HTMLButtonElement).disabled).to.be.true;
-    });
   });
 
   describe('filled out form', () => {
 
-    it('should disable send button', () => {
-      cy.updateInput('mat-input-2', 'test@test.com');
+    const email = 'reactive-forms-email';
+    const password = 'reactive-forms-password';
+    const cities = 'reactive-forms-cities';
+    const countries = 'reactive-forms-countries';
+    const submit = 'reactive-forms-submit';
 
-      cy.get('button[type="submit"]').should('be.disabled');
+    it('should disable submit button', () => {
+      cy.updateInput(email, 'test@test.com');
+
+      cy.getEl(submit).should('be.disabled');
     });
 
     it('should enable send button', () => {
-      cy.updateInput('mat-input-2', 'test@test.com');
-      cy.updateInput('mat-input-3', 'aBcD12$eFg');
+      cy.updateInput(email, 'test@test.com');
+      cy.updateInput(password, 'aBcD12$eFg');
 
-      cy.updateSelect('mat-select-0', 'Miami');
-      cy.updateSelect('mat-select-2', 'United States');
+      cy.updateSelect(cities, 'Miami');
+      cy.updateSelect(countries, 'United States');
 
-      cy.get('button[type="submit"]').should('not.be.disabled');
+      cy.getEl(submit).should('not.be.disabled');
     });
 
     it('should show error for invalid eMail', () => {
-      cy.updateInput('mat-input-2', 'testneu').blur();
+      cy.updateInput(email, 'testneu').blur();
 
-      cy.get('mat-error[id=mat-mdc-error-2]').should('contain', 'Please enter a valid eMail');
+      cy.getEl(email).find('mat-error')
+        .should('contain', 'Please enter a valid eMail');
     });
 
     it('should show error for invalid password', () => {
-      cy.updateInput('mat-input-2', 'test@test.com');
-      cy.updateInput('mat-input-3', '123456').blur();
+      cy.updateInput(email, 'test@test.com');
+      cy.updateInput(password, '123456').blur();
 
-      cy.get('mat-error[id=mat-mdc-error-3]')
+      cy.getEl(password).find('mat-error')
         .should('contain', 'Your password must be at least 8 characters long.')
         .should('contain', 'Your password must have lower case, upper case and numeric or special characters');
     });
 
     it('should show error for missing city select', () => {
-      cy.updateInput('mat-input-2', 'test@test.com');
-      cy.updateInput('mat-input-3', 'aBcD12$eFg');
+      cy.updateInput(email, 'test@test.com');
+      cy.updateInput(password, 'aBcD12$eFg');
 
-      cy.skipFormField('[id=mat-select-0]');
-      cy.updateSelect('mat-select-2', 'United States');
+      cy.skipFormField(cities, 'mat-select');
+      cy.updateSelect(countries, 'United States');
 
-      cy.get('mat-error[id=mat-mdc-error-4]').should('contain', 'Please choose a city');
+      cy.getEl(cities).find('mat-error')
+        .should('contain', 'Please choose a city');
     });
 
     it('should show error for missing country select', () => {
-      cy.updateInput('mat-input-2', 'test@test.com');
-      cy.updateInput('mat-input-3', 'aBcD12$eFg');
+      cy.updateInput(email, 'test@test.com');
+      cy.updateInput(password, 'aBcD12$eFg');
 
-      cy.updateSelect('mat-select-0', 'Miami');
-      cy.skipFormField('[id=mat-select-2]');
+      cy.updateSelect(cities, 'Miami');
+      cy.skipFormField(countries, 'mat-select');
 
-      cy.get('mat-error[id=mat-mdc-error-5]').should('contain', 'Please choose a country');
+      cy.getEl(countries).find('mat-error')
+        .should('contain', 'Please choose a country');
     });
   });
 });

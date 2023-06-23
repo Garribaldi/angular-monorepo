@@ -1,7 +1,7 @@
 {
   "name": "forms-reactive-fields",
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "../feature/src",
+  "sourceRoot": "libs/forms/reactive-fields/feature/src",
   "prefix": "forms",
   "tags": ["scope:forms", "type:feature"],
   "projectType": "library",

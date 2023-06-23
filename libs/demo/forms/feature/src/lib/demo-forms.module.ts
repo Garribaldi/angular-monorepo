@@ -12,7 +12,7 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatInputModule } from "@angular/material/input";
 import { SharedSubnavModule } from "@local/shared/feature/subnav";
 import { DemoFormsRoutingModule } from "./demo-forms-routing.module";
-import { ReactiveFieldsModule } from "../../../../../forms/reactive-fields/feature/src";
+import { ReactiveFieldsModule } from "@local/forms/reactive-fields/feature";
 
 @NgModule({
     imports: [
