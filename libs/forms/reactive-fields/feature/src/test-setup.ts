@@ -6,7 +6,10 @@ export const NG_CONTROL_PROVIDER = {
   useClass: class extends NgControl {
     control = new FormControl();
 
+    /* eslint-disable @typescript-eslint/no-empty-function */
     viewToModelUpdate() {
     }
+
+    /* eslint-enable @typescript-eslint/no-empty-function */
   }
 };
