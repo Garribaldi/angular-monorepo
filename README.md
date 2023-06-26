@@ -10,14 +10,6 @@
 - update to Angular 16
 - update to Nx 16
 
-## Development server
-
-Run `nx serve demo` for a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
-
-## Understand this workspace
-
-Run `nx graph` to see a diagram of the dependencies of the projects.
-
 ## Setup Project
 
 After cloning from repository, run `npm install` and after that, run `npm dedupe`.
@@ -25,14 +17,15 @@ After cloning from repository, run `npm install` and after that, run `npm dedupe
 Angular and a custom webpack which uses the Define plugin run into issues because of mismatching versions ob webpack.
 Such a config is used in `apps/demo/webpack.config.js`.
 
-Building the project results in an error **"Error: Module parse failed: parser.destructuringAssignmentPropertiesFor is not a function..."**.
+Building the project results in an error **"Error: Module parse failed: parser.destructuringAssignmentPropertiesFor is
+not a function..."**.
 `@angular-devkit/build-angular` depends on webpack@5.76.1, while every other dependency uses a newer version.
 
 You can visualize this mismatch with `npm list webpack`.
 
 With dedupe you "downgrade" every dependency to webpack@5.76.1.
 
-An update to a newer Angular versions in the near future should fix this error so this worlaround becomes obsolete.
+An update to a newer Angular versions in the near future should fix this error so this workaround becomes obsolete.
 
 To use all examples properly, it is necessary to provide some environment data.
 
@@ -50,7 +43,8 @@ Add the following keys to this file and provide your individual values:
 
 Many pages need sample data to make them work. This is loaded via API Endpoints from a dedicated backend.
 
-For this purpose, clone [https://github.com/Garribaldi/local-service](https://github.com/Garribaldi/local-service), build it and let it run on Port 8080.
+For this purpose, clone [https://github.com/Garribaldi/local-service](https://github.com/Garribaldi/local-service),
+build it and let it run on Port 8080.
 
 ## Add Library
 
@@ -103,6 +97,15 @@ nx g @schematics/angular:interceptor interceptors/http-cache --project=shared-ut
 ## Remote caching
 
 Run `npx nx connect-to-nx-cloud` to enable [remote caching](https://nx.app) and make CI faster.
+
+## Development server
+
+Run `nx serve demo` for a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you
+change any of the source files.
+
+## Understand this workspace
+
+Run `nx graph` to see a diagram of the dependencies of the projects.
 
 ## Further help
 

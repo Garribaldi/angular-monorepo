@@ -23,7 +23,7 @@ export const isString = (value: unknown): value is string => {
   );
 }
 
-export const isNumber = (value: unknown): value is string => {
+export const isNumber = (value: unknown): value is number => {
   return (
     value !== undefined
     && value !== null
@@ -31,6 +31,10 @@ export const isNumber = (value: unknown): value is string => {
   );
 }
 
+/**
+ * Check if a value is of type Date. If true, type Date is asserted
+ * @param value test value that could be a date
+ */
 export const isDate = (value: unknown): value is Date => {
   return (
     value !== undefined

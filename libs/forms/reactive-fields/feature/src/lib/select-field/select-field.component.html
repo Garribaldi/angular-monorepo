@@ -1,0 +1,14 @@
+<mat-form-field appearance="fill" class="w-full">
+  <mat-label>
+    <span #ref><ng-content></ng-content></span>
+    <ng-container *ngIf="!ref.hasChildNodes()">Select</ng-container>
+  </mat-label>
+  <mat-select [formControl]="$any(ngControl.control)" >
+    <mat-option *ngFor="let selectOption of selectOptions" [value]="selectOption.value">{{selectOption.text}}</mat-option>
+  </mat-select>
+  <mat-error class="pt-1 text-xs">
+    <ul class="m-0 p-0 list-none">
+      <li *ngIf="ngControl.hasError('required')">{{requiredErrorMessage}}</li>
+    </ul>
+  </mat-error>
+</mat-form-field>

@@ -2,10 +2,10 @@
 declare namespace Cypress {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   interface Chainable<Subject> {
-    skipFormField: (identifier: string) => Chainable<JQuery<HTMLElement>>;
+    skipFormField: (element: string, field: string) => Chainable<JQuery<HTMLElement>>;
   }
 }
 
-Cypress.Commands.add('skipFormField', (identifier: string) => {
-  return cy.get(identifier).focus().blur();
+Cypress.Commands.add('skipFormField', (element: string, field: string) => {
+  return cy.getEl(element).find(field).focus().blur();
 });
