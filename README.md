@@ -6,9 +6,6 @@
 
 ## Project setup afer cloning
 
-
-
-
 ## ToDos
 - migrate from moment.js to **Day.js** (https://www.npmjs.com/package/dayjs)
 - update to Angular 16
@@ -36,7 +33,7 @@ You can visualize this mismatch with ``npm list webpack``.
 
 With dedupe you "downgrade" every dependency to webpack@5.76.1.
 
-An update to a newer Angular versions in the near future should fix this error so this worlaround becomes obsolete.
+An update to a newer Angular versions in the near future should fix this error so this workaround becomes obsolete.
 
 To use all examples properly, it is necessary to provide some environment data.
 

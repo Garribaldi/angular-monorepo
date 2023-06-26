@@ -1,0 +1,13 @@
+<mat-form-field appearance="fill" class="w-full">
+  <mat-label>
+    <span #ref><ng-content></ng-content></span>
+    <ng-container *ngIf="!ref.hasChildNodes()">eMail</ng-container>
+  </mat-label>
+  <input matInput [formControl]="$any(ngControl.control)" type="email">
+  <mat-error class="pt-1 text-xs">
+    <ul class="m-0 p-0 list-none">
+      <li *ngIf="ngControl.hasError('required')">Please enter an eMail.</li>
+      <li *ngIf="ngControl.hasError('email')">Please enter a valid eMail (format: alias@host.com).</li>
+    </ul>
+  </mat-error>
+</mat-form-field>

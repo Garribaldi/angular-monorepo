@@ -10,7 +10,9 @@ import { FormlyModule } from "@ngx-formly/core";
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    FormlyModule.forRoot(),
+    FormlyModule.forRoot({
+      validationMessages: [{name: 'required', message: 'This field is required'}]
+    }),
     FormlyMaterialModule,
     MatButtonModule,
   ],
