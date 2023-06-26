@@ -46,11 +46,11 @@ describe("Reactive Forms", () => {
 
   describe('filled out form', () => {
 
-    const email = 'reactive-forms-email';
-    const password = 'reactive-forms-password';
-    const cities = 'reactive-forms-cities';
-    const countries = 'reactive-forms-countries';
-    const submit = 'reactive-forms-submit';
+    const email = 'reactive-form-email';
+    const password = 'reactive-form-password';
+    const cities = 'reactive-form-cities';
+    const countries = 'reactive-form-countries';
+    const submit = 'reactive-form-submit';
 
     it('should disable submit button', () => {
       cy.updateInput(email, 'test@test.com');
