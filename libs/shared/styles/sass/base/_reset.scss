@@ -1,28 +1,29 @@
-ol {
-  list-style: none;
-  counter-reset: items;
-  padding: 0;
+/* You can add global styles to this file, and also import other style files */
 
-  li {
-    display: flex;
-    align-items: center;
-    counter-increment: items;
-    text-align: left;
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
 
-    &:before {
-      content: "0" counter(items) ". ";
-      padding-right: .5rem;
-    }
+html,
+body {
+  height: 100%;
+}
 
-    &:nth-child(n+10):before {
-      content: counter(items) ". ";
-    }
-  }
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+main {
+  padding: 2rem;
 }
 
 h1, h2, h3, h4, h5, h6 {
   padding: 0;
   margin: .75rem 0;
+  font-weight: 500;
 }
 
 h1 {
@@ -47,4 +48,26 @@ h5 {
 
 h6 {
   font-size: .5rem;
+}
+
+ol {
+  list-style: none;
+  counter-reset: items;
+  padding: 0;
+
+  li {
+    display: flex;
+    align-items: center;
+    counter-increment: items;
+    text-align: left;
+
+    &:before {
+      content: "0" counter(items) ". ";
+      padding-right: .5rem;
+    }
+
+    &:nth-child(n+10):before {
+      content: counter(items) ". ";
+    }
+  }
 }

@@ -1,34 +1,3 @@
-@use "sass:map";
-@use "@angular/material" as mat;
-
-.subnav {
-
-  &__container {
-    display: flex;
-    justify-content: space-between;
-
-    padding: 0;
-    margin-bottom: .5rem;
-    border-bottom: 2px solid #cccccc;
-  }
-
-  &__item {
-    display: flex;
-    list-style: none;
-    flex: 1 1 auto;
-  }
-
-  &__link {
-    width: 100%;
-    text-align: center;
-    padding: .75rem;
-    color: #585858;
-    text-decoration: none;
-    font-size: 1rem;
-
-    &--active {
-      color: #ffffff;
-      background-color: map.get(mat.$blue-gray-palette, 600);
-    }
-  }
+.btn--active {
+  @apply text-white bg-blue-gray-600;
 }

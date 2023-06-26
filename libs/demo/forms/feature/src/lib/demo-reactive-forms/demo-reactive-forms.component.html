@@ -1,57 +1,22 @@
-<div *ngIf="employee$ | async" class="form">
+<div *ngIf="(requests$ | async) as requests" class="form">
 
-  <form [formGroup]="testForm" (ngSubmit)="onSubmit()" data-cy="reactive-form">
-    <mat-form-field appearance="fill">
-      <mat-label>First Name</mat-label>
-      <input matInput formControlName="firstName">
-      <mat-error>Please enter your first name.</mat-error>
-    </mat-form-field>
+  <form [formGroup]="testForm" (ngSubmit)="onSubmit()" cyGet="reactive-form">
 
-    <mat-form-field appearance="fill">
-      <mat-label>Last Name</mat-label>
-      <input matInput formControlName="lastName">
-      <mat-error>Please enter your last name.</mat-error>
-    </mat-form-field>
+    <local-forms-text-field [formControl]="testForm.controls['firstName']" [requiredErrorMessage]="'Please enter your first name.'" cyGet="reactive-form-name">First Name</local-forms-text-field>
 
-    <mat-form-field appearance="fill">
-      <mat-label>eMail</mat-label>
-      <input matInput formControlName="email">
-      <mat-error>Please enter a valid eMail.</mat-error>
-    </mat-form-field>
+    <local-forms-text-field [formControl]="testForm.controls['lastName']" [requiredErrorMessage]="'Please enter your last name.'" cyGet="reactive-form-last-name">Last Name</local-forms-text-field>
 
-    <mat-form-field appearance="fill">
-      <mat-label>Password</mat-label>
-      <input matInput formControlName="password" type="password">
-      <mat-error>
-        <ng-container *ngIf="testForm.get('password') as form">
-          <ul class="form__error-list">
-            <li *ngIf="form.hasError('required')">Please enter a password.</li>
-            <li *ngIf="form.hasError('minlength')">Your password must be at least 8 characters long.</li>
-            <li *ngIf="form.hasError('passwordStrength')">Your password must have lower case, upper case and numeric or special characters.</li>
-          </ul>
-        </ng-container>
-      </mat-error>
-    </mat-form-field>
+    <local-forms-email-field [formControl]="testForm.controls['email']" cyGet="reactive-form-email"></local-forms-email-field>
 
-    <mat-form-field appearance="fill">
-      <mat-label>City</mat-label>
-      <mat-select formControlName="city">
-        <mat-option *ngFor="let city of (cities$ | async)" [value]="city.name">{{city.name}}</mat-option>
-      </mat-select>
-      <mat-error>Please choose a city.</mat-error>
-    </mat-form-field>
+    <local-forms-password-field [formControl]="testForm.controls['password']" cyGet="reactive-form-password"></local-forms-password-field>
 
-    <mat-form-field appearance="fill">
-      <mat-label>Country</mat-label>
-      <mat-select formControlName="country">
-        <mat-option *ngFor="let country of (countries$ | async)" [value]="country.iso">{{country.name}}</mat-option>
-      </mat-select>
-      <mat-error>Please choose a country.</mat-error>
-    </mat-form-field>
+    <local-forms-select-field [formControl]="testForm.controls['city']" [selectOptions]="requests.cities" [requiredErrorMessage]="'Please choose a city.'" cyGet="reactive-form-cities">City</local-forms-select-field>
 
-    <button mat-flat-button color="primary" type="submit" [disabled]="!testForm.valid">Send</button>
+    <local-forms-select-field [formControl]="testForm.controls['country']" [selectOptions]="requests.countries" [requiredErrorMessage]="'Please choose a country.'" cyGet="reactive-form-countries">Country</local-forms-select-field>
 
-    <div class="debug">Model: {{testForm.value | json}}</div>
+    <button mat-flat-button color="primary" type="submit" [disabled]="!testForm.valid" cyGet="reactive-form-submit">Send</button>
+
+    <pre class="mt-8">Model: {{testForm.value | json}}</pre>
   </form>
 
 </div>
