@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, Optional, Self } from '@angular/core';
 import { ControlValueAccessor, NgControl, Validators } from "@angular/forms";
 import { validatePasswordStrength } from "@local/shared/utils";
+import { ReactiveFieldsService } from "../reactive-fields.service";
 
 /**
  * You only need to provide a form control with a string value for storing the password.
@@ -36,24 +37,19 @@ export class PasswordFieldComponent implements ControlValueAccessor, OnInit {
   @Input() required = true;
 
   constructor(
-    @Optional() @Self() public ngControl: NgControl
+    @Optional() @Self() public ngControl: NgControl,
+    private readonly reactiveFieldsService: ReactiveFieldsService
   ) {
     this.ngControl.valueAccessor = this;
   }
 
   ngOnInit() {
-    const validators = [Validators.minLength(Math.max(this.minLength, this.pwMinLength)), validatePasswordStrength()];
-
-    if (this.required) {
-      validators.push(Validators.required);
-    }
-
-    this.ngControl.control?.addValidators(validators);
-    this.ngControl.control?.updateValueAndValidity();
+    this.reactiveFieldsService.initValidators(this.ngControl, this.required, [Validators.minLength(Math.max(this.minLength, this.pwMinLength)), validatePasswordStrength()]);
   }
 
   // ControlValueAccessor interface
   /* eslint-disable @typescript-eslint/no-empty-function, @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any */
+  
   writeValue(obj: any) {
   }
 

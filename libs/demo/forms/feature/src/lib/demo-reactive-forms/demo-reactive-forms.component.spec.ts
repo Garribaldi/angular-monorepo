@@ -12,9 +12,12 @@ describe('DemoReactiveFormsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [DemoReactiveFormsComponent],
+      declarations: [
+        DemoReactiveFormsComponent
+      ],
       providers: [
         MockProvider(SharedDataService, {
+          getCities$: () => of([]),
           getCountries$: () => of([]),
           getEmployees$: () => of([])
         }),

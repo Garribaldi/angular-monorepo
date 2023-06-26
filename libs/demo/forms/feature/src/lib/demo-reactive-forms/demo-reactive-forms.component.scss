@@ -1,7 +1,6 @@
 .form {
 
-  mat-form-field,
-  local-forms-password-field {
+  [cyget*="reactive-form-"]{
     display: block;
     max-width: 20rem;
     margin-bottom: .5rem;

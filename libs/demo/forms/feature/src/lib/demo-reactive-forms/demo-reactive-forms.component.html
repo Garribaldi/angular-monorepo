@@ -1,58 +1,20 @@
-<div *ngIf="employee$ | async" class="form">
+<div *ngIf="(requests$ | async) as requests" class="form">
 
   <form [formGroup]="testForm" (ngSubmit)="onSubmit()" cyGet="reactive-form">
 
-    <mat-form-field appearance="fill" cyGet="reactive-forms-name">
-      <mat-label>First Name</mat-label>
-      <input matInput formControlName="firstName">
-      <mat-error class="pt-1 text-xs">Please enter your first name.</mat-error>
-    </mat-form-field>
+    <local-forms-text-field [formControl]="testForm.controls['firstName']" [requiredErrorMessage]="'Please enter your first name.'" cyGet="reactive-form-name">First Name</local-forms-text-field>
 
-    <mat-form-field appearance="fill" cyGet="reactive-forms-last-name">
-      <mat-label>Last Name</mat-label>
-      <input matInput formControlName="lastName">
-      <mat-error class="pt-1 text-xs">Please enter your last name.</mat-error>
-    </mat-form-field>
+    <local-forms-text-field [formControl]="testForm.controls['lastName']" [requiredErrorMessage]="'Please enter your last name.'" cyGet="reactive-form-last-name">Last Name</local-forms-text-field>
 
-    <mat-form-field appearance="fill" cyGet="reactive-forms-email">
-      <mat-label>eMail</mat-label>
-      <input matInput formControlName="email">
-      <mat-error class="pt-1 text-xs">Please enter a valid eMail.</mat-error>
-    </mat-form-field>
+    <local-forms-email-field [formControl]="testForm.controls['email']" cyGet="reactive-form-email"></local-forms-email-field>
 
-    <local-forms-password-field [formControl]="testForm.controls['password']" cyGet="reactive-forms-password"></local-forms-password-field>
+    <local-forms-password-field [formControl]="testForm.controls['password']" cyGet="reactive-form-password"></local-forms-password-field>
 
-<!--    <mat-form-field appearance="fill">-->
-<!--      <mat-label>Password</mat-label>-->
-<!--      <input matInput formControlName="password" type="password">-->
-<!--      <mat-error>-->
-<!--        <ng-container *ngIf="testForm.get('password') as pwInput">-->
-<!--          <ul class="form__error-list">-->
-<!--            <li *ngIf="pwInput.hasError('required')">Please enter a password.</li>-->
-<!--            <li *ngIf="pwInput.hasError('minlength')">Your password must be at least 8 characters long.</li>-->
-<!--            <li *ngIf="pwInput.hasError('passwordStrength')">Your password must have lower case, upper case and numeric or special characters.</li>-->
-<!--          </ul>-->
-<!--        </ng-container>-->
-<!--      </mat-error>-->
-<!--    </mat-form-field>-->
+    <local-forms-select-field [formControl]="testForm.controls['city']" [selectOptions]="requests.cities" [requiredErrorMessage]="'Please choose a city.'" cyGet="reactive-form-cities">City</local-forms-select-field>
 
-    <mat-form-field appearance="fill" cyGet="reactive-forms-cities">
-      <mat-label>City</mat-label>
-      <mat-select formControlName="city">
-        <mat-option *ngFor="let city of (cities$ | async)" [value]="city.name">{{city.name}}</mat-option>
-      </mat-select>
-      <mat-error class="pt-1 text-xs">Please choose a city.</mat-error>
-    </mat-form-field>
+    <local-forms-select-field [formControl]="testForm.controls['country']" [selectOptions]="requests.countries" [requiredErrorMessage]="'Please choose a country.'" cyGet="reactive-form-countries">Country</local-forms-select-field>
 
-    <mat-form-field appearance="fill" cyGet="reactive-forms-countries">
-      <mat-label>Country</mat-label>
-      <mat-select formControlName="country">
-        <mat-option *ngFor="let country of (countries$ | async)" [value]="country.iso">{{country.name}}</mat-option>
-      </mat-select>
-      <mat-error class="pt-1 text-xs">Please choose a country.</mat-error>
-    </mat-form-field>
-
-    <button mat-flat-button color="primary" type="submit" [disabled]="!testForm.valid" cyGet="reactive-forms-submit">Send</button>
+    <button mat-flat-button color="primary" type="submit" [disabled]="!testForm.valid" cyGet="reactive-form-submit">Send</button>
 
     <pre class="mt-8">Model: {{testForm.value | json}}</pre>
   </form>
