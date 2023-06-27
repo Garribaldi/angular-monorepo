@@ -24,28 +24,30 @@ import { DemoSliderComponent } from './demo-slider/demo-slider.component';
 import { AngularMaterialSliderModule } from '@local/angular-material/slider/feature';
 import { SharedSubnavModule } from "@local/shared/feature/subnav";
 import { DemoAngularMaterialRoutingModule } from "./demo-angular-material-routing.module";
+import { ReactiveFieldsModule } from "@local/forms/reactive-fields/feature";
 
 @NgModule({
-  imports: [
-    CommonModule,
-    SharedSubnavModule,
-    DemoAngularMaterialRoutingModule,
-    AngularMaterialDataGridModule,
-    AngularMaterialGenericTableModule,
-    AngularMaterialFilterModule,
-    AngularMaterialSliderModule,
-    MatCardModule,
-    MatTableModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatOptionModule,
-    MatDatepickerModule,
-    MatDialogModule,
-    MatButtonModule,
-    MatSelectModule,
-    MatInputModule,
-    SharedUtilsModule
-  ],
+    imports: [
+        CommonModule,
+        SharedSubnavModule,
+        DemoAngularMaterialRoutingModule,
+        AngularMaterialDataGridModule,
+        AngularMaterialGenericTableModule,
+        AngularMaterialFilterModule,
+        AngularMaterialSliderModule,
+        MatCardModule,
+        MatTableModule,
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        MatOptionModule,
+        MatDatepickerModule,
+        MatDialogModule,
+        MatButtonModule,
+        MatSelectModule,
+        MatInputModule,
+        SharedUtilsModule,
+        ReactiveFieldsModule
+    ],
   declarations: [
     DemoAngularMaterialComponent,
     DemoTableComponent,

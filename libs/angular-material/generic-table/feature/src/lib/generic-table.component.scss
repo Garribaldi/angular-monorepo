@@ -9,8 +9,20 @@
   }
 
   table {
-    #col-CRUD_OPERATION {
-      width: 12rem;
+    .mat-columns-_crudOperations {
+      width: 5%;
+    }
+
+    .mat-column-buy {
+      width: 20%;
+    }
+
+    .mat-column-price {
+      width: 20%;
+    }
+
+    .mat-column-name {
+      width: 55%;
     }
 
     th {

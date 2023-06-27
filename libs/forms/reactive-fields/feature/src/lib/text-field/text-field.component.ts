@@ -27,6 +27,7 @@ export class TextFieldComponent implements ControlValueAccessor, OnInit {
 
   @Input() required = true;
   @Input() requiredErrorMessage = 'Field is required. Please enter a value.';
+  @Input() tableView = false;
 
   constructor(
     @Optional() @Self() public ngControl: NgControl,

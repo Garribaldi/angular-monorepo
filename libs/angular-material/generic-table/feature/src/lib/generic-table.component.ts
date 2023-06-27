@@ -1,19 +1,15 @@
 import {
   Component,
   ContentChildren,
+  EventEmitter,
   Input,
   OnChanges,
   OnInit,
+  Output,
   QueryList,
   SimpleChanges,
 } from '@angular/core';
-import {
-  BehaviorSubject,
-  debounceTime,
-  distinctUntilChanged,
-  Subject,
-  takeUntil,
-} from 'rxjs';
+import { BehaviorSubject, debounceTime, distinctUntilChanged, Subject, takeUntil, } from 'rxjs';
 import { ColumnDef } from '@local/shared/data-access';
 import { NgTemplateNameDirective } from '@local/shared/utils';
 import { MatTableDataSource } from '@angular/material/table';
@@ -24,15 +20,9 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./generic-table.component.scss'],
 })
 export class GenericTableComponent<T extends object>
-  implements OnInit, OnChanges
-{
-  @ContentChildren(NgTemplateNameDirective)
-  templates!: QueryList<NgTemplateNameDirective>;
+  implements OnInit, OnChanges {
 
-  dataSource = new MatTableDataSource<T>();
-  displayedColumns: string[] = [];
-
-  readonly searchFilter = new BehaviorSubject<string>('');
+  @ContentChildren(NgTemplateNameDirective) templates!: QueryList<NgTemplateNameDirective>;
 
   /**
    * __Optional__
@@ -61,11 +51,17 @@ export class GenericTableComponent<T extends object>
     this.dataSource.data = data;
   }
 
+  dataSource = new MatTableDataSource<T>();
+  displayedColumns: string[] = [];
+
+  readonly searchFilter = new BehaviorSubject<string>('');
+
   private readonly unsubscribe = new Subject<void>();
 
+  @Output() editRow = new EventEmitter<T | null>();
+
   ngOnInit() {
-    this.searchFilter
-      .asObservable()
+    this.searchFilter.asObservable()
       .pipe(
         takeUntil(this.unsubscribe),
         debounceTime(500),
@@ -82,8 +78,7 @@ export class GenericTableComponent<T extends object>
    * @param changes
    */
   ngOnChanges(changes: SimpleChanges) {
-    let columnDefinition: ColumnDef =
-      changes['columnDefinition']?.currentValue ?? this.columnDefinition;
+    let columnDefinition: ColumnDef = changes['columnDefinition']?.currentValue ?? this.columnDefinition;
     const tableData: T[] = changes['tableData']?.currentValue ?? [];
 
     const columnDefinitionIsEmpty = Object.keys(columnDefinition).length < 1;
@@ -94,10 +89,10 @@ export class GenericTableComponent<T extends object>
     }
 
     if (this.showCrudOperations) {
-      columnDefinition = { _crudOperations: 'Action', ...columnDefinition };
+      columnDefinition = {_crudOperations: 'Action', ...columnDefinition};
     }
 
-    this.columnDefinition = { ...columnDefinition };
+    this.columnDefinition = {...columnDefinition};
     this.displayedColumns = Object.keys(columnDefinition);
   }
 
@@ -115,5 +110,9 @@ export class GenericTableComponent<T extends object>
     }
 
     this.searchFilter.next(value);
+  }
+
+  edit(row: T) {
+    this.editRow.emit(row);
   }
 }

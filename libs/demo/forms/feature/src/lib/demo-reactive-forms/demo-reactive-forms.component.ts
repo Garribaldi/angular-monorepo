@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { combineLatest, map, Observable, startWith, tap } from "rxjs";
 import { Employee, SharedDataService } from "@local/shared/data-access";
-import { FormBuilder, Validators } from "@angular/forms";
+import { FormBuilder } from "@angular/forms";
 import { CountryService } from "@local/shared/utils";
 import { SelectOptions } from "@local/forms/reactive-fields/feature";
 
@@ -27,12 +27,12 @@ export class DemoReactiveFormsComponent {
    * {@link https://blog.angular-university.io/angular-typed-forms/}
    */
   testForm = this.fb.group({
-    firstName: ['', [Validators.required]],
-    lastName: ['', [Validators.required]],
-    email: ['', [Validators.required, Validators.email]],
+    firstName: [''],
+    lastName: [''],
+    email: [''],
     password: [''],
-    city: ['', [Validators.required]],
-    country: ['', [Validators.required]]
+    city: [''],
+    country: ['']
   });
 
   constructor(

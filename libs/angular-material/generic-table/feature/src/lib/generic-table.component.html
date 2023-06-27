@@ -1,118 +1,49 @@
 <div class="gen-mat-table">
   <mat-form-field class="gen-mat-table__filter">
     <mat-label>Search</mat-label>
-    <input
-      matInput
-      (keyup)="updateSearch($event.target)"
-      [ngModel]="searchFilter.getValue()"
-    />
-    <button
-      *ngIf="searchFilter.getValue()"
-      matSuffix
-      mat-icon-button
-      aria-label="Clear"
-      (click)="updateSearch('')"
-    >
+    <input matInput (keyup)="updateSearch($event.target)" [ngModel]="searchFilter.getValue()"/>
+    <button *ngIf="searchFilter.getValue()" matSuffix mat-icon-button aria-label="Clear" (click)="updateSearch('')">
       <mat-icon>close</mat-icon>
     </button>
   </mat-form-field>
 
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-    <ng-container
-      *ngFor="let columnId of displayedColumns"
-      [matColumnDef]="columnId"
-    >
+    <ng-container *ngFor="let columnId of displayedColumns" [matColumnDef]="columnId">
       <!-- CRUD Operations-->
-      <ng-container
-        *ngIf="showCrudOperations && columnId === '_crudOperations'"
-      >
-        <th
-          mat-header-cell
-          *matHeaderCellDef
-          id="col-CRUD_OPERATION"
-          class="mat-header-cell"
-        >
-          <button
-            mat-icon-button
-            color="primary"
-            aria-label="Add row"
-            [matTooltip]="'Add row'"
-          >
-            <mat-icon
-              aria-hidden="false"
-              class="mat-icon"
-              fontIcon="add"
-            ></mat-icon>
-          </button>
+      <ng-container *ngIf="showCrudOperations && columnId === '_crudOperations'">
+        <th mat-header-cell *matHeaderCellDef id="col-CRUD_OPERATION" class="mat-header-cell">
+          <!--          <button mat-icon-button color="primary" aria-label="Add row" [matTooltip]="'Add row'">-->
+          <!--            <mat-icon aria-hidden="false" class="mat-icon" fontIcon="add"></mat-icon>-->
+          <!--          </button>-->
         </th>
         <td mat-cell *matCellDef="let element">
           <div class="gen-mat-table__actions">
-            <button
-              mat-icon-button
-              color="primary"
-              aria-label="Show details"
-              [matTooltip]="'Show details'"
-            >
-              <mat-icon
-                aria-hidden="false"
-                class="mat-icon"
-                fontIcon="reorder"
-              ></mat-icon>
+            <!--            <button mat-icon-button color="primary" aria-label="Show details" [matTooltip]="'Show details'">-->
+            <!--              <mat-icon aria-hidden="false" class="mat-icon" fontIcon="reorder"></mat-icon>-->
+            <!--            </button>-->
+            <button mat-icon-button color="primary" aria-label="Edit row" (click)="edit(element)" [matTooltip]="'Edit row'">
+              <mat-icon aria-hidden="false" class="mat-icon" fontIcon="edit"></mat-icon>
             </button>
-            <button
-              mat-icon-button
-              color="primary"
-              aria-label="Edit row"
-              [matTooltip]="'Edit row'"
-            >
-              <mat-icon
-                aria-hidden="false"
-                class="mat-icon"
-                fontIcon="edit"
-              ></mat-icon>
-            </button>
-            <button
-              mat-icon-button
-              color="primary"
-              aria-label="Delete row"
-              [matTooltip]="'Delete row'"
-            >
-              <mat-icon
-                aria-hidden="false"
-                class="mat-icon"
-                fontIcon="delete"
-              ></mat-icon>
-            </button>
+            <!--            <button mat-icon-button color="primary" aria-label="Delete row" [matTooltip]="'Delete row'">-->
+            <!--              <mat-icon aria-hidden="false" class="mat-icon" fontIcon="delete"></mat-icon>-->
+            <!--            </button>-->
           </div>
         </td>
       </ng-container>
 
       <!-- Data Cells -->
-      <th
-        mat-header-cell
-        *matHeaderCellDef
-        [attr.id]="'col-' + columnId"
-        class="mat-header-cell"
-      >
-        {{ columnDefinition[columnId] }}
-      </th>
+      <th mat-header-cell *matHeaderCellDef [attr.id]="'col-' + columnId" class="mat-header-cell">{{ columnDefinition[columnId] }}</th>
       <td mat-cell *matCellDef="let element" class="mat-cell">
         <ng-template #defaultCell>{{ element[columnId] }}</ng-template>
         <ng-container
           *ngTemplateOutlet="
             (columnId | getTemplateRef : templates) || defaultCell;
-            context: { $implicit: element }
-          "
-        >
+            context: { $implicit: element }">
         </ng-container>
       </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-    <tr
-      mat-row
-      *matRowDef="let row; columns: displayedColumns; let i = index"
-      [attr.id]="'row-' + i"
-    ></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns; let i = index" [attr.id]="'row-' + i"></tr>
   </table>
 </div>

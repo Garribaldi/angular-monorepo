@@ -1,26 +1,30 @@
-<ng-container *ngIf="employees$ | async as employees">
-  <!--  &lt;!&ndash; Basic configuration with table data &ndash;&gt;-->
-  <!--  <shared-mat-table [tableData]="employees"></shared-mat-table>-->
-
-  <!--  &lt;!&ndash; Basic configuration with table data and column definition &ndash;&gt;-->
-  <!--  <shared-mat-table [tableData]="employees" [columnDefinition]="employeeColumnDef"></shared-mat-table>-->
-</ng-container>
-
 <ng-container *ngIf="inventory$ | async as inventory">
   <!-- Max configuration with table data, column definition and rows template -->
-  <local-angular-material-generic-table
+  <local-angular-material-generic-table data-cy="generic-table"
     [tableData]="inventory"
-    data-cy="generic-table"
     [columnDefinition]="inventoryColumnDef"
-    [showCrudOperations]="false">
-    <ng-template name="price" let-item>
-      <span>{{ item.price | currency : item.currency }}</span>
+    [showCrudOperations]="true"
+    (editRow)="editRow($event)">
+
+    <ng-template name="name" let-item>
+      <div>
+        <ng-container *ngIf="item.name === editElement?.name">
+          <local-forms-text-field [formControl]="testForm.controls['name']" [tableView]="true">Name</local-forms-text-field>
+        </ng-container>
+        <span *ngIf="item.name !== editElement?.name">{{ item.name }}</span>
+      </div>
     </ng-template>
+
+    <ng-template name="price" let-item>
+      <div>
+        <span>{{ item.price | currency : item.currency }}</span>
+      </div>
+    </ng-template>
+
     <ng-template name="buy" let-item>
-      <button *ngIf="item.inStock" (click)="purchaseItem(item.plu)" mat-flat-button color="primary">
-        Buy now
-      </button>
+      <button *ngIf="item.inStock" (click)="purchaseItem(item.plu)" mat-flat-button color="primary">Buy now</button>
       <span *ngIf="!item.inStock">Item out of stock</span>
     </ng-template>
+
   </local-angular-material-generic-table>
 </ng-container>

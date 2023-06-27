@@ -9,19 +9,20 @@
 - migrate from moment.js to **Day.js** (https://www.npmjs.com/package/dayjs)
 - update to Angular 16
 - update to Nx 16
+- make page responsive
 
 ## Setup Project
 
-After cloning from repository, run `npm install` and after that, run `npm dedupe`.
+After cloning from repository, run ``npm install`` and after that, run ``npm dedupe``.
 
 Angular and a custom webpack which uses the Define plugin run into issues because of mismatching versions ob webpack.
-Such a config is used in `apps/demo/webpack.config.js`.
+Such a config is used in ``apps/demo/webpack.config.js``.
 
-Building the project results in an error **"Error: Module parse failed: parser.destructuringAssignmentPropertiesFor is
-not a function..."**.
-`@angular-devkit/build-angular` depends on webpack@5.76.1, while every other dependency uses a newer version.
+Building the project results in an error __"Error: Module parse failed: parser.destructuringAssignmentPropertiesFor is
+not a function..."__.
+``@angular-devkit/build-angular`` depends on webpack@5.76.1, while every other dependency uses a newer version.
 
-You can visualize this mismatch with `npm list webpack`.
+You can visualize this mismatch with ``npm list webpack``.
 
 With dedupe you "downgrade" every dependency to webpack@5.76.1.
 
@@ -29,7 +30,7 @@ An update to a newer Angular versions in the near future should fix this error s
 
 To use all examples properly, it is necessary to provide some environment data.
 
-To achieve this, add an **.env** file in your app base directory (under `apps/demo/`).
+To achieve this, add an __.env__ file in your app base directory (under `apps/demo/`).
 
 Add the following keys to this file and provide your individual values:
 
@@ -39,6 +40,41 @@ Add the following keys to this file and provide your individual values:
   APP_GOOGLE_API_KEY=
   APP_GOOGLE_PROJECT_ID=
   APP_GOOGLE_CAPTCHA_REST_API=https://recaptchaenterprise.googleapis.com/v1/projects/PROJECT_ID/assessments?key=API_KEY
+```
+
+Additionally, add an __env.js__ file into your assets folder `apps/demo/src/assets/`
+
+Add the following code to this file and provide your individual values:
+
+```javascript
+/**
+ * not updated, for local testing
+ */
+(function (window) {
+  window["env"] = window["env"] || {};
+  window["env"].GOOGLE_CAPTCHA_V2_KEY = '';
+  window["env"].GOOGLE_CAPTCHA_V3_KEY = '';
+  window["env"].GOOGLE_API_KEY = '';
+  window["env"].GOOGLE_PROJECT_ID = '';
+  window["env"].GOOGLE_CAPTCHA_REST_API = 'https://recaptchaenterprise.googleapis.com/v1/projects/PROJECT_ID/assessments?key=API_KEY';
+})(this);
+```
+
+Finally, add an __app.config.json__ file into your assets folder as well: `apps/demo/src/assets/config/`
+
+Add the following settings to this file and provide your individual values:
+
+```json
+{
+  "version": 1,
+  "google": {
+    "captchaV2Key": "",
+    "captchaV3Key": "",
+    "projectId": "",
+    "apiKey": "",
+    "restApi": "https://recaptchaenterprise.googleapis.com/v1/projects/PROJECT_ID/assessments?key=API_KEY"
+  }
+}
 ```
 
 Many pages need sample data to make them work. This is loaded via API Endpoints from a dedicated backend.

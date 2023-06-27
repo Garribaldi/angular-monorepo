@@ -1,4 +1,4 @@
-<mat-form-field appearance="fill" class="w-full">
+<mat-form-field appearance="fill" class="w-full" [class.local-forms-table-view]="tableView">
   <mat-label>
     <span #ref><ng-content></ng-content></span>
     <ng-container *ngIf="!ref.hasChildNodes()">Text</ng-container>

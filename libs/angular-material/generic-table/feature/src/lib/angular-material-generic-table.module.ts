@@ -7,17 +7,19 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatButtonModule } from "@angular/material/button";
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    MatTableModule,
-    SharedUtilsModule,
-    MatIconModule,
-    MatInputModule,
-    MatTooltipModule,
-  ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        MatTableModule,
+        SharedUtilsModule,
+        MatIconModule,
+        MatInputModule,
+        MatTooltipModule,
+        MatButtonModule,
+    ],
   declarations: [GenericTableComponent],
   exports: [GenericTableComponent],
 })
