@@ -1,0 +1,151 @@
+@use "variables";
+
+$local-bold-teal-palette: (
+  50: #668385,
+  100: #4c6f71,
+  200: #335a5d,
+  300: #003134,
+  400: #002426,
+  500: #001a1c,
+  600: #00090a,
+  contrast : (
+    main: variables.$default-light-text,
+    lighter: variables.$default-dark-text,
+    darker: variables.$default-light-text,
+  )
+);
+
+$local-propel-mint-palette: (
+  50: #a6f5d6,
+  100: #73efbf,
+  200: #40e9a8,
+  300: #00e28b,
+  400: #00cf7f,
+  500: #00bd75,
+  600: #00ab69,
+  contrast : (
+    main: variables.$default-light-text,
+    lighter: variables.$default-dark-text,
+    darker: variables.$default-light-text,
+  )
+);
+
+$local-purposeful-teal-palette: (
+  50: #80b8b9,
+  100: #59a3a4,
+  200: #338d8f,
+  300: #007173,
+  400: #005f61,
+  500: #004e4f,
+  600: #003c3d,
+  contrast : (
+    main: variables.$default-light-text,
+    lighter: variables.$default-dark-text,
+    darker: variables.$default-light-text,
+  )
+);
+
+$local-imagination-aqua-palette: (
+  50: #ccffff,
+  100: #b2ffff,
+  200: #80ffff,
+  300: #00ffff,
+  400: #00eded,
+  500: #00dbdb,
+  600: #00c9c9,
+  contrast : (
+    main: variables.$default-light-text,
+    lighter: variables.$default-dark-text,
+    darker: variables.$default-light-text,
+  )
+);
+
+$local-joyful-melon-palette: (
+  50: #ecffd2,
+  100: #e2ffbc,
+  200: #d9ffa5,
+  300: #cfff8f,
+  400: #c0f777,
+  500: #baf074,
+  600: #b4e86f,
+  contrast : (
+    main: variables.$default-light-text,
+    lighter: variables.$default-dark-text,
+    darker: variables.$default-light-text,
+  )
+);
+
+$local-innovation-blue-palette: (
+  50: #8273f4,
+  100: #5f4cf1,
+  200: #3d26ee,
+  300: #1b00eb,
+  400: #1600bf,
+  500: #110094,
+  600: #0c0066,
+  contrast : (
+    main: variables.$default-light-text,
+    lighter: variables.$default-dark-text,
+    darker: variables.$default-light-text,
+  )
+);
+
+$local-agile-lavender-palette: (
+  50: #e180f0,
+  100: #d959eb,
+  200: #d033e7,
+  300: #c400e1,
+  400: #b100cc,
+  500: #9f00b8,
+  600: #8e00a3,
+  contrast : (
+    main: variables.$default-light-text,
+    lighter: variables.$default-dark-text,
+    darker: variables.$default-light-text,
+  )
+);
+
+$local-momentum-aubergine-palette: (
+  50: #8e6694,
+  100: #7b4c82,
+  200: #683370,
+  300: #42004c,
+  400: #310038,
+  500: #210026,
+  600: #0b000d,
+  contrast : (
+    main: variables.$default-light-text,
+    lighter: variables.$default-dark-text,
+    darker: variables.$default-light-text,
+  )
+);
+
+$local-relentless-red-palette: (
+  50: #fd9593,
+  100: #fc7673,
+  200: #fc5653,
+  300: #fb2c28,
+  400: #e82925,
+  500: #d62522,
+  600: #c4221f,
+  contrast : (
+    main: variables.$default-light-text,
+    lighter: variables.$default-dark-text,
+    darker: variables.$default-light-text,
+  )
+);
+
+$local-black-palette: (
+  50: #7f7f7f,
+  100: #6a6a6a,
+  200: #555555,
+  300: #2a2a2a,
+  400: #1a1a1a,
+  500: #0d0d0d,
+  600: #000000,
+  contrast : (
+    main: variables.$default-light-text,
+    lighter: variables.$default-dark-text,
+    darker: variables.$default-light-text,
+  )
+);
