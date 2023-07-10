@@ -18,7 +18,7 @@ if (currentModuleName && workspaceRoot) {
   exportSettings.reporters = [
     'default',
     ['jest-junit', {outputDirectory: junitOutputDirectory, outputName: 'junit.xml'}]
-  ]
+  ];
 }
 
 module.exports = exportSettings;

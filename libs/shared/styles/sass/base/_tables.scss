@@ -1,0 +1,14 @@
+.generic-table {
+  &__edit {
+
+    input[type='text'] {
+      border: 1px solid #cccccc;
+      padding: .25rem;
+      transform: translateX(-.25rem);
+    }
+
+    span {
+      border: 1px solid transparent;
+    }
+  }
+}

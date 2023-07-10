@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, Optional, Self } from '@angular/core';
-import { ControlValueAccessor, NgControl } from "@angular/forms";
-import { ReactiveFieldsService } from "../reactive-fields.service";
+import { ControlValueAccessor, NgControl } from '@angular/forms';
+import { ReactiveFieldsService } from '../reactive-fields.service';
 
 /**
  * You only need to provide a form control with a string value for storing the text.
@@ -21,13 +21,12 @@ import { ReactiveFieldsService } from "../reactive-fields.service";
 @Component({
   selector: 'local-forms-text-field',
   templateUrl: './text-field.component.html',
-  styleUrls: ['./text-field.component.scss'],
+  styleUrls: ['./text-field.component.scss']
 })
 export class TextFieldComponent implements ControlValueAccessor, OnInit {
 
   @Input() required = true;
   @Input() requiredErrorMessage = 'Field is required. Please enter a value.';
-  @Input() tableView = false;
 
   constructor(
     @Optional() @Self() public ngControl: NgControl,
