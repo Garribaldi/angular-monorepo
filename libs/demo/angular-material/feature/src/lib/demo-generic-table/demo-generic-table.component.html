@@ -1,24 +1,14 @@
 <ng-container *ngIf="inventory$ | async as inventory">
   <!-- Max configuration with table data, column definition and rows template -->
   <local-angular-material-generic-table data-cy="generic-table" class="generic-table"
-    [tableData]="inventory"
-    [columnDefinition]="inventoryColumnDef"
-    [showCrudOperations]="true"
-    (editRow)="editRow($event)">
-
-    <ng-template name="name" let-item>
-      <div class="generic-table__edit">
-        <ng-container *ngIf="item.name === editElement?.name">
-          <input type="text" [formControl]="testForm.controls['name']">
-        </ng-container>
-        <span *ngIf="item.name !== editElement?.name">{{ item.name }}</span>
-      </div>
-    </ng-template>
+                                        [tableData]="inventory"
+                                        [columnDefinition]="inventoryColumnDef"
+                                        [showCrudOperations]="true"
+                                        (edit)="editElement($event)"
+                                        (delete)="deleteItem($event)">
 
     <ng-template name="price" let-item>
-      <div>
-        <span>{{ item.price | currency : item.currency }}</span>
-      </div>
+      <span>{{ item.price | currency : item.currency }}</span>
     </ng-template>
 
     <ng-template name="buy" let-item>

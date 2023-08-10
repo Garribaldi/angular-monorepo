@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import { Observable } from "rxjs";
-import { ColumnDef, Inventory, SharedDataService } from "@local/shared/data-access";
-import { FormBuilder } from "@angular/forms";
+import { Observable } from 'rxjs';
+import { ColumnDef, Inventory, SharedDataService } from '@local/shared/data-access';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'local-demo-angular-material-generic-table',
   templateUrl: './demo-generic-table.component.html',
-  styleUrls: ['./demo-generic-table.component.scss'],
+  styleUrls: ['./demo-generic-table.component.scss']
 })
 export class DemoGenericTableComponent {
 
@@ -14,14 +14,8 @@ export class DemoGenericTableComponent {
   inventoryColumnDef: ColumnDef = {
     name: 'Item',
     price: 'Price',
-    buy: 'Buy',
+    buy: 'Buy'
   };
-
-  editElement: Inventory | null = null;
-
-  testForm = this.fb.group({
-    name: ['']
-  });
 
   constructor(
     private readonly tableDataService: SharedDataService,
@@ -34,8 +28,11 @@ export class DemoGenericTableComponent {
     console.log('handle purchase for', plu);
   }
 
-  editRow(element: Inventory | null) {
-    this.editElement = element;
-    this.testForm.patchValue({name: element?.name});
+  editElement(element: Inventory) {
+    console.log(element);
+  }
+
+  deleteItem(item: Inventory) {
+    console.log(item);
   }
 }

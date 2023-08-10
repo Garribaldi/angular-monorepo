@@ -7,19 +7,23 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { MatButtonModule } from "@angular/material/button";
+import { MatButtonModule } from '@angular/material/button';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
-    imports: [
-        CommonModule,
-        FormsModule,
-        MatTableModule,
-        SharedUtilsModule,
-        MatIconModule,
-        MatInputModule,
-        MatTooltipModule,
-        MatButtonModule,
-    ],
+  imports: [
+    CommonModule,
+    FormsModule,
+    MatTableModule,
+    SharedUtilsModule,
+    MatIconModule,
+    MatInputModule,
+    MatTooltipModule,
+    MatButtonModule,
+    MatPaginatorModule,
+    MatMenuModule
+  ],
   declarations: [GenericTableComponent],
   exports: [GenericTableComponent],
 })

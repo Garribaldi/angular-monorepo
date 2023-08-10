@@ -1,28 +1,20 @@
-import {
-  Component,
-  ContentChildren,
-  EventEmitter,
-  Input,
-  OnChanges,
-  OnInit,
-  Output,
-  QueryList,
-  SimpleChanges,
-} from '@angular/core';
-import { BehaviorSubject, debounceTime, distinctUntilChanged, Subject, takeUntil, } from 'rxjs';
+import { AfterViewInit, Component, ContentChildren, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, QueryList, SimpleChanges, ViewChild } from '@angular/core';
+import { BehaviorSubject, debounceTime, distinctUntilChanged, Subject, takeUntil } from 'rxjs';
 import { ColumnDef } from '@local/shared/data-access';
 import { NgTemplateNameDirective } from '@local/shared/utils';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'local-angular-material-generic-table',
   templateUrl: './generic-table.component.html',
-  styleUrls: ['./generic-table.component.scss'],
+  styleUrls: ['./generic-table.component.scss']
 })
-export class GenericTableComponent<T extends object>
-  implements OnInit, OnChanges {
+export class GenericTableComponent<T extends { [property in keyof T]: number | string }> implements OnInit, OnChanges, AfterViewInit, OnDestroy {
 
   @ContentChildren(NgTemplateNameDirective) templates!: QueryList<NgTemplateNameDirective>;
+
+  @ViewChild(MatPaginator) paginator: MatPaginator | null = null;
 
   /**
    * __Optional__
@@ -34,7 +26,6 @@ export class GenericTableComponent<T extends object>
   /**
    * Enable a separate row with crud operation symbols:
    * - add row
-   * - show details
    * - edit row
    * - delete row
    *
@@ -58,14 +49,16 @@ export class GenericTableComponent<T extends object>
 
   private readonly unsubscribe = new Subject<void>();
 
-  @Output() editRow = new EventEmitter<T | null>();
+  @Output() edit = new EventEmitter<T>();
+  @Output() delete = new EventEmitter<T>();
+  @Output() add = new EventEmitter<void>();
 
   ngOnInit() {
     this.searchFilter.asObservable()
       .pipe(
-        takeUntil(this.unsubscribe),
         debounceTime(500),
-        distinctUntilChanged()
+        distinctUntilChanged(),
+        takeUntil(this.unsubscribe)
       )
       .subscribe(
         (value) => (this.dataSource.filter = value.trim().toLowerCase())
@@ -74,6 +67,7 @@ export class GenericTableComponent<T extends object>
 
   /**
    * If column definition is not provided, use table data keys as table column header.
+   *
    * If crud operations are enabled, add column definition for actions.
    * @param changes
    */
@@ -89,11 +83,20 @@ export class GenericTableComponent<T extends object>
     }
 
     if (this.showCrudOperations) {
-      columnDefinition = {_crudOperations: 'Action', ...columnDefinition};
+      columnDefinition = {...columnDefinition, _crudOperations: 'Action'};
     }
 
     this.columnDefinition = {...columnDefinition};
     this.displayedColumns = Object.keys(columnDefinition);
+  }
+
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+  }
+
+  ngOnDestroy() {
+    this.unsubscribe.next();
+    this.unsubscribe.complete();
   }
 
   /**
@@ -112,7 +115,15 @@ export class GenericTableComponent<T extends object>
     this.searchFilter.next(value);
   }
 
-  edit(row: T) {
-    this.editRow.emit(row);
+  onEdit(row: T) {
+    this.edit.emit(row);
+  }
+
+  onDelete(row: T) {
+    this.delete.emit(row);
+  }
+
+  onAdd() {
+    this.add.emit();
   }
 }

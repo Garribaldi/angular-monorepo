@@ -8,6 +8,15 @@
     width: 18rem;
   }
 
+  &__actions {
+    display: flex;
+    flex-direction: column;
+
+    button {
+      justify-content: normal;
+    }
+  }
+
   table {
     .mat-columns-_crudOperations {
       width: 5%;
