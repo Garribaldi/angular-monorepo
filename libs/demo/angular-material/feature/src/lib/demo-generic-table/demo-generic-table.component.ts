@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ColumnDef, Inventory, SharedDataService } from '@local/shared/data-access';
-import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'local-demo-angular-material-generic-table',
@@ -19,7 +18,6 @@ export class DemoGenericTableComponent {
 
   constructor(
     private readonly tableDataService: SharedDataService,
-    private readonly fb: FormBuilder
   ) {
     this.inventory$ = tableDataService.getInventory$();
   }
