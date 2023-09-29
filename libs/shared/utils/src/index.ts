@@ -7,6 +7,8 @@ export * from './lib/pipes/get-template-ref.pipe';
 export * from './lib/pipes/to-slash-case.pipe';
 
 export * from './lib/interceptors/http-cache.interceptor';
+export * from './lib/interceptors/http-error.interceptor';
+export * from './lib/interceptors/http-error-message.model';
 
 export * from './lib/validators/validate-password-strength';
 export * from './lib/helpers/type-guards';
