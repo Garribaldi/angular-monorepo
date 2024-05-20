@@ -13,16 +13,16 @@
 
 ## Setup Project
 
-After cloning from repository, run ``npm install`` and after that, run ``npm dedupe``.
+After cloning from repository, run `npm install` and after that, run `npm dedupe`.
 
 Angular and a custom webpack which uses the Define plugin run into issues because of mismatching versions ob webpack.
-Such a config is used in ``apps/demo/webpack.config.js``.
+Such a config is used in `apps/demo/webpack.config.js`.
 
-Building the project results in an error __"Error: Module parse failed: parser.destructuringAssignmentPropertiesFor is
-not a function..."__.
-``@angular-devkit/build-angular`` depends on webpack@5.76.1, while every other dependency uses a newer version.
+Building the project results in an error **"Error: Module parse failed: parser.destructuringAssignmentPropertiesFor is
+not a function..."**.
+`@angular-devkit/build-angular` depends on webpack@5.76.1, while every other dependency uses a newer version.
 
-You can visualize this mismatch with ``npm list webpack``.
+You can visualize this mismatch with `npm list webpack`.
 
 With dedupe you "downgrade" every dependency to webpack@5.76.1.
 
@@ -30,7 +30,7 @@ An update to a newer Angular versions in the near future should fix this error s
 
 To use all examples properly, it is necessary to provide some environment data.
 
-To achieve this, add an __.env__ file in your app base directory (under `apps/demo/`).
+To achieve this, add an **.env** file in your app base directory (under `apps/demo/`).
 
 Add the following keys to this file and provide your individual values:
 
@@ -42,7 +42,7 @@ Add the following keys to this file and provide your individual values:
   APP_GOOGLE_CAPTCHA_REST_API=https://recaptchaenterprise.googleapis.com/v1/projects/PROJECT_ID/assessments?key=API_KEY
 ```
 
-Additionally, add an __env.js__ file into your assets folder `apps/demo/src/assets/`
+Additionally, add an **env.js** file into your assets folder `apps/demo/src/assets/`
 
 Add the following code to this file and provide your individual values:
 
@@ -51,16 +51,16 @@ Add the following code to this file and provide your individual values:
  * not updated, for local testing
  */
 (function (window) {
-  window["env"] = window["env"] || {};
-  window["env"].GOOGLE_CAPTCHA_V2_KEY = '';
-  window["env"].GOOGLE_CAPTCHA_V3_KEY = '';
-  window["env"].GOOGLE_API_KEY = '';
-  window["env"].GOOGLE_PROJECT_ID = '';
-  window["env"].GOOGLE_CAPTCHA_REST_API = 'https://recaptchaenterprise.googleapis.com/v1/projects/PROJECT_ID/assessments?key=API_KEY';
+  window['env'] = window['env'] || {};
+  window['env'].GOOGLE_CAPTCHA_V2_KEY = '';
+  window['env'].GOOGLE_CAPTCHA_V3_KEY = '';
+  window['env'].GOOGLE_API_KEY = '';
+  window['env'].GOOGLE_PROJECT_ID = '';
+  window['env'].GOOGLE_CAPTCHA_REST_API = 'https://recaptchaenterprise.googleapis.com/v1/projects/PROJECT_ID/assessments?key=API_KEY';
 })(this);
 ```
 
-Finally, add an __app.config.json__ file into your assets folder as well: `apps/demo/src/assets/config/`
+Finally, add an **app.config.json** file into your assets folder as well: `apps/demo/src/assets/config/`
 
 Add the following settings to this file and provide your individual values:
 
@@ -85,31 +85,31 @@ build it and let it run on Port 8080.
 ## Add Library
 
 ```
-nx g @nrwl/angular:lib feature --prefix=local-angular-material --tags="scope:angular-material, type:feature" --directory=angular-material --routing=true --lazy=true
+nx g @nx/angular:lib feature --prefix=local-angular-material --tags="scope:angular-material, type:feature" --directory=angular-material --routing=true --lazy=true
 ```
 
 ## Move Library
 
 ```
-nx g @nrwl/angular:move --project shared-ui --destination generic-table/ui
+nx g @nx/angular:move --project shared-ui --destination generic-table/ui
 ```
 
 ## Add Component
 
 ```
-nx g @nrwl/angular:component table --prefix=local-shared --project=shared-ui --export=true
+nx g @nx/angular:component table --prefix=local-shared --project=shared-ui --export=true
 ```
 
 ## Add Component without folder
 
 ```
-nx g @nrwl/angular:component table --project=shared-ui --export=true --flat
+nx g @nx/angular:component table --project=shared-ui --export=true --flat
 ```
 
 ## Add Service
 
 ```
-nx g @nrwl/angular:service api/table-data --project=generic-table-data-access
+nx g @nx/angular:service api/table-data --project=generic-table-data-access
 ```
 
 ## Add Directive
