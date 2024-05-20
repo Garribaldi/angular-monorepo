@@ -1,1 +1,7 @@
 /* Overwrite Angular Material styles */
+
+.mat-mdc-unelevated-button {
+  &.mat-primary {
+    color: #ffffff !important;
+  }
+}

@@ -1,9 +1,11 @@
-const {readCachedProjectConfiguration } = require('nx/src/project-graph/project-graph');
-const nxPreset = require("@nrwl/jest/preset").default;
+const {
+  readCachedProjectConfiguration,
+} = require('nx/src/project-graph/project-graph');
+const nxPreset = require('@nx/jest/preset').default;
 
 const exportSettings = {
   ...nxPreset,
-  coverageReporters: ['lcov', 'text', 'text-summary']
+  coverageReporters: ['lcov', 'text', 'text-summary'],
 };
 
 const currentModuleName = process.env.NX_TASK_TARGET_PROJECT;
@@ -17,7 +19,10 @@ if (currentModuleName && workspaceRoot) {
 
   exportSettings.reporters = [
     'default',
-    ['jest-junit', {outputDirectory: junitOutputDirectory, outputName: 'junit.xml'}]
+    [
+      'jest-junit',
+      { outputDirectory: junitOutputDirectory, outputName: 'junit.xml' },
+    ],
   ];
 }
 
