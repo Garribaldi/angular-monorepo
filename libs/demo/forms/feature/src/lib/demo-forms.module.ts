@@ -12,22 +12,23 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatInputModule } from "@angular/material/input";
 import { SharedSubnavModule } from "@local/shared/feature/subnav";
 import { DemoFormsRoutingModule } from "./demo-forms-routing.module";
-import { ReactiveFieldsModule } from "@local/forms/reactive-fields/feature";
+import { UiModule } from '@local/forms/generic-form/ui';
 
 @NgModule({
-    imports: [
-        CommonModule,
-        SharedSubnavModule,
-        DemoFormsRoutingModule,
-        FormsFormlyModule,
-        SharedUtilsModule,
-        MatFormFieldModule,
-        ReactiveFormsModule,
-        MatSelectModule,
-        MatButtonModule,
-        MatInputModule,
-        ReactiveFieldsModule
-    ],
+  imports: [
+    CommonModule,
+    SharedSubnavModule,
+    DemoFormsRoutingModule,
+    FormsFormlyModule,
+    SharedUtilsModule,
+    SharedSubnavModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    MatSelectModule,
+    MatButtonModule,
+    MatInputModule,
+    UiModule
+  ],
   declarations: [
     DemoFormsComponent,
     DemoFormlyComponent,

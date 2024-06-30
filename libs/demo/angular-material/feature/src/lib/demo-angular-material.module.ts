@@ -22,32 +22,30 @@ import { DemoFilterComponent } from './demo-filter/demo-filter.component';
 import { AngularMaterialFilterModule } from '@local/angular-material/filter/feature';
 import { DemoSliderComponent } from './demo-slider/demo-slider.component';
 import { AngularMaterialSliderModule } from '@local/angular-material/slider/feature';
-import { SharedSubnavModule } from "@local/shared/feature/subnav";
-import { DemoAngularMaterialRoutingModule } from "./demo-angular-material-routing.module";
-import { ReactiveFieldsModule } from "@local/forms/reactive-fields/feature";
+import { SharedSubnavModule } from '@local/shared/feature/subnav';
+import { DemoAngularMaterialRoutingModule } from './demo-angular-material-routing.module';
 
 @NgModule({
-    imports: [
-        CommonModule,
-        SharedSubnavModule,
-        DemoAngularMaterialRoutingModule,
-        AngularMaterialDataGridModule,
-        AngularMaterialGenericTableModule,
-        AngularMaterialFilterModule,
-        AngularMaterialSliderModule,
-        MatCardModule,
-        MatTableModule,
-        ReactiveFormsModule,
-        MatFormFieldModule,
-        MatOptionModule,
-        MatDatepickerModule,
-        MatDialogModule,
-        MatButtonModule,
-        MatSelectModule,
-        MatInputModule,
-        SharedUtilsModule,
-        ReactiveFieldsModule
-    ],
+  imports: [
+    CommonModule,
+    SharedSubnavModule,
+    DemoAngularMaterialRoutingModule,
+    AngularMaterialDataGridModule,
+    AngularMaterialGenericTableModule,
+    AngularMaterialFilterModule,
+    AngularMaterialSliderModule,
+    MatCardModule,
+    MatTableModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatOptionModule,
+    MatDatepickerModule,
+    MatDialogModule,
+    MatButtonModule,
+    MatSelectModule,
+    MatInputModule,
+    SharedUtilsModule
+  ],
   declarations: [
     DemoAngularMaterialComponent,
     DemoTableComponent,
@@ -55,7 +53,8 @@ import { ReactiveFieldsModule } from "@local/forms/reactive-fields/feature";
     DemoDialogComponent,
     DemoGenericTableComponent,
     DemoFilterComponent,
-    DemoSliderComponent,
-  ],
+    DemoSliderComponent
+  ]
 })
-export class DemoAngularMaterialModule {}
+export class DemoAngularMaterialModule {
+}

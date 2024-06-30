@@ -79,7 +79,7 @@
                   "type:feature",
                   "type:ui",
                   "type:data-access",
-                  "type:util"
+                  "type:utils"
                 ]
               },
               {
@@ -87,16 +87,16 @@
                 "onlyDependOnLibsWithTags": [
                   "type:ui",
                   "type:data-access",
-                  "type:util"
+                  "type:utils"
                 ]
               },
               {
                 "sourceTag": "type:data-access",
-                "onlyDependOnLibsWithTags": ["type:data-access", "type:util"]
+                "onlyDependOnLibsWithTags": ["type:data-access", "type:utils"]
               },
               {
-                "sourceTag": "type:util",
-                "onlyDependOnLibsWithTags": ["type:util"]
+                "sourceTag": "type:utils",
+                "onlyDependOnLibsWithTags": ["type:utils"]
               }
             ]
           }
@@ -107,12 +107,18 @@
     {
       "files": ["*.ts", "*.tsx"],
       "extends": ["plugin:@nx/typescript"],
-      "rules": {}
+      "rules": {
+        "@typescript-eslint/no-extra-semi": "error",
+        "no-extra-semi": "off"
+      }
     },
     {
       "files": ["*.js", "*.jsx"],
       "extends": ["plugin:@nx/javascript"],
-      "rules": {}
+      "rules": {
+        "@typescript-eslint/no-extra-semi": "error",
+        "no-extra-semi": "off"
+      }
     },
     {
       "files": ["*.spec.ts", "*.spec.tsx", "*.spec.js", "*.spec.jsx"],

@@ -2,7 +2,7 @@ import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import {
   MAT_TOOLTIP_DEFAULT_OPTIONS,
   MAT_TOOLTIP_DEFAULT_OPTIONS_FACTORY,
@@ -17,40 +17,34 @@ import { HttpCacheInterceptor } from "@local/shared/utils";
 import { TitleStrategy } from "@angular/router";
 import { DemoTitleStrategy } from "./demo-title-strategy";
 
-@NgModule({
-  imports: [
-    CommonModule,
-    BrowserModule,
-    ShellRoutingModule,
-    BrowserAnimationsModule,
-    HttpClientModule,
-    MatMomentDateModule
-  ],
-  providers: [
-    {
-      provide: MAT_TOOLTIP_DEFAULT_OPTIONS,
-      useFactory: (): MatTooltipDefaultOptions => ({
-        ...MAT_TOOLTIP_DEFAULT_OPTIONS_FACTORY(),
-        disableTooltipInteractivity: true,
-      }),
-    },
-    {
-      provide: MAT_DATE_LOCALE,
-      useValue: 'de-DE',
-    },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: HttpCacheInterceptor,
-      multi: true,
-    },
-    {
-      provide: TitleStrategy,
-      useClass: DemoTitleStrategy
-    }
-  ],
-  declarations: [HomeComponent],
-  exports: [HomeComponent]
-})
+@NgModule({ declarations: [HomeComponent],
+    exports: [HomeComponent], imports: [CommonModule,
+        BrowserModule,
+        ShellRoutingModule,
+        BrowserAnimationsModule,
+        MatMomentDateModule], providers: [
+        {
+            provide: MAT_TOOLTIP_DEFAULT_OPTIONS,
+            useFactory: (): MatTooltipDefaultOptions => ({
+                ...MAT_TOOLTIP_DEFAULT_OPTIONS_FACTORY(),
+                disableTooltipInteractivity: true,
+            }),
+        },
+        {
+            provide: MAT_DATE_LOCALE,
+            useValue: 'de-DE',
+        },
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: HttpCacheInterceptor,
+            multi: true,
+        },
+        {
+            provide: TitleStrategy,
+            useClass: DemoTitleStrategy
+        },
+        provideHttpClient(withInterceptorsFromDi())
+    ] })
 export class ShellModule {
   static forRoot(env: Environment): ModuleWithProviders<ShellModule> {
     return  {

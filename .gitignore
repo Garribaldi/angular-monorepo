@@ -46,3 +46,4 @@ Thumbs.db
 /apps/demo/src/assets/config/app.config.json
 
 .nx/cache
+.nx/workspace-data

@@ -4,7 +4,7 @@
   "sourceRoot": "libs/shared/utils/src",
   "prefix": "local-shared",
   "projectType": "library",
-  "tags": ["scope:shared", "type:util"],
+  "tags": ["scope:shared", "type:utils"],
   "targets": {
     "test": {
       "executor": "@nx/jest:jest",

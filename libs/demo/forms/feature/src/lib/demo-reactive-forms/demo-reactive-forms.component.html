@@ -1,22 +1,36 @@
 <div *ngIf="(requests$ | async) as requests" class="form">
 
   <form [formGroup]="testForm" (ngSubmit)="onSubmit()" cyGet="reactive-form">
+    <forms-input-control
+      [formControl]="testForm.controls['firstName']"
+      [requiredErrorMessage]="'Please enter your first name.'" cyGet="reactive-form-name">First Name
+    </forms-input-control>
 
-    <local-forms-text-field [formControl]="testForm.controls['firstName']" [requiredErrorMessage]="'Please enter your first name.'" cyGet="reactive-form-name">First Name</local-forms-text-field>
+    <forms-input-control
+      [formControl]="testForm.controls['lastName']"
+      [requiredErrorMessage]="'Please enter your last name.'" cyGet="reactive-form-last-name">Last Name
+    </forms-input-control>
 
-    <local-forms-text-field [formControl]="testForm.controls['lastName']" [requiredErrorMessage]="'Please enter your last name.'" cyGet="reactive-form-last-name">Last Name</local-forms-text-field>
+    <forms-email-control [formControl]="testForm.controls['email']" cyGet="reactive-form-email" />
 
-    <local-forms-email-field [formControl]="testForm.controls['email']" cyGet="reactive-form-email"></local-forms-email-field>
+    <forms-password-control [formControl]="testForm.controls['password']" cyGet="reactive-form-password" />
 
-    <local-forms-password-field [formControl]="testForm.controls['password']" cyGet="reactive-form-password"></local-forms-password-field>
+    <forms-select-control
+      [formControl]="testForm.controls['city']" [selectOptions]="requests.cities"
+      [requiredErrorMessage]="'Please choose a city.'" cyGet="reactive-form-cities">City
+    </forms-select-control>
 
-    <local-forms-select-field [formControl]="testForm.controls['city']" [selectOptions]="requests.cities" [requiredErrorMessage]="'Please choose a city.'" cyGet="reactive-form-cities">City</local-forms-select-field>
+    <forms-select-control
+      [formControl]="testForm.controls['country']"
+      [selectOptions]="requests.countries"
+      [requiredErrorMessage]="'Please choose a country.'" cyGet="reactive-form-countries">Country
+    </forms-select-control>
 
-    <local-forms-select-field [formControl]="testForm.controls['country']" [selectOptions]="requests.countries" [requiredErrorMessage]="'Please choose a country.'" cyGet="reactive-form-countries">Country</local-forms-select-field>
+    <button mat-flat-button color="primary" type="submit" [disabled]="!testForm.valid" cyGet="reactive-form-submit">
+      Send
+    </button>
 
-    <button mat-flat-button color="primary" type="submit" [disabled]="!testForm.valid" cyGet="reactive-form-submit">Send</button>
-
-    <pre class="mt-8">Model: {{testForm.value | json}}</pre>
+    <pre class="mt-8">Model: {{ testForm.value | json }}</pre>
   </form>
 
 </div>
