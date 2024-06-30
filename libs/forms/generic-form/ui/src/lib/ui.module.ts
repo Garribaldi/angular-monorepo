@@ -7,6 +7,7 @@ import { PasswordComponent } from './controls/password/password.component';
 import { MatError, MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatOption, MatSelect } from '@angular/material/select';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatInput } from '@angular/material/input';
 
 @NgModule({
   imports: [
@@ -16,7 +17,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatOption,
     ReactiveFormsModule,
     MatError,
-    MatLabel
+    MatLabel,
+    MatInput
   ],
   declarations: [
     EmailComponent,

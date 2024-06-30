@@ -3,7 +3,7 @@ import { PasswordComponent } from './password.component';
 import { ReactiveFormsModule } from "@angular/forms";
 import { MockModule } from "ng-mocks";
 import { MatFormFieldModule } from "@angular/material/form-field";
-import { NG_CONTROL_PROVIDER } from "../../../../../feature/src/test-setup";
+import { NG_CONTROL_PROVIDER } from '../../../test-setup';
 
 describe('PasswordFieldComponent', () => {
   let component: PasswordComponent;
