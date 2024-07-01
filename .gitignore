@@ -44,3 +44,6 @@ Thumbs.db
 .angular
 /apps/demo/.env
 /apps/demo/src/assets/config/app.config.json
+
+.nx/cache
+.nx/workspace-data

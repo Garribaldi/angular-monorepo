@@ -1,16 +1,16 @@
 import { Component } from '@angular/core';
-import { combineLatest, map, Observable, startWith, tap } from "rxjs";
-import { Employee, SharedDataService } from "@local/shared/data-access";
-import { FormBuilder } from "@angular/forms";
-import { CountryService } from "@local/shared/utils";
-import { SelectOptions } from "@local/forms/reactive-fields/feature";
+import { combineLatest, map, Observable, startWith, tap } from 'rxjs';
+import { Employee, SharedDataService } from '@local/shared/data-access';
+import { FormBuilder } from '@angular/forms';
+import { CountryService } from '@local/shared/utils';
+import { SelectOptions } from '@local/forms/generic-form/utils';
 
 type ReactiveFormsRequests = { cities: SelectOptions[], countries: SelectOptions[], employee: Employee };
 
 @Component({
   selector: 'local-demo-reactive-forms',
   templateUrl: './demo-reactive-forms.component.html',
-  styleUrls: ['./demo-reactive-forms.component.scss'],
+  styleUrls: ['./demo-reactive-forms.component.scss']
 })
 export class DemoReactiveFormsComponent {
 
@@ -48,7 +48,7 @@ export class DemoReactiveFormsComponent {
     this.countries$ = dataService.getCountries$().pipe(
       startWith([]),
       map(countries => countryService.setPreferredCountries(countries, ['CHE'])),
-      map(countries => countries.map((country): SelectOptions => ({value: country.iso, text: country.name})))
+      map(countries => countries.map((country): SelectOptions => ({ value: country.iso, text: country.name })))
     );
 
     this.employee$ = dataService.getEmployees$().pipe(
@@ -61,7 +61,7 @@ export class DemoReactiveFormsComponent {
       this.countries$,
       this.employee$
     ]).pipe(
-      map(([cities, countries, employee]): ReactiveFormsRequests => ({cities, countries, employee}))
+      map(([cities, countries, employee]): ReactiveFormsRequests => ({ cities, countries, employee }))
     );
   }
 

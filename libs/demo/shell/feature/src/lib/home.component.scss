@@ -5,6 +5,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
+  height: 100%;
+  border: 1px solid red;
 }
 
 .main-nav {
@@ -35,12 +38,15 @@
 
     &--active {
       color: #ffffff;
-      background-color: map.get(mat.$blue-gray-palette, 600);
+      background-color: map.get(mat.$m2-blue-gray-palette, 600);
     }
   }
 }
 
 .main {
-  min-width: 1280px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  width: 100%;
   max-width: 1600px;
 }

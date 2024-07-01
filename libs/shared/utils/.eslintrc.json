@@ -9,7 +9,13 @@
           "error",
           {
             "type": ["element", "attribute"],
-            "prefix": ["localShared", "cyGet", "input[matInput]", "ngx-mat-select-search", "ng-template[name]"]
+            "prefix": [
+              "localShared",
+              "cyGet",
+              "input[matInput]",
+              "ngx-mat-select-search",
+              "ng-template[name]"
+            ]
           }
         ],
         "@angular-eslint/component-selector": [
@@ -22,13 +28,13 @@
         ]
       },
       "extends": [
-        "plugin:@nrwl/nx/angular",
+        "plugin:@nx/angular",
         "plugin:@angular-eslint/template/process-inline-templates"
       ]
     },
     {
       "files": ["*.html"],
-      "extends": ["plugin:@nrwl/nx/angular-template"],
+      "extends": ["plugin:@nx/angular-template"],
       "rules": {}
     }
   ]
