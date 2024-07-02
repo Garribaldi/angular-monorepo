@@ -1,16 +1,19 @@
-import { Component, EventEmitter, Input, OnDestroy, Output, } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { NestedTreeControl } from '@angular/cdk/tree';
-import { Filter, FilterNestedNode } from '@local/angular-material/data-grid/data-access';
 import { MatTreeNestedDataSource } from '@angular/material/tree';
-import { Subject } from 'rxjs';
+import { filter, Subject, takeUntil } from 'rxjs';
 import { MatCheckboxChange } from '@angular/material/checkbox';
+import { Filter, FilterNestedNode, PanelStateService } from '@local/angular-material/data-grid/utils';
+import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
+import { faChevronDown, faChevronRight, faFilter, faXmark } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'local-angular-material-data-grid-check-filter',
   templateUrl: './data-grid-check-filter.component.html',
   styleUrls: ['./data-grid-check-filter.component.scss'],
 })
-export class DataGridCheckFilterComponent implements OnDestroy {
+export class DataGridCheckFilterComponent implements OnInit, OnDestroy {
+
   private _filter: Filter[] = [];
   @Input() set filter(filter: Filter[]) {
     this._filter = filter;
@@ -21,11 +24,11 @@ export class DataGridCheckFilterComponent implements OnDestroy {
     this.removeSelectedFilter(filter);
   }
 
-  treeControl = new NestedTreeControl<FilterNestedNode>(
-    (node) => node.children
-  );
+  treeControl = new NestedTreeControl<FilterNestedNode>(node => node.children);
   dataSource = new MatTreeNestedDataSource<FilterNestedNode>();
   filtersSelected = 0;
+  isExpanded = false;
+  filterString = '';
 
   private readonly unsubscribe = new Subject<void>();
 
@@ -33,13 +36,35 @@ export class DataGridCheckFilterComponent implements OnDestroy {
   @Output() addFilter = new EventEmitter<Filter>();
   @Output() removeFilter = new EventEmitter<Filter>();
 
+  constructor(
+    private readonly faIconLibrary: FaIconLibrary,
+    private readonly panelStateService: PanelStateService
+  ) {
+    this.faIconLibrary.addIcons(faChevronRight, faChevronDown, faXmark, faFilter);
+  }
+
+  ngOnInit() {
+    this.panelStateService.panelOpen$
+      .pipe(
+        filter(isOpen => !isOpen),
+        takeUntil(this.unsubscribe)
+      )
+      .subscribe(() => this.treeControl.collapseAll());
+  }
+
   ngOnDestroy() {
     this.unsubscribe.next();
     this.unsubscribe.complete();
   }
 
-  hasChild = (_: number, node: FilterNestedNode) =>
-    !!node.children && node.children.length > 0;
+  hasChild = (_: number, node: FilterNestedNode) => !!node.children && node.children.length > 0;
+
+  hideNode(node: FilterNestedNode): boolean {
+    if (!this.filterString) {
+      return false;
+    }
+    return !String(node.value).toLowerCase().includes(this.filterString.toLowerCase());
+  }
 
   nodeClicked(node: FilterNestedNode, event: MatCheckboxChange): void {
     node.checked = event.checked;
@@ -58,10 +83,26 @@ export class DataGridCheckFilterComponent implements OnDestroy {
     this.updateSelectedFilterAmount();
   }
 
+  /**
+   * Remove all filter by emitting removeColumn event.
+   *
+   * This triggers removedFilter input which unchecks all filter.
+   */
   resetFilter() {
     this.filtersSelected = 0;
-    this.treeControl.collapseAll();
     this.removeColumn.emit();
+  }
+
+  /**
+   * Check all nodes and emit new filter state.
+   */
+  selectAll() {
+    this.dataSource.data[0].children?.forEach(node => {
+      node.checked = true;
+      const filter = this.mapToFilter(node) as Filter;
+      this.addFilter.emit(filter);
+    });
+    this.updateSelectedFilterAmount();
   }
 
   private mapToFlatNodes(): FilterNestedNode[] {
@@ -70,14 +111,14 @@ export class DataGridCheckFilterComponent implements OnDestroy {
         value: this._filter[0]?.label ?? null,
         children: this._filter.map((filter) => ({
           value: filter.displayValue,
-          hitCount: filter.hitCount,
-        })),
-      },
+          hitCount: filter.hitCount
+        }))
+      }
     ];
   }
 
   private mapToFilter(node: FilterNestedNode): Filter | undefined {
-    return this._filter.find((filter) => filter.value === node.value);
+    return this._filter.find((filter) => filter.displayValue === node.value);
   }
 
   /**
@@ -87,27 +128,17 @@ export class DataGridCheckFilterComponent implements OnDestroy {
    * @private
    */
   private removeSelectedFilter(removedFilter: Filter[]) {
-    this.dataSource.data[0].children
-      ?.filter((childNode) =>
-        removedFilter.find(
-          (filter) => childNode.checked && filter.value === childNode.value
-        )
-      )
-      .forEach((childNode) => (childNode.checked = false));
+    const nestedNodes =  this.dataSource.data[0].children;
+    const uncheckedNodes = nestedNodes
+      ? nestedNodes.filter(childNode => !!removedFilter.find(filter => childNode.checked && filter.displayValue === childNode.value))
+      : [];
 
-    const data = this.dataSource.data;
-    this.dataSource.data = [];
-    this.dataSource.data = data;
+    uncheckedNodes.forEach(childNode => (childNode.checked = false));
 
     this.updateSelectedFilterAmount();
   }
 
   private updateSelectedFilterAmount() {
-    this.filtersSelected =
-      this.dataSource.data[0].children?.filter((childNode) => childNode.checked)
-        .length ?? 0;
-    if (this.filtersSelected === 0) {
-      this.treeControl.collapseAll();
-    }
+    this.filtersSelected = this.dataSource.data[0].children?.filter((childNode) => childNode.checked).length ?? 0;
   }
 }

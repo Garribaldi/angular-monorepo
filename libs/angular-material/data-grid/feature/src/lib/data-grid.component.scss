@@ -1,0 +1,86 @@
+@use "libs/shared/styles/sass/abstracts/app";
+@use "libs/shared/styles/sass/abstracts/mixins";
+
+.data-grid {
+  position: relative;
+
+  &__reset {
+    @include mixins.text-button();
+    padding: 0;
+    position: absolute;
+    top: -1.5rem;
+    right: .5rem;
+    left: auto;
+
+    &--hidden {
+      display: none;
+    }
+  }
+
+  &__accordion {
+    display: block;
+    margin-bottom: 2rem;
+  }
+
+  &__panel {
+    box-shadow: none !important;
+    border: 1px solid app.$primary-color-50;
+    border-radius: app.$border-radius !important;
+
+    &-header {
+      flex-direction: row-reverse;
+      gap: 1rem;
+      align-items: initial;
+      height: initial !important;
+      padding: 1.25rem 1.5rem;
+
+      ::ng-deep {
+        .mat-expansion-indicator:after {
+          font-size: 1rem;
+          color: app.$primary-color-50;
+          padding: 4px;
+        }
+      }
+    }
+
+    &-title {
+      font-size: 1rem;
+      color: app.$primary-color-300;
+      min-height: 1.25rem;
+      max-width: 150px;
+
+      &-icon {
+        display: flex;
+      }
+    }
+
+    &-description {
+      display: flex;
+      gap: 1rem;
+      margin: 0;
+      justify-content: space-between;
+      font-size: 1rem;
+      font-weight: 500;
+      color: app.$text-base;
+    }
+
+    &--open {
+      border-color: app.$primary-color-300;
+      overflow: initial;
+    }
+
+    ::ng-deep {
+      .mat-expansion-panel-body {
+        padding-bottom: .5rem;
+      }
+    }
+  }
+
+  &__columns {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap: .75rem 1rem;
+    margin-bottom: 0.5rem;
+  }
+}

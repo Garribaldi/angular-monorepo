@@ -1,0 +1,16 @@
+<p>data-grid-boolean-filter works!</p>
+<div class="data-grid-boolean-filter" [class.data-grid-boolean-filter--focus]="hasFocus">
+  <label class="data-grid-boolean-filter__label" [htmlFor]="filter?.id"><span>{{ filter?.label ?? '' | translate }}</span></label>
+  <mat-radio-group
+    [attr.aria-labelledby]="filter?.id"
+    [(ngModel)]="selectedOption"
+    [id]="filter?.id"
+    (ngModelChange)="updateFilter($event)"
+    (focusin)="hasFocus = true"
+    (focusout)="hasFocus = false"
+  >
+    <mat-radio-button value="true">{{ 'ustay.shared.form.data-grid.captions.yes' | translate }}</mat-radio-button>
+    <mat-radio-button value="false">{{ 'ustay.shared.form.data-grid.captions.no' | translate }}</mat-radio-button>
+    <mat-radio-button value="">{{ 'ustay.shared.form.data-grid.captions.both' | translate }}</mat-radio-button>
+  </mat-radio-group>
+</div>

@@ -1,0 +1,15 @@
+<mat-form-field appearance="outline" *ngIf="(searchphrase$ | async) as searchphrase">
+  <mat-label>{{ filter?.label ?? '' | translate }}</mat-label>
+  <div class="data-grid-search">
+    <input matInput [value]="searchphrase.currentSearch" (input)="searchphraseChanged($event)" spellcheck="false">
+    <div class="data-grid-search__reset" matSuffix>
+      <fa-icon *ngIf="!searchphrase.currentSearch" icon="search"></fa-icon>
+      <button *ngIf="searchphrase.currentSearch"
+              mat-flat-button
+              [attr.aria-label]="'ustay.shared.infotext.data-grid.reset' | translate"
+              (click)="reset()">
+        <fa-icon icon="xmark"></fa-icon>
+      </button>
+    </div>
+  </div>
+</mat-form-field>

@@ -1,49 +1,22 @@
-<mat-chip-listbox
-  aria-label="Selected Filters"
-  selectable="false"
-  class="chiplist"
->
-  <ng-container *ngFor="let filterList of groupedFilter | keyvalue">
-    <section
-      class="chiplist__section"
-      [cyGet]="'data-grid-chiplist-' + filterList.key | toSlashCase"
-    >
-      <div class="chiplist__section-headline">
-        {{ filterList.value[0].label }}
-      </div>
-      <mat-chip-option
-        *ngFor="let filter of filterList.value"
-        [removable]="true"
-        (removed)="remove(filter)"
-        color="primary"
-      >
-        <span>{{ filter.displayValue }}</span>
+<mat-chip-listbox aria-label="Selected Filters" selectable="false" class="chiplist">
+  <ng-container *ngIf="groupedFilter">
+    <section *ngFor="let filterList of groupedFilter | keyvalue" class="chiplist__section">
+      <div class="chiplist__section-headline">{{ filterList.value[0].label | translate }}</div>
+      <mat-chip-option *ngFor="let filter of filterList.value"
+                       [removable]="true"
+                       (removed)="remove(filter)"
+                       class="chiplist__chip">
+        <span>{{ filter.displayValue | translate }}</span>
         <button matChipRemove>
-          <mat-icon
-            aria-hidden="false"
-            aria-label="Close"
-            fontIcon="cancel"
-          ></mat-icon>
+          <fa-icon icon="xmark"></fa-icon>
         </button>
       </mat-chip-option>
     </section>
   </ng-container>
 
-  <section data-cy="data-grid-chiplist-remove-all">
-    <mat-chip-option
-      *ngIf="groupedFilter?.size"
-      [removable]="true"
-      (removed)="removeAll()"
-      color="primary"
-    >
-      <span class="chiplist__reset">Reset all columns</span>
-      <button matChipRemove>
-        <mat-icon
-          aria-hidden="false"
-          aria-label="Close"
-          fontIcon="restart_alt"
-        ></mat-icon>
-      </button>
-    </mat-chip-option>
+  <section *ngIf="enableResetAll" class="chiplist__section chiplist__section--reset">
+    <button mat-flat-button color="primary" (click)="removeAll()">
+      <span>{{ 'ustay.shared.infotext.data-grid.resetAll' | translate }}</span>
+    </button>
   </section>
 </mat-chip-listbox>

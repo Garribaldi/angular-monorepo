@@ -23,13 +23,18 @@ export const isString = (value: unknown): value is string => {
   );
 }
 
-export const isNumber = (value: unknown): value is number => {
+/**
+ * Check if a value is of type number. If true, type number is asserted.
+ * @param value test value that could be a number
+ * @return {value is number}
+ */
+export const isNumeric = (value: unknown): value is number => {
   return (
     value !== undefined
     && value !== null
-    && typeof value === "number"
+    && typeof value === 'number'
   );
-}
+};
 
 /**
  * Check if a value is of type Date. If true, type Date is asserted

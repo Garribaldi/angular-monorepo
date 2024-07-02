@@ -1,0 +1,18 @@
+<div class="data-grid-numeric-filter" [class.data-grid-numeric-filter--focus]="hasFocus">
+  <label class="data-grid-numeric-filter__label" [htmlFor]="filter?.id"><span>{{ filter?.label ?? '' | translate }}</span></label>
+  <div class="data-grid-numeric-filter__slider">
+    <span class="data-grid-numeric-filter__slider-minValue">{{ min }}</span>
+    <mat-slider
+      [id]="filter?.id"
+      min="0"
+      [max]="maxValue"
+      step="1"
+      (focusin)="hasFocus = true"
+      (focusout)="hasFocus = false"
+    >
+      <input [(ngModel)]="min" (valueChange)="updateFilter()" matSliderStartThumb>
+      <input [(ngModel)]="max" (valueChange)="updateFilter()" matSliderEndThumb>
+    </mat-slider>
+    <span class="data-grid-numeric-filter__slider-maxValue">{{ max }}</span>
+  </div>
+</div>

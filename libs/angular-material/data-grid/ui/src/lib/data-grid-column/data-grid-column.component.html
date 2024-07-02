@@ -1,0 +1,47 @@
+<ng-container [ngSwitch]="type">
+
+  <local-angular-material-data-grid-check-filter
+    *ngSwitchCase="'check'"
+    [filter]="filter | isFilterArray"
+    [removedFilter]="removedFilter"
+    (removeColumn)="removeFilterByColumn()"
+    (addFilter)="addFilter($event)"
+    (removeFilter)="removeFilter($event)"
+  />
+
+  <local-angular-material-data-grid-date-filter
+    *ngSwitchCase="'date'"
+    [filter]="filter | isFilter"
+    [removedFilter]="removedFilter"
+    (updateColumn)="updateFilterByColumn($event)"
+    (removeColumn)="removeFilterByColumn()"
+  />
+
+  <local-angular-material-data-grid-search-filter
+    *ngSwitchCase="'search'"
+    [filter]="filter | isFilter"
+    [removedFilter]="removedFilter"
+    (updateColumn)="updateFilterByColumn($event)"
+    (removeColumn)="removeFilterByColumn()"
+  />
+
+  <local-angular-material-data-grid-boolean-filter
+    *ngSwitchCase="'boolean'"
+    [filter]="filter | isFilter"
+    [removedFilter]="removedFilter"
+    (updateColumn)="updateFilterByColumn($event)"
+    (removeColumn)="removeFilterByColumn()"
+  />
+
+  <local-angular-material-data-grid-numeric-filter
+    [filter]="filter | isFilter"
+    [removedFilter]="removedFilter"
+    [minValue]="minValue"
+    [maxValue]="maxValue"
+    (updateColumn)="updateFilterByColumn($event)"
+    (removeColumn)="removeFilterByColumn()"
+  />
+
+  <div *ngSwitchDefault>{{ 'ustay.shared.infotext.data-grid.noFilter' | translate }}</div>
+
+</ng-container>

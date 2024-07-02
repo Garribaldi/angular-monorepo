@@ -1,0 +1,45 @@
+<div class="data-grid">
+
+  <button *ngIf="enableResetAllButton"
+          class="data-grid__reset"
+          [class.data-grid__reset--hidden]="filterAmount() === 0"
+          [disabled]="filterAmount() === 0"
+          (click)="removeAllFilter($event)">
+    <fa-icon [icon]="['far', 'rotate-right']"></fa-icon>
+    <span>{{ 'ustay.shared.infotext.data-grid.resetAll' | translate }}</span>
+  </button>
+
+  <mat-accordion class="data-grid__accordion">
+    <mat-expansion-panel class="data-grid__panel"
+                         [class.data-grid__panel--open]="panelOpenState"
+                         (opened)="openPanel()"
+                         (closed)="closePanel()">
+
+      <mat-expansion-panel-header class="data-grid__panel-header">
+        <mat-panel-title class="data-grid__panel-title">
+          <span>{{ 'ustay.shared.infotext.data-grid.filter' | translate }}&nbsp;</span>
+          <span *ngIf="filterAmount()" class="data-grid__panel-title-icon">
+            <fa-icon [icon]="['fas', 'filter']"></fa-icon><span>&nbsp;({{ filterAmount() }})</span>
+          </span>
+        </mat-panel-title>
+        <mat-panel-description class="data-grid__panel-description">
+          <span>{{ 'ustay.shared.infotext.data-grid.items' | translate: {filtered: filteredItems, total: totalItems, datasetLabel: (datasetLabel ?? 'ustay.shared.labels.items') | translate} }}</span>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <div class="data-grid__columns">
+        <ng-content></ng-content>
+      </div>
+
+      <div *ngIf="filterAmount()" class="data-grid__chips-bar">
+        <local-angular-material-data-grid-chips-bar
+          [groupedFilter]="groupedFilter()"
+          [enableResetAll]="!enableResetAllButton"
+          (removeFilter)="removeFilter($event)"
+          (removeAllFilter)="removeAllFilter()"
+        />
+      </div>
+
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>

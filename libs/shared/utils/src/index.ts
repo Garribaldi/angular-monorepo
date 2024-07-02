@@ -1,5 +1,8 @@
 export * from './lib/shared-utils.module';
 
+export * from './lib/models/brand.model';
+export * from './lib/models/table-column.model';
+
 export * from './lib/directives/ng-template-name.directive';
 export * from  './lib/directives/cypress-selector.directive';
 
