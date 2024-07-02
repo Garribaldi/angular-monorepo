@@ -2,8 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DataGridCheckFilterComponent } from './data-grid-check-filter.component';
 import { MockModule } from 'ng-mocks';
 import { MatTreeModule } from '@angular/material/tree';
-import { Filter } from '../../../../data-access/src/lib/models/filter.model';
-import { FilterNestedNode } from '../../../../data-access/src/lib/models/filter-nested-node.model';
+import { Filter, FilterNestedNode } from '@local/angular-material/data-grid/data-access';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 
 describe('DataGridTextFilterComponent', () => {

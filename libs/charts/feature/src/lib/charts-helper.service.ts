@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { ChartDataset, ChartOptions, ChartType, ChartTypeRegistry } from "chart.js";
-import { ChartConfiguration } from "chart.js/auto";
-import { ChartPointerEvent } from './chart-pointer-event.model';
+import { ChartDataset, ChartOptions, ChartType, ChartTypeRegistry } from 'chart.js';
+import { ChartConfiguration } from 'chart.js/auto';
+import { ChartPointerEvent } from '@local/charts/feature';
 
 @Injectable()
 export class ChartsHelperService {

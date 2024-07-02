@@ -4,7 +4,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MockModule } from 'ng-mocks';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import moment from 'moment';
-import { DateFilter } from '../../../../data-access/src/lib/models/date-filter.model';
+import { DateFilter } from '@local/angular-material/data-grid/data-access';
 
 describe('DataGridDateFilterComponent', () => {
   let component: DataGridDateFilterComponent;

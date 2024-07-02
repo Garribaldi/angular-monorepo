@@ -7,6 +7,7 @@ import { Filter, GroupedFilter } from '@local/angular-material/data-grid/data-ac
   styleUrls: ['./data-grid-chips-bar.component.scss'],
 })
 export class DataGridChipsBarComponent {
+
   @Input() groupedFilter?: GroupedFilter;
 
   @Output() removeFilter = new EventEmitter<Filter>();

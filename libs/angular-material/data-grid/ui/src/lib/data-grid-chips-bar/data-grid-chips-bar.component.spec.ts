@@ -2,11 +2,9 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DataGridChipsBarComponent } from './data-grid-chips-bar.component';
 import { MatChipsModule } from '@angular/material/chips';
 import { MockModule } from 'ng-mocks';
-import { Filter } from '../../../../data-access/src/lib/models/filter.model';
-import { GroupedFilter } from '../../../../data-access/src/lib/models/grouped-filter.model';
-import { ToSlashCasePipe } from '@local/shared/utils';
+import { Filter, GroupedFilter } from '@local/angular-material/data-grid/data-access';
+import { CypressSelectorDirective, ToSlashCasePipe } from '@local/shared/utils';
 import { MatIconModule } from '@angular/material/icon';
-import { CypressSelectorDirective } from '../../../../../../shared/utils/src/lib/directives/cypress-selector.directive';
 
 describe('DataGridChipsBarComponent', () => {
   let component: DataGridChipsBarComponent;
