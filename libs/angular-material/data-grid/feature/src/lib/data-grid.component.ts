@@ -2,7 +2,7 @@ import { Component, computed, EventEmitter, Input, OnDestroy, OnInit, Output, si
 import { Subject, takeUntil, tap } from 'rxjs';
 import { Datasource, DatasourceService, Filter, GroupedFilter, PanelStateService, SelectedFilterStateService } from '@local/angular-material/data-grid/utils';
 import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
-import { faChevronDown, faChevronUp, faFilter, faRotateRight } from '@fortawesome/free-solid-svg-icons';
+import { faChevronDown, faChevronUp, faFilter, faRotateRight, faSearch } from '@fortawesome/free-solid-svg-icons';
 
 /**
  * This is a wrapper component that organizes all filtering.
@@ -84,7 +84,8 @@ export class DataGridComponent<T extends Datasource<T>> implements OnInit, OnDes
       faFilter,
       faChevronDown,
       faChevronUp,
-      faRotateRight
+      faRotateRight,
+      faSearch
     );
   }
 
@@ -95,7 +96,7 @@ export class DataGridComponent<T extends Datasource<T>> implements OnInit, OnDes
       )
       .subscribe((selectedFilter) => {
         this.dataSourceService.applyFilter(selectedFilter);
-        this.state.groupedFilter.set(selectedFilter);
+        this.state.groupedFilter.set(new Map(selectedFilter));
       });
 
     this.dataSourceService.filteredData$

@@ -21,11 +21,13 @@ import { DataGridColumnComponent } from './data-grid-column/data-grid-column.com
 import { MatRadioButton, MatRadioGroup } from '@angular/material/radio';
 import { FormsModule } from '@angular/forms';
 import { MatSlider, MatSliderRangeThumb } from '@angular/material/slider';
+import { MatInput } from '@angular/material/input';
 
 @NgModule({
   imports: [
     CommonModule,
     MatFormFieldModule,
+    MatInput,
     MatDatepickerModule,
     SharedUtilsModule,
     MatChipsModule,

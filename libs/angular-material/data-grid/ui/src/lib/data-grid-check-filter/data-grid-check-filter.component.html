@@ -26,7 +26,7 @@
       <button mat-icon-button
               (click)="isExpanded = treeControl.isExpanded(node)"
               [attr.aria-label]="'Toggle ' + node.name">
-        <fa-icon [icon]="treeControl.isExpanded(node) ? ['far', 'chevron-up'] : ['far', 'chevron-down']"></fa-icon>
+        <fa-icon [icon]="treeControl.isExpanded(node) ? ['fas', 'chevron-up'] : ['fas', 'chevron-down']"></fa-icon>
       </button>
 
       <div class="check-filter-tree__nested-node-toggle-caption">
@@ -43,12 +43,12 @@
 
       <mat-form-field class="check-filter-tree__nested-node-outlet-filter" appearance="outline">
         <input [(ngModel)]="filterString" matInput type="text"
-               [placeholder]="'ustay.shared.infotext.data-grid.searchItem' | translate: {item: node.value | translate}"
+               [placeholder]="'shared.infotext.searchItem' | translate: {item: node.value | translate}"
                spellcheck="false">
         <div class="check-filter-tree__nested-node-outlet-filter-reset" matSuffix>
-          <fa-icon *ngIf="!filterString" icon="search" [attr.aria-label]="'ustay.shared.infotext.data-grid.search' | translate"></fa-icon>
+          <fa-icon *ngIf="!filterString" [icon]="['fas', 'search']" [attr.aria-label]="'ustay.shared.infotext.data-grid.search' | translate"></fa-icon>
           <button *ngIf="filterString" mat-flat-button
-                  [attr.aria-label]="'ustay.shared.infotext.data-grid.clearSearch' | translate"
+                  [attr.aria-label]="'shared.infotext.clearSearch' | translate"
                   (click)="filterString=''">
             <fa-icon icon="xmark"></fa-icon>
           </button>
@@ -57,11 +57,11 @@
 
       <div class="check-filter-tree__nested-node-outlet-reset">
         <button (click)="selectAll()">
-          <span>{{ 'ustay.shared.infotext.common.selectAll' | translate }}</span>
+          <span>{{ 'shared.infotext.selectAll' | translate }}</span>
         </button>
 
         <button *ngIf="filtersSelected" (click)="resetFilter()" [disabled]="!filtersSelected">
-          <span>{{ 'ustay.shared.infotext.common.resetAll' | translate }}</span>
+          <span>{{ 'shared.infotext.resetAll' | translate }}</span>
         </button>
       </div>
 
