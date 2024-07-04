@@ -98,21 +98,35 @@ describe('DataGridDateFilterComponent', () => {
     let spyOnUpdateFilter: jest.SpyInstance;
     let spyOnRemoveFilter: jest.SpyInstance;
 
+    const testDate = moment();
+
     beforeEach(() => {
       spyOnUpdateFilter = jest.spyOn(component.updateColumn, 'emit');
       spyOnRemoveFilter = jest.spyOn(component.removeColumn, 'emit');
     });
 
-    test('update date filter on "Enter"', () => {
-      const event = new KeyboardEvent('keyup', {key: 'Enter', code: 'Enter'});
-      component.fromDate = moment();
-      component.toDate = moment();
+    test.each([
+      ['update date filter on Enter', {key: 'Enter', code: 'Enter'}, testDate, testDate],
+      ['update date filter on NumpadEnter', {key: 'Enter', code: 'NumpadEnter'}, testDate, testDate],
+      ['update missing fromDate with toDate', {key: 'Enter', code: 'Enter'}, null, testDate],
+      ['update missing toDate with fromDate', {key: 'Enter', code: 'Enter'}, testDate, null]
+    ])(
+      '%p', (_, eventInit, fromDate, toDate) => {
+        const event = new KeyboardEvent('keyup', eventInit);
+        component.fromDate = fromDate;
+        component.toDate = toDate;
 
-      component.onKeyUp(event);
+        component.onKeyUp(event);
 
-      expect(spyOnUpdateFilter).toHaveBeenCalledWith(expect.any(DateFilter));
-    });
-
+        expect(spyOnUpdateFilter).toHaveBeenCalledWith(expect.objectContaining({
+          value: {
+            from: testDate,
+            to: testDate
+          }
+        }));
+      }
+    );
+    
     test('remove date filter on "Enter"', () => {
       const event = new KeyboardEvent('keyup', {key: 'Enter', code: 'Enter'});
       component.fromDate = null;
@@ -125,8 +139,8 @@ describe('DataGridDateFilterComponent', () => {
 
     test('do not do anything on "Tab"', () => {
       const event = new KeyboardEvent('keyup', {key: 'Tab', code: 'Tab'});
-      component.fromDate = moment();
-      component.toDate = moment();
+      component.fromDate = testDate;
+      component.toDate = testDate;
 
       component.onKeyUp(event);
 

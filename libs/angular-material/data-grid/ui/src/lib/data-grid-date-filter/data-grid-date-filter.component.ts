@@ -50,7 +50,9 @@ export class DataGridDateFilterComponent implements OnInit {
   }
 
   onKeyUp(event: KeyboardEvent) {
-    if (RegExp(/^Enter$/).exec(event.code) !== null) {
+    if (RegExp(/^(Enter|NumpadEnter)$/).exec(event.code) !== null) {
+      this.fromDate = this.fromDate ?? this.toDate;
+      this.toDate = this.toDate ?? this.fromDate;
       this.updateFilterState();
     }
   }
@@ -62,7 +64,7 @@ export class DataGridDateFilterComponent implements OnInit {
 
   private updateFilterState() {
     const updatedFilter = new DateFilter({
-      value: {from: this.fromDate, to: this.toDate},
+      value: {from: this.fromDate ?? this.toDate, to: this.toDate ?? this.fromDate},
       label: this.filter?.label,
       column: this.filter?.column ?? ''
     });

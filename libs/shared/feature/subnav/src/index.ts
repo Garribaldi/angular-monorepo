@@ -1,1 +1,1 @@
-export * from './lib/shared-subnav.module';
+export * from './lib/subnav.module';
