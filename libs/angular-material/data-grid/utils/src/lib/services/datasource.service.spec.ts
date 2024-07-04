@@ -1,10 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 import { DatasourceService } from './datasource.service';
-import { Filter } from '../../models/filter/filter.model';
 import { firstValueFrom, switchMap, take } from 'rxjs';
-import { testBooleanFilter, testCheckFilter, TestData, testDataSource, testDateFilter, testNumericFilter, testSearchFilter } from '../../../test-setup';
-import { CheckFilter } from '../../models/filter/check-filter.model';
-
+import { CheckFilter, Filter } from '@local/angular-material/data-grid/utils';
+import { testBooleanFilter, testCheckFilter, TestData, testDataSource, testDateFilter, testNumericFilter, testSearchFilter } from '../../test-setup';
 
 describe('DataSourceService', () => {
   let service: DatasourceService<TestData>;

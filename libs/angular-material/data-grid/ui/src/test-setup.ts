@@ -1,5 +1,5 @@
 import 'jest-preset-angular/setup-jest';
-import { BooleanFilter, CheckFilter, DateFilter, FilterDate, NumericFilter, SearchFilter } from '@local/angular-material/data-grid/utils';
+import { CheckFilter, DateFilter, FilterDate, SearchFilter } from '@local/angular-material/data-grid/utils';
 import moment from 'moment/moment';
 
 const msDay = 86400000;
@@ -43,19 +43,4 @@ export const testCheckFilter = new CheckFilter({
   column: 'checkColumn',
   label: 'Check Label',
   hitCount: 1
-});
-
-export const testBooleanFilter = new BooleanFilter({
-  column: 'booleanColumn',
-  label: 'Boolean Label',
-  value: true
-});
-
-export const testNumericFilter = new NumericFilter({
-  column: 'numericColumn',
-  label: 'Numeric Label',
-  value: {
-    min: 1,
-    max: 20
-  }
 });

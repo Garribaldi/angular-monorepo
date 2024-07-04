@@ -1,7 +1,6 @@
 import { FilterColumnMapperPipe } from './filter-column-mapper.pipe';
-import { ITableColumn } from '@uam/components';
-import { FilterColumn } from '../../models/filter-column.model';
-
+import { ITableColumn } from '@local/shared/utils';
+import { FilterColumn } from '../models/filter-column.model';
 
 describe('FilterTypeMatcherPipe', () => {
 

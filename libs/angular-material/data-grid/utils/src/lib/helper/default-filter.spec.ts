@@ -1,8 +1,5 @@
 import { getDefaultBooleanFilter, getDefaultDateFilter, getDefaultNumericFilter, getDefaultSearchFilter } from './default-filter';
-import { DateFilter } from '../../models/filter/date-filter.model';
-import { SearchFilter } from '../../models/filter/search-filter.model';
-import { BooleanFilter } from '../../models/filter/boolean-filter.model';
-import { NumericFilter } from '../../models/filter/numeric-filter.model';
+import { BooleanFilter, DateFilter, NumericFilter, SearchFilter } from '@local/angular-material/data-grid/utils';
 
 describe('DefaultFilterUtils', () => {
 

@@ -7,6 +7,7 @@
     "serve:4400": "npm run serve -- --port 4400",
     "build": "nx build demo",
     "test": "nx run-many --all --target=test --parallel --skip-nx-cache",
+    "test:cache": "nx run-many --all --target=test --parallel=3",
     "test:coverage": "npm run test -- --coverage",
     "test:merge": "jrm ./coverage/jest-junit.xml ./coverage/apps/**/junit.xml ./coverage/libs/**/junit.xml",
     "e2e": "nx e2e demo-e2e --skip-nx-cache",

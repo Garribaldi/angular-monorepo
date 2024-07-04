@@ -1,5 +1,5 @@
 import { IsFilterPipe } from './is-filter.pipe';
-import { testSearchFilter } from '../../../test-setup';
+import { testSearchFilter } from '../../test-setup';
 
 describe('IsFilterPipe', () => {
 

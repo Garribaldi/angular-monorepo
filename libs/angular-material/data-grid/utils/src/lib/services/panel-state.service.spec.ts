@@ -2,7 +2,6 @@ import { TestBed } from '@angular/core/testing';
 import { PanelStateService } from './panel-state.service';
 import { firstValueFrom } from 'rxjs';
 
-
 describe('PanelStateService', () => {
   let service: PanelStateService;
 

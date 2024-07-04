@@ -1,6 +1,5 @@
 import { filterByBoolean, filterByDate, filterByRegExp } from './filter-by';
-import * as moment from 'moment';
-
+import moment from 'moment';
 
 describe('FilterByUtils', () => {
 

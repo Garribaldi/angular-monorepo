@@ -1,11 +1,9 @@
 import { TestBed } from '@angular/core/testing';
 import { SelectedFilterStateService } from './selected-filter-state.service';
-import { DateFilter } from '../../models/filter/date-filter.model';
-import * as moment from 'moment/moment';
+import moment from 'moment/moment';
 import { firstValueFrom } from 'rxjs';
-import { testCheckFilter, testDateFilter } from '../../../test-setup';
-import { CheckFilter } from '../../models/filter/check-filter.model';
-
+import { testCheckFilter, testDateFilter } from '../../test-setup';
+import { CheckFilter, DateFilter } from '@local/angular-material/data-grid/utils';
 
 describe('SelectedFilterStateService', () => {
   let service: SelectedFilterStateService;
