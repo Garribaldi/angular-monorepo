@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import { Router } from "@angular/router";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'local-shell-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss'],
+  templateUrl: './shell.component.html',
+  styleUrls: ['./shell.component.scss'],
 })
-export class HomeComponent {
+export class ShellComponent {
 
   mainNav: Array<{ url: string, caption: string }> = [];
 

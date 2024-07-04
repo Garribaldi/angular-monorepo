@@ -5,24 +5,30 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HTTP_INTERCEPTORS, HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { MAT_TOOLTIP_DEFAULT_OPTIONS, MAT_TOOLTIP_DEFAULT_OPTIONS_FACTORY, MatTooltipDefaultOptions } from '@angular/material/tooltip';
 import { ShellRoutingModule } from './shell-routing.module';
-import { HomeComponent } from './home.component';
+import { ShellComponent } from './shell.component';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { Environment, ENVIRONMENT } from '@local/shared/feature/environments';
 import { HttpCacheInterceptor } from '@local/shared/utils';
-import { TitleStrategy } from '@angular/router';
-import { DemoTitleStrategy } from './demo-title-strategy';
+import { AppTitleStrategy } from '@local/demo/shell/utils';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { TitleStrategy } from '@angular/router';
 
 @NgModule({
-  declarations: [HomeComponent],
-  exports: [HomeComponent],
-  imports: [CommonModule,
+  declarations: [
+    ShellComponent
+  ],
+  exports: [
+    ShellComponent
+  ],
+  imports: [
+    CommonModule,
     BrowserModule,
     ShellRoutingModule,
     BrowserAnimationsModule,
-    MatMomentDateModule],
+    MatMomentDateModule
+  ],
   providers: [
     {
       provide: MAT_TOOLTIP_DEFAULT_OPTIONS,
@@ -42,7 +48,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
     },
     {
       provide: TitleStrategy,
-      useClass: DemoTitleStrategy
+      useClass: AppTitleStrategy
     },
     provideHttpClient(withInterceptorsFromDi()),
     importProvidersFrom(TranslateModule.forRoot({

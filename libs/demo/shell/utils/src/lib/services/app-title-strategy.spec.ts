@@ -1,22 +1,22 @@
-import { TestBed } from "@angular/core/testing";
-import { MockProvider, MockService } from "ng-mocks";
-import { DemoTitleStrategy } from "./demo-title-strategy";
-import { Title } from "@angular/platform-browser";
-import { RouterStateSnapshot } from "@angular/router";
+import { TestBed } from '@angular/core/testing';
+import { MockProvider, MockService } from 'ng-mocks';
+import { AppTitleStrategy } from './app-title-strategy';
+import { Title } from '@angular/platform-browser';
+import { RouterStateSnapshot } from '@angular/router';
 
-describe('DemoTitleStrategy', () => {
+describe('AppTitleStrategy', () => {
 
-  let service: DemoTitleStrategy;
+  let service: AppTitleStrategy;
   let title: Title;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
         MockProvider(Title),
-        DemoTitleStrategy
+        AppTitleStrategy
       ]
     });
-    service = TestBed.inject(DemoTitleStrategy);
+    service = TestBed.inject(AppTitleStrategy);
     title = TestBed.inject(Title);
   });
 

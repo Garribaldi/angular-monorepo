@@ -71,6 +71,9 @@
       "@local/demo/shell/feature": [
         "libs/demo/shell/feature/src/index.ts"
       ],
+      "@local/demo/shell/utils": [
+        "libs/demo/shell/utils/src/index.ts"
+      ],
       "@local/file-upload/feature": [
         "libs/file-upload/feature/src/index.ts"
       ],

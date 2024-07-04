@@ -1,9 +1,9 @@
-import { Injectable } from "@angular/core";
-import { RouterStateSnapshot, TitleStrategy } from "@angular/router";
-import { Title } from "@angular/platform-browser";
+import { Injectable } from '@angular/core';
+import { RouterStateSnapshot, TitleStrategy } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 
 @Injectable()
-export class DemoTitleStrategy extends TitleStrategy {
+export class AppTitleStrategy extends TitleStrategy {
 
   constructor(
     private readonly title: Title
