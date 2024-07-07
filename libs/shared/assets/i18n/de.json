@@ -1,0 +1,22 @@
+{
+  "angular-material": {
+    "data-grid": {
+      "infotext": {
+        "resetAll": "Alle zurücksetzen",
+        "filter": "Filter",
+        "items": "{{ filtered }} von {{ total }} {{ datasetLabel }}"
+      }
+    }
+  },
+  "shared": {
+    "infotext": {
+      "selectAll": "Alle auswählen",
+      "resetAll": "Alle zurücksetzen",
+      "clearSearch": "Suche zurücksetzen",
+      "searchItem": "{{ item }} suchen"
+    },
+    "labels": {
+      "items": "Einträgen"
+    }
+  }
+}

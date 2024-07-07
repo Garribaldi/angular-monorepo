@@ -1,0 +1,44 @@
+@use 'colors';
+
+$tablet-breakpoint: 1280px;
+$form-breakpoint: 1024px;
+$mobile-breakpoint: 860px;
+
+/** Layout base colors **/
+$primary-color-25: colors.$bold-teal-25;
+$primary-color-50: colors.$bold-teal-50;
+$primary-color-100: colors.$bold-teal-100;
+$primary-color-300: colors.$bold-teal-300;
+
+$secondary-color-200: colors.$momentum-aubergine-200;
+
+$warn-color: colors.$relentless-red-300;
+
+$highlight-color: colors.$joyful-melon-25;
+
+/** Theme colors and dimensions **/
+$text-base: colors.$black-200;
+$text-light: colors.$white-50;
+$text-dark: colors.$black-300;
+$text-highlight: colors.$momentum-aubergine-200;
+$text-disabled: colors.$black-50;
+$text-label: $primary-color-25;
+$text-anchor: colors.$purposeful-teal-200;
+$text-anchor-hover: colors.$purposeful-teal-600;
+$text-nav: $primary-color-300;
+$text-nav-highlight: colors.$propel-mint-600;
+
+$bg-light-50: colors.$white-50;
+$bg-light-100: colors.$white-100;
+$bg-light-200: colors.$white-200;
+$bg-dark-50: colors.$black-50;
+$bg-highlight-50: colors.$propel-mint-50;
+$bg-highlight-100: $primary-color-100;
+
+$border-color: #bbbbbb;
+$border-radius: .15rem;
+
+$content-padding-x: 4rem;
+$content-padding-y: 2rem;
+$content-max-width: 1920px;
+$content-header-height: 4.75rem;

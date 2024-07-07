@@ -1,3 +1,6 @@
+@use "libs/shared/styles/sass/abstracts/app";
+@use "libs/shared/styles/sass/abstracts/mixins";
+
 :host {
   position: relative;
   display: block;
@@ -5,72 +8,127 @@
 }
 
 .check-filter-tree {
-  position: absolute;
+  position: relative;
   z-index: 1;
-
-  background-color: #fff;
+  background-color: app.$bg-light-50;
   width: 100%;
 
-  mat-nested-tree-node {
-    display: block;
-    overflow: hidden;
+  &--expanded {
+    z-index: 999;
   }
 
-  &__check {
-    ::ng-deep {
-      label {
-        color: #808080;
-      }
-    }
+  &__node {
+    min-height: 40px;
+    overflow: hidden;
 
-    &--checked {
+    &-checkbox {
       ::ng-deep {
         label {
-          color: inherit;
-          font-weight: bold;
+          color: app.$text-base;
+          font-size: .875rem;
+          line-height: 1.1rem;
+        }
+      }
+
+      &--checked {
+        ::ng-deep {
+          label {
+            color: inherit;
+            font-weight: bold;
+          }
         }
       }
     }
   }
 
   &__nested-node {
-    display: flex;
-    align-items: center;
-    height: 3.5rem;
+    display: block;
+    overflow: hidden;
 
-    background-color: gray;
-    color: #fff;
-
-    &-outlet {
-      border: 1px solid gray;
-    }
-
-    &-filtered,
-    &-filtered > * {
+    &-toggle {
       display: flex;
       align-items: center;
-      flex: 1 1 auto;
-    }
+      height: 3.5rem;
+      font-size: .875rem;
+      cursor: pointer;
 
-    &-reset {
-      width: 100%;
+      background-color: app.$secondary-color-200;
+      color: app.$text-light;
+
+      ::ng-deep {
+        .mdc-icon-button svg {
+          width: 1rem !important;
+        }
+      }
 
       button {
-        width: 100%;
-        border-radius: 0;
+        padding: .625rem;
+      }
+
+      &-caption,
+      &-caption > * {
+        display: flex;
+        align-items: center;
+        flex: 1 1 auto;
+        line-height: 1;
       }
     }
 
     &-filter-icon {
       justify-content: flex-end;
+      gap: .5rem;
+      padding: 0 1rem 0 0;
 
-      mat-icon {
-        padding: 0 0.75rem 0 0;
+      fa-icon {
+        transform: translateY(1px);
       }
     }
 
-    &--invisible {
-      display: none;
+    &-outlet {
+      border: 1px solid app.$text-dark;
+      padding-bottom: .5rem;
+      position: absolute;
+      background-color: app.$bg-light-50;
+      width: 100%;
+
+      &--invisible {
+        display: none;
+      }
+
+      &-filter {
+        font-size: 0.875rem;
+        width: 100%;
+        height: 56px;
+        overflow: hidden;
+
+        &-reset {
+          padding-right: 1rem;
+
+          button {
+            @include mixins.flat-button();
+            transform: translateY(-1px);
+          }
+        }
+      }
+
+      &-reset {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        margin: .25rem 0;
+        padding-left: .5rem;
+        padding-right: .5rem;
+
+        button {
+          @include mixins.text-button();
+        }
+      }
+
+      &-nodes {
+        max-height: 14.8rem;
+        overflow-y: auto;
+        @include mixins.custom-scrollbar();
+      }
     }
   }
 }

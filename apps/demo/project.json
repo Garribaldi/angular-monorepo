@@ -26,6 +26,11 @@
             "glob": "**/*",
             "input": "./libs/shared/data-access/src/lib/assets/",
             "output": "./assets"
+          },
+          {
+            "glob": "**/*",
+            "input": "libs/shared/assets",
+            "output": "assets"
           }
         ],
         "styles": [

@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
 import { EnvironmentsService } from "@local/shared/feature/environments";
-import { RecaptchaComponent } from "ng-recaptcha";
+import { RecaptchaComponent } from "ng-recaptcha-2";
 import { take } from "rxjs";
 import { EvaluateGoogleCaptchaService } from "@local/google-captcha/data-access";
 

@@ -1,5 +1,5 @@
 {
-  "name": "utils",
+  "name": "forms-generic-form-utils",
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/forms/generic-form/utils/src",
   "prefix": "forms",

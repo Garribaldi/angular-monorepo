@@ -1,5 +1,5 @@
 {
-  "name": "ui",
+  "name": "forms-generic-form-ui",
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/forms/generic-form/ui/src",
   "prefix": "forms",

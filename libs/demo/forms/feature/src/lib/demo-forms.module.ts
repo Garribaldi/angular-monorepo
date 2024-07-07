@@ -36,6 +36,7 @@ import { UiModule } from '@local/forms/generic-form/ui';
   ],
   exports: [
     DemoFormsComponent
-  ],
+  ]
 })
-export class DemoFormsModule {}
+export class DemoFormsModule {
+}

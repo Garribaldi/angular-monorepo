@@ -1,0 +1,93 @@
+@use "app";
+@use "colors";
+
+@mixin flat-button() {
+  padding: 0;
+  min-width: 0.75rem;
+  height: auto;
+}
+
+@mixin text-button {
+  display: flex;
+  gap: .5rem;
+  border: 0 none;
+  padding: .5rem .25rem;
+  font-size: .875rem;
+  font-weight: 500;
+  background-color: transparent;
+  cursor: pointer;
+  color: app.$text-anchor;
+
+  &:hover:not([disabled]) {
+    color: app.$text-anchor-hover;
+  }
+
+  &:disabled {
+    cursor: default;
+    opacity: .6;
+  }
+}
+
+@mixin custom-form-element() {
+  $border-color: rgba(0, 0, 0, 0.4);
+
+  border: 1px solid $border-color;
+  border-radius: app.$border-radius;
+  height: 3.5rem;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  $root: &;
+
+  &:hover {
+    border-color: app.$text-dark;
+  }
+
+  &--focus {
+    border-color: app.$primary-color-50;
+    outline: 1px solid app.$primary-color-50;
+
+    #{$root}__label {
+      color: app.$text-label;
+    }
+  }
+
+  &__label {
+    position: absolute;
+    color: $border-color;
+    font-weight: 600;
+    top: -.55rem;
+    left: 1rem;
+    font-size: .75rem;
+    background: app.$bg-light-100;
+    padding: 0 .25rem;
+  }
+}
+
+@mixin custom-scrollbar() {
+  scrollbar-gutter: stable;
+
+  // Firefox
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.25) transparent;
+
+  // Chrome, Edge, Safari
+  &::-webkit-scrollbar {
+    width: .5rem;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.25);
+    border-radius: 10rem;
+    border: 1px solid colors.$white-50;
+  }
+
+  &::-webkit-scrollbar-track-piece:start {
+    background: transparent;
+  }
+  &::-webkit-scrollbar-track-piece:end {
+    background: transparent;
+  }
+}
