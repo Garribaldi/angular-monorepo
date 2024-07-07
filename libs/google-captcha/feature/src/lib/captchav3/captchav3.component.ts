@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { ReCaptchaV3Service } from "ng-recaptcha";
+import { ReCaptchaV3Service } from "ng-recaptcha-2";
 import { take } from "rxjs";
 
 @Component({

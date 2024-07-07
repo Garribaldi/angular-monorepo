@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Captchav3Component } from "./captchav3/captchav3.component";
 import { Captchav2Component } from "./captchav2/captchav2.component";
-import { RecaptchaModule } from "ng-recaptcha";
+import { RecaptchaModule } from "ng-recaptcha-2";
 import { MatButtonModule } from "@angular/material/button";
 import { SharedUtilsModule } from "@local/shared/utils";
 
