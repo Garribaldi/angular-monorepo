@@ -1,0 +1,9 @@
+input {
+  &:focus-visible {
+    outline: none;
+  }
+}
+
+.mat-mdc-form-field.mat-mdc-form-field.mat-mdc-form-field.mat-mdc-form-field.mat-mdc-form-field.mat-mdc-form-field .mdc-notched-outline__notch {
+  border-right: 0;
+}

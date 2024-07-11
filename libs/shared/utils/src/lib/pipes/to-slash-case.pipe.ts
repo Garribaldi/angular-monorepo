@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { convertToSlashCase } from "../helpers/utilities";
+import { convertToSlashCase } from '../helper/utilities';
 
 @Pipe({
   name: 'toSlashCase'

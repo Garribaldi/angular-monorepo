@@ -1,0 +1,12 @@
+@use "libs/shared/styles/sass/abstracts/mixins";
+
+.data-grid-boolean-filter {
+
+  @include mixins.custom-form-element();
+
+  mat-radio-group {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+  }
+}

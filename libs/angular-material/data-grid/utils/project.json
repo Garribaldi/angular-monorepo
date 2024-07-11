@@ -1,0 +1,20 @@
+{
+  "name": "angular-material-data-grid-utils",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/angular-material/data-grid/utils/src",
+  "prefix": "shared",
+  "projectType": "library",
+  "tags": ["scope:angular-material", "type:utils"],
+  "targets": {
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/angular-material/data-grid/utils/jest.config.ts"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}

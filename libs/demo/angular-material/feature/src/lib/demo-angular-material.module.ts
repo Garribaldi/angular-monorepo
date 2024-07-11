@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DemoAngularMaterialComponent } from './demo-angular-material.component';
-import { AngularMaterialDataGridModule } from '@local/angular-material/data-grid/feature';
+import { DataGridModule } from '@local/angular-material/data-grid/feature';
 import { DemoDataGridComponent } from './demo-data-grid/demo-data-grid.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
@@ -24,13 +24,14 @@ import { DemoSliderComponent } from './demo-slider/demo-slider.component';
 import { AngularMaterialSliderModule } from '@local/angular-material/slider/feature';
 import { SharedSubnavModule } from '@local/shared/feature/subnav';
 import { DemoAngularMaterialRoutingModule } from './demo-angular-material-routing.module';
+import { DataGridUiModule } from '@local/angular-material/data-grid/ui';
 
 @NgModule({
   imports: [
     CommonModule,
     SharedSubnavModule,
     DemoAngularMaterialRoutingModule,
-    AngularMaterialDataGridModule,
+    DataGridModule,
     AngularMaterialGenericTableModule,
     AngularMaterialFilterModule,
     AngularMaterialSliderModule,
@@ -44,7 +45,8 @@ import { DemoAngularMaterialRoutingModule } from './demo-angular-material-routin
     MatButtonModule,
     MatSelectModule,
     MatInputModule,
-    SharedUtilsModule
+    SharedUtilsModule,
+    DataGridUiModule
   ],
   declarations: [
     DemoAngularMaterialComponent,

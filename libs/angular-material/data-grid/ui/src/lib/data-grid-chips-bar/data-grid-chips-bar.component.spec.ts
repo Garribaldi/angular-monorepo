@@ -1,12 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DataGridChipsBarComponent } from './data-grid-chips-bar.component';
 import { MatChipsModule } from '@angular/material/chips';
-import { MockModule } from 'ng-mocks';
-import { Filter } from '../../../../data-access/src/lib/models/filter.model';
-import { GroupedFilter } from '../../../../data-access/src/lib/models/grouped-filter.model';
-import { ToSlashCasePipe } from '@local/shared/utils';
-import { MatIconModule } from '@angular/material/icon';
-import { CypressSelectorDirective } from '../../../../../../shared/utils/src/lib/directives/cypress-selector.directive';
+import { MockComponent, MockModule } from 'ng-mocks';
+import { FaIconComponent } from '@fortawesome/angular-fontawesome';
+import { TranslateModule } from '@ngx-translate/core';
+import { Filter, GroupedFilter } from '@local/angular-material/data-grid/utils';
 
 describe('DataGridChipsBarComponent', () => {
   let component: DataGridChipsBarComponent;
@@ -15,20 +13,23 @@ describe('DataGridChipsBarComponent', () => {
   const testFilter = {
     id: '12345',
     value: 'Test Filter',
-    label: 'Test Label',
+    label: 'Test Label'
   } as Filter;
   const testGroupedFilter: GroupedFilter = new Map<string, Filter[]>();
   testGroupedFilter.set('test-column', [testFilter]);
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MockModule(MatChipsModule), MockModule(MatIconModule)],
+      imports: [
+        MockModule(MatChipsModule),
+        MockModule(TranslateModule)
+      ],
       declarations: [
         DataGridChipsBarComponent,
-        ToSlashCasePipe,
-        CypressSelectorDirective,
-      ],
+        MockComponent(FaIconComponent)
+      ]
     }).compileComponents();
+    jest.clearAllMocks();
 
     fixture = TestBed.createComponent(DataGridChipsBarComponent);
     component = fixture.componentInstance;
@@ -37,18 +38,19 @@ describe('DataGridChipsBarComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  test('should create', () => {
     expect(component).toBeTruthy();
   });
 
   describe('remove()', () => {
+
     let spyOnRemoveFilter: jest.SpyInstance;
 
     beforeEach(
       () => (spyOnRemoveFilter = jest.spyOn(component.removeFilter, 'emit'))
     );
 
-    it('should remove filter', () => {
+    test('remove filter', () => {
       component.remove(testFilter);
 
       expect(spyOnRemoveFilter).toHaveBeenCalledWith(testFilter);
@@ -56,14 +58,12 @@ describe('DataGridChipsBarComponent', () => {
   });
 
   describe('removeAll()', () => {
+
     let spyOnRemoveAllFilter: jest.SpyInstance;
 
-    beforeEach(
-      () =>
-        (spyOnRemoveAllFilter = jest.spyOn(component.removelAllFilter, 'emit'))
-    );
+    beforeEach(() => (spyOnRemoveAllFilter = jest.spyOn(component.removeAllFilter, 'emit')));
 
-    it('should remove filter', () => {
+    test('remove all filter', () => {
       component.removeAll();
 
       expect(spyOnRemoveAllFilter).toHaveBeenCalled();

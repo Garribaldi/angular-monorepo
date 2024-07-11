@@ -1,9 +1,7 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output, } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import moment, { Moment } from 'moment';
-import { DateRange, ExtractDateTypeFromSelection, MatDatepickerInputEvent, } from '@angular/material/datepicker';
-import { Subject } from 'rxjs';
-import { DateFilter, Filter } from '@local/angular-material/data-grid/data-access';
-
+import { DateRange, ExtractDateTypeFromSelection, MatDatepickerInputEvent } from '@angular/material/datepicker';
+import { DateFilter, Filter } from '@local/angular-material/data-grid/utils';
 
 /**
  * In order for this component to work, it is necessary that your locales
@@ -18,21 +16,19 @@ import { DateFilter, Filter } from '@local/angular-material/data-grid/data-acces
 @Component({
   selector: 'local-angular-material-data-grid-date-filter',
   templateUrl: './data-grid-date-filter.component.html',
-  styleUrls: ['./data-grid-date-filter.component.scss'],
+  styleUrls: ['./data-grid-date-filter.component.scss']
 })
-export class DataGridDateFilterComponent implements OnInit, OnDestroy {
+export class DataGridDateFilterComponent implements OnInit {
 
   @Input() filter?: Filter;
 
-  @Input() set removedFilter(filter: Filter[]) {
+  @Input() set removedFilter(_filter: Filter[]) {
     this.resetFilter();
   }
 
   maxDate: Moment = moment();
   fromDate!: Moment | null;
   toDate!: Moment | null;
-
-  private readonly unsubscribe = new Subject<void>();
 
   @Output() updateColumn = new EventEmitter<Filter>();
   @Output() removeColumn = new EventEmitter<void>();
@@ -41,26 +37,11 @@ export class DataGridDateFilterComponent implements OnInit, OnDestroy {
     this.resetFilter();
   }
 
-  ngOnDestroy() {
-    this.unsubscribe.next();
-    this.unsubscribe.complete();
-  }
-
-  fromDateChanged<D extends Moment>(
-    event: MatDatepickerInputEvent<
-      ExtractDateTypeFromSelection<DateRange<D>>,
-      DateRange<D>
-    >
-  ) {
+  fromDateChanged<D extends Moment>(event: MatDatepickerInputEvent<ExtractDateTypeFromSelection<DateRange<D>>, DateRange<D>>) {
     this.fromDate = event.value;
   }
 
-  toDateChanged<D extends Moment>(
-    event: MatDatepickerInputEvent<
-      ExtractDateTypeFromSelection<DateRange<D>>,
-      DateRange<D>
-    >
-  ) {
+  toDateChanged<D extends Moment>(event: MatDatepickerInputEvent<ExtractDateTypeFromSelection<DateRange<D>>, DateRange<D>>) {
     this.toDate = event.value;
   }
 
@@ -69,7 +50,9 @@ export class DataGridDateFilterComponent implements OnInit, OnDestroy {
   }
 
   onKeyUp(event: KeyboardEvent) {
-    if (event.code.match('Enter') !== null) {
+    if (RegExp(/^(Enter|NumpadEnter)$/).exec(event.code) !== null) {
+      this.fromDate = this.fromDate ?? this.toDate;
+      this.toDate = this.toDate ?? this.fromDate;
       this.updateFilterState();
     }
   }
@@ -81,9 +64,9 @@ export class DataGridDateFilterComponent implements OnInit, OnDestroy {
 
   private updateFilterState() {
     const updatedFilter = new DateFilter({
-      value: {from: this.fromDate, to: this.toDate},
+      value: {from: this.fromDate ?? this.toDate, to: this.toDate ?? this.fromDate},
       label: this.filter?.label,
-      column: this.filter?.column ?? '',
+      column: this.filter?.column ?? ''
     });
 
     if (updatedFilter.value) {
