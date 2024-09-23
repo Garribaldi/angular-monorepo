@@ -1,0 +1,76 @@
+<mat-tree *ngIf="dataSource.data[0]?.children?.length" class="check-filter-tree"
+          [dataSource]="dataSource"
+          [treeControl]="treeControl"
+          [class.check-filter-tree--expanded]="isExpanded">
+
+  <!-- This is a template for a single checkbox item -->
+  <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle class="check-filter-tree__node"
+                 [style.display]="hideNode(node) ? 'none' : 'block'">
+
+    <div class="check-filter-tree__node-item">
+      <mat-checkbox class="check-filter-tree__node-checkbox"
+                    [checked]="node?.checked"
+                    [class.check-filter-tree__node-checkbox--checked]="node?.checked"
+                    (change)="nodeClicked(node, $event)">
+        {{ node.value | translate }} ({{ node.hitCount }})
+      </mat-checkbox>
+    </div>
+
+  </mat-tree-node>
+
+  <!-- This is the tree node template for expandable nodes -->
+  <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild" class="check-filter-tree__nested-node">
+
+    <!-- This is the template for the tree node header -->
+    <div class="check-filter-tree__nested-node-toggle" matTreeNodeToggle>
+      <button mat-icon-button
+              (click)="isExpanded = treeControl.isExpanded(node)"
+              [attr.aria-label]="'Toggle ' + node.name">
+        <fa-icon [icon]="treeControl.isExpanded(node) ? ['fas', 'chevron-up'] : ['fas', 'chevron-down']"></fa-icon>
+      </button>
+
+      <div class="check-filter-tree__nested-node-toggle-caption">
+        <div>{{ node.value | translate }}</div>
+        <div *ngIf="filtersSelected" class="check-filter-tree__nested-node-filter-icon">
+          <fa-icon [icon]="['fas', 'filter']"></fa-icon><span> ({{ filtersSelected }})</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- This is the template for the tree node content -->
+    <div role="group" class="check-filter-tree__nested-node-outlet"
+         [class.check-filter-tree__nested-node-outlet--invisible]="!treeControl.isExpanded(node)">
+
+      <mat-form-field class="check-filter-tree__nested-node-outlet-filter" appearance="outline">
+        <input [(ngModel)]="filterString" matInput type="text"
+               [placeholder]="'shared.infotext.searchItem' | translate: {item: node.value | translate}"
+               spellcheck="false">
+        <div class="check-filter-tree__nested-node-outlet-filter-reset" matSuffix>
+          <fa-icon *ngIf="!filterString" [icon]="['fas', 'search']" [attr.aria-label]="'ustay.shared.infotext.data-grid.search' | translate"></fa-icon>
+          <button *ngIf="filterString" mat-flat-button
+                  [attr.aria-label]="'shared.infotext.clearSearch' | translate"
+                  (click)="filterString=''">
+            <fa-icon icon="xmark"></fa-icon>
+          </button>
+        </div>
+      </mat-form-field>
+
+      <div class="check-filter-tree__nested-node-outlet-reset">
+        <button (click)="selectAll()">
+          <span>{{ 'shared.infotext.selectAll' | translate }}</span>
+        </button>
+
+        <button *ngIf="filtersSelected" (click)="resetFilter()" [disabled]="!filtersSelected">
+          <span>{{ 'shared.infotext.resetAll' | translate }}</span>
+        </button>
+      </div>
+
+      <div class="check-filter-tree__nested-node-outlet-nodes">
+        <ng-container matTreeNodeOutlet></ng-container>
+      </div>
+
+    </div>
+
+  </mat-nested-tree-node>
+
+</mat-tree>

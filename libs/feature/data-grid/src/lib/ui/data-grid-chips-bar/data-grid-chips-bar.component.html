@@ -1,0 +1,22 @@
+<mat-chip-listbox aria-label="Selected Filters" selectable="false" class="chiplist">
+  <ng-container *ngIf="groupedFilter">
+    <section *ngFor="let filterList of groupedFilter | keyvalue" class="chiplist__section">
+      <div class="chiplist__section-headline">{{ filterList.value[0].label | translate }}</div>
+      <mat-chip-option *ngFor="let filter of filterList.value"
+                       [removable]="true"
+                       (removed)="remove(filter)"
+                       class="chiplist__chip">
+        <span>{{ filter.displayValue | translate }}</span>
+        <button matChipRemove>
+          <fa-icon icon="xmark"></fa-icon>
+        </button>
+      </mat-chip-option>
+    </section>
+  </ng-container>
+
+  <section *ngIf="enableResetAll" class="chiplist__section chiplist__section--reset">
+    <button mat-flat-button color="primary" (click)="removeAll()">
+      <span>{{ 'ustay.shared.infotext.data-grid.resetAll' | translate }}</span>
+    </button>
+  </section>
+</mat-chip-listbox>

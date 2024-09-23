@@ -118,6 +118,12 @@
       ],
       "@local/shared/utils": [
         "libs/shared/utils/src/index.ts"
+      ],
+      "data-grid": [
+        "libs/feature/data-grid/src/index.ts"
+      ],
+      "@local/feature/file-upload": [
+        "libs/feature/file-upload/src/index.ts"
       ]
     }
   },

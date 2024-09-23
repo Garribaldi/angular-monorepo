@@ -1,0 +1,21 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+::ng-deep {
+  mat-hint {
+    font-size: 0.75rem;
+    color: grey;
+  }
+
+  .mdc-notched-outline--notched .mdc-notched-outline__notch {
+    box-sizing: content-box;
+    height: auto !important;
+    padding-right: 0 !important;
+  }
+}

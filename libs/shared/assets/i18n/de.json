@@ -2,12 +2,40 @@
   "angular-material": {
     "data-grid": {
       "infotext": {
-        "resetAll": "Alle zurücksetzen",
         "filter": "Filter",
-        "items": "{{ filtered }} von {{ total }} {{ datasetLabel }}"
+        "items": "{{ filtered }} von {{ total }} {{ datasetLabel }}",
+        "noFilter": "Kein Filter verfügbar",
+        "reset": "Filter Zurücksetzen",
+        "resetAll": "Alle Filter zurücksetzen",
+        "searchItem": "{{ item }} suchen",
+        "search": "Suche",
+        "clearSearch": "Suche zurücksetzen"
+      },
+      "form": {
+        "placeholder": {
+          "startdate": "Startdatum",
+          "enddate": "Enddatum"
+        },
+        "captions": {
+          "yes": "Ja",
+          "no": "Nein",
+          "both": "Beide",
+          "unknown": "Unbekannt",
+          "dateFormat": "DD.MM.JJJJ"
+        }
+      },
+      "labels": {
+        "items": "Einträgen"
+      }
+    },
+    "common": {
+      "infotext": {
+        "resetAll": "Alle zurücksetzen",
+        "selectAll": "Alle auswählen"
       }
     }
   },
+
   "shared": {
     "infotext": {
       "selectAll": "Alle auswählen",
